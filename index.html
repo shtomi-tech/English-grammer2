@@ -4,35 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>英語学習サイト (プロトタイプ)</title>
-    
-    <!-- Tailwind CSSをCDN経由で読み込みます -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fontsから見やすいフォントを読み込みます -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* 基本のフォント設定 */
-        body {
-            font-family: 'Inter', 'Noto Sans JP', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        /* フィードバック表示のアニメーション */
-        .feedback {
-            transition: all 0.3s ease-in-out;
-        }
-    </style>
+    <!-- SF Pro Display (Apple公式フォント) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100">
-
     <!-- ヘッダー -->
-    <header class="bg-blue-600 text-white shadow-lg">
-        <div class="container mx-auto px-6 py-4">
-            <h1 class="text-2xl md:text-3xl font-bold">English Learning Hub</h1>
-            <p class="mt-1 text-sm">英文法の基礎から学ぼう</p>
+    <header class="apple-header px-6 py-6 mb-8">
+        <div class="container mx-auto flex flex-col items-start">
+            <h1 class="apple-title">English Learning Hub</h1>
+            <p class="apple-sub mt-2">英文法の基礎から学ぼう</p>
         </div>
     </header>
 
@@ -41,9 +24,9 @@
         
         <div class="max-w-4xl mx-auto">
             <!-- サイト紹介 -->
-            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-3">このサイトについて</h2>
-                <p class="text-gray-600">
+            <div class="apple-card mb-8">
+                <h2 class="apple-card-title">このサイトについて</h2>
+                <p class="apple-card-text">
                     このウェブサイトは、英語の基礎となる英文法を学ぶためのリソースです。<br>
                     各単元の解説を読み、練習問題に挑戦して理解を深めていきましょう。<br>
                     まずは下の「品詞」から始めてみてください。
@@ -51,211 +34,223 @@
             </div>
 
             <!-- ナビゲーションボタン -->
-            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
-                <h2 class="text-xl font-bold text-gray-800 mb-3">文法セクションへ移動</h2>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <button onclick="location.href='#partsofspeech'" class="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">品詞</button>
-                    <button onclick="location.href='#sentencepattern'" class="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">文型</button>
-                    <button onclick="location.href='#phrase'" class="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">句</button>
-                    <button onclick="location.href='#clause'" class="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">節</button>
-                    <button onclick="location.href='#tense'" class="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">時制</button>
-                    <button onclick="location.href='#modal'" class="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">助動詞</button>
-                    <button onclick="location.href='#subjunctive'" class="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">仮定法</button>
-                    <button onclick="location.href='#comparison'" class="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">比較</button>
+            <div class="apple-card mb-8">
+                <h2 class="apple-card-title">文法セクションへ移動</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <button onclick="location.href='#partsofspeech'" class="apple-nav-btn">品詞</button>
+                    <button onclick="location.href='#sentencepattern'" class="apple-nav-btn">文型</button>
+                    <button onclick="location.href='#phrase'" class="apple-nav-btn">句</button>
+                    <button onclick="location.href='#clause'" class="apple-nav-btn">節</button>
+                    <button onclick="location.href='#tense'" class="apple-nav-btn">時制</button>
+                    <button onclick="location.href='#modal'" class="apple-nav-btn">助動詞</button>
+                    <button onclick="location.href='#subjunctive'" class="apple-nav-btn">仮定法</button>
+                    <button onclick="location.href='#comparison'" class="apple-nav-btn">比較</button>
                 </div>
             </div>
 
             <!-- 品詞 -->
-            <section id="partsofspeech" class="bg-white p-6 md:p-8 rounded-lg shadow-md mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 mb-4">品詞</h2>
+            <section id="partsofspeech" class="apple-card mb-8">
+                <h2 class="apple-card-title">品詞</h2>
                 <div class="prose max-w-none">
-                    <h3 class="text-xl font-bold mt-4">名詞</h3>
-                    <p>人・物・場所・考えなどを表す語。可算名詞と不可算名詞がある。</p>
+                    <h3 class="apple-section-title">名詞</h3>
+                    <p class="apple-section-text">人・物・場所・考えなどを表す語。可算名詞と不可算名詞がある。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generateNounQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generateNounQuestion" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
                         
                         <div id="aiQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="apple-question-card">
+                                <p id="aiQuestionText" class="apple-question-text"></p>
+                                <div id="aiOptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiFeedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
                         
-                        <div id="loadingIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
+                        <div id="loadingIndicator" class="hidden">
+                            <div class="apple-loading">
+                                <div class="apple-spinner"></div>
+                                <p class="apple-loading-text">問題を生成中...</p>
+                            </div>
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-bold mt-6">冠詞</h3>
+                    <h3 class="apple-section-title">冠詞</h3>
                     <p>名詞の前に付けて特定・不特定を示す語。a/an（不特定）、the（特定）。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generateArticleQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generateArticleQuestion" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
                         
                         <div id="aiArticleQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiArticleQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiArticleOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="apple-question-card">
+                                <p id="aiArticleQuestionText" class="apple-question-text"></p>
+                                <div id="aiArticleOptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiArticleFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiArticleFeedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
                         
-                        <div id="loadingArticleIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
+                        <div id="loadingArticleIndicator" class="hidden">
+                            <div class="apple-loading">
+                                <div class="apple-spinner"></div>
+                                <p class="apple-loading-text">問題を生成中...</p>
+                            </div>
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-bold mt-6">be動詞</h3>
+                    <h3 class="apple-section-title">be動詞</h3>
                     <p>主語の状態や存在を表す動詞。am/is/areがある。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generateBeVerbQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generateBeVerbQuestion" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
                         
                         <div id="aiBeVerbQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiBeVerbQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiBeVerbOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="apple-question-card">
+                                <p id="aiBeVerbQuestionText" class="apple-question-text"></p>
+                                <div id="aiBeVerbOptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiBeVerbFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiBeVerbFeedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
                         
-                        <div id="loadingBeVerbIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
+                        <div id="loadingBeVerbIndicator" class="hidden">
+                            <div class="apple-loading">
+                                <div class="apple-spinner"></div>
+                                <p class="apple-loading-text">問題を生成中...</p>
+                            </div>
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-bold mt-6">一般動詞</h3>
+                    <h3 class="apple-section-title">一般動詞</h3>
                     <p>動作や状態を表す動詞。主語や時制で形が変わる。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generateVerbQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generateVerbQuestion" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
                         
                         <div id="aiVerbQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiVerbQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiVerbOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="apple-question-card">
+                                <p id="aiVerbQuestionText" class="apple-question-text"></p>
+                                <div id="aiVerbOptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiVerbFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiVerbFeedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
                         
-                        <div id="loadingVerbIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
+                        <div id="loadingVerbIndicator" class="hidden">
+                            <div class="apple-loading">
+                                <div class="apple-spinner"></div>
+                                <p class="apple-loading-text">問題を生成中...</p>
+                            </div>
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-bold mt-6">形容詞</h3>
+                    <h3 class="apple-section-title">形容詞</h3>
                     <p>名詞を修飾し、性質や状態を表す語。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generateAdjectiveQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generateAdjectiveQuestion" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
                         
                         <div id="aiAdjectiveQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiAdjectiveQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiAdjectiveOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="apple-question-card">
+                                <p id="aiAdjectiveQuestionText" class="apple-question-text"></p>
+                                <div id="aiAdjectiveOptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiAdjectiveFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiAdjectiveFeedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
                         
-                        <div id="loadingAdjectiveIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
+                        <div id="loadingAdjectiveIndicator" class="hidden">
+                            <div class="apple-loading">
+                                <div class="apple-spinner"></div>
+                                <p class="apple-loading-text">問題を生成中...</p>
+                            </div>
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-bold mt-6">副詞</h3>
+                    <h3 class="apple-section-title">副詞</h3>
                     <p>動詞・形容詞・他の副詞を修飾する語。how, when, where, how muchなどを表す。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generateAdverbQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generateAdverbQuestion" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
                         
                         <div id="aiAdverbQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiAdverbQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiAdverbOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="apple-question-card">
+                                <p id="aiAdverbQuestionText" class="apple-question-text"></p>
+                                <div id="aiAdverbOptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiAdverbFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiAdverbFeedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
                         
-                        <div id="loadingAdverbIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
+                        <div id="loadingAdverbIndicator" class="hidden">
+                            <div class="apple-loading">
+                                <div class="apple-spinner"></div>
+                                <p class="apple-loading-text">問題を生成中...</p>
+                            </div>
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-bold mt-6">前置詞</h3>
+                    <h3 class="apple-section-title">前置詞</h3>
                     <p>名詞や代名詞の前に置き、場所・時間・方向などを示す語。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generatePrepositionQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generatePrepositionQuestion" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
                         
                         <div id="aiPrepositionQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiPrepositionQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiPrepositionOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="apple-question-card">
+                                <p id="aiPrepositionQuestionText" class="apple-question-text"></p>
+                                <div id="aiPrepositionOptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiPrepositionFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiPrepositionFeedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
                         
@@ -265,1025 +260,373 @@
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-bold mt-6">接続詞</h3>
+                    <h3 class="apple-section-title">接続詞</h3>
                     <p>文や語をつなぐ語。and, but, or, becauseなど。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generateConjunctionQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generateConjunctionQuestion" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
-                        
                         <div id="aiConjunctionQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiConjunctionQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiConjunctionOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="apple-question-card">
+                                <p id="aiConjunctionQuestionText" class="apple-question-text"></p>
+                                <div id="aiConjunctionOptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiConjunctionFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiConjunctionFeedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
-                        
-                        <div id="loadingConjunctionIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
+                        <div id="loadingConjunctionIndicator" class="hidden">
+                            <div class="apple-loading">
+                                <div class="apple-spinner"></div>
+                                <p class="apple-loading-text">問題を生成中...</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- 文型 -->
-            <section id="sentencepattern" class="bg-white p-6 md:p-8 rounded-lg shadow-md mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 mb-4">文型</h2>
+            <section id="sentencepattern" class="apple-card mb-8">
+                <h2 class="apple-card-title">文型</h2>
                 <div class="prose max-w-none">
-                    <h3 class="text-xl font-bold mt-4">第1文型（S+V）</h3>
-                    <p>主語＋動詞だけで文が成立する。</p>
+                    <h3 class="apple-section-title">第1文型（S+V）</h3>
+                    <p class="apple-section-text">主語＋動詞だけで文が成立する。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generatePattern1Question" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generatePattern1Question" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
                         
                         <div id="aiPattern1QuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiPattern1QuestionText" class="font-bold mb-3"></p>
-                                <div id="aiPattern1OptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="apple-question-card">
+                                <p id="aiPattern1QuestionText" class="apple-question-text"></p>
+                                <div id="aiPattern1OptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiPattern1Feedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiPattern1Feedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
                         
-                        <div id="loadingPattern1Indicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
+                        <div id="loadingPattern1Indicator" class="hidden">
+                            <div class="apple-loading">
+                                <div class="apple-spinner"></div>
+                                <p class="apple-loading-text">問題を生成中...</p>
+                            </div>
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-bold mt-6">第2文型（S+V+C）</h3>
-                    <p>主語＋動詞＋補語。be動詞や「〜になる」動詞で使う。</p>
+                    <h3 class="apple-section-title">第2文型（S+V+C）</h3>
+                    <p class="apple-section-text">主語＋動詞＋補語。be動詞や「〜になる」動詞で使う。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generatePattern2Question" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generatePattern2Question" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
                         
                         <div id="aiPattern2QuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiPattern2QuestionText" class="font-bold mb-3"></p>
-                                <div id="aiPattern2OptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="apple-question-card">
+                                <p id="aiPattern2QuestionText" class="apple-question-text"></p>
+                                <div id="aiPattern2OptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiPattern2Feedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiPattern2Feedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
                         
-                        <div id="loadingPattern2Indicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
+                        <div id="loadingPattern2Indicator" class="hidden">
+                            <div class="apple-loading">
+                                <div class="apple-spinner"></div>
+                                <p class="apple-loading-text">問題を生成中...</p>
+                            </div>
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-bold mt-6">第3文型（S+V+O）</h3>
-                    <p>主語＋動詞＋目的語。多くの動詞がこの型。</p>
+                    <h3 class="apple-section-title">第3文型（S+V+O）</h3>
+                    <p class="apple-section-text">主語＋動詞＋目的語。多くの動詞がこの型。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generatePattern3Question" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generatePattern3Question" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
                         
                         <div id="aiPattern3QuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiPattern3QuestionText" class="font-bold mb-3"></p>
-                                <div id="aiPattern3OptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="apple-question-card">
+                                <p id="aiPattern3QuestionText" class="apple-question-text"></p>
+                                <div id="aiPattern3OptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiPattern3Feedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiPattern3Feedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
                         
-                        <div id="loadingPattern3Indicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
+                        <div id="loadingPattern3Indicator" class="hidden">
+                            <div class="apple-loading">
+                                <div class="apple-spinner"></div>
+                                <p class="apple-loading-text">問題を生成中...</p>
+                            </div>
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-bold mt-6">第4文型（S+V+O1+O2）</h3>
-                    <p>主語＋動詞＋人＋物。「人に物を与える」など。</p>
+                    <h3 class="apple-section-title">第4文型（S+V+O1+O2）</h3>
+                    <p class="apple-section-text">主語＋動詞＋人＋物。「人に物を与える」など。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generatePattern4Question" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generatePattern4Question" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
                         
                         <div id="aiPattern4QuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiPattern4QuestionText" class="font-bold mb-3"></p>
-                                <div id="aiPattern4OptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="apple-question-card">
+                                <p id="aiPattern4QuestionText" class="apple-question-text"></p>
+                                <div id="aiPattern4OptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiPattern4Feedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiPattern4Feedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
                         
-                        <div id="loadingPattern4Indicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">第5文型（S+V+O+C）</h3>
-                    <p>主語＋動詞＋目的語＋補語。目的語がどうなるかを説明。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generatePattern5Question" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiPattern5QuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiPattern5QuestionText" class="font-bold mb-3"></p>
-                                <div id="aiPattern5OptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiPattern5Feedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                        <div id="loadingPattern4Indicator" class="hidden">
+                            <div class="apple-loading">
+                                <div class="apple-spinner"></div>
+                                <p class="apple-loading-text">問題を生成中...</p>
                             </div>
-                        </div>
-                        
-                        <div id="loadingPattern5Indicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">第3文型の受動態</h3>
-                    <p>目的語が主語になる受け身の文。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generatePassive3Question" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiPassive3QuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiPassive3QuestionText" class="font-bold mb-3"></p>
-                                <div id="aiPassive3OptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiPassive3Feedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
-                            </div>
-                        </div>
-                        
-                        <div id="loadingPassive3Indicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">第4文型の受動態</h3>
-                    <p>「人」または「物」が主語になる受け身の文。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generatePassive4Question" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiPassive4QuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiPassive4QuestionText" class="font-bold mb-3"></p>
-                                <div id="aiPassive4OptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiPassive4Feedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
-                            </div>
-                        </div>
-                        
-                        <div id="loadingPassive4Indicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">第5文型の受動態</h3>
-                    <p>目的語＋補語の受け身。補語はそのまま残る。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generatePassive5Question" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiPassive5QuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiPassive5QuestionText" class="font-bold mb-3"></p>
-                                <div id="aiPassive5OptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiPassive5Feedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
-                            </div>
-                        </div>
-                        
-                        <div id="loadingPassive5Indicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- 句 -->
-            <section id="phrase" class="bg-white p-6 md:p-8 rounded-lg shadow-md mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 mb-4">句</h2>
+            <section id="phrase" class="apple-card mb-8">
+                <h2 class="apple-card-title">句</h2>
                 <div class="prose max-w-none">
-                    <h3 class="text-xl font-bold mt-4">動名詞</h3>
-                    <p>動詞のing形で名詞の働きをする。</p>
+                    <h3 class="apple-section-title">名詞句</h3>
+                    <p class="apple-section-text">名詞の働きをする語の集まり。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generateGerundQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generateNounPhraseQuestion" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
                         
-                        <div id="aiGerundQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiGerundQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiGerundOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div id="aiNounPhraseQuestionContainer" class="hidden">
+                            <div class="apple-question-card">
+                                <p id="aiNounPhraseQuestionText" class="apple-question-text"></p>
+                                <div id="aiNounPhraseOptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiGerundFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiNounPhraseFeedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
                         
-                        <div id="loadingGerundIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">不定詞</h3>
-                    <p>to＋動詞の原形。名詞・形容詞・副詞の働き。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generateInfinitiveQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiInfinitiveQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiInfinitiveQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiInfinitiveOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiInfinitiveFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                        <div id="loadingNounPhraseIndicator" class="hidden">
+                            <div class="apple-loading">
+                                <div class="apple-spinner"></div>
+                                <p class="apple-loading-text">問題を生成中...</p>
                             </div>
-                        </div>
-                        
-                        <div id="loadingInfinitiveIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">分詞</h3>
-                    <p>現在分詞（〜している）・過去分詞（〜された）。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generateParticipleQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiParticipleQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiParticipleQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiParticipleOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiParticipleFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
-                            </div>
-                        </div>
-                        
-                        <div id="loadingParticipleIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">分詞構文</h3>
-                    <p>分詞を使って副詞節を簡略化した表現。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generateParticipleConstructionQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiParticipleConstructionQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiParticipleConstructionQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiParticipleConstructionOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiParticipleConstructionFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
-                            </div>
-                        </div>
-                        
-                        <div id="loadingParticipleConstructionIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- 節 -->
-            <section id="clause" class="bg-white p-6 md:p-8 rounded-lg shadow-md mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 mb-4">節</h2>
+            <section id="clause" class="apple-card mb-8">
+                <h2 class="apple-card-title">節</h2>
                 <div class="prose max-w-none">
-                    <h3 class="text-xl font-bold mt-4">関係代名詞</h3>
-                    <p>名詞を修飾する節を作るwho, which, thatなど。</p>
+                    <h3 class="apple-section-title">関係代名詞</h3>
+                    <p class="apple-section-text">名詞を修飾する節を作る代名詞。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generateRelativePronounQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generateRelativePronounQuestion" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
                         
                         <div id="aiRelativePronounQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiRelativePronounQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiRelativePronounOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="apple-question-card">
+                                <p id="aiRelativePronounQuestionText" class="apple-question-text"></p>
+                                <div id="aiRelativePronounOptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiRelativePronounFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiRelativePronounFeedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
                         
-                        <div id="loadingRelativePronounIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">関係副詞</h3>
-                    <p>when, where, whyなどで節を作り、名詞を修飾。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generateRelativeAdverbQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiRelativeAdverbQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiRelativeAdverbQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiRelativeAdverbOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiRelativeAdverbFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                        <div id="loadingRelativePronounIndicator" class="hidden">
+                            <div class="apple-loading">
+                                <div class="apple-spinner"></div>
+                                <p class="apple-loading-text">問題を生成中...</p>
                             </div>
-                        </div>
-                        
-                        <div id="loadingRelativeAdverbIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">従属接続詞</h3>
-                    <p>because, if, when, althoughなどで節を導く。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generateSubordinateConjunctionQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiSubordinateConjunctionQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiSubordinateConjunctionQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiSubordinateConjunctionOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiSubordinateConjunctionFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
-                            </div>
-                        </div>
-                        
-                        <div id="loadingSubordinateConjunctionIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">間接疑問文</h3>
-                    <p>疑問詞＋主語＋動詞の語順になる間接的な疑問。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generateIndirectQuestionQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiIndirectQuestionQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiIndirectQuestionQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiIndirectQuestionOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiIndirectQuestionFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
-                            </div>
-                        </div>
-                        
-                        <div id="loadingIndirectQuestionIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- 時制 -->
-            <section id="tense" class="bg-white p-6 md:p-8 rounded-lg shadow-md mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 mb-4">時制</h2>
+            <section id="tense" class="apple-card mb-8">
+                <h2 class="apple-card-title">時制</h2>
                 <div class="prose max-w-none">
-                    <h3 class="text-xl font-bold mt-4">現在形</h3>
-                    <p>習慣・事実・状態を表す。</p>
+                    <h3 class="apple-section-title">現在形</h3>
+                    <p class="apple-section-text">現在の習慣や事実を表す。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generatePresentTenseQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generatePresentTenseQuestion" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
                         
                         <div id="aiPresentTenseQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiPresentTenseQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiPresentTenseOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="apple-question-card">
+                                <p id="aiPresentTenseQuestionText" class="apple-question-text"></p>
+                                <div id="aiPresentTenseOptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiPresentTenseFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiPresentTenseFeedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
                         
-                        <div id="loadingPresentTenseIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">過去形</h3>
-                    <p>過去の出来事を表す。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generatePastTenseQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiPastTenseQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiPastTenseQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiPastTenseOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiPastTenseFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                        <div id="loadingPresentTenseIndicator" class="hidden">
+                            <div class="apple-loading">
+                                <div class="apple-spinner"></div>
+                                <p class="apple-loading-text">問題を生成中...</p>
                             </div>
-                        </div>
-                        
-                        <div id="loadingPastTenseIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">進行形</h3>
-                    <p>〜している最中を表す。be動詞＋動詞ing。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generateProgressiveTenseQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiProgressiveTenseQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiProgressiveTenseQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiProgressiveTenseOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiProgressiveTenseFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
-                            </div>
-                        </div>
-                        
-                        <div id="loadingProgressiveTenseIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">現在完了</h3>
-                    <p>「〜したことがある」「ずっと〜している」「〜したところだ」など。have/has＋過去分詞。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generatePresentPerfectQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiPresentPerfectQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiPresentPerfectQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiPresentPerfectOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiPresentPerfectFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
-                            </div>
-                        </div>
-                        
-                        <div id="loadingPresentPerfectIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">過去完了</h3>
-                    <p>過去のある時点より前の出来事。had＋過去分詞。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generatePastPerfectQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiPastPerfectQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiPastPerfectQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiPastPerfectOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiPastPerfectFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
-                            </div>
-                        </div>
-                        
-                        <div id="loadingPastPerfectIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">未来完了形</h3>
-                    <p>未来のある時点までに完了していること。will have＋過去分詞。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generateFuturePerfectQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiFuturePerfectQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiFuturePerfectQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiFuturePerfectOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiFuturePerfectFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
-                            </div>
-                        </div>
-                        
-                        <div id="loadingFuturePerfectIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- 助動詞 -->
-            <section id="modal" class="bg-white p-6 md:p-8 rounded-lg shadow-md mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 mb-4">助動詞</h2>
+            <section id="modal" class="apple-card mb-8">
+                <h2 class="apple-card-title">助動詞</h2>
                 <div class="prose max-w-none">
-                    <h3 class="text-xl font-bold mt-4">can</h3>
-                    <p>可能・許可・能力を表す。</p>
+                    <h3 class="apple-section-title">can</h3>
+                    <p class="apple-section-text">能力・可能性・許可を表す。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generateCanQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generateCanQuestion" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
                         
                         <div id="aiCanQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiCanQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiCanOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="apple-question-card">
+                                <p id="aiCanQuestionText" class="apple-question-text"></p>
+                                <div id="aiCanOptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiCanFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiCanFeedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
                         
-                        <div id="loadingCanIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">will</h3>
-                    <p>未来・意志・推量を表す。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generateWillQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiWillQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiWillQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiWillOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiWillFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                        <div id="loadingCanIndicator" class="hidden">
+                            <div class="apple-loading">
+                                <div class="apple-spinner"></div>
+                                <p class="apple-loading-text">問題を生成中...</p>
                             </div>
-                        </div>
-                        
-                        <div id="loadingWillIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">may</h3>
-                    <p>許可・推量を表す。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generateMayQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiMayQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiMayQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiMayOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiMayFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
-                            </div>
-                        </div>
-                        
-                        <div id="loadingMayIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">must</h3>
-                    <p>義務・強い推量を表す。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generateMustQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiMustQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiMustQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiMustOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiMustFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
-                            </div>
-                        </div>
-                        
-                        <div id="loadingMustIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">should</h3>
-                    <p>助言・当然を表す。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generateShouldQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiShouldQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiShouldQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiShouldOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiShouldFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
-                            </div>
-                        </div>
-                        
-                        <div id="loadingShouldIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- 仮定法 -->
-            <section id="subjunctive" class="bg-white p-6 md:p-8 rounded-lg shadow-md mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 mb-4">仮定法</h2>
+            <section id="subjunctive" class="apple-card mb-8">
+                <h2 class="apple-card-title">仮定法</h2>
                 <div class="prose max-w-none">
-                    <h3 class="text-xl font-bold mt-4">仮定法過去</h3>
-                    <p>現在の事実と反対の仮定。If＋過去形。</p>
+                    <h3 class="apple-section-title">仮定法過去</h3>
+                    <p class="apple-section-text">現在の事実に反する仮定を表す。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generateSubjunctivePastQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generateSubjunctivePastQuestion" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
                         
                         <div id="aiSubjunctivePastQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiSubjunctivePastQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiSubjunctivePastOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="apple-question-card">
+                                <p id="aiSubjunctivePastQuestionText" class="apple-question-text"></p>
+                                <div id="aiSubjunctivePastOptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiSubjunctivePastFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiSubjunctivePastFeedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
                         
-                        <div id="loadingSubjunctivePastIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">仮定法過去完了</h3>
-                    <p>過去の事実と反対の仮定。If＋had＋過去分詞。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generateSubjunctivePastPerfectQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiSubjunctivePastPerfectQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiSubjunctivePastPerfectQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiSubjunctivePastPerfectOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiSubjunctivePastPerfectFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                        <div id="loadingSubjunctivePastIndicator" class="hidden">
+                            <div class="apple-loading">
+                                <div class="apple-spinner"></div>
+                                <p class="apple-loading-text">問題を生成中...</p>
                             </div>
-                        </div>
-                        
-                        <div id="loadingSubjunctivePastPerfectIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">仮定法未来</h3>
-                    <p>未来の仮定。If＋should/were to＋動詞。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generateSubjunctiveFutureQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiSubjunctiveFutureQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiSubjunctiveFutureQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiSubjunctiveFutureOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiSubjunctiveFutureFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
-                            </div>
-                        </div>
-                        
-                        <div id="loadingSubjunctiveFutureIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">仮定法倒置</h3>
-                    <p>ifを省略し、助動詞を前に出す倒置表現。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generateSubjunctiveInversionQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiSubjunctiveInversionQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiSubjunctiveInversionQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiSubjunctiveInversionOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiSubjunctiveInversionFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
-                            </div>
-                        </div>
-                        
-                        <div id="loadingSubjunctiveInversionIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- 比較 -->
-            <section id="comparison" class="bg-white p-6 md:p-8 rounded-lg shadow-md mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2 mb-4">比較</h2>
+            <section id="comparison" class="apple-card mb-8">
+                <h2 class="apple-card-title">比較</h2>
                 <div class="prose max-w-none">
-                    <h3 class="text-xl font-bold mt-4">比較級</h3>
-                    <p>2つを比べて「より〜」を表す。形容詞＋er/more＋形容詞。</p>
+                    <h3 class="apple-section-title">比較級</h3>
+                    <p class="apple-section-text">2つのものを比較する形。</p>
                     
                     <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
+                    <div class="apple-ai-section">
+                        <h4 class="apple-ai-title">AI生成問題</h4>
                         <div class="mb-4">
-                            <button id="generateComparativeQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="generateComparativeQuestion" class="apple-ai-btn">
                                 新しい問題を生成
                             </button>
                         </div>
                         
                         <div id="aiComparativeQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiComparativeQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiComparativeOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="apple-question-card">
+                                <p id="aiComparativeQuestionText" class="apple-question-text"></p>
+                                <div id="aiComparativeOptionsContainer" class="apple-options-grid">
                                     <!-- AI生成の選択肢がここに表示されます -->
                                 </div>
-                                <div id="aiComparativeFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                                <div id="aiComparativeFeedback" class="apple-feedback hidden"></div>
                             </div>
                         </div>
                         
-                        <div id="loadingComparativeIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">最上級</h3>
-                    <p>3つ以上の中で「最も〜」を表す。the＋形容詞＋est/the most＋形容詞。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generateSuperlativeQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiSuperlativeQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiSuperlativeQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiSuperlativeOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiSuperlativeFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
+                        <div id="loadingComparativeIndicator" class="hidden">
+                            <div class="apple-loading">
+                                <div class="apple-spinner"></div>
+                                <p class="apple-loading-text">問題を生成中...</p>
                             </div>
-                        </div>
-                        
-                        <div id="loadingSuperlativeIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6">原級</h3>
-                    <p>同等比較。「as〜as」を使う。</p>
-                    
-                    <!-- AI生成問題セクション -->
-                    <div class="ai-question-section mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="text-lg font-bold text-blue-800 mb-3">AI生成問題</h4>
-                        <div class="mb-4">
-                            <button id="generatePositiveQuestion" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                新しい問題を生成
-                            </button>
-                        </div>
-                        
-                        <div id="aiPositiveQuestionContainer" class="hidden">
-                            <div class="question-item mb-6 p-4 border border-gray-200 rounded-lg bg-white">
-                                <p id="aiPositiveQuestionText" class="font-bold mb-3"></p>
-                                <div id="aiPositiveOptionsContainer" class="options-container grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <!-- AI生成の選択肢がここに表示されます -->
-                                </div>
-                                <div id="aiPositiveFeedback" class="feedback mt-3 p-3 rounded-lg hidden"></div>
-                            </div>
-                        </div>
-                        
-                        <div id="loadingPositiveIndicator" class="hidden text-center py-4">
-                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <p class="mt-2 text-gray-600">問題を生成中...</p>
                         </div>
                     </div>
                 </div>
@@ -1666,20 +1009,8 @@
         }
 
         // 句の問題生成機能
-        async function generateGerundQuestion() {
-            await generateQuestionForTopic('gerund', 'generateGerundQuestion', 'loadingGerundIndicator', 'aiGerundQuestionContainer', 'aiGerundQuestionText', 'aiGerundOptionsContainer', 'aiGerundFeedback');
-        }
-
-        async function generateInfinitiveQuestion() {
-            await generateQuestionForTopic('infinitive', 'generateInfinitiveQuestion', 'loadingInfinitiveIndicator', 'aiInfinitiveQuestionContainer', 'aiInfinitiveQuestionText', 'aiInfinitiveOptionsContainer', 'aiInfinitiveFeedback');
-        }
-
-        async function generateParticipleQuestion() {
-            await generateQuestionForTopic('participle', 'generateParticipleQuestion', 'loadingParticipleIndicator', 'aiParticipleQuestionContainer', 'aiParticipleQuestionText', 'aiParticipleOptionsContainer', 'aiParticipleFeedback');
-        }
-
-        async function generateParticipleConstructionQuestion() {
-            await generateQuestionForTopic('participle_construction', 'generateParticipleConstructionQuestion', 'loadingParticipleConstructionIndicator', 'aiParticipleConstructionQuestionContainer', 'aiParticipleConstructionQuestionText', 'aiParticipleConstructionOptionsContainer', 'aiParticipleConstructionFeedback');
+        async function generateNounPhraseQuestion() {
+            await generateQuestionForTopic('noun_phrase', 'generateNounPhraseQuestion', 'loadingNounPhraseIndicator', 'aiNounPhraseQuestionContainer', 'aiNounPhraseQuestionText', 'aiNounPhraseOptionsContainer', 'aiNounPhraseFeedback');
         }
 
         // 節の問題生成機能
@@ -1687,41 +1018,9 @@
             await generateQuestionForTopic('relative_pronoun', 'generateRelativePronounQuestion', 'loadingRelativePronounIndicator', 'aiRelativePronounQuestionContainer', 'aiRelativePronounQuestionText', 'aiRelativePronounOptionsContainer', 'aiRelativePronounFeedback');
         }
 
-        async function generateRelativeAdverbQuestion() {
-            await generateQuestionForTopic('relative_adverb', 'generateRelativeAdverbQuestion', 'loadingRelativeAdverbIndicator', 'aiRelativeAdverbQuestionContainer', 'aiRelativeAdverbQuestionText', 'aiRelativeAdverbOptionsContainer', 'aiRelativeAdverbFeedback');
-        }
-
-        async function generateSubordinateConjunctionQuestion() {
-            await generateQuestionForTopic('subordinate_conjunction', 'generateSubordinateConjunctionQuestion', 'loadingSubordinateConjunctionIndicator', 'aiSubordinateConjunctionQuestionContainer', 'aiSubordinateConjunctionQuestionText', 'aiSubordinateConjunctionOptionsContainer', 'aiSubordinateConjunctionFeedback');
-        }
-
-        async function generateIndirectQuestionQuestion() {
-            await generateQuestionForTopic('indirect_question', 'generateIndirectQuestionQuestion', 'loadingIndirectQuestionIndicator', 'aiIndirectQuestionQuestionContainer', 'aiIndirectQuestionQuestionText', 'aiIndirectQuestionOptionsContainer', 'aiIndirectQuestionFeedback');
-        }
-
         // 時制の問題生成機能
         async function generatePresentTenseQuestion() {
             await generateQuestionForTopic('present_tense', 'generatePresentTenseQuestion', 'loadingPresentTenseIndicator', 'aiPresentTenseQuestionContainer', 'aiPresentTenseQuestionText', 'aiPresentTenseOptionsContainer', 'aiPresentTenseFeedback');
-        }
-
-        async function generatePastTenseQuestion() {
-            await generateQuestionForTopic('past_tense', 'generatePastTenseQuestion', 'loadingPastTenseIndicator', 'aiPastTenseQuestionContainer', 'aiPastTenseQuestionText', 'aiPastTenseOptionsContainer', 'aiPastTenseFeedback');
-        }
-
-        async function generateProgressiveTenseQuestion() {
-            await generateQuestionForTopic('progressive_tense', 'generateProgressiveTenseQuestion', 'loadingProgressiveTenseIndicator', 'aiProgressiveTenseQuestionContainer', 'aiProgressiveTenseQuestionText', 'aiProgressiveTenseOptionsContainer', 'aiProgressiveTenseFeedback');
-        }
-
-        async function generatePresentPerfectQuestion() {
-            await generateQuestionForTopic('present_perfect', 'generatePresentPerfectQuestion', 'loadingPresentPerfectIndicator', 'aiPresentPerfectQuestionContainer', 'aiPresentPerfectQuestionText', 'aiPresentPerfectOptionsContainer', 'aiPresentPerfectFeedback');
-        }
-
-        async function generatePastPerfectQuestion() {
-            await generateQuestionForTopic('past_perfect', 'generatePastPerfectQuestion', 'loadingPastPerfectIndicator', 'aiPastPerfectQuestionContainer', 'aiPastPerfectQuestionText', 'aiPastPerfectOptionsContainer', 'aiPastPerfectFeedback');
-        }
-
-        async function generateFuturePerfectQuestion() {
-            await generateQuestionForTopic('future_perfect', 'generateFuturePerfectQuestion', 'loadingFuturePerfectIndicator', 'aiFuturePerfectQuestionContainer', 'aiFuturePerfectQuestionText', 'aiFuturePerfectOptionsContainer', 'aiFuturePerfectFeedback');
         }
 
         // 助動詞の問題生成機能
@@ -1729,50 +1028,14 @@
             await generateQuestionForTopic('can', 'generateCanQuestion', 'loadingCanIndicator', 'aiCanQuestionContainer', 'aiCanQuestionText', 'aiCanOptionsContainer', 'aiCanFeedback');
         }
 
-        async function generateWillQuestion() {
-            await generateQuestionForTopic('will', 'generateWillQuestion', 'loadingWillIndicator', 'aiWillQuestionContainer', 'aiWillQuestionText', 'aiWillOptionsContainer', 'aiWillFeedback');
-        }
-
-        async function generateMayQuestion() {
-            await generateQuestionForTopic('may', 'generateMayQuestion', 'loadingMayIndicator', 'aiMayQuestionContainer', 'aiMayQuestionText', 'aiMayOptionsContainer', 'aiMayFeedback');
-        }
-
-        async function generateMustQuestion() {
-            await generateQuestionForTopic('must', 'generateMustQuestion', 'loadingMustIndicator', 'aiMustQuestionContainer', 'aiMustQuestionText', 'aiMustOptionsContainer', 'aiMustFeedback');
-        }
-
-        async function generateShouldQuestion() {
-            await generateQuestionForTopic('should', 'generateShouldQuestion', 'loadingShouldIndicator', 'aiShouldQuestionContainer', 'aiShouldQuestionText', 'aiShouldOptionsContainer', 'aiShouldFeedback');
-        }
-
         // 仮定法の問題生成機能
         async function generateSubjunctivePastQuestion() {
             await generateQuestionForTopic('subjunctive_past', 'generateSubjunctivePastQuestion', 'loadingSubjunctivePastIndicator', 'aiSubjunctivePastQuestionContainer', 'aiSubjunctivePastQuestionText', 'aiSubjunctivePastOptionsContainer', 'aiSubjunctivePastFeedback');
         }
 
-        async function generateSubjunctivePastPerfectQuestion() {
-            await generateQuestionForTopic('subjunctive_past_perfect', 'generateSubjunctivePastPerfectQuestion', 'loadingSubjunctivePastPerfectIndicator', 'aiSubjunctivePastPerfectQuestionContainer', 'aiSubjunctivePastPerfectQuestionText', 'aiSubjunctivePastPerfectOptionsContainer', 'aiSubjunctivePastPerfectFeedback');
-        }
-
-        async function generateSubjunctiveFutureQuestion() {
-            await generateQuestionForTopic('subjunctive_future', 'generateSubjunctiveFutureQuestion', 'loadingSubjunctiveFutureIndicator', 'aiSubjunctiveFutureQuestionContainer', 'aiSubjunctiveFutureQuestionText', 'aiSubjunctiveFutureOptionsContainer', 'aiSubjunctiveFutureFeedback');
-        }
-
-        async function generateSubjunctiveInversionQuestion() {
-            await generateQuestionForTopic('subjunctive_inversion', 'generateSubjunctiveInversionQuestion', 'loadingSubjunctiveInversionIndicator', 'aiSubjunctiveInversionQuestionContainer', 'aiSubjunctiveInversionQuestionText', 'aiSubjunctiveInversionOptionsContainer', 'aiSubjunctiveInversionFeedback');
-        }
-
         // 比較の問題生成機能
         async function generateComparativeQuestion() {
             await generateQuestionForTopic('comparative', 'generateComparativeQuestion', 'loadingComparativeIndicator', 'aiComparativeQuestionContainer', 'aiComparativeQuestionText', 'aiComparativeOptionsContainer', 'aiComparativeFeedback');
-        }
-
-        async function generateSuperlativeQuestion() {
-            await generateQuestionForTopic('superlative', 'generateSuperlativeQuestion', 'loadingSuperlativeIndicator', 'aiSuperlativeQuestionContainer', 'aiSuperlativeQuestionText', 'aiSuperlativeOptionsContainer', 'aiSuperlativeFeedback');
-        }
-
-        async function generatePositiveQuestion() {
-            await generateQuestionForTopic('positive', 'generatePositiveQuestion', 'loadingPositiveIndicator', 'aiPositiveQuestionContainer', 'aiPositiveQuestionText', 'aiPositiveOptionsContainer', 'aiPositiveFeedback');
         }
 
         // AI生成問題を表示（汎用関数）
@@ -1789,7 +1052,7 @@
             aiOptionsContainer.innerHTML = '';
             questionData.options.forEach((option, index) => {
                 const button = document.createElement('button');
-                button.className = 'option-btn p-3 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors';
+                button.className = 'apple-option-btn';
                 button.textContent = option.text;
                 button.dataset.correct = option.correct.toString();
                 button.dataset.index = index;
@@ -1799,7 +1062,7 @@
             // フィードバック要素を設定
             aiFeedback.dataset.explanation = questionData.explanation;
             aiFeedback.classList.add('hidden');
-            aiFeedback.classList.remove('bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+            aiFeedback.classList.remove('correct', 'incorrect');
 
             // コンテナを表示
             aiQuestionContainer.classList.remove('hidden');
@@ -1811,8 +1074,8 @@
         // AI問題のイベントリスナーを設定（汎用関数）
         function setupAIQuestionEventListeners(containerId) {
             const aiQuestionContainer = document.getElementById(containerId);
-            const options = aiQuestionContainer.querySelectorAll('.option-btn');
-            const feedbackEl = aiQuestionContainer.querySelector('.feedback');
+            const options = aiQuestionContainer.querySelectorAll('.apple-option-btn');
+            const feedbackEl = aiQuestionContainer.querySelector('.apple-feedback');
             const explanation = feedbackEl.dataset.explanation;
 
             options.forEach(option => {
@@ -1824,26 +1087,23 @@
 
                     options.forEach(btn => {
                         btn.disabled = true;
-                        btn.classList.add('opacity-50', 'cursor-not-allowed');
+                        btn.style.pointerEvents = 'none';
                     });
 
                     if (isCorrect) {
-                        this.classList.remove('bg-gray-200', 'hover:bg-gray-300');
-                        this.classList.add('bg-green-500', 'text-white', 'ring-2', 'ring-green-600');
-                        feedbackEl.innerHTML = `<strong class="font-bold">正解！🎉</strong><br>${explanation}`;
+                        this.classList.add('correct');
+                        feedbackEl.innerHTML = `<strong>正解！🎉</strong><br>${explanation}`;
                         feedbackEl.classList.remove('hidden');
-                        feedbackEl.classList.add('bg-green-100', 'text-green-800');
+                        feedbackEl.classList.add('correct');
                     } else {
-                        this.classList.remove('bg-gray-200', 'hover:bg-gray-300');
-                        this.classList.add('bg-red-500', 'text-white', 'ring-2', 'ring-red-600');
-                        feedbackEl.innerHTML = `<strong class="font-bold">残念！不正解です。</strong><br>${explanation}`;
+                        this.classList.add('incorrect');
+                        feedbackEl.innerHTML = `<strong>残念！不正解です。</strong><br>${explanation}`;
                         feedbackEl.classList.remove('hidden');
-                        feedbackEl.classList.add('bg-red-100', 'text-red-800');
+                        feedbackEl.classList.add('incorrect');
                         
                         options.forEach(btn => {
                             if (btn.dataset.correct === 'true') {
-                                btn.classList.remove('bg-gray-200', 'opacity-50');
-                                btn.classList.add('bg-green-500', 'text-white', 'ring-2', 'ring-green-600');
+                                btn.classList.add('correct');
                             }
                         });
                     }
@@ -1886,26 +1146,23 @@
 
                         options.forEach(btn => {
                             btn.disabled = true;
-                            btn.classList.add('opacity-50', 'cursor-not-allowed');
+                            btn.style.pointerEvents = 'none';
                         });
 
                         if (isCorrect) {
-                            this.classList.remove('bg-gray-200', 'hover:bg-gray-300');
-                            this.classList.add('bg-green-500', 'text-white', 'ring-2', 'ring-green-600');
-                            feedbackEl.innerHTML = `<strong class="font-bold">正解！🎉</strong><br>${explanation}`;
+                            this.classList.add('correct');
+                            feedbackEl.innerHTML = `<strong>正解！🎉</strong><br>${explanation}`;
                             feedbackEl.classList.remove('hidden');
-                            feedbackEl.classList.add('bg-green-100', 'text-green-800');
+                            feedbackEl.classList.add('correct');
                         } else {
-                            this.classList.remove('bg-gray-200', 'hover:bg-gray-300');
-                            this.classList.add('bg-red-500', 'text-white', 'ring-2', 'ring-red-600');
-                            feedbackEl.innerHTML = `<strong class="font-bold">残念！不正解です。</strong><br>${explanation}`;
+                            this.classList.add('incorrect');
+                            feedbackEl.innerHTML = `<strong>残念！不正解です。</strong><br>${explanation}`;
                             feedbackEl.classList.remove('hidden');
-                            feedbackEl.classList.add('bg-red-100', 'text-red-800');
+                            feedbackEl.classList.add('incorrect');
                             
                             options.forEach(btn => {
                                 if (btn.dataset.correct === 'true') {
-                                    btn.classList.remove('bg-gray-200', 'opacity-50');
-                                    btn.classList.add('bg-green-500', 'text-white', 'ring-2', 'ring-green-600');
+                                    btn.classList.add('correct');
                                 }
                             });
                         }
@@ -2010,24 +1267,9 @@
             }
 
             // 句の問題生成ボタンのイベントリスナー
-            const generateGerundBtn = document.getElementById('generateGerundQuestion');
-            if (generateGerundBtn) {
-                generateGerundBtn.addEventListener('click', generateGerundQuestion);
-            }
-
-            const generateInfinitiveBtn = document.getElementById('generateInfinitiveQuestion');
-            if (generateInfinitiveBtn) {
-                generateInfinitiveBtn.addEventListener('click', generateInfinitiveQuestion);
-            }
-
-            const generateParticipleBtn = document.getElementById('generateParticipleQuestion');
-            if (generateParticipleBtn) {
-                generateParticipleBtn.addEventListener('click', generateParticipleQuestion);
-            }
-
-            const generateParticipleConstructionBtn = document.getElementById('generateParticipleConstructionQuestion');
-            if (generateParticipleConstructionBtn) {
-                generateParticipleConstructionBtn.addEventListener('click', generateParticipleConstructionQuestion);
+            const generateNounPhraseBtn = document.getElementById('generateNounPhraseQuestion');
+            if (generateNounPhraseBtn) {
+                generateNounPhraseBtn.addEventListener('click', generateNounPhraseQuestion);
             }
 
             // 節の問題生成ボタンのイベントリスナー
@@ -2036,50 +1278,10 @@
                 generateRelativePronounBtn.addEventListener('click', generateRelativePronounQuestion);
             }
 
-            const generateRelativeAdverbBtn = document.getElementById('generateRelativeAdverbQuestion');
-            if (generateRelativeAdverbBtn) {
-                generateRelativeAdverbBtn.addEventListener('click', generateRelativeAdverbQuestion);
-            }
-
-            const generateSubordinateConjunctionBtn = document.getElementById('generateSubordinateConjunctionQuestion');
-            if (generateSubordinateConjunctionBtn) {
-                generateSubordinateConjunctionBtn.addEventListener('click', generateSubordinateConjunctionQuestion);
-            }
-
-            const generateIndirectQuestionBtn = document.getElementById('generateIndirectQuestionQuestion');
-            if (generateIndirectQuestionBtn) {
-                generateIndirectQuestionBtn.addEventListener('click', generateIndirectQuestionQuestion);
-            }
-
             // 時制の問題生成ボタンのイベントリスナー
             const generatePresentTenseBtn = document.getElementById('generatePresentTenseQuestion');
             if (generatePresentTenseBtn) {
                 generatePresentTenseBtn.addEventListener('click', generatePresentTenseQuestion);
-            }
-
-            const generatePastTenseBtn = document.getElementById('generatePastTenseQuestion');
-            if (generatePastTenseBtn) {
-                generatePastTenseBtn.addEventListener('click', generatePastTenseQuestion);
-            }
-
-            const generateProgressiveTenseBtn = document.getElementById('generateProgressiveTenseQuestion');
-            if (generateProgressiveTenseBtn) {
-                generateProgressiveTenseBtn.addEventListener('click', generateProgressiveTenseQuestion);
-            }
-
-            const generatePresentPerfectBtn = document.getElementById('generatePresentPerfectQuestion');
-            if (generatePresentPerfectBtn) {
-                generatePresentPerfectBtn.addEventListener('click', generatePresentPerfectQuestion);
-            }
-
-            const generatePastPerfectBtn = document.getElementById('generatePastPerfectQuestion');
-            if (generatePastPerfectBtn) {
-                generatePastPerfectBtn.addEventListener('click', generatePastPerfectQuestion);
-            }
-
-            const generateFuturePerfectBtn = document.getElementById('generateFuturePerfectQuestion');
-            if (generateFuturePerfectBtn) {
-                generateFuturePerfectBtn.addEventListener('click', generateFuturePerfectQuestion);
             }
 
             // 助動詞の問題生成ボタンのイベントリスナー
@@ -2088,61 +1290,16 @@
                 generateCanBtn.addEventListener('click', generateCanQuestion);
             }
 
-            const generateWillBtn = document.getElementById('generateWillQuestion');
-            if (generateWillBtn) {
-                generateWillBtn.addEventListener('click', generateWillQuestion);
-            }
-
-            const generateMayBtn = document.getElementById('generateMayQuestion');
-            if (generateMayBtn) {
-                generateMayBtn.addEventListener('click', generateMayQuestion);
-            }
-
-            const generateMustBtn = document.getElementById('generateMustQuestion');
-            if (generateMustBtn) {
-                generateMustBtn.addEventListener('click', generateMustQuestion);
-            }
-
-            const generateShouldBtn = document.getElementById('generateShouldQuestion');
-            if (generateShouldBtn) {
-                generateShouldBtn.addEventListener('click', generateShouldQuestion);
-            }
-
             // 仮定法の問題生成ボタンのイベントリスナー
             const generateSubjunctivePastBtn = document.getElementById('generateSubjunctivePastQuestion');
             if (generateSubjunctivePastBtn) {
                 generateSubjunctivePastBtn.addEventListener('click', generateSubjunctivePastQuestion);
             }
 
-            const generateSubjunctivePastPerfectBtn = document.getElementById('generateSubjunctivePastPerfectQuestion');
-            if (generateSubjunctivePastPerfectBtn) {
-                generateSubjunctivePastPerfectBtn.addEventListener('click', generateSubjunctivePastPerfectQuestion);
-            }
-
-            const generateSubjunctiveFutureBtn = document.getElementById('generateSubjunctiveFutureQuestion');
-            if (generateSubjunctiveFutureBtn) {
-                generateSubjunctiveFutureBtn.addEventListener('click', generateSubjunctiveFutureQuestion);
-            }
-
-            const generateSubjunctiveInversionBtn = document.getElementById('generateSubjunctiveInversionQuestion');
-            if (generateSubjunctiveInversionBtn) {
-                generateSubjunctiveInversionBtn.addEventListener('click', generateSubjunctiveInversionQuestion);
-            }
-
             // 比較の問題生成ボタンのイベントリスナー
             const generateComparativeBtn = document.getElementById('generateComparativeQuestion');
             if (generateComparativeBtn) {
                 generateComparativeBtn.addEventListener('click', generateComparativeQuestion);
-            }
-
-            const generateSuperlativeBtn = document.getElementById('generateSuperlativeQuestion');
-            if (generateSuperlativeBtn) {
-                generateSuperlativeBtn.addEventListener('click', generateSuperlativeQuestion);
-            }
-
-            const generatePositiveBtn = document.getElementById('generatePositiveQuestion');
-            if (generatePositiveBtn) {
-                generatePositiveBtn.addEventListener('click', generatePositiveQuestion);
             }
         });
 
