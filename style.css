@@ -199,9 +199,9 @@ body::before {
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink), #00ffae);
+    margin: 2rem 0 1rem 0;
+    letter-spacing: -0.01em;
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-pink));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -209,18 +209,145 @@ body::before {
 
 .apple-section-text {
     font-size: 1rem;
-    color: var(--text-secondary);
+    color: #e5e7eb;
     line-height: 1.6;
     margin-bottom: 1.5rem;
 }
 
-.apple-ai-section {
+/* 大学受験向け問題情報表示 */
+.exam-info {
     background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: inline-block;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 212, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.exam-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+    animation: examInfoShimmer 2s ease-in-out infinite;
+}
+
+@keyframes examInfoShimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* 難易度選択機能 */
+.difficulty-selector {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.difficulty-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.difficulty-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.difficulty-btn {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.difficulty-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.difficulty-btn:hover::before {
+    left: 100%;
+}
+
+.difficulty-btn:hover {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+    border-color: rgba(0, 212, 255, 0.3);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+}
+
+.difficulty-btn.active {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
+    border-color: rgba(0, 212, 255, 0.5);
+    color: var(--text-primary);
+    box-shadow: 
+        0 4px 15px rgba(0, 212, 255, 0.3),
+        0 0 0 1px rgba(0, 212, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+.difficulty-btn.active::before {
+    left: 100%;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .difficulty-selector {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .difficulty-buttons {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .difficulty-btn {
+        flex: 1;
+        text-align: center;
+        padding: 0.6rem 0.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+.apple-ai-section {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
     backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
     padding: 2rem;
-    margin-bottom: 2rem;
+    margin: 1.5rem 0;
     position: relative;
     overflow: hidden;
 }
@@ -228,42 +355,47 @@ body::before {
 .apple-ai-section::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(from 0deg, transparent, rgba(0, 212, 255, 0.1), transparent);
-    animation: rotate 10s linear infinite;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    animation: rotate 20s linear infinite;
     z-index: -1;
 }
 
 @keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .apple-ai-title {
     font-size: 1.3rem;
     font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
+    color: var(--neon-blue);
+    margin-bottom: 1rem;
     text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
 }
 
 .apple-ai-btn {
-    background: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-purple) 100%);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
     color: var(--text-primary);
     border-radius: 15px;
-    padding: 1rem 2rem;
+    box-shadow: 
+        0 4px 20px rgba(0, 212, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     font-size: 1rem;
     font-weight: 600;
-    border: none;
-    cursor: pointer;
+    padding: 0.75rem 1.5rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     outline: none;
+    cursor: pointer;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
 }
 
 .apple-ai-btn::before {
@@ -273,7 +405,7 @@ body::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), transparent);
     transition: left 0.5s;
 }
 
@@ -282,35 +414,35 @@ body::before {
 }
 
 .apple-ai-btn:hover, .apple-ai-btn:focus {
-    background: linear-gradient(135deg, var(--neon-purple) 0%, var(--neon-pink) 100%);
-    box-shadow: 0 8px 30px rgba(0, 212, 255, 0.5);
-    transform: translateY(-2px) scale(1.05);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
+    box-shadow: 
+        0 8px 30px rgba(0, 212, 255, 0.3),
+        0 0 0 1px rgba(0, 212, 255, 0.4);
+    transform: translateY(-2px) scale(1.02);
 }
 
 .apple-ai-btn:disabled {
-    background: linear-gradient(135deg, #666 0%, #888 100%);
+    opacity: 0.6;
     cursor: not-allowed;
     transform: none;
-    box-shadow: none;
 }
 
 .apple-question-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
     backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border);
-    border-radius: 20px;
+    border-radius: 18px;
     padding: 2rem;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    position: relative;
-    overflow: hidden;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .apple-question-text {
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 500;
     color: var(--text-primary);
+    line-height: 1.6;
     margin-bottom: 1.5rem;
-    line-height: 1.5;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
@@ -325,61 +457,65 @@ body::before {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
     backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
+    color: var(--text-primary);
     border-radius: 15px;
-    padding: 1.2rem;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     font-size: 1rem;
     font-weight: 500;
-    color: var(--text-primary);
-    cursor: pointer;
+    padding: 1rem 1.5rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     outline: none;
-    text-align: left;
+    cursor: pointer;
     position: relative;
     overflow: hidden;
+    text-align: left;
 }
 
 .apple-option-btn::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
+    left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-    opacity: 0;
-    transition: opacity 0.3s;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
+    transition: left 0.5s;
 }
 
 .apple-option-btn:hover::before {
-    opacity: 1;
+    left: 100%;
 }
 
 .apple-option-btn:hover {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
-    border-color: rgba(0, 212, 255, 0.3);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+    box-shadow: 
+        0 6px 25px rgba(0, 212, 255, 0.2),
+        0 0 0 1px rgba(0, 212, 255, 0.3);
+    transform: translateY(-2px);
 }
 
 .apple-option-btn.correct {
-    background: linear-gradient(135deg, #34c759 0%, #30d158 100%);
-    color: #ffffff;
-    border-color: #34c759;
-    box-shadow: 0 8px 25px rgba(52, 199, 89, 0.4);
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(16, 185, 129, 0.3) 100%);
+    border-color: rgba(34, 197, 94, 0.5);
+    box-shadow: 
+        0 6px 25px rgba(34, 197, 94, 0.3),
+        0 0 0 1px rgba(34, 197, 94, 0.4);
     animation: correctPulse 0.6s ease-in-out;
 }
 
 @keyframes correctPulse {
-    0% { transform: scale(1); }
+    0%, 100% { transform: scale(1); }
     50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
 }
 
 .apple-option-btn.incorrect {
-    background: linear-gradient(135deg, #ff3b30 0%, #ff453a 100%);
-    color: #ffffff;
-    border-color: #ff3b30;
-    box-shadow: 0 8px 25px rgba(255, 59, 48, 0.4);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(220, 38, 38, 0.3) 100%);
+    border-color: rgba(239, 68, 68, 0.5);
+    box-shadow: 
+        0 6px 25px rgba(239, 68, 68, 0.3),
+        0 0 0 1px rgba(239, 68, 68, 0.4);
     animation: incorrectShake 0.6s ease-in-out;
 }
 
@@ -391,52 +527,56 @@ body::before {
 
 .apple-feedback {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border);
     border-radius: 15px;
     padding: 1.5rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     font-size: 1rem;
     line-height: 1.6;
-    position: relative;
-    overflow: hidden;
+    color: var(--text-primary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 }
 
 .apple-feedback.correct {
-    background: linear-gradient(135deg, rgba(52, 199, 89, 0.2) 0%, rgba(48, 209, 88, 0.1) 100%);
-    color: #34c759;
-    border-left: 4px solid #34c759;
-    box-shadow: 0 4px 20px rgba(52, 199, 89, 0.2);
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+    border-color: rgba(34, 197, 94, 0.3);
+    box-shadow: 
+        0 4px 20px rgba(34, 197, 94, 0.2),
+        0 0 0 1px rgba(34, 197, 94, 0.2);
 }
 
 .apple-feedback.incorrect {
-    background: linear-gradient(135deg, rgba(255, 59, 48, 0.2) 0%, rgba(255, 69, 58, 0.1) 100%);
-    color: #ff3b30;
-    border-left: 4px solid #ff3b30;
-    box-shadow: 0 4px 20px rgba(255, 59, 48, 0.2);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
+    border-color: rgba(239, 68, 68, 0.3);
+    box-shadow: 
+        0 4px 20px rgba(239, 68, 68, 0.2),
+        0 0 0 1px rgba(239, 68, 68, 0.2);
 }
 
 .apple-loading {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 3rem;
+    justify-content: center;
+    padding: 2rem;
+    color: var(--text-secondary);
 }
 
 .apple-spinner {
     width: 40px;
     height: 40px;
-    border: 3px solid rgba(0, 212, 255, 0.2);
+    border: 3px solid var(--glass-border);
     border-top: 3px solid var(--neon-blue);
     border-radius: 50%;
     animation: apple-spin 1s linear infinite;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    margin-bottom: 1rem;
 }
 
 .apple-loading-text {
+    font-size: 1rem;
     color: var(--text-secondary);
-    font-size: 1.1rem;
     text-shadow: 0 0 10px rgba(160, 160, 160, 0.3);
 }
 
@@ -445,7 +585,6 @@ body::before {
     100% { transform: rotate(360deg); }
 }
 
-/* レスポンシブデザイン */
 @media (max-width: 768px) {
     .apple-title {
         font-size: 2rem;
@@ -460,19 +599,17 @@ body::before {
     }
     
     .apple-nav-btn {
-        padding: 0.8rem 1rem;
         font-size: 1rem;
+        padding: 0.75rem 1rem;
     }
 }
 
-/* スクロールバーのカスタマイズ */
 ::-webkit-scrollbar {
     width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
+    background: var(--dark-bg);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -482,4 +619,108 @@ body::before {
 
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+} 
+
+/* 穴埋め問題用スタイル */
+.apple-select {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    border-radius: 15px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.apple-select:focus {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+}
+
+.apple-select option {
+    background: var(--dark-bg);
+    color: var(--text-primary);
+}
+
+.apple-input {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    border-radius: 15px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.apple-input:focus {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+}
+
+.apple-input.correct {
+    border-color: #10b981;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.apple-input.incorrect {
+    border-color: #ef4444;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+/* 穴埋め問題の文のスタイル */
+.fill-blank-sentence {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.fill-blank-blank {
+    display: inline-block;
+    min-width: 120px;
+    height: 40px;
+    border: 2px dashed var(--neon-blue);
+    border-radius: 8px;
+    margin: 0 8px;
+    background: rgba(0, 212, 255, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.fill-blank-blank:hover {
+    border-color: var(--neon-purple);
+    background: rgba(139, 92, 246, 0.1);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .apple-select,
+    .apple-input {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
+    }
+    
+    .fill-blank-sentence {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .fill-blank-blank {
+        min-width: 80px;
+        height: 35px;
+        margin: 0 4px;
+    }
 } 
