@@ -4,7 +4,8 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-async function generateQuestion(topic, difficulty = 'medium') {
+// 穴埋め問題生成関数
+async function generateFillInTheBlank(topic, difficulty = 'medium', numBlanks = 3) {
   // トピックに応じた具体的なプロンプトを生成
   let topicDescription = '';
   let examFocus = '';
@@ -60,320 +61,207 @@ async function generateQuestion(topic, difficulty = 'medium') {
       specificExamples = '例：and, but, or（等位）、because, if, when（従属）、although/though（譲歩）';
       commonMistakes = 'よくある間違い：等位接続詞と従属接続詞の区別、接続詞の省略、though/althoughの使い分け';
       break;
+    // 助動詞
+    case 'can':
+      topicDescription = '助動詞can（能力・可能性・許可・依頼）';
+      examFocus = 'canの多様な用法、couldとの使い分け、be able toとの違い';
+      specificExamples = '例：I can swim（能力）、Can I help you?（依頼）、It can be true（可能性）';
+      commonMistakes = 'よくある間違い：canとcouldの使い分け、be able toとの混同';
+      break;
+    case 'will':
+      topicDescription = '助動詞will（未来・意志・推量・習慣）';
+      examFocus = 'willの多様な用法、be going toとの違い、wouldとの使い分け';
+      specificExamples = '例：I will study hard（意志）、It will rain tomorrow（未来）、He will often work late（習慣）';
+      commonMistakes = 'よくある間違い：willとbe going toの使い分け、wouldとの混同';
+      break;
+    case 'may':
+      topicDescription = '助動詞may（許可・推量・可能性）';
+      examFocus = 'mayの多様な用法、mightとの使い分け、canとの違い';
+      specificExamples = '例：May I come in?（許可）、It may rain（推量）、He may be busy（可能性）';
+      commonMistakes = 'よくある間違い：mayとmightの使い分け、canとの混同';
+      break;
+    case 'must':
+      topicDescription = '助動詞must（義務・推量・禁止）';
+      examFocus = 'mustの多様な用法、have toとの違い、must notの意味';
+      specificExamples = '例：You must study hard（義務）、He must be tired（推量）、You must not smoke（禁止）';
+      commonMistakes = 'よくある間違い：mustとhave toの使い分け、must notの意味の誤解';
+      break;
+    case 'should':
+      topicDescription = '助動詞should（義務・推量・提案・後悔）';
+      examFocus = 'shouldの多様な用法、ought toとの違い、仮定法でのshould';
+      specificExamples = '例：You should study（義務）、He should be home（推量）、I should have studied（後悔）';
+      commonMistakes = 'よくある間違い：shouldとought toの使い分け、仮定法でのshouldの用法';
+      break;
+    // 時制
+    case 'present_tense':
+      topicDescription = '現在時制（現在形・現在進行形）';
+      examFocus = '現在形と現在進行形の使い分け、習慣・事実・進行中の動作';
+      specificExamples = '例：I study English（習慣）、I am studying now（進行中）、The sun rises in the east（事実）';
+      commonMistakes = 'よくある間違い：現在形と現在進行形の混同、状態動詞の進行形使用';
+      break;
+    case 'past_tense':
+      topicDescription = '過去時制（過去形・過去進行形）';
+      examFocus = '過去形と過去進行形の使い分け、過去の習慣・完了した動作';
+      specificExamples = '例：I studied yesterday（完了）、I was studying when he called（進行中）、I used to play tennis（習慣）';
+      commonMistakes = 'よくある間違い：過去形と過去進行形の混同、used toとwouldの使い分け';
+      break;
+    case 'present_perfect':
+      topicDescription = '現在完了時制（完了・経験・継続・結果）';
+      examFocus = '現在完了の4つの用法、過去形との違い、since/forの使い分け';
+      specificExamples = '例：I have finished my homework（完了）、I have been to Paris（経験）、I have lived here for 5 years（継続）';
+      commonMistakes = 'よくある間違い：現在完了と過去形の混同、since/forの使い分け';
+      break;
+    case 'past_perfect':
+      topicDescription = '過去完了時制（過去より前の完了・経験・継続）';
+      examFocus = '過去完了の用法、過去形との時系列、過去完了進行形';
+      specificExamples = '例：I had finished my homework before he came（完了）、I had been to Paris before（経験）';
+      commonMistakes = 'よくある間違い：過去完了と過去形の混同、時系列の理解不足';
+      break;
+    case 'future_perfect':
+      topicDescription = '未来完了時制（未来の完了・経験・継続）';
+      examFocus = '未来完了の用法、未来形との違い、by the timeとの組み合わせ';
+      specificExamples = '例：I will have finished my homework by tomorrow（完了）、I will have lived here for 10 years（継続）';
+      commonMistakes = 'よくある間違い：未来完了と未来形の混同、by the timeの使い方';
+      break;
+    case 'progressive':
+      topicDescription = '進行形（現在・過去・未来進行形）';
+      examFocus = '進行形の用法、状態動詞との関係、進行形の特殊用法';
+      specificExamples = '例：I am studying（現在進行）、I was studying（過去進行）、I will be studying（未来進行）';
+      commonMistakes = 'よくある間違い：状態動詞の進行形使用、進行形と単純形の混同';
+      break;
+    // 文型
     case 'pattern1':
-      topicDescription = '第1文型（S+V：主語＋動詞）';
-      examFocus = '自動詞の識別、第1文型の動詞の特徴、There構文との関連';
-      specificExamples = '例：The sun rises（自動詞）、There is a book（There構文）、He sleeps（自動詞）';
-      commonMistakes = 'よくある間違い：自動詞・他動詞の区別、There構文でのbe動詞の選択';
+      topicDescription = '第1文型（S+V）';
+      examFocus = '自動詞の使い方、主語と動詞の関係、第1文型の特徴';
+      specificExamples = '例：I run（走る）、The sun rises（太陽が昇る）、Birds fly（鳥が飛ぶ）';
+      commonMistakes = 'よくある間違い：自動詞に目的語を付ける、主語と動詞の不一致';
       break;
     case 'pattern2':
-      topicDescription = '第2文型（S+V+C：主語＋動詞＋補語）';
-      examFocus = '不完全自動詞の識別、補語の種類（名詞・形容詞）、第2文型を取る動詞';
-      specificExamples = '例：He is a student（名詞補語）、She looks happy（形容詞補語）、become, remain, stay';
-      commonMistakes = 'よくある間違い：補語の種類の区別、第2文型を取る動詞の識別';
+      topicDescription = '第2文型（S+V+C）';
+      examFocus = '補語の役割、be動詞と一般動詞、形容詞・名詞の補語';
+      specificExamples = '例：I am happy（形容詞補語）、He became a teacher（名詞補語）、The flower smells sweet（形容詞補語）';
+      commonMistakes = 'よくある間違い：補語と目的語の混同、be動詞の省略';
       break;
     case 'pattern3':
-      topicDescription = '第3文型（S+V+O：主語＋動詞＋目的語）';
-      examFocus = '他動詞の識別、目的語の種類、第3文型から受動態への変換';
-      specificExamples = '例：I read a book（他動詞）、She likes music（他動詞）、The book was read（受動態）';
-      commonMistakes = 'よくある間違い：自動詞・他動詞の区別、受動態への変換';
+      topicDescription = '第3文型（S+V+O）';
+      examFocus = '他動詞の使い方、目的語の役割、第3文型の特徴';
+      specificExamples = '例：I study English（他動詞）、She likes music（他動詞）、He reads books（他動詞）';
+      commonMistakes = 'よくある間違い：他動詞に目的語を付けない、自動詞と他動詞の混同';
       break;
     case 'pattern4':
-      topicDescription = '第4文型（S+V+O1+O2：主語＋動詞＋人＋物）';
-      examFocus = '第4文型を取る動詞、直接目的語と間接目的語の区別、受動態への変換';
-      specificExamples = '例：I gave him a book（give）、She told me the truth（tell）、He was given a book（受動態）';
-      commonMistakes = 'よくある間違い：直接目的語と間接目的語の区別、受動態への変換';
+      topicDescription = '第4文型（S+V+O+O）';
+      examFocus = '間接目的語と直接目的語、give型動詞、to/forの使い分け';
+      specificExamples = '例：I gave him a book（間接目的語+直接目的語）、She told me the truth、He bought me a present';
+      commonMistakes = 'よくある間違い：目的語の順序、to/forの使い分け';
       break;
     case 'pattern5':
-      topicDescription = '第5文型（S+V+O+C：主語＋動詞＋目的語＋補語）';
-      examFocus = '不完全他動詞の識別、目的格補語の種類、知覚動詞・使役動詞の用法';
-      specificExamples = '例：I found the book interesting（find）、I saw him run（知覚動詞）、I made him study（使役動詞）';
-      commonMistakes = 'よくある間違い：目的格補語の種類、知覚動詞・使役動詞の原形不定詞';
+      topicDescription = '第5文型（S+V+O+C）';
+      examFocus = '目的語補語、知覚動詞・使役動詞、形容詞・名詞の補語';
+      specificExamples = '例：I found the book interesting（形容詞補語）、They elected him president（名詞補語）、I saw him running（現在分詞）';
+      commonMistakes = 'よくある間違い：目的語補語と直接目的語の混同、知覚動詞の使い方';
       break;
-    case 'passive3':
-      topicDescription = '第3文型の受動態（目的語が主語になる受け身の文）';
-      examFocus = '受動態の時制、助動詞を含む受動態、by以外の前置詞を使う受動態';
-      specificExamples = '例：The letter was written（過去受動態）、The house is being built（進行形受動態）、I was surprised at the news（by以外）';
-      commonMistakes = 'よくある間違い：受動態の時制、by以外の前置詞の選択';
+    // 節
+    case 'noun_clause':
+      topicDescription = '名詞節（that節・whether節・疑問詞節）';
+      examFocus = '名詞節の役割、主語・目的語・補語としての用法、thatの省略';
+      specificExamples = '例：That he is honest is true（主語）、I know that he is honest（目的語）、The question is whether he will come（補語）';
+      commonMistakes = 'よくある間違い：thatの不適切な省略、名詞節と副詞節の混同';
       break;
-    case 'passive4':
-      topicDescription = '第4文型の受動態（人または物が主語になる受け身の文）';
-      examFocus = '第4文型の2つの受動態パターン、間接目的語を主語にする受動態';
-      specificExamples = '例：He was given a book（人主語）、A book was given to him（物主語）';
-      commonMistakes = 'よくある間違い：2つの受動態パターンの使い分け';
+    case 'relative_pronoun':
+      topicDescription = '関係代名詞（who・which・that・whose）';
+      examFocus = '関係代名詞の使い分け、制限用法・非制限用法、関係代名詞の省略';
+      specificExamples = '例：The man who lives next door（主格）、The book which I bought（目的格）、The man whose car is red（所有格）';
+      commonMistakes = 'よくある間違い：関係代名詞の選択ミス、制限・非制限用法の混同';
       break;
-    case 'passive5':
-      topicDescription = '第5文型の受動態（目的語＋補語の受け身）';
-      examFocus = '第5文型の受動態の特徴、知覚動詞・使役動詞の受動態';
-      specificExamples = '例：He was found guilty（find）、He was made to study（make）';
-      commonMistakes = 'よくある間違い：知覚動詞・使役動詞の受動態でのto不定詞';
+    case 'relative_adverb':
+      topicDescription = '関係副詞（where・when・why・how）';
+      examFocus = '関係副詞の使い分け、前置詞+関係代名詞との書き換え';
+      specificExamples = '例：The place where I was born（場所）、The time when I met him（時）、The reason why I came（理由）';
+      commonMistakes = 'よくある間違い：関係副詞と関係代名詞の混同、前置詞の使い方';
+      break;
+    case 'subordinating_conjunction':
+      topicDescription = '従属接続詞（because・if・when・althoughなど）';
+      examFocus = '従属接続詞の使い分け、時・条件・理由・譲歩の表現';
+      specificExamples = '例：I will go if it rains（条件）、I was happy because I passed（理由）、When I was young（時）';
+      commonMistakes = 'よくある間違い：従属接続詞と等位接続詞の混同、時制の一致';
+      break;
+    // 句
+    case 'infinitive':
+      topicDescription = '不定詞（to不定詞・原形不定詞）';
+      examFocus = '不定詞の3つの用法（名詞・形容詞・副詞）、原形不定詞の使い方';
+      specificExamples = '例：To study is important（名詞用法）、I want to study（目的語）、I came to study（副詞用法）';
+      commonMistakes = 'よくある間違い：不定詞と動名詞の混同、原形不定詞の使い方';
       break;
     case 'gerund':
-      topicDescription = '動名詞（動詞のing形で名詞の働きをする）';
-      examFocus = '動名詞を目的語に取る動詞、動名詞の意味上の主語、動名詞の否定';
-      specificExamples = '例：enjoy reading（enjoy）、finish doing（finish）、His coming surprised me（意味上の主語）';
-      commonMistakes = 'よくある間違い：動名詞と不定詞の使い分け、意味上の主語の表現';
-      break;
-    case 'infinitive':
-      topicDescription = '不定詞（to＋動詞の原形）';
-      examFocus = '不定詞の3用法（名詞・形容詞・副詞）、不定詞を目的語に取る動詞、原形不定詞';
-      specificExamples = '例：To study is important（名詞用法）、I want to go（目的語）、I saw him run（原形不定詞）';
-      commonMistakes = 'よくある間違い：不定詞の3用法の区別、動名詞と不定詞の使い分け';
+      topicDescription = '動名詞（-ing形の名詞用法）';
+      examFocus = '動名詞の用法、不定詞との使い分け、動名詞を目的語に取る動詞';
+      specificExamples = '例：Reading is fun（主語）、I enjoy reading（目的語）、Thank you for helping（前置詞の目的語）';
+      commonMistakes = 'よくある間違い：動名詞と不定詞の混同、前置詞の後の動詞の形';
       break;
     case 'participle':
       topicDescription = '分詞（現在分詞・過去分詞）';
-      examFocus = '分詞の形容詞的用法、分詞構文、分詞の意味上の主語';
-      specificExamples = '例：a sleeping baby（現在分詞）、a broken window（過去分詞）、Walking along the street, I met him（分詞構文）';
-      commonMistakes = 'よくある間違い：現在分詞と過去分詞の区別、分詞構文の意味上の主語';
+      examFocus = '分詞の形容詞用法、分詞構文、分詞の位置';
+      specificExamples = '例：The sleeping baby（現在分詞）、The broken window（過去分詞）、Walking down the street（分詞構文）';
+      commonMistakes = 'よくある間違い：現在分詞と過去分詞の混同、分詞構文の使い方';
       break;
     case 'participle_construction':
-      topicDescription = '分詞構文（分詞を使った副詞句）';
-      examFocus = '分詞構文の時制、分詞構文の否定、独立分詞構文';
-      specificExamples = '例：Walking along the street, I met him（同時）、Having finished my work, I went home（完了）、Weather permitting（独立分詞構文）';
-      commonMistakes = 'よくある間違い：分詞構文の時制、意味上の主語の一致';
-      break;
-    case 'relative_pronoun':
-      topicDescription = '関係代名詞（who, which, thatなど）';
-      examFocus = '関係代名詞の格変化、制限用法・非制限用法、関係代名詞の省略';
-      specificExamples = '例：The man who lives here（主格）、The book which I bought（目的格）、The man that I met（that）';
-      commonMistakes = 'よくある間違い：who/which/thatの使い分け、制限用法と非制限用法の区別';
-      break;
-    case 'relative_adverb':
-      topicDescription = '関係副詞（when, where, whyなど）';
-      examFocus = '関係副詞と前置詞＋関係代名詞の書き換え、関係副詞の省略';
-      specificExamples = '例：the day when I met him、the place where I was born、the reason why he came';
-      commonMistakes = 'よくある間違い：関係副詞と関係代名詞の区別、前置詞の選択';
-      break;
-    case 'subordinate_conjunction':
-      topicDescription = '従属接続詞（because, if, when, althoughなど）';
-      examFocus = '時・条件・譲歩・理由を表す接続詞、接続詞の使い分け';
-      specificExamples = '例：because（理由）、if（条件）、when（時）、although（譲歩）';
-      commonMistakes = 'よくある間違い：接続詞の使い分け、時制の一致';
+      topicDescription = '分詞構文（分詞による副詞句）';
+      examFocus = '分詞構文の作り方、時・理由・条件・譲歩の表現、主語の一致';
+      specificExamples = '例：Walking down the street, I met him（時）、Being tired, I went to bed（理由）、Weather permitting（条件）';
+      commonMistakes = 'よくある間違い：主語の不一致、分詞構文と従属節の混同';
       break;
     case 'indirect_question':
-      topicDescription = '間接疑問文（疑問詞＋主語＋動詞の語順）';
-      examFocus = '間接疑問文の語順、間接疑問文と関係詞節の区別';
-      specificExamples = '例：I don\'t know where he lives（間接疑問文）、the place where he lives（関係詞節）';
-      commonMistakes = 'よくある間違い：直接疑問文と間接疑問文の語順、関係詞節との区別';
+      topicDescription = '間接疑問文（疑問詞節・whether/if節）';
+      examFocus = '直接疑問文から間接疑問文への変換、語順の変化、時制の一致';
+      specificExamples = '例：I don\'t know where he lives（疑問詞節）、I wonder if he will come（whether/if節）';
+      commonMistakes = 'よくある間違い：語順の間違い、時制の一致の不備';
       break;
-    case 'present_tense':
-      topicDescription = '現在形（習慣・事実・状態を表す）';
-      examFocus = '現在形の用法、時・条件を表す副詞節での現在形、現在進行形との使い分け';
-      specificExamples = '例：I study English（習慣）、The sun rises in the east（事実）、If it rains, I will stay home（条件節）';
-      commonMistakes = 'よくある間違い：現在形と現在進行形の使い分け、時・条件節での現在形';
-      break;
-    case 'past_tense':
-      topicDescription = '過去形（過去の出来事を表す）';
-      examFocus = '過去形の用法、過去進行形との使い分け、過去完了との関連';
-      specificExamples = '例：I went to school yesterday（過去形）、I was studying when he called（過去進行形）';
-      commonMistakes = 'よくある間違い：過去形と過去進行形の使い分け、過去完了との区別';
-      break;
-    case 'progressive_tense':
-      topicDescription = '進行形（be動詞＋動詞ing）';
-      examFocus = '進行形の用法、進行形にできない動詞、未来進行形';
-      specificExamples = '例：I am studying now（現在進行形）、I will be studying tomorrow（未来進行形）、I like music（進行形不可）';
-      commonMistakes = 'よくある間違い：進行形にできない動詞、進行形の時制';
-      break;
-    case 'present_perfect':
-      topicDescription = '現在完了（have/has＋過去分詞）';
-      examFocus = '現在完了の3用法（完了・経験・継続）、現在完了と過去形の使い分け';
-      specificExamples = '例：I have finished my work（完了）、I have been to Paris（経験）、I have lived here for 10 years（継続）';
-      commonMistakes = 'よくある間違い：現在完了と過去形の使い分け、3用法の区別';
-      break;
-    case 'past_perfect':
-      topicDescription = '過去完了（had＋過去分詞）';
-      examFocus = '過去完了の用法、過去完了進行形、大過去';
-      specificExamples = '例：I had finished my work before he came（過去完了）、I had been studying for 2 hours（過去完了進行形）';
-      commonMistakes = 'よくある間違い：過去完了と過去形の使い分け、大過去の理解';
-      break;
-    case 'future_perfect':
-      topicDescription = '未来完了形（will have＋過去分詞）';
-      examFocus = '未来完了の用法、未来完了進行形';
-      specificExamples = '例：I will have finished my work by next week（未来完了）、I will have been studying for 10 years（未来完了進行形）';
-      commonMistakes = 'よくある間違い：未来完了の時制、完了の時点の理解';
-      break;
-    case 'can':
-      topicDescription = '助動詞can（可能・許可・能力を表す）';
-      examFocus = 'canの3用法、canとbe able toの使い分け、canの過去形could';
-      specificExamples = '例：I can swim（能力）、You can go now（許可）、It can be true（可能性）、I could swim when I was young（過去）';
-      commonMistakes = 'よくある間違い：canの3用法の区別、canとbe able toの使い分け';
-      break;
-    case 'will':
-      topicDescription = '助動詞will（未来・意志・推量を表す）';
-      examFocus = 'willの用法、willとbe going toの使い分け、willの過去形would';
-      specificExamples = '例：I will study hard（意志）、It will rain tomorrow（未来）、I would help you（過去の意志）';
-      commonMistakes = 'よくある間違い：willとbe going toの使い分け、willの過去形would';
-      break;
-    case 'may':
-      topicDescription = '助動詞may（許可・推量を表す）';
-      examFocus = 'mayの用法、mayとmightの使い分け、mayの過去形might';
-      specificExamples = '例：You may go now（許可）、It may rain tomorrow（推量）、He might be busy（過去の推量）';
-      commonMistakes = 'よくある間違い：mayとmightの使い分け、許可と推量の区別';
-      break;
-    case 'must':
-      topicDescription = '助動詞must（義務・強い推量を表す）';
-      examFocus = 'mustの用法、mustとhave toの使い分け、mustの否定形';
-      specificExamples = '例：You must study hard（義務）、He must be busy（強い推量）、You don\'t have to go（否定）';
-      commonMistakes = 'よくある間違い：mustとhave toの使い分け、mustの否定形';
-      break;
-    case 'should':
-      topicDescription = '助動詞should（助言・当然を表す）';
-      examFocus = 'shouldの用法、shouldとought toの使い分け、shouldの過去形';
-      specificExamples = '例：You should study hard（助言）、He should be home by now（当然）、I should have studied harder（過去の助言）';
-      commonMistakes = 'よくある間違い：shouldとought toの使い分け、should haveの用法';
-      break;
-    case 'subjunctive_past':
-      topicDescription = '仮定法過去（現在の事実と反対の仮定）';
-      examFocus = '仮定法過去の形、仮定法過去の用法、wish節での仮定法';
-      specificExamples = '例：If I were rich, I would buy a car（仮定法過去）、I wish I were taller（wish節）';
-      commonMistakes = 'よくある間違い：仮定法過去の形、wereの使用、wish節での仮定法';
-      break;
-    case 'subjunctive_past_perfect':
-      topicDescription = '仮定法過去完了（過去の事実と反対の仮定）';
-      examFocus = '仮定法過去完了の形、仮定法過去完了の用法、混合仮定法';
-      specificExamples = '例：If I had studied harder, I would have passed（仮定法過去完了）、I wish I had studied harder（wish節）';
-      commonMistakes = 'よくある間違い：仮定法過去完了の形、混合仮定法の理解';
-      break;
-    case 'subjunctive_future':
-      topicDescription = '仮定法未来（未来の仮定）';
-      examFocus = '仮定法未来の形、仮定法未来の用法、should/were to';
-      specificExamples = '例：If it should rain tomorrow（should）、If it were to rain tomorrow（were to）';
-      commonMistakes = 'よくある間違い：shouldとwere toの使い分け、仮定法未来の理解';
-      break;
-    case 'subjunctive_inversion':
-      topicDescription = '仮定法倒置（ifを省略し、助動詞を前に出す）';
-      examFocus = '仮定法倒置の形、仮定法倒置の用法、倒置の条件';
-      specificExamples = '例：Were I rich, I would buy a car（倒置）、Had I known, I would have helped（過去完了の倒置）';
-      commonMistakes = 'よくある間違い：倒置の条件、助動詞の選択';
+    // 比較
+    case 'positive':
+      topicDescription = '原級比較（as...as・not as...as）';
+      examFocus = '原級の表現、as...as構文、同等比較・不等比較';
+      specificExamples = '例：He is as tall as I am（同等）、She is not as tall as he is（不等）、as much as possible（可能な限り）';
+      commonMistakes = 'よくある間違い：as...as構文の語順、比較対象の不一致';
       break;
     case 'comparative':
-      topicDescription = '比較級（2つを比べて「より〜」を表す）';
-      examFocus = '比較級の作り方、不規則変化、比較級の修飾語';
-      specificExamples = '例：bigger（規則変化）、better（不規則変化）、much better（修飾語）';
-      commonMistakes = 'よくある間違い：比較級の作り方、不規則変化、修飾語の選択';
+      topicDescription = '比較級（-er・more・less）';
+      examFocus = '比較級の作り方、thanの使い方、比較級の特殊用法';
+      specificExamples = '例：He is taller than I am（比較級）、more interesting than（more+形容詞）、less expensive than（less+形容詞）';
+      commonMistakes = 'よくある間違い：比較級の作り方、thanの後の代名詞の格';
       break;
     case 'superlative':
-      topicDescription = '最上級（3つ以上の中で「最も〜」を表す）';
-      examFocus = '最上級の作り方、不規則変化、最上級の冠詞';
-      specificExamples = '例：the biggest（規則変化）、the best（不規則変化）、the most beautiful（多音節）';
-      commonMistakes = 'よくある間違い：最上級の作り方、冠詞の使用、不規則変化';
+      topicDescription = '最上級（-est・most・least）';
+      examFocus = '最上級の作り方、theの使い方、最上級の特殊用法';
+      specificExamples = '例：He is the tallest in the class（最上級）、the most interesting book（most+形容詞）、the least expensive（least+形容詞）';
+      commonMistakes = 'よくある間違い：最上級の作り方、theの有無';
       break;
-    case 'positive':
-      topicDescription = '原級（同等比較、「as〜as」を使う）';
-      examFocus = '原級比較の形、原級比較の否定、原級比較の修飾語';
-      specificExamples = '例：as tall as（同等）、not as tall as（否定）、twice as tall as（修飾語）';
-      commonMistakes = 'よくある間違い：as〜asの形、否定の表現、修飾語の位置';
+    // 仮定法
+    case 'subjunctive_past':
+      topicDescription = '仮定法過去（現在の事実に反する仮定）';
+      examFocus = '仮定法過去の作り方、wereの使用、if節と主節の時制';
+      specificExamples = '例：If I were rich, I would buy a house（現在の事実に反する仮定）、I wish I were taller（願望）';
+      commonMistakes = 'よくある間違い：仮定法と直説法の混同、wereの使い方';
       break;
-    default:
-      topicDescription = topic;
-      examFocus = '大学入試で頻出の文法項目';
-      specificExamples = '具体的な例文を提供';
-      commonMistakes = 'よくある間違いを考慮';
-  }
-
-  const prompt = `あなたは大学入試（センター試験、国公立大学、私立大学）の英語問題作成の専門家です。
-${topicDescription}に関する大学受験レベルの4択問題を1問作成してください。
-
-【出題方針】
-- 大学入試で実際に出題されるレベルの問題を作成
-- 受験生が間違いやすいポイントを狙った問題
-- 実践的で応用力を問う問題
-- ${examFocus}
-
-【具体的な要求】
-1. 問題文は日本語で、大学入試らしい形式で作成
-2. 選択肢は英語で、1つが正解、3つが不正解
-3. 不正解の選択肢は受験生が実際に間違いそうな内容
-4. 正解の選択肢を明示
-5. 詳細な解説を日本語で提供（なぜ正解なのか、なぜ他の選択肢が間違いなのか）
-
-【参考情報】
-- 具体的な例：${specificExamples}
-- よくある間違い：${commonMistakes}
-- 難易度：${difficulty}
-
-【問題作成の注意点】
-- 選択肢は文法的に正しい英語で作成
-- 不正解の選択肢は受験生が実際に選びそうな内容
-- 問題文は明確で曖昧さがないように
-- 解説は具体的で理解しやすい内容
-
-【出力形式】
-{
-  "question": "問題文（日本語）",
-  "options": [
-    {"text": "選択肢1", "correct": false},
-    {"text": "選択肢2", "correct": true},
-    {"text": "選択肢3", "correct": false},
-    {"text": "選択肢4", "correct": false}
-  ],
-  "explanation": "詳細な解説（正解の理由、不正解の理由、関連する文法事項）",
-  "difficulty": "標準",
-  "exam_type": "大学入試レベル"
-}
-
-必ずJSON形式で出力し、選択肢は文法的に正しい英語で作成してください。`;
-
-  const completion = await openai.chat.completions.create({
-    model: 'gpt-3.5-turbo', // または 'gpt-4'（有料）
-    messages: [{ role: 'user', content: prompt }],
-    temperature: 0.3, // より低い温度で一貫性を向上
-    max_tokens: 1000, // 十分な長さのレスポンスを確保
-  });
-
-  const text = completion.choices[0].message.content;
-  // JSON部分を抽出
-  let questionData;
-  const jsonMatch = text.match(/```json\s*([\s\S]*?)\s*```/);
-  if (jsonMatch) {
-    questionData = JSON.parse(jsonMatch[1]);
-  } else {
-    // そのままJSONとしてパースを試みる
-    questionData = JSON.parse(text);
-  }
-
-  return {
-    success: true,
-    data: questionData,
-    topic,
-    difficulty,
-  };
-}
-
-async function generateFillInTheBlank(topic, difficulty = 'medium', numBlanks = 3) {
-  // トピックに応じた具体的なプロンプトを生成
-  let topicDescription = '';
-  let examFocus = '';
-  let specificExamples = '';
-  let commonMistakes = '';
-  
-  switch (topic) {
-    case 'noun':
-      topicDescription = '名詞（可算名詞・不可算名詞、単数形・複数形など）';
-      examFocus = 'センター試験や私大入試で頻出の名詞の用法、集合名詞、物質名詞、抽象名詞の区別';
-      specificExamples = '例：family（集合名詞）、information（不可算名詞）、advice（不可算名詞）、equipment（不可算名詞）';
-      commonMistakes = 'よくある間違い：集合名詞の単数・複数扱い、物質名詞の冠詞、抽象名詞の可算・不可算の区別';
+    case 'subjunctive_past_perfect':
+      topicDescription = '仮定法過去完了（過去の事実に反する仮定）';
+      examFocus = '仮定法過去完了の作り方、had+過去分詞、if節と主節の時制';
+      specificExamples = '例：If I had studied harder, I would have passed（過去の事実に反する仮定）、I wish I had studied harder（後悔）';
+      commonMistakes = 'よくある間違い：仮定法過去と仮定法過去完了の混同、時制の一致';
       break;
-    case 'article':
-      topicDescription = '冠詞（a, an, theの使い分け）';
-      examFocus = '固有名詞と冠詞、抽象名詞の冠詞、慣用表現での冠詞の有無';
-      specificExamples = '例：the United States（国名）、a university（子音で始まる語）、an hour（無音のh）、go to school（冠詞なし）';
-      commonMistakes = 'よくある間違い：母音・子音の判断、固有名詞の冠詞、慣用表現での冠詞の有無';
+    case 'subjunctive_future':
+      topicDescription = '仮定法未来（未来の可能性の低い仮定）';
+      examFocus = '仮定法未来の作り方、should・were to・couldの使い方';
+      specificExamples = '例：If it should rain tomorrow（未来の可能性の低い仮定）、If I were to win the lottery';
+      commonMistakes = 'よくある間違い：仮定法未来と直説法未来の混同、shouldの使い方';
       break;
-    case 'be_verb':
-      topicDescription = 'be動詞（am, is, areの使い分け）';
-      examFocus = 'be動詞の進行形、受動態、完了形での用法、There構文';
-      specificExamples = '例：I am studying（進行形）、The book was written（受動態）、There is a book（There構文）';
-      commonMistakes = 'よくある間違い：主語とbe動詞の一致、There構文でのbe動詞の選択、受動態でのbe動詞の時制';
-      break;
-    case 'verb':
-      topicDescription = '一般動詞（三人称単数現在形、過去形など）';
-      examFocus = '自動詞・他動詞の区別、動詞の語法、句動詞、動詞の活用';
-      specificExamples = '例：arrive at（自動詞）、discuss the problem（他動詞）、look up（句動詞）、rise/raiseの区別';
-      commonMistakes = 'よくある間違い：自動詞・他動詞の区別、三人称単数現在形のs、不規則動詞の活用';
+    case 'subjunctive_inversion':
+      topicDescription = '仮定法倒置（ifの省略・語順の倒置）';
+      examFocus = 'ifの省略、助動詞の倒置、should・were・hadの倒置';
+      specificExamples = '例：Were I rich, I would buy a house（ifの省略）、Had I known, I would have helped（ifの省略）';
+      commonMistakes = 'よくある間違い：倒置の語順、ifの省略の条件';
       break;
     default:
-      topicDescription = '英語の文法';
+      topicDescription = '英語文法の基礎';
       examFocus = '基本的な文法事項';
       specificExamples = '基本的な例文';
       commonMistakes = '一般的な間違い';
@@ -396,6 +284,7 @@ async function generateFillInTheBlank(topic, difficulty = 'medium', numBlanks = 
 【よくある間違い】${commonMistakes}
 
 以下のJSON形式で回答してください：
+
 {
   "sentence": "穴埋め問題の文（穴は ___ で表現）",
   "blanks": [
@@ -437,6 +326,7 @@ async function generateFillInTheBlank(topic, difficulty = 'medium', numBlanks = 
 
     const response = completion.choices[0].message.content;
     
+    // JSONレスポンスを解析
     try {
       const result = JSON.parse(response);
       return {
@@ -459,7 +349,1149 @@ async function generateFillInTheBlank(topic, difficulty = 'medium', numBlanks = 
   }
 }
 
+// 英作文問題生成関数
+async function generateWritingQuestion(topic, difficulty = 'medium') {
+  // トピックに応じた具体的なプロンプトを生成
+  let topicDescription = '';
+  let examFocus = '';
+  let specificExamples = '';
+  let commonMistakes = '';
+  
+  switch (topic) {
+    case 'noun':
+      topicDescription = '名詞（可算名詞・不可算名詞、単数形・複数形など）';
+      examFocus = 'センター試験や私大入試で頻出の名詞の用法、集合名詞、物質名詞、抽象名詞の区別';
+      specificExamples = '例：family（集合名詞）、information（不可算名詞）、advice（不可算名詞）、equipment（不可算名詞）';
+      commonMistakes = 'よくある間違い：集合名詞の単数・複数扱い、物質名詞の冠詞、抽象名詞の可算・不可算の区別';
+      break;
+    case 'article':
+      topicDescription = '冠詞（a, an, theの使い分け）';
+      examFocus = '固有名詞と冠詞、抽象名詞の冠詞、慣用表現での冠詞の有無';
+      specificExamples = '例：the United States（国名）、a university（子音で始まる語）、an hour（無音のh）、go to school（冠詞なし）';
+      commonMistakes = 'よくある間違い：母音・子音の判断、固有名詞の冠詞、慣用表現での冠詞の有無';
+      break;
+    case 'be_verb':
+      topicDescription = 'be動詞（am, is, areの使い分け）';
+      examFocus = 'be動詞の進行形、受動態、完了形での用法、There構文';
+      specificExamples = '例：I am studying（進行形）、The book was written（受動態）、There is a book（There構文）';
+      commonMistakes = 'よくある間違い：主語とbe動詞の一致、There構文でのbe動詞の選択、受動態でのbe動詞の時制';
+      break;
+    case 'verb':
+      topicDescription = '一般動詞（三人称単数現在形、過去形など）';
+      examFocus = '自動詞・他動詞の区別、動詞の語法、句動詞、動詞の活用';
+      specificExamples = '例：arrive at（自動詞）、discuss the problem（他動詞）、look up（句動詞）、rise/raiseの区別';
+      commonMistakes = 'よくある間違い：自動詞・他動詞の区別、三人称単数現在形のs、不規則動詞の活用';
+      break;
+    case 'adjective':
+      topicDescription = '形容詞（名詞を修飾する語）';
+      examFocus = '形容詞の語順、限定用法・叙述用法、比較級・最上級の不規則変化';
+      specificExamples = '例：a beautiful old Japanese car（語順）、The car is beautiful（叙述用法）、good-better-best（不規則変化）';
+      commonMistakes = 'よくある間違い：形容詞の語順、限定用法と叙述用法の区別、比較級・最上級の作り方';
+      break;
+    case 'adverb':
+      topicDescription = '副詞（動詞・形容詞・他の副詞を修飾する語）';
+      examFocus = '副詞の位置、頻度を表す副詞、程度を表す副詞、文修飾副詞';
+      specificExamples = '例：He often goes（頻度）、very beautiful（程度）、Fortunately, he succeeded（文修飾）';
+      commonMistakes = 'よくある間違い：副詞の位置、形容詞と副詞の区別、頻度副詞の位置';
+      break;
+    case 'preposition':
+      topicDescription = '前置詞（場所・時間・方向などを示す語）';
+      examFocus = '前置詞の使い分け、前置詞を含む慣用表現、前置詞の省略';
+      specificExamples = '例：in the morning（時間）、at school（場所）、look forward to（慣用表現）、wait for（目的語）';
+      commonMistakes = 'よくある間違い：in/on/atの使い分け、前置詞の省略、慣用表現での前置詞';
+      break;
+    case 'conjunction':
+      topicDescription = '接続詞（文や語をつなぐ語）';
+      examFocus = '等位接続詞と従属接続詞の区別、接続詞の使い分け、接続詞の省略';
+      specificExamples = '例：and, but, or（等位）、because, if, when（従属）、although/though（譲歩）';
+      commonMistakes = 'よくある間違い：等位接続詞と従属接続詞の区別、接続詞の省略、though/althoughの使い分け';
+      break;
+    // 助動詞
+    case 'can':
+      topicDescription = '助動詞can（能力・可能性・許可・依頼）';
+      examFocus = 'canの多様な用法、couldとの使い分け、be able toとの違い';
+      specificExamples = '例：I can swim（能力）、Can I help you?（依頼）、It can be true（可能性）';
+      commonMistakes = 'よくある間違い：canとcouldの使い分け、be able toとの混同';
+      break;
+    case 'will':
+      topicDescription = '助動詞will（未来・意志・推量・習慣）';
+      examFocus = 'willの多様な用法、be going toとの違い、wouldとの使い分け';
+      specificExamples = '例：I will study hard（意志）、It will rain tomorrow（未来）、He will often work late（習慣）';
+      commonMistakes = 'よくある間違い：willとbe going toの使い分け、wouldとの混同';
+      break;
+    case 'may':
+      topicDescription = '助動詞may（許可・推量・可能性）';
+      examFocus = 'mayの多様な用法、mightとの使い分け、canとの違い';
+      specificExamples = '例：May I come in?（許可）、It may rain（推量）、He may be busy（可能性）';
+      commonMistakes = 'よくある間違い：mayとmightの使い分け、canとの混同';
+      break;
+    case 'must':
+      topicDescription = '助動詞must（義務・推量・禁止）';
+      examFocus = 'mustの多様な用法、have toとの違い、must notの意味';
+      specificExamples = '例：You must study hard（義務）、He must be tired（推量）、You must not smoke（禁止）';
+      commonMistakes = 'よくある間違い：mustとhave toの使い分け、must notの意味の誤解';
+      break;
+    case 'should':
+      topicDescription = '助動詞should（義務・推量・提案・後悔）';
+      examFocus = 'shouldの多様な用法、ought toとの違い、仮定法でのshould';
+      specificExamples = '例：You should study（義務）、He should be home（推量）、I should have studied（後悔）';
+      commonMistakes = 'よくある間違い：shouldとought toの使い分け、仮定法でのshouldの用法';
+      break;
+    // 時制
+    case 'present_tense':
+      topicDescription = '現在時制（現在形・現在進行形）';
+      examFocus = '現在形と現在進行形の使い分け、習慣・事実・進行中の動作';
+      specificExamples = '例：I study English（習慣）、I am studying now（進行中）、The sun rises in the east（事実）';
+      commonMistakes = 'よくある間違い：現在形と現在進行形の混同、状態動詞の進行形使用';
+      break;
+    case 'past_tense':
+      topicDescription = '過去時制（過去形・過去進行形）';
+      examFocus = '過去形と過去進行形の使い分け、過去の習慣・完了した動作';
+      specificExamples = '例：I studied yesterday（完了）、I was studying when he called（進行中）、I used to play tennis（習慣）';
+      commonMistakes = 'よくある間違い：過去形と過去進行形の混同、used toとwouldの使い分け';
+      break;
+    case 'present_perfect':
+      topicDescription = '現在完了時制（完了・経験・継続・結果）';
+      examFocus = '現在完了の4つの用法、過去形との違い、since/forの使い分け';
+      specificExamples = '例：I have finished my homework（完了）、I have been to Paris（経験）、I have lived here for 5 years（継続）';
+      commonMistakes = 'よくある間違い：現在完了と過去形の混同、since/forの使い分け';
+      break;
+    case 'past_perfect':
+      topicDescription = '過去完了時制（過去より前の完了・経験・継続）';
+      examFocus = '過去完了の用法、過去形との時系列、過去完了進行形';
+      specificExamples = '例：I had finished my homework before he came（完了）、I had been to Paris before（経験）';
+      commonMistakes = 'よくある間違い：過去完了と過去形の混同、時系列の理解不足';
+      break;
+    case 'future_perfect':
+      topicDescription = '未来完了時制（未来の完了・経験・継続）';
+      examFocus = '未来完了の用法、未来形との違い、by the timeとの組み合わせ';
+      specificExamples = '例：I will have finished my homework by tomorrow（完了）、I will have lived here for 10 years（継続）';
+      commonMistakes = 'よくある間違い：未来完了と未来形の混同、by the timeの使い方';
+      break;
+    case 'progressive':
+      topicDescription = '進行形（現在・過去・未来進行形）';
+      examFocus = '進行形の用法、状態動詞との関係、進行形の特殊用法';
+      specificExamples = '例：I am studying（現在進行）、I was studying（過去進行）、I will be studying（未来進行）';
+      commonMistakes = 'よくある間違い：状態動詞の進行形使用、進行形と単純形の混同';
+      break;
+    // 文型
+    case 'pattern1':
+      topicDescription = '第1文型（S+V）';
+      examFocus = '自動詞の使い方、主語と動詞の関係、第1文型の特徴';
+      specificExamples = '例：I run（走る）、The sun rises（太陽が昇る）、Birds fly（鳥が飛ぶ）';
+      commonMistakes = 'よくある間違い：自動詞に目的語を付ける、主語と動詞の不一致';
+      break;
+    case 'pattern2':
+      topicDescription = '第2文型（S+V+C）';
+      examFocus = '補語の役割、be動詞と一般動詞、形容詞・名詞の補語';
+      specificExamples = '例：I am happy（形容詞補語）、He became a teacher（名詞補語）、The flower smells sweet（形容詞補語）';
+      commonMistakes = 'よくある間違い：補語と目的語の混同、be動詞の省略';
+      break;
+    case 'pattern3':
+      topicDescription = '第3文型（S+V+O）';
+      examFocus = '他動詞の使い方、目的語の役割、第3文型の特徴';
+      specificExamples = '例：I study English（他動詞）、She likes music（他動詞）、He reads books（他動詞）';
+      commonMistakes = 'よくある間違い：他動詞に目的語を付けない、自動詞と他動詞の混同';
+      break;
+    case 'pattern4':
+      topicDescription = '第4文型（S+V+O+O）';
+      examFocus = '間接目的語と直接目的語、give型動詞、to/forの使い分け';
+      specificExamples = '例：I gave him a book（間接目的語+直接目的語）、She told me the truth、He bought me a present';
+      commonMistakes = 'よくある間違い：目的語の順序、to/forの使い分け';
+      break;
+    case 'pattern5':
+      topicDescription = '第5文型（S+V+O+C）';
+      examFocus = '目的語補語、知覚動詞・使役動詞、形容詞・名詞の補語';
+      specificExamples = '例：I found the book interesting（形容詞補語）、They elected him president（名詞補語）、I saw him running（現在分詞）';
+      commonMistakes = 'よくある間違い：目的語補語と直接目的語の混同、知覚動詞の使い方';
+      break;
+    // 節
+    case 'noun_clause':
+      topicDescription = '名詞節（that節・whether節・疑問詞節）';
+      examFocus = '名詞節の役割、主語・目的語・補語としての用法、thatの省略';
+      specificExamples = '例：That he is honest is true（主語）、I know that he is honest（目的語）、The question is whether he will come（補語）';
+      commonMistakes = 'よくある間違い：thatの不適切な省略、名詞節と副詞節の混同';
+      break;
+    case 'relative_pronoun':
+      topicDescription = '関係代名詞（who・which・that・whose）';
+      examFocus = '関係代名詞の使い分け、制限用法・非制限用法、関係代名詞の省略';
+      specificExamples = '例：The man who lives next door（主格）、The book which I bought（目的格）、The man whose car is red（所有格）';
+      commonMistakes = 'よくある間違い：関係代名詞の選択ミス、制限・非制限用法の混同';
+      break;
+    case 'relative_adverb':
+      topicDescription = '関係副詞（where・when・why・how）';
+      examFocus = '関係副詞の使い分け、前置詞+関係代名詞との書き換え';
+      specificExamples = '例：The place where I was born（場所）、The time when I met him（時）、The reason why I came（理由）';
+      commonMistakes = 'よくある間違い：関係副詞と関係代名詞の混同、前置詞の使い方';
+      break;
+    case 'subordinating_conjunction':
+      topicDescription = '従属接続詞（because・if・when・althoughなど）';
+      examFocus = '従属接続詞の使い分け、時・条件・理由・譲歩の表現';
+      specificExamples = '例：I will go if it rains（条件）、I was happy because I passed（理由）、When I was young（時）';
+      commonMistakes = 'よくある間違い：従属接続詞と等位接続詞の混同、時制の一致';
+      break;
+    // 句
+    case 'infinitive':
+      topicDescription = '不定詞（to不定詞・原形不定詞）';
+      examFocus = '不定詞の3つの用法（名詞・形容詞・副詞）、原形不定詞の使い方';
+      specificExamples = '例：To study is important（名詞用法）、I want to study（目的語）、I came to study（副詞用法）';
+      commonMistakes = 'よくある間違い：不定詞と動名詞の混同、原形不定詞の使い方';
+      break;
+    case 'gerund':
+      topicDescription = '動名詞（-ing形の名詞用法）';
+      examFocus = '動名詞の用法、不定詞との使い分け、動名詞を目的語に取る動詞';
+      specificExamples = '例：Reading is fun（主語）、I enjoy reading（目的語）、Thank you for helping（前置詞の目的語）';
+      commonMistakes = 'よくある間違い：動名詞と不定詞の混同、前置詞の後の動詞の形';
+      break;
+    case 'participle':
+      topicDescription = '分詞（現在分詞・過去分詞）';
+      examFocus = '分詞の形容詞用法、分詞構文、分詞の位置';
+      specificExamples = '例：The sleeping baby（現在分詞）、The broken window（過去分詞）、Walking down the street（分詞構文）';
+      commonMistakes = 'よくある間違い：現在分詞と過去分詞の混同、分詞構文の使い方';
+      break;
+    case 'participle_construction':
+      topicDescription = '分詞構文（分詞による副詞句）';
+      examFocus = '分詞構文の作り方、時・理由・条件・譲歩の表現、主語の一致';
+      specificExamples = '例：Walking down the street, I met him（時）、Being tired, I went to bed（理由）、Weather permitting（条件）';
+      commonMistakes = 'よくある間違い：主語の不一致、分詞構文と従属節の混同';
+      break;
+    case 'indirect_question':
+      topicDescription = '間接疑問文（疑問詞節・whether/if節）';
+      examFocus = '直接疑問文から間接疑問文への変換、語順の変化、時制の一致';
+      specificExamples = '例：I don\'t know where he lives（疑問詞節）、I wonder if he will come（whether/if節）';
+      commonMistakes = 'よくある間違い：語順の間違い、時制の一致の不備';
+      break;
+    // 比較
+    case 'positive':
+      topicDescription = '原級比較（as...as・not as...as）';
+      examFocus = '原級の表現、as...as構文、同等比較・不等比較';
+      specificExamples = '例：He is as tall as I am（同等）、She is not as tall as he is（不等）、as much as possible（可能な限り）';
+      commonMistakes = 'よくある間違い：as...as構文の語順、比較対象の不一致';
+      break;
+    case 'comparative':
+      topicDescription = '比較級（-er・more・less）';
+      examFocus = '比較級の作り方、thanの使い方、比較級の特殊用法';
+      specificExamples = '例：He is taller than I am（比較級）、more interesting than（more+形容詞）、less expensive than（less+形容詞）';
+      commonMistakes = 'よくある間違い：比較級の作り方、thanの後の代名詞の格';
+      break;
+    case 'superlative':
+      topicDescription = '最上級（-est・most・least）';
+      examFocus = '最上級の作り方、theの使い方、最上級の特殊用法';
+      specificExamples = '例：He is the tallest in the class（最上級）、the most interesting book（most+形容詞）、the least expensive（least+形容詞）';
+      commonMistakes = 'よくある間違い：最上級の作り方、theの有無';
+      break;
+    // 仮定法
+    case 'subjunctive_past':
+      topicDescription = '仮定法過去（現在の事実に反する仮定）';
+      examFocus = '仮定法過去の作り方、wereの使用、if節と主節の時制';
+      specificExamples = '例：If I were rich, I would buy a house（現在の事実に反する仮定）、I wish I were taller（願望）';
+      commonMistakes = 'よくある間違い：仮定法と直説法の混同、wereの使い方';
+      break;
+    case 'subjunctive_past_perfect':
+      topicDescription = '仮定法過去完了（過去の事実に反する仮定）';
+      examFocus = '仮定法過去完了の作り方、had+過去分詞、if節と主節の時制';
+      specificExamples = '例：If I had studied harder, I would have passed（過去の事実に反する仮定）、I wish I had studied harder（後悔）';
+      commonMistakes = 'よくある間違い：仮定法過去と仮定法過去完了の混同、時制の一致';
+      break;
+    case 'subjunctive_future':
+      topicDescription = '仮定法未来（未来の可能性の低い仮定）';
+      examFocus = '仮定法未来の作り方、should・were to・couldの使い方';
+      specificExamples = '例：If it should rain tomorrow（未来の可能性の低い仮定）、If I were to win the lottery';
+      commonMistakes = 'よくある間違い：仮定法未来と直説法未来の混同、shouldの使い方';
+      break;
+    case 'subjunctive_inversion':
+      topicDescription = '仮定法倒置（ifの省略・語順の倒置）';
+      examFocus = 'ifの省略、助動詞の倒置、should・were・hadの倒置';
+      specificExamples = '例：Were I rich, I would buy a house（ifの省略）、Had I known, I would have helped（ifの省略）';
+      commonMistakes = 'よくある間違い：倒置の語順、ifの省略の条件';
+      break;
+    default:
+      topicDescription = '英語文法の基礎';
+      examFocus = '基本的な文法事項';
+      specificExamples = '基本的な例文';
+      commonMistakes = '一般的な間違い';
+  }
+
+  const difficultySettings = {
+    easy: { complexity: '基本的な文法事項を使用した簡単な英作文', length: '1-2文程度の短い文章', vocabulary: '基本的な語彙を使用' },
+    medium: { complexity: '複数の文法事項を組み合わせた中程度の英作文', length: '3-4文程度の文章', vocabulary: '中程度の語彙を使用' },
+    hard: { complexity: '高度な文法事項を含む複雑な英作文', length: '5-6文程度の長い文章', vocabulary: '高度な語彙と表現を使用' }
+  };
+
+  const setting = difficultySettings[difficulty];
+
+  const prompt = `
+あなたは英語教育の専門家です。以下の条件に基づいて英作文問題を作成してください。
+
+【トピック】${topicDescription}
+【試験対象】${examFocus}
+【具体的な例】${specificExamples}
+【よくある間違い】${commonMistakes}
+
+【難易度設定】
+- 複雑さ: ${setting.complexity}
+- 文章の長さ: ${setting.length}
+- 語彙レベル: ${setting.vocabulary}
+
+【英検レベル対応】
+- 初級: 英検3級レベル（中学卒業程度）
+- 中級: 英検準2級レベル（高校中級程度）
+- 上級: 英検2級レベル（高校卒業程度）
+
+【要求事項】
+1. 日本語で問題文を作成してください
+2. その文法事項の理解度を試すような実践的な問題にしてください
+3. 難易度に応じた適切なヒントを2-3個提供してください
+4. 問題は以下のJSON形式で返してください：
+
+{
+  "question": "問題文（日本語）",
+  "hints": ["ヒント1", "ヒント2", "ヒント3"],
+  "topic": "${topic}",
+  "difficulty": "${difficulty}"
+}
+
+問題文は具体的で実践的で、学習者がその文法事項を実際に使って英作文できるような内容にしてください。
+`;
+
+  try {
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4",
+      messages: [
+        {
+          role: "system",
+          content: "あなたは英語教育の専門家で、学習者のレベルに合わせた英作文問題を作成するプロフェッショナルです。"
+        },
+        {
+          role: "user",
+          content: prompt
+        }
+      ],
+      temperature: 0.7,
+      max_tokens: 1000
+    });
+
+    const response = completion.choices[0].message.content;
+    
+    // JSONレスポンスを解析
+    try {
+      const jsonMatch = response.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        return JSON.parse(jsonMatch[0]);
+      } else {
+        throw new Error('JSON response not found');
+      }
+    } catch (parseError) {
+      console.error('Failed to parse JSON response:', parseError);
+      // フォールバック用のデフォルト問題
+      return {
+        question: "私は毎日英語を勉強しています。",
+        hints: ["現在形を使いましょう", "「毎日」は「every day」です", "「勉強する」は「study」です"],
+        topic: topic,
+        difficulty: difficulty
+      };
+    }
+  } catch (error) {
+    console.error('Error generating writing question:', error);
+    throw new Error('Failed to generate writing question');
+  }
+}
+
+// 英作文添削関数
+async function gradeWritingAnswer(topic, userAnswer, difficulty = 'medium') {
+  // トピックに応じた評価基準を設定
+  let evaluationCriteria = '';
+  let commonMistakes = '';
+  
+  switch (topic) {
+    case 'noun':
+      evaluationCriteria = '名詞の可算・不可算の区別、単数・複数形の使い分け、冠詞の使用';
+      commonMistakes = '可算名詞と不可算名詞の混同、単数・複数形の間違い、冠詞の誤用';
+      break;
+    case 'article':
+      evaluationCriteria = '冠詞（a, an, the）の適切な使用、冠詞の有無の判断';
+      commonMistakes = '冠詞の不適切な使用、冠詞の省略、母音・子音の判断ミス';
+      break;
+    case 'be_verb':
+      evaluationCriteria = 'be動詞の適切な使用、主語との一致、時制の正確性';
+      commonMistakes = '主語とbe動詞の不一致、時制の間違い、be動詞の省略';
+      break;
+    case 'verb':
+      evaluationCriteria = '動詞の活用、三人称単数現在形、時制の正確性';
+      commonMistakes = '三人称単数現在形のsの抜け、動詞の活用ミス、時制の間違い';
+      break;
+    case 'adjective':
+      evaluationCriteria = '形容詞の適切な使用、語順、限定用法・叙述用法';
+      commonMistakes = '形容詞の語順ミス、限定用法と叙述用法の混同';
+      break;
+    case 'adverb':
+      evaluationCriteria = '副詞の適切な使用、位置、形容詞との区別';
+      commonMistakes = '副詞の位置ミス、形容詞と副詞の混同';
+      break;
+    case 'preposition':
+      evaluationCriteria = '前置詞の適切な使用、慣用表現での前置詞';
+      commonMistakes = '前置詞の選択ミス、前置詞の省略、慣用表現の間違い';
+      break;
+    case 'conjunction':
+      evaluationCriteria = '接続詞の適切な使用、等位接続詞と従属接続詞の区別';
+      commonMistakes = '接続詞の選択ミス、接続詞の省略';
+      break;
+    // 助動詞
+    case 'can':
+      evaluationCriteria = '助動詞canの適切な使用、能力・可能性・許可・依頼の表現';
+      commonMistakes = 'canとcouldの使い分け、be able toとの混同、canの用法の誤解';
+      break;
+    case 'will':
+      evaluationCriteria = '助動詞willの適切な使用、未来・意志・推量・習慣の表現';
+      commonMistakes = 'willとbe going toの使い分け、wouldとの混同、willの用法の誤解';
+      break;
+    case 'may':
+      evaluationCriteria = '助動詞mayの適切な使用、許可・推量・可能性の表現';
+      commonMistakes = 'mayとmightの使い分け、canとの混同、mayの用法の誤解';
+      break;
+    case 'must':
+      evaluationCriteria = '助動詞mustの適切な使用、義務・推量・禁止の表現';
+      commonMistakes = 'mustとhave toの使い分け、must notの意味の誤解、mustの用法の誤解';
+      break;
+    case 'should':
+      evaluationCriteria = '助動詞shouldの適切な使用、義務・推量・提案・後悔の表現';
+      commonMistakes = 'shouldとought toの使い分け、仮定法でのshouldの用法、shouldの用法の誤解';
+      break;
+    // 時制
+    case 'present_tense':
+      evaluationCriteria = '現在時制の適切な使用、現在形と現在進行形の使い分け';
+      commonMistakes = '現在形と現在進行形の混同、状態動詞の進行形使用、時制の不一致';
+      break;
+    case 'past_tense':
+      evaluationCriteria = '過去時制の適切な使用、過去形と過去進行形の使い分け';
+      commonMistakes = '過去形と過去進行形の混同、used toとwouldの使い分け、時制の不一致';
+      break;
+    case 'present_perfect':
+      evaluationCriteria = '現在完了時制の適切な使用、完了・経験・継続・結果の表現';
+      commonMistakes = '現在完了と過去形の混同、since/forの使い分け、現在完了の用法の誤解';
+      break;
+    case 'past_perfect':
+      evaluationCriteria = '過去完了時制の適切な使用、過去より前の完了・経験・継続の表現';
+      commonMistakes = '過去完了と過去形の混同、時系列の理解不足、過去完了の用法の誤解';
+      break;
+    case 'future_perfect':
+      evaluationCriteria = '未来完了時制の適切な使用、未来の完了・経験・継続の表現';
+      commonMistakes = '未来完了と未来形の混同、by the timeの使い方、未来完了の用法の誤解';
+      break;
+    case 'progressive':
+      evaluationCriteria = '進行形の適切な使用、現在・過去・未来進行形の使い分け';
+      commonMistakes = '状態動詞の進行形使用、進行形と単純形の混同、進行形の用法の誤解';
+      break;
+    // 文型
+    case 'pattern1':
+      evaluationCriteria = '第1文型（S+V）の適切な使用、自動詞の使い方';
+      commonMistakes = '自動詞に目的語を付ける、主語と動詞の不一致、第1文型の理解不足';
+      break;
+    case 'pattern2':
+      evaluationCriteria = '第2文型（S+V+C）の適切な使用、補語の役割';
+      commonMistakes = '補語と目的語の混同、be動詞の省略、第2文型の理解不足';
+      break;
+    case 'pattern3':
+      evaluationCriteria = '第3文型（S+V+O）の適切な使用、他動詞の使い方';
+      commonMistakes = '他動詞に目的語を付けない、自動詞と他動詞の混同、第3文型の理解不足';
+      break;
+    case 'pattern4':
+      evaluationCriteria = '第4文型（S+V+O+O）の適切な使用、間接目的語と直接目的語';
+      commonMistakes = '目的語の順序、to/forの使い分け、第4文型の理解不足';
+      break;
+    case 'pattern5':
+      evaluationCriteria = '第5文型（S+V+O+C）の適切な使用、目的語補語';
+      commonMistakes = '目的語補語と直接目的語の混同、知覚動詞の使い方、第5文型の理解不足';
+      break;
+    // 節
+    case 'noun_clause':
+      evaluationCriteria = '名詞節の適切な使用、that節・whether節・疑問詞節の使い分け';
+      commonMistakes = 'thatの不適切な省略、名詞節と副詞節の混同、名詞節の用法の誤解';
+      break;
+    case 'relative_pronoun':
+      evaluationCriteria = '関係代名詞の適切な使用、who・which・that・whoseの使い分け';
+      commonMistakes = '関係代名詞の選択ミス、制限・非制限用法の混同、関係代名詞の用法の誤解';
+      break;
+    case 'relative_adverb':
+      evaluationCriteria = '関係副詞の適切な使用、where・when・why・howの使い分け';
+      commonMistakes = '関係副詞と関係代名詞の混同、前置詞の使い方、関係副詞の用法の誤解';
+      break;
+    case 'subordinating_conjunction':
+      evaluationCriteria = '従属接続詞の適切な使用、時・条件・理由・譲歩の表現';
+      commonMistakes = '従属接続詞と等位接続詞の混同、時制の一致、従属接続詞の用法の誤解';
+      break;
+    // 句
+    case 'infinitive':
+      evaluationCriteria = '不定詞の適切な使用、to不定詞・原形不定詞の使い分け';
+      commonMistakes = '不定詞と動名詞の混同、原形不定詞の使い方、不定詞の用法の誤解';
+      break;
+    case 'gerund':
+      evaluationCriteria = '動名詞の適切な使用、-ing形の名詞用法';
+      commonMistakes = '動名詞と不定詞の混同、前置詞の後の動詞の形、動名詞の用法の誤解';
+      break;
+    case 'participle':
+      evaluationCriteria = '分詞の適切な使用、現在分詞・過去分詞の使い分け';
+      commonMistakes = '現在分詞と過去分詞の混同、分詞構文の使い方、分詞の用法の誤解';
+      break;
+    case 'participle_construction':
+      evaluationCriteria = '分詞構文の適切な使用、分詞による副詞句';
+      commonMistakes = '主語の不一致、分詞構文と従属節の混同、分詞構文の用法の誤解';
+      break;
+    case 'indirect_question':
+      evaluationCriteria = '間接疑問文の適切な使用、疑問詞節・whether/if節の使い分け';
+      commonMistakes = '語順の間違い、時制の一致の不備、間接疑問文の用法の誤解';
+      break;
+    // 比較
+    case 'positive':
+      evaluationCriteria = '原級比較の適切な使用、as...as・not as...asの使い分け';
+      commonMistakes = 'as...as構文の語順、比較対象の不一致、原級比較の用法の誤解';
+      break;
+    case 'comparative':
+      evaluationCriteria = '比較級の適切な使用、-er・more・lessの使い分け';
+      commonMistakes = '比較級の作り方、thanの後の代名詞の格、比較級の用法の誤解';
+      break;
+    case 'superlative':
+      evaluationCriteria = '最上級の適切な使用、-est・most・leastの使い分け';
+      commonMistakes = '最上級の作り方、theの有無、最上級の用法の誤解';
+      break;
+    // 仮定法
+    case 'subjunctive_past':
+      evaluationCriteria = '仮定法過去の適切な使用、現在の事実に反する仮定の表現';
+      commonMistakes = '仮定法と直説法の混同、wereの使い方、仮定法過去の用法の誤解';
+      break;
+    case 'subjunctive_past_perfect':
+      evaluationCriteria = '仮定法過去完了の適切な使用、過去の事実に反する仮定の表現';
+      commonMistakes = '仮定法過去と仮定法過去完了の混同、時制の一致、仮定法過去完了の用法の誤解';
+      break;
+    case 'subjunctive_future':
+      evaluationCriteria = '仮定法未来の適切な使用、未来の可能性の低い仮定の表現';
+      commonMistakes = '仮定法未来と直説法未来の混同、shouldの使い方、仮定法未来の用法の誤解';
+      break;
+    case 'subjunctive_inversion':
+      evaluationCriteria = '仮定法倒置の適切な使用、ifの省略・語順の倒置';
+      commonMistakes = '倒置の語順、ifの省略の条件、仮定法倒置の用法の誤解';
+      break;
+    default:
+      evaluationCriteria = '基本的な文法の正確性、語順、語彙の適切性';
+      commonMistakes = '基本的な文法ミス、語順の間違い、語彙の不適切な使用';
+  }
+
+  const difficultySettings = {
+    easy: { tolerance: '基本的な文法ミスは厳しく指摘', scoreWeight: '文法70%、内容30%' },
+    medium: { tolerance: '中程度の文法ミスまで指摘', scoreWeight: '文法60%、内容40%' },
+    hard: { tolerance: '高度な表現や微妙なニュアンスまで評価', scoreWeight: '文法50%、内容50%' }
+  };
+
+  const setting = difficultySettings[difficulty];
+
+  const prompt = `
+あなたは英語教育の専門家です。以下の英作文を添削してください。
+
+【評価対象】
+トピック: ${topic}
+難易度: ${difficulty}
+評価基準: ${evaluationCriteria}
+よくある間違い: ${commonMistakes}
+評価方針: ${setting.tolerance}
+配点: ${setting.scoreWeight}
+
+【学習者の解答】
+${userAnswer}
+
+【要求事項】
+以下のJSON形式で詳細な添削結果を返してください：
+
+{
+  "overallScore": 85,
+  "overallComment": "全体的によく書けています。基本的な文法は正確ですが、いくつか改善点があります。",
+  "grammarCheck": [
+    {
+      "type": "error",
+      "original": "I study English everyday",
+      "suggestion": "I study English every day",
+      "explanation": "「everyday」は形容詞で「日常の」という意味です。「毎日」は「every day」と分けて書きます。"
+    }
+  ],
+  "improvements": [
+    "より自然な表現を使うことで、より良い文章になります",
+    "接続詞を効果的に使うことで、文章の流れが良くなります"
+  ],
+  "modelAnswer": "模範解答例をここに記載"
+}
+
+【評価のポイント】
+1. 総合評価（0-100点）とコメント
+2. 文法チェック（エラー、警告、良い点）
+3. 具体的な改善提案（2-3個）
+4. 模範解答例
+
+【重要】
+- すべての説明・コメント・提案・模範解答も必ず日本語で書いてください。
+
+評価は建設的で、学習者のモチベーションを保つような内容にしてください。
+`;
+
+  try {
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4",
+      messages: [
+        {
+          role: "system",
+          content: "あなたは英語教育の専門家で、学習者の英作文を丁寧に添削し、建設的なフィードバックを提供するプロフェッショナルです。"
+        },
+        {
+          role: "user",
+          content: prompt
+        }
+      ],
+      temperature: 0.3,
+      max_tokens: 1500
+    });
+
+    const response = completion.choices[0].message.content;
+    
+    // JSONレスポンスを解析
+    try {
+      const jsonMatch = response.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        return JSON.parse(jsonMatch[0]);
+      } else {
+        throw new Error('JSON response not found');
+      }
+    } catch (parseError) {
+      console.error('Failed to parse JSON response:', parseError);
+      // フォールバック用のデフォルト添削
+      return {
+        overallScore: 70,
+        overallComment: "基本的な文法は理解できていますが、いくつか改善点があります。",
+        grammarCheck: [
+          {
+            type: "warning",
+            original: userAnswer,
+            suggestion: "より自然な表現に改善できます",
+            explanation: "基本的な意味は通じますが、より自然な英語表現があります。"
+          }
+        ],
+        improvements: [
+          "語彙を豊かにすることで、より表現力豊かな文章になります",
+          "文法の正確性をさらに向上させましょう"
+        ],
+        modelAnswer: "模範解答例を確認して、より良い表現を学びましょう。"
+      };
+    }
+  } catch (error) {
+    console.error('Error grading writing answer:', error);
+    throw new Error('Failed to grade writing answer');
+  }
+}
+
+// 和文英訳問題生成関数
+async function generateTranslationQuestion(topic, difficulty = 'medium') {
+  // トピックに応じた具体的なプロンプトを生成
+  let topicDescription = '';
+  let examFocus = '';
+  let specificExamples = '';
+  let commonMistakes = '';
+  
+  switch (topic) {
+    case 'noun':
+      topicDescription = '名詞（可算名詞・不可算名詞、単数形・複数形など）';
+      examFocus = 'センター試験や私大入試で頻出の名詞の用法、集合名詞、物質名詞、抽象名詞の区別';
+      specificExamples = '例：family（集合名詞）、information（不可算名詞）、advice（不可算名詞）、equipment（不可算名詞）';
+      commonMistakes = 'よくある間違い：集合名詞の単数・複数扱い、物質名詞の冠詞、抽象名詞の可算・不可算の区別';
+      break;
+    case 'article':
+      topicDescription = '冠詞（a, an, theの使い分け）';
+      examFocus = '固有名詞と冠詞、抽象名詞の冠詞、慣用表現での冠詞の有無';
+      specificExamples = '例：the United States（国名）、a university（子音で始まる語）、an hour（無音のh）、go to school（冠詞なし）';
+      commonMistakes = 'よくある間違い：母音・子音の判断、固有名詞の冠詞、慣用表現での冠詞の有無';
+      break;
+    case 'be_verb':
+      topicDescription = 'be動詞（am, is, areの使い分け）';
+      examFocus = 'be動詞の進行形、受動態、完了形での用法、There構文';
+      specificExamples = '例：I am studying（進行形）、The book was written（受動態）、There is a book（There構文）';
+      commonMistakes = 'よくある間違い：主語とbe動詞の一致、There構文でのbe動詞の選択、受動態でのbe動詞の時制';
+      break;
+    case 'verb':
+      topicDescription = '一般動詞（三人称単数現在形、過去形など）';
+      examFocus = '自動詞・他動詞の区別、動詞の語法、句動詞、動詞の活用';
+      specificExamples = '例：arrive at（自動詞）、discuss the problem（他動詞）、look up（句動詞）、rise/raiseの区別';
+      commonMistakes = 'よくある間違い：自動詞・他動詞の区別、三人称単数現在形のs、不規則動詞の活用';
+      break;
+    case 'adjective':
+      topicDescription = '形容詞（名詞を修飾する語）';
+      examFocus = '形容詞の語順、限定用法・叙述用法、比較級・最上級の不規則変化';
+      specificExamples = '例：a beautiful old Japanese car（語順）、The car is beautiful（叙述用法）、good-better-best（不規則変化）';
+      commonMistakes = 'よくある間違い：形容詞の語順、限定用法と叙述用法の区別、比較級・最上級の作り方';
+      break;
+    case 'adverb':
+      topicDescription = '副詞（動詞・形容詞・他の副詞を修飾する語）';
+      examFocus = '副詞の位置、頻度を表す副詞、程度を表す副詞、文修飾副詞';
+      specificExamples = '例：He often goes（頻度）、very beautiful（程度）、Fortunately, he succeeded（文修飾）';
+      commonMistakes = 'よくある間違い：副詞の位置、形容詞と副詞の区別、頻度副詞の位置';
+      break;
+    case 'preposition':
+      topicDescription = '前置詞（場所・時間・方向などを示す語）';
+      examFocus = '前置詞の使い分け、前置詞を含む慣用表現、前置詞の省略';
+      specificExamples = '例：in the morning（時間）、at school（場所）、look forward to（慣用表現）、wait for（目的語）';
+      commonMistakes = 'よくある間違い：in/on/atの使い分け、前置詞の省略、慣用表現での前置詞';
+      break;
+    case 'conjunction':
+      topicDescription = '接続詞（文や語をつなぐ語）';
+      examFocus = '等位接続詞と従属接続詞の区別、接続詞の使い分け、接続詞の省略';
+      specificExamples = '例：and, but, or（等位）、because, if, when（従属）、although/though（譲歩）';
+      commonMistakes = 'よくある間違い：等位接続詞と従属接続詞の区別、接続詞の省略、though/althoughの使い分け';
+      break;
+    // 助動詞
+    case 'can':
+      topicDescription = '助動詞can（能力・可能性・許可・依頼）';
+      examFocus = 'canの多様な用法、couldとの使い分け、be able toとの違い';
+      specificExamples = '例：I can swim（能力）、Can I help you?（依頼）、It can be true（可能性）';
+      commonMistakes = 'よくある間違い：canとcouldの使い分け、be able toとの混同';
+      break;
+    case 'will':
+      topicDescription = '助動詞will（未来・意志・推量・習慣）';
+      examFocus = 'willの多様な用法、be going toとの違い、wouldとの使い分け';
+      specificExamples = '例：I will study hard（意志）、It will rain tomorrow（未来）、He will often work late（習慣）';
+      commonMistakes = 'よくある間違い：willとbe going toの使い分け、wouldとの混同';
+      break;
+    case 'may':
+      topicDescription = '助動詞may（許可・推量・可能性）';
+      examFocus = 'mayの多様な用法、mightとの使い分け、canとの違い';
+      specificExamples = '例：May I come in?（許可）、It may rain（推量）、He may be busy（可能性）';
+      commonMistakes = 'よくある間違い：mayとmightの使い分け、canとの混同';
+      break;
+    case 'must':
+      topicDescription = '助動詞must（義務・推量・禁止）';
+      examFocus = 'mustの多様な用法、have toとの違い、must notの意味';
+      specificExamples = '例：You must study hard（義務）、He must be tired（推量）、You must not smoke（禁止）';
+      commonMistakes = 'よくある間違い：mustとhave toの使い分け、must notの意味の誤解';
+      break;
+    case 'should':
+      topicDescription = '助動詞should（義務・推量・提案・後悔）';
+      examFocus = 'shouldの多様な用法、ought toとの違い、仮定法でのshould';
+      specificExamples = '例：You should study（義務）、He should be home（推量）、I should have studied（後悔）';
+      commonMistakes = 'よくある間違い：shouldとought toの使い分け、仮定法でのshouldの用法';
+      break;
+    // 時制
+    case 'present_tense':
+      topicDescription = '現在時制（現在形・現在進行形）';
+      examFocus = '現在形と現在進行形の使い分け、習慣・事実・進行中の動作';
+      specificExamples = '例：I study English（習慣）、I am studying now（進行中）、The sun rises in the east（事実）';
+      commonMistakes = 'よくある間違い：現在形と現在進行形の混同、状態動詞の進行形使用';
+      break;
+    case 'past_tense':
+      topicDescription = '過去時制（過去形・過去進行形）';
+      examFocus = '過去形と過去進行形の使い分け、過去の習慣・完了した動作';
+      specificExamples = '例：I studied yesterday（完了）、I was studying when he called（進行中）、I used to play tennis（習慣）';
+      commonMistakes = 'よくある間違い：過去形と過去進行形の混同、used toとwouldの使い分け';
+      break;
+    case 'present_perfect':
+      topicDescription = '現在完了時制（完了・経験・継続・結果）';
+      examFocus = '現在完了の4つの用法、過去形との違い、since/forの使い分け';
+      specificExamples = '例：I have finished my homework（完了）、I have been to Paris（経験）、I have lived here for 5 years（継続）';
+      commonMistakes = 'よくある間違い：現在完了と過去形の混同、since/forの使い分け';
+      break;
+    case 'past_perfect':
+      topicDescription = '過去完了時制（過去より前の完了・経験・継続）';
+      examFocus = '過去完了の用法、過去形との時系列、過去完了進行形';
+      specificExamples = '例：I had finished my homework before he came（完了）、I had been to Paris before（経験）';
+      commonMistakes = 'よくある間違い：過去完了と過去形の混同、時系列の理解不足';
+      break;
+    case 'future_perfect':
+      topicDescription = '未来完了時制（未来の完了・経験・継続）';
+      examFocus = '未来完了の用法、未来形との違い、by the timeとの組み合わせ';
+      specificExamples = '例：I will have finished my homework by tomorrow（完了）、I will have lived here for 10 years（継続）';
+      commonMistakes = 'よくある間違い：未来完了と未来形の混同、by the timeの使い方';
+      break;
+    case 'progressive':
+      topicDescription = '進行形（現在・過去・未来進行形）';
+      examFocus = '進行形の用法、状態動詞との関係、進行形の特殊用法';
+      specificExamples = '例：I am studying（現在進行）、I was studying（過去進行）、I will be studying（未来進行）';
+      commonMistakes = 'よくある間違い：状態動詞の進行形使用、進行形と単純形の混同';
+      break;
+    // 文型
+    case 'pattern1':
+      topicDescription = '第1文型（S+V）';
+      examFocus = '自動詞の使い方、主語と動詞の関係、第1文型の特徴';
+      specificExamples = '例：I run（走る）、The sun rises（太陽が昇る）、Birds fly（鳥が飛ぶ）';
+      commonMistakes = 'よくある間違い：自動詞に目的語を付ける、主語と動詞の不一致';
+      break;
+    case 'pattern2':
+      topicDescription = '第2文型（S+V+C）';
+      examFocus = '補語の役割、be動詞と一般動詞、形容詞・名詞の補語';
+      specificExamples = '例：I am happy（形容詞補語）、He became a teacher（名詞補語）、The flower smells sweet（形容詞補語）';
+      commonMistakes = 'よくある間違い：補語と目的語の混同、be動詞の省略';
+      break;
+    case 'pattern3':
+      topicDescription = '第3文型（S+V+O）';
+      examFocus = '他動詞の使い方、目的語の役割、第3文型の特徴';
+      specificExamples = '例：I study English（他動詞）、She likes music（他動詞）、He reads books（他動詞）';
+      commonMistakes = 'よくある間違い：他動詞に目的語を付けない、自動詞と他動詞の混同';
+      break;
+    case 'pattern4':
+      topicDescription = '第4文型（S+V+O+O）';
+      examFocus = '間接目的語と直接目的語、give型動詞、to/forの使い分け';
+      specificExamples = '例：I gave him a book（間接目的語+直接目的語）、She told me the truth、He bought me a present';
+      commonMistakes = 'よくある間違い：目的語の順序、to/forの使い分け';
+      break;
+    case 'pattern5':
+      topicDescription = '第5文型（S+V+O+C）';
+      examFocus = '目的語補語、知覚動詞・使役動詞、形容詞・名詞の補語';
+      specificExamples = '例：I found the book interesting（形容詞補語）、They elected him president（名詞補語）、I saw him running（現在分詞）';
+      commonMistakes = 'よくある間違い：目的語補語と直接目的語の混同、知覚動詞の使い方';
+      break;
+    // 節
+    case 'noun_clause':
+      topicDescription = '名詞節（that節・whether節・疑問詞節）';
+      examFocus = '名詞節の役割、主語・目的語・補語としての用法、thatの省略';
+      specificExamples = '例：That he is honest is true（主語）、I know that he is honest（目的語）、The question is whether he will come（補語）';
+      commonMistakes = 'よくある間違い：thatの不適切な省略、名詞節と副詞節の混同';
+      break;
+    case 'relative_pronoun':
+      topicDescription = '関係代名詞（who・which・that・whose）';
+      examFocus = '関係代名詞の使い分け、制限用法・非制限用法、関係代名詞の省略';
+      specificExamples = '例：The man who lives next door（主格）、The book which I bought（目的格）、The man whose car is red（所有格）';
+      commonMistakes = 'よくある間違い：関係代名詞の選択ミス、制限・非制限用法の混同';
+      break;
+    case 'relative_adverb':
+      topicDescription = '関係副詞（where・when・why・how）';
+      examFocus = '関係副詞の使い分け、前置詞+関係代名詞との書き換え';
+      specificExamples = '例：The place where I was born（場所）、The time when I met him（時）、The reason why I came（理由）';
+      commonMistakes = 'よくある間違い：関係副詞と関係代名詞の混同、前置詞の使い方';
+      break;
+    case 'subordinating_conjunction':
+      topicDescription = '従属接続詞（because・if・when・althoughなど）';
+      examFocus = '従属接続詞の使い分け、時・条件・理由・譲歩の表現';
+      specificExamples = '例：I will go if it rains（条件）、I was happy because I passed（理由）、When I was young（時）';
+      commonMistakes = 'よくある間違い：従属接続詞と等位接続詞の混同、時制の一致';
+      break;
+    // 句
+    case 'infinitive':
+      topicDescription = '不定詞（to不定詞・原形不定詞）';
+      examFocus = '不定詞の3つの用法（名詞・形容詞・副詞）、原形不定詞の使い方';
+      specificExamples = '例：To study is important（名詞用法）、I want to study（目的語）、I came to study（副詞用法）';
+      commonMistakes = 'よくある間違い：不定詞と動名詞の混同、原形不定詞の使い方';
+      break;
+    case 'gerund':
+      topicDescription = '動名詞（-ing形の名詞用法）';
+      examFocus = '動名詞の用法、不定詞との使い分け、動名詞を目的語に取る動詞';
+      specificExamples = '例：Reading is fun（主語）、I enjoy reading（目的語）、Thank you for helping（前置詞の目的語）';
+      commonMistakes = 'よくある間違い：動名詞と不定詞の混同、前置詞の後の動詞の形';
+      break;
+    case 'participle':
+      topicDescription = '分詞（現在分詞・過去分詞）';
+      examFocus = '分詞の形容詞用法、分詞構文、分詞の位置';
+      specificExamples = '例：The sleeping baby（現在分詞）、The broken window（過去分詞）、Walking down the street（分詞構文）';
+      commonMistakes = 'よくある間違い：現在分詞と過去分詞の混同、分詞構文の使い方';
+      break;
+    case 'participle_construction':
+      topicDescription = '分詞構文（分詞による副詞句）';
+      examFocus = '分詞構文の作り方、時・理由・条件・譲歩の表現、主語の一致';
+      specificExamples = '例：Walking down the street, I met him（時）、Being tired, I went to bed（理由）、Weather permitting（条件）';
+      commonMistakes = 'よくある間違い：主語の不一致、分詞構文と従属節の混同';
+      break;
+    case 'indirect_question':
+      topicDescription = '間接疑問文（疑問詞節・whether/if節）';
+      examFocus = '直接疑問文から間接疑問文への変換、語順の変化、時制の一致';
+      specificExamples = '例：I don\'t know where he lives（疑問詞節）、I wonder if he will come（whether/if節）';
+      commonMistakes = 'よくある間違い：語順の間違い、時制の一致の不備';
+      break;
+    // 比較
+    case 'positive':
+      topicDescription = '原級比較（as...as・not as...as）';
+      examFocus = '原級の表現、as...as構文、同等比較・不等比較';
+      specificExamples = '例：He is as tall as I am（同等）、She is not as tall as he is（不等）、as much as possible（可能な限り）';
+      commonMistakes = 'よくある間違い：as...as構文の語順、比較対象の不一致';
+      break;
+    case 'comparative':
+      topicDescription = '比較級（-er・more・less）';
+      examFocus = '比較級の作り方、thanの使い方、比較級の特殊用法';
+      specificExamples = '例：He is taller than I am（比較級）、more interesting than（more+形容詞）、less expensive than（less+形容詞）';
+      commonMistakes = 'よくある間違い：比較級の作り方、thanの後の代名詞の格';
+      break;
+    case 'superlative':
+      topicDescription = '最上級（-est・most・least）';
+      examFocus = '最上級の作り方、theの使い方、最上級の特殊用法';
+      specificExamples = '例：He is the tallest in the class（最上級）、the most interesting book（most+形容詞）、the least expensive（least+形容詞）';
+      commonMistakes = 'よくある間違い：最上級の作り方、theの有無';
+      break;
+    // 仮定法
+    case 'subjunctive_past':
+      topicDescription = '仮定法過去（現在の事実に反する仮定）';
+      examFocus = '仮定法過去の作り方、wereの使用、if節と主節の時制';
+      specificExamples = '例：If I were rich, I would buy a house（現在の事実に反する仮定）、I wish I were taller（願望）';
+      commonMistakes = 'よくある間違い：仮定法と直説法の混同、wereの使い方';
+      break;
+    case 'subjunctive_past_perfect':
+      topicDescription = '仮定法過去完了（過去の事実に反する仮定）';
+      examFocus = '仮定法過去完了の作り方、had+過去分詞、if節と主節の時制';
+      specificExamples = '例：If I had studied harder, I would have passed（過去の事実に反する仮定）、I wish I had studied harder（後悔）';
+      commonMistakes = 'よくある間違い：仮定法過去と仮定法過去完了の混同、時制の一致';
+      break;
+    case 'subjunctive_future':
+      topicDescription = '仮定法未来（未来の可能性の低い仮定）';
+      examFocus = '仮定法未来の作り方、should・were to・couldの使い方';
+      specificExamples = '例：If it should rain tomorrow（未来の可能性の低い仮定）、If I were to win the lottery';
+      commonMistakes = 'よくある間違い：仮定法未来と直説法未来の混同、shouldの使い方';
+      break;
+    case 'subjunctive_inversion':
+      topicDescription = '仮定法倒置（ifの省略・語順の倒置）';
+      examFocus = 'ifの省略、助動詞の倒置、should・were・hadの倒置';
+      specificExamples = '例：Were I rich, I would buy a house（ifの省略）、Had I known, I would have helped（ifの省略）';
+      commonMistakes = 'よくある間違い：倒置の語順、ifの省略の条件';
+      break;
+    default:
+      topicDescription = '英語文法の基礎';
+      examFocus = '基本的な文法事項';
+      specificExamples = '基本的な例文';
+      commonMistakes = '一般的な間違い';
+  }
+
+  const difficultySettings = {
+    easy: { complexity: '英検3級レベルの基本的な文法事項を使用した簡単な和文英訳', length: '1文程度の文章', vocabulary: '英検3級レベルの基本的な語彙を使用' },
+    medium: { complexity: '英検準2級レベルの複数の文法事項を組み合わせた中程度の和文英訳', length: '1文程度の文章', vocabulary: '英検準2級レベルの語彙を使用' },
+    hard: { complexity: '英検2級レベルの高度な文法事項を含む複雑な和文英訳', length: '1文程度の文章', vocabulary: '英検2級レベルの高度な語彙と表現を使用' }
+  };
+
+  const setting = difficultySettings[difficulty];
+
+  const prompt = `
+あなたは英語教育の専門家です。以下の条件に基づいて和文英訳問題を作成してください。
+
+【トピック】${topicDescription}
+【試験対象】${examFocus}
+【具体的な例】${specificExamples}
+【よくある間違い】${commonMistakes}
+
+【難易度設定】
+- 複雑さ: ${setting.complexity}
+- 文章の長さ: ${setting.length}
+- 語彙レベル: ${setting.vocabulary}
+
+【英検レベル対応】
+- 初級: 英検3級レベル（中学卒業程度）
+- 中級: 英検準2級レベル（高校中級程度）
+- 上級: 英検2級レベル（高校卒業程度）
+
+【要求事項】
+1. 日本語で1つの文章を問題文として作成してください（和文英訳用）
+2. その文法事項の理解度を試すような実践的な問題にしてください
+3. 難易度に応じた適切なヒントを2-3個提供してください
+4. 問題は以下のJSON形式で返してください：
+
+{
+  "question": "問題文（日本語の1つの文章）",
+  "hints": ["ヒント1", "ヒント2", "ヒント3"],
+  "topic": "${topic}",
+  "difficulty": "${difficulty}"
+}
+
+【重要】
+- 問題文は必ず1つの文章のみにしてください
+- 複数の文章や段落にしないでください
+- 1文程度の長さにしてください（短すぎず長すぎない適切な長さ）
+- その文法事項を効果的に練習できる内容にしてください
+- 実用的で理解しやすい文章にしてください
+`;
+
+  try {
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4",
+      messages: [
+        {
+          role: "system",
+          content: "あなたは英語教育の専門家で、学習者のレベルに合わせた和文英訳問題を作成するプロフェッショナルです。必ず1つの文章のみを問題文として作成してください。複数の文章や段落は作成しないでください。英検3級（初級）、英検準2級（中級）、英検2級（上級）のレベルに応じた適切な難易度で問題を作成してください。"
+        },
+        {
+          role: "user",
+          content: prompt
+        }
+      ],
+      temperature: 0.7,
+      max_tokens: 1000
+    });
+
+    const response = completion.choices[0].message.content;
+    
+    // JSONレスポンスを解析
+    try {
+      const jsonMatch = response.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        return JSON.parse(jsonMatch[0]);
+      } else {
+        throw new Error('JSON response not found');
+      }
+    } catch (parseError) {
+      console.error('Failed to parse JSON response:', parseError);
+      // フォールバック用のデフォルト問題
+      return {
+        question: "私は毎日英語を勉強しています。",
+        hints: ["現在形を使いましょう", "「毎日」は「every day」です", "「勉強する」は「study」です"],
+        topic: topic,
+        difficulty: difficulty
+      };
+    }
+  } catch (error) {
+    console.error('Error generating translation question:', error);
+    throw new Error('Failed to generate translation question');
+  }
+}
+
+// 和文英訳添削関数
+async function gradeTranslationAnswer(topic, userAnswer, difficulty = 'medium') {
+  // トピックに応じた評価基準を設定
+  let evaluationCriteria = '';
+  let commonMistakes = '';
+  
+  switch (topic) {
+    case 'noun':
+      evaluationCriteria = '名詞の可算・不可算の区別、単数・複数形の使い分け、冠詞の使用';
+      commonMistakes = '可算名詞と不可算名詞の混同、単数・複数形の間違い、冠詞の誤用';
+      break;
+    case 'article':
+      evaluationCriteria = '冠詞（a, an, the）の適切な使用、冠詞の有無の判断';
+      commonMistakes = '冠詞の不適切な使用、冠詞の省略、母音・子音の判断ミス';
+      break;
+    case 'be_verb':
+      evaluationCriteria = 'be動詞の適切な使用、主語との一致、時制の正確性';
+      commonMistakes = '主語とbe動詞の不一致、時制の間違い、be動詞の省略';
+      break;
+    case 'verb':
+      evaluationCriteria = '動詞の活用、三人称単数現在形、時制の正確性';
+      commonMistakes = '三人称単数現在形のsの抜け、動詞の活用ミス、時制の間違い';
+      break;
+    case 'adjective':
+      evaluationCriteria = '形容詞の適切な使用、語順、限定用法・叙述用法';
+      commonMistakes = '形容詞の語順ミス、限定用法と叙述用法の混同';
+      break;
+    case 'adverb':
+      evaluationCriteria = '副詞の適切な使用、位置、形容詞との区別';
+      commonMistakes = '副詞の位置ミス、形容詞と副詞の混同';
+      break;
+    case 'preposition':
+      evaluationCriteria = '前置詞の適切な使用、慣用表現での前置詞';
+      commonMistakes = '前置詞の選択ミス、前置詞の省略、慣用表現の間違い';
+      break;
+    case 'conjunction':
+      evaluationCriteria = '接続詞の適切な使用、等位接続詞と従属接続詞の区別';
+      commonMistakes = '接続詞の選択ミス、接続詞の省略';
+      break;
+    default:
+      evaluationCriteria = '基本的な文法の正確性、語順、語彙の適切性';
+      commonMistakes = '基本的な文法ミス、語順の間違い、語彙の不適切な使用';
+  }
+
+  const difficultySettings = {
+    easy: { tolerance: '基本的な文法ミスは厳しく指摘', scoreWeight: '文法70%、内容30%' },
+    medium: { tolerance: '中程度の文法ミスまで指摘', scoreWeight: '文法60%、内容40%' },
+    hard: { tolerance: '高度な表現や微妙なニュアンスまで評価', scoreWeight: '文法50%、内容50%' }
+  };
+
+  const setting = difficultySettings[difficulty];
+
+  const prompt = `
+あなたは英語教育の専門家です。以下の和文英訳の解答を添削してください。
+
+【評価対象】
+トピック: ${topic}
+難易度: ${difficulty}
+評価基準: ${evaluationCriteria}
+よくある間違い: ${commonMistakes}
+評価方針: ${setting.tolerance}
+配点: ${setting.scoreWeight}
+
+【学習者の解答】
+${userAnswer}
+
+【要求事項】
+以下のJSON形式で詳細な添削結果を返してください：
+
+{
+  "overallScore": 85,
+  "overallComment": "全体的によく訳せています。基本的な文法は正確ですが、いくつか改善点があります。",
+  "grammarCheck": [
+    {
+      "type": "error",
+      "original": "I study English everyday",
+      "suggestion": "I study English every day",
+      "explanation": "「everyday」は形容詞で「日常の」という意味です。「毎日」は「every day」と分けて書きます。"
+    }
+  ],
+  "improvements": [
+    "より自然な表現を使うことで、より良い訳文になります",
+    "接続詞を効果的に使うことで、文章の流れが良くなります"
+  ],
+  "modelAnswer": "模範解答例をここに記載"
+}
+
+【評価のポイント】
+1. 総合評価（0-100点）とコメント
+2. 文法チェック（エラー、警告、良い点）
+3. 具体的な改善提案（2-3個）
+4. 模範解答例
+
+評価は建設的で、学習者のモチベーションを保つような内容にしてください。
+`;
+
+  try {
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4",
+      messages: [
+        {
+          role: "system",
+          content: "あなたは英語教育の専門家で、学習者の和文英訳を丁寧に添削し、建設的なフィードバックを提供するプロフェッショナルです。"
+        },
+        {
+          role: "user",
+          content: prompt
+        }
+      ],
+      temperature: 0.3,
+      max_tokens: 1500
+    });
+
+    const response = completion.choices[0].message.content;
+    
+    // JSONレスポンスを解析
+    try {
+      const jsonMatch = response.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        return JSON.parse(jsonMatch[0]);
+      } else {
+        throw new Error('JSON response not found');
+      }
+    } catch (parseError) {
+      console.error('Failed to parse JSON response:', parseError);
+      // フォールバック用のデフォルト添削
+      return {
+        overallScore: 70,
+        overallComment: "基本的な文法は理解できていますが、いくつか改善点があります。",
+        grammarCheck: [
+          {
+            type: "warning",
+            original: userAnswer,
+            suggestion: "より自然な表現に改善できます",
+            explanation: "基本的な意味は通じますが、より自然な英語表現があります。"
+          }
+        ],
+        improvements: [
+          "語彙を豊かにすることで、より表現力豊かな訳文になります",
+          "文法の正確性をさらに向上させましょう"
+        ],
+        modelAnswer: "模範解答例を確認して、より良い表現を学びましょう。"
+      };
+    }
+  } catch (error) {
+    console.error('Error grading translation answer:', error);
+    throw new Error('Failed to grade translation answer');
+  }
+}
+
 module.exports = {
-  generateQuestion,
-  generateFillInTheBlank
+  generateFillInTheBlank,
+  gradeWritingAnswer,
+  generateWritingQuestion,
+  generateTranslationQuestion,
+  gradeTranslationAnswer
 }; 

@@ -237,3 +237,12 @@ POST /api/generate-question
 - 問題の難易度自動調整機能
 - 学習進捗管理機能
 - 模擬試験機能 
+
+<div class="related-section">
+  <h2>関連項目</h2>
+  <div class="related-navigation">
+    <button id="prev-related">前へ</button>
+    <span id="current-related"></span>
+    <button id="next-related">次へ</button>
+  </div>
+</div> 

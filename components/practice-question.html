@@ -1,0 +1,61 @@
+<div class="apple-card mb-8">
+    <h2 class="apple-card-title">和文英訳練習問題</h2>
+    <div class="mt-4">
+        <!-- ステップ1: 難易度選択 -->
+        <div class="mb-4">
+            <label for="difficulty" class="block text-sm font-medium text-gray-700 mb-2">難易度を選択：</label>
+            <select id="difficulty" class="apple-input">
+                <option value="easy">初級（英検3級レベル）</option>
+                <option value="medium">中級（英検準2級レベル）</option>
+                <option value="hard">上級（英検2級レベル）</option>
+            </select>
+        </div>
+        
+        <!-- ステップ2: 問題生成ボタン -->
+        <div class="mb-6 flex flex-col items-center">
+            <button id="generateQuestion" class="apple-btn main-generate-btn flex items-center justify-center text-lg font-bold px-8 py-3 shadow-lg transition-all">
+                <span class="mr-2 text-2xl">📝</span>和文英訳問題を生成
+            </button>
+        </div>
+        
+        <!-- ローディング表示 -->
+        <div id="loadingIndicator" class="hidden mt-4">
+            <div class="flex items-center justify-center">
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                <span class="ml-2 text-gray-600">問題を生成中...</span>
+            </div>
+        </div>
+        
+        <!-- ステップ3: 問題表示エリア -->
+        <div id="questionContainer" class="mt-6 hidden">
+            <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">和文英訳問題</h3>
+                <div id="question" class="text-gray-700 mb-4"></div>
+                <div id="hints" class="text-sm text-gray-600 bg-yellow-50 p-3 rounded border-l-4 border-yellow-400 hidden"></div>
+            </div>
+            
+            <!-- ステップ4: 解答フォーム -->
+            <div class="mb-6">
+                <label for="userAnswer" class="block text-sm font-medium text-gray-700 mb-2">あなたの解答：</label>
+                <textarea 
+                    id="userAnswer" 
+                    class="apple-input w-full h-32 resize-none" 
+                    placeholder="ここに英語で解答を入力してください..."
+                ></textarea>
+            </div>
+            
+            <!-- ステップ5: 添削ボタン -->
+            <button id="submitAnswer" class="apple-btn main-submit-btn flex items-center justify-center text-lg font-bold px-8 py-3 shadow-lg transition-all">
+                <span class="mr-2 text-2xl">📝</span>添削してもらう
+            </button>
+            
+            <!-- 添削結果表示エリア -->
+            <div id="feedback" class="mt-6 hidden">
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">添削結果</h3>
+                    <div id="feedbackContent" class="space-y-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

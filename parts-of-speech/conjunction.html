@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>接続詞 - English Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="bg-gray-100">
+    <!-- ヘッダー -->
+    <header class="apple-header px-6 py-6 mb-8">
+        <div class="container mx-auto flex flex-col items-start">
+            <div class="flex items-center space-x-4">
+                <a href="../index.html" class="text-white hover:text-gray-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </a>
+                <h1 class="apple-title">接続詞</h1>
+            </div>
+            <p class="apple-sub mt-2">品詞の基礎を学ぼう</p>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-6 py-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- パンくずリスト -->
+            <nav class="mb-6">
+                <ol class="flex items-center space-x-2 text-sm text-gray-600">
+                    <li><a href="../index.html" class="hover:text-blue-600">ホーム</a></li>
+                    <li><span class="mx-2">/</span></li>
+                    <li><a href="../index.html" class="hover:text-blue-600">品詞</a></li>
+                    <li><span class="mx-2">/</span></li>
+                    <li class="text-gray-900">接続詞</li>
+                </ol>
+            </nav>
+
+            <!-- タイトルパーツ -->
+            <div class="apple-card mb-8">
+                <h2 class="apple-card-title">接続詞</h2>
+                <p class="apple-card-text">文や単語をつなぎ、アイデア同士の関係を示す言葉です。</p>
+            </div>
+            <!-- 文法解説パーツ -->
+            <div class="apple-card mb-8">
+                <h2 class="apple-card-title">文法解説</h2>
+                <div class="mt-4">
+                    <div id="conjunction-explanation" class="apple-section-text"></div>
+                </div>
+            </div>
+
+            <!-- 例文セクション -->
+            <div id="examples-container"></div>
+
+            <!-- 練習問題 -->
+            <div id="practice-question-container"></div>
+            <script>
+              fetch('../components/practice-question.html')
+                .then(res => res.text())
+                .then(html => {
+                  document.getElementById('practice-question-container').innerHTML = html;
+                });
+            </script>
+
+            <!-- ナビゲーション -->
+            <div id="nav-placeholder"></div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 English Learning Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../navigation.js"></script>
+    <script src="/examples.js"></script>
+    <script>
+        // 文法説明を読み込む
+        fetch('../grammar.json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('conjunction-explanation').innerHTML = data.conjunction.replace(/\n/g, '<br>');
+            });
+
+        // イベントリスナーを設定
+        document.addEventListener('DOMContentLoaded', function() {
+            // 難易度選択機能を初期化
+            setupDifficultySelectors();
+            renderNavigation("前へ", "preposition.html", "接続詞", "次へ", null);
+            
+            // 例文セクション生成
+            renderExamples("conjunction", "examples-container");
+            
+            // 英作文問題のイベントリスナーを設定
+            setTimeout(() => {
+                setupWritingQuestionEventListeners("conjunction");
+            }, 100);
+        });
+    </script>
+</body>
+</html> 

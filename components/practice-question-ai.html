@@ -1,0 +1,36 @@
+<div class="apple-card mb-8">
+    <h2 class="apple-card-title">練習問題</h2>
+    <div class="apple-ai-section">
+        <h4 class="apple-ai-title">AI生成問題</h4>
+        <div class="mb-4">
+            <div class="difficulty-selector mb-3">
+                <label class="difficulty-label">難易度を選択：</label>
+                <div class="difficulty-buttons">
+                    <button class="difficulty-btn active" data-difficulty="easy">基礎</button>
+                    <button class="difficulty-btn" data-difficulty="medium">標準</button>
+                    <button class="difficulty-btn" data-difficulty="hard">発展</button>
+                </div>
+            </div>
+            <button id="generateQuestion" class="apple-ai-btn">
+                新しい問題を生成
+            </button>
+        </div>
+        
+        <div id="questionContainer" class="hidden">
+            <div class="apple-question-card">
+                <p id="questionText" class="apple-question-text"></p>
+                <div id="optionsContainer" class="apple-options-grid">
+                    <!-- AI生成の選択肢がここに表示されます -->
+                </div>
+                <div id="feedback" class="apple-feedback hidden"></div>
+            </div>
+        </div>
+        
+        <div id="loadingIndicator" class="hidden">
+            <div class="apple-loading">
+                <div class="apple-spinner"></div>
+                <p class="apple-loading-text">問題を生成中...</p>
+            </div>
+        </div>
+    </div>
+</div> 

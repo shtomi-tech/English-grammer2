@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>間接疑問文 - English Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="bg-gray-100">
+    <!-- ヘッダー -->
+    <header class="apple-header px-6 py-6 mb-8">
+        <div class="container mx-auto flex flex-col items-start">
+            <h1 class="apple-title">English Learning Hub</h1>
+            <p class="apple-sub mt-2">英文法の基礎から学ぼう</p>
+        </div>
+    </header>
+
+    <!-- パンくずリスト -->
+    <nav class="container mx-auto px-6 mb-6">
+        <div class="flex items-center space-x-2 text-sm text-gray-600">
+            <a href="../index.html" class="hover:text-blue-600">ホーム</a>
+            <span>></span>
+            <a href="../index.html#phrases" class="hover:text-blue-600">句</a>
+            <span>></span>
+            <span class="text-gray-900">間接疑問文</span>
+        </div>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-6 py-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- タイトルパーツ -->
+            <div class="apple-card mb-8">
+                <h2 class="apple-card-title">間接疑問文</h2>
+                <p class="apple-card-text">疑問文を文中の一部として埋め込む表現。語順やif/whetherの使い方がポイントです。</p>
+            </div>
+            <!-- 文法解説パーツ -->
+            <div class="apple-card mb-8">
+                <h2 class="apple-card-title">文法解説</h2>
+                <div class="mt-4">
+                    <div id="indirect-question-explanation" class="apple-section-text"></div>
+                </div>
+            </div>
+            <!-- 例文パーツ -->
+            <div class="apple-card mb-8">
+                <h2 class="apple-card-title">例文</h2>
+                <div class="mt-4 space-y-4">
+                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
+                        <p><span class="text-xl font-bold text-blue-300">I don't know where the station is.</span><br><span class="text-base font-semibold text-gray-200">（駅がどこにあるか知りません）</span></p>
+                        <p><span class="text-xl font-bold text-blue-300">Please tell me what time the train leaves.</span><br><span class="text-base font-semibold text-gray-200">（その電車が何時に出発するか教えてください）</span></p>
+                        <p><span class="text-xl font-bold text-blue-300">I wonder if he is busy.</span><br><span class="text-base font-semibold text-gray-200">（彼が忙しいかどうかと思います）</span></p>
+                        <p><span class="text-xl font-bold text-blue-300">Do you know who that woman is?</span><br><span class="text-base font-semibold text-gray-200">（あの女性が誰か知っていますか？）</span></p>
+                    </div>
+                </div>
+            </div>
+            <!-- 練習問題 -->
+            <div id="practice-question-container"></div>
+            <script>
+              fetch('../components/practice-question.html')
+                .then(res => res.text())
+                .then(html => {
+                  document.getElementById('practice-question-container').innerHTML = html;
+                });
+            </script>
+            <!-- ナビゲーション -->
+            <div id="nav-placeholder"></div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 English Learning Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="/navigation.js"></script>
+    <script src="/examples.js"></script>
+    <script>
+        // 文法説明をgrammar.jsonから読み込む
+        fetch('../grammar.json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('indirect-question-explanation').innerHTML = data.indirect_question.replace(/\n/g, '<br>');
+            });
+        document.addEventListener('DOMContentLoaded', function() {
+            renderNavigation("前へ", "participle-construction.html", "間接疑問文", "次へ", null);
+            renderExamples("indirect_question", "examples-container");
+            
+            // 和文英訳問題のイベントリスナーを設定
+            setTimeout(() => {
+                setupWritingQuestionEventListeners("indirect_question");
+            }, 100);
+        });
+    </script>
+</body>
+</html> 
