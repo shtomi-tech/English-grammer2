@@ -31,17 +31,33 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- タイトル -->
-            <div class="apple-card mb-8">
-                <h1 class="apple-card-title text-3xl mb-4">仮定法の倒置</h1>
-                <p class="apple-card-text">
-                    仮定法の倒置は、ifを省略して主語と動詞（または助動詞）の語順をひっくり返すことで、文をよりフォーマルに見せる表現です。
-                </p>
-            </div>
+            <!-- 学習方法ガイド（共通パーツ） -->
+            <div id="learning-guide-container"></div>
+            <script>
+            fetch('../components/learning-guide.html')
+              .then(res => res.text())
+              .then(html => {
+                document.getElementById('learning-guide-container').innerHTML = html;
+                document.getElementById('learning-guide-title').textContent = '仮定法倒置の学習方法ガイド';
+                document.getElementById('learning-guide-step1-desc').textContent = '仮定法倒置の定義と役割をしっかりと理解しましょう';
+                document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、仮定法倒置の使い方を学びましょう';
+                document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を5回解いてみましょう';
+                document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で仮定法倒置がどのように使われているか意識してみましょう';
+                document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>仮定法倒置が文の中でどの位置に来るかを意識しましょう';
+                document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する仮定法と一緒に：</strong>通常の仮定法との違いも理解しましょう';
+                document.getElementById('learning-guide-time').innerHTML = '基本概念の理解：<strong>15分</strong> | 例文の確認：<strong>20分</strong> | 練習問題：<strong>25分</strong><br>合計：<strong>約60分</strong>で仮定法倒置の基礎をマスターできます';
+              });
+            </script>
+
+            <!-- タイトルパーツ -->
+            <!-- <div class="apple-card mb-8">
+                <h2 class="apple-card-title">仮定法倒置</h2>
+                <p class="apple-card-text">ifを使わずに仮定を表す倒置構文です。</p>
+            </div> -->
 
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
-                <h2 class="apple-card-title">仮定法の倒置の文法説明</h2>
+                <h2 class="apple-card-title">仮定法倒置</h2>
                 <div class="mt-4">
                     <div id="subjunctive-inversion-explanation" class="apple-section-text"></div>
                 </div>

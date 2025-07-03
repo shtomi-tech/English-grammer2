@@ -538,6 +538,111 @@ const examplesData = {
       ]
     }
   ],
+  relative_pronoun_usage: [
+    {
+      title: "制限用法（限定用法）",
+      examples: [
+        { en: "The students who study hard will pass the exam.", ja: "一生懸命勉強する生徒は試験に合格するだろう" },
+        { en: "The book that I bought yesterday is interesting.", ja: "昨日私が買った本は面白い" },
+        { en: "The people who live in this town are friendly.", ja: "この町に住んでいる人々は親切だ" }
+      ]
+    },
+    {
+      title: "非制限用法（非限定用法）",
+      examples: [
+        { en: "My brother, who lives in Tokyo, is a doctor.", ja: "私の兄は、東京に住んでいるが、医者です" },
+        { en: "This book, which I bought yesterday, is very interesting.", ja: "この本は、昨日買ったのだが、とても面白い" },
+        { en: "Mr. Smith, whose son is my classmate, teaches English.", ja: "スミス先生は、息子が私のクラスメートだが、英語を教えている" }
+      ]
+    },
+    {
+      title: "制限用法と非制限用法の比較",
+      examples: [
+        { en: "The students who study hard will pass. (制限用法)", ja: "一生懸命勉強する生徒は合格する（複数の生徒の中から）" },
+        { en: "My brother, who studies hard, will pass. (非制限用法)", ja: "私の兄は、一生懸命勉強するが、合格する（兄は一人で特定されている）" },
+        { en: "The books which are on the desk are mine. (制限用法)", ja: "机の上にある本は私のものだ（複数の本の中から）" },
+        { en: "These books, which are on the desk, are mine. (非制限用法)", ja: "これらの本は、机の上にあるが、私のものだ（本は既に特定されている）" }
+      ]
+    }
+  ],
+  relative_pronoun_noun_clause: [
+    {
+      title: "whatの基本的な用法",
+      examples: [
+        { en: "What he said is true.", ja: "彼が言ったことは本当です" },
+        { en: "I don't know what she wants.", ja: "私は彼女が何を欲しがっているのか分かりません" },
+        { en: "Give me what you have.", ja: "あなたが持っているものを私にください" }
+      ]
+    },
+    {
+      title: "whatの主語としての用法",
+      examples: [
+        { en: "What happened yesterday was surprising.", ja: "昨日起こったことは驚きでした" },
+        { en: "What you need is more practice.", ja: "あなたに必要なのはもっと練習することです" },
+        { en: "What makes me happy is music.", ja: "私を幸せにするのは音楽です" }
+      ]
+    },
+    {
+      title: "whatの目的語としての用法",
+      examples: [
+        { en: "I understand what you mean.", ja: "私はあなたの言うことが分かります" },
+        { en: "She told me what she saw.", ja: "彼女は私に彼女が見たことを話しました" },
+        { en: "Do you know what time it is?", ja: "何時か知っていますか？" }
+      ]
+    }
+  ],
+  compound_relative_clause: [
+    {
+      title: "whoever（〜する人は誰でも）",
+      examples: [
+        { en: "Whoever comes will be welcome.", ja: "来る人は誰でも歓迎される" },
+        { en: "I'll help whoever needs it.", ja: "必要とする人は誰でも助けます" },
+        { en: "Whoever you are, you must follow the rules.", ja: "あなたが誰であっても、ルールに従わなければならない" }
+      ]
+    },
+    {
+      title: "whatever（〜するものは何でも）",
+      examples: [
+        { en: "Whatever you say is fine with me.", ja: "あなたが何を言っても私は構いません" },
+        { en: "Take whatever you want.", ja: "欲しいものは何でも取ってください" },
+        { en: "Whatever happens, I'll be there.", ja: "何が起こっても、私はそこにいるでしょう" }
+      ]
+    },
+    {
+      title: "wherever/whenever（〜する場所・時はどこでも・いつでも）",
+      examples: [
+        { en: "Wherever you go, I'll follow.", ja: "あなたがどこに行っても、私はついていきます" },
+        { en: "Come whenever you want.", ja: "いつでも来てください" },
+        { en: "You can sit wherever you like.", ja: "好きな場所に座ってください" }
+      ]
+    }
+  ],
+  emphatic_construction: [
+    {
+      title: "主語の強調",
+      examples: [
+        { en: "It was I that met him yesterday.", ja: "昨日彼に会ったのは私です" },
+        { en: "It was she that wrote this letter.", ja: "この手紙を書いたのは彼女です" },
+        { en: "It is you that I love.", ja: "私が愛しているのはあなたです" }
+      ]
+    },
+    {
+      title: "目的語の強調",
+      examples: [
+        { en: "It was him that I met yesterday.", ja: "昨日私が会ったのは彼です" },
+        { en: "It was this book that she bought.", ja: "彼女が買ったのはこの本です" },
+        { en: "It is music that makes me happy.", ja: "私を幸せにするのは音楽です" }
+      ]
+    },
+    {
+      title: "副詞句の強調",
+      examples: [
+        { en: "It was yesterday that I met him.", ja: "私が彼に会ったのは昨日です" },
+        { en: "It is in Tokyo that she lives.", ja: "彼女が住んでいるのは東京です" },
+        { en: "It was at 3 o'clock that the meeting started.", ja: "会議が始まったのは3時です" }
+      ]
+    }
+  ],
   relative_adverb: [
     {
       title: "関係副詞（when/where/why）",
@@ -637,7 +742,7 @@ const examplesData = {
     }
   ],
   // 助動詞セクション
-  can: [
+  "can-could": [
     {
       title: "能力・可能（can）",
       examples: [
@@ -661,23 +766,37 @@ const examplesData = {
         { en: "Anyone can make mistakes.", ja: "誰でも間違いを犯すことができます" },
         { en: "The weather can change quickly.", ja: "天気は急に変わる可能性があります" }
       ]
-    }
-  ],
-  may: [
+    },
     {
-      title: "許可・可能性（may）",
+      title: "過去の能力（could）",
       examples: [
-        { en: "May I come in?", ja: "入ってもよろしいですか？" },
-        { en: "You may leave early.", ja: "早退してもいいです" },
-        { en: "It may rain tomorrow.", ja: "明日雨が降るかもしれません" }
+        { en: "I could swim when I was young.", ja: "私は若い頃泳げました" },
+        { en: "She could speak French fluently.", ja: "彼女はフランス語を流暢に話せました" },
+        { en: "He could drive a car before the accident.", ja: "彼は事故前は車を運転できました" }
       ]
     },
     {
-      title: "推量・可能性（may）",
+      title: "丁寧な依頼・許可（could）",
       examples: [
-        { en: "He may be at home.", ja: "彼は家にいるかもしれません" },
-        { en: "She may not know the answer.", ja: "彼女は答えを知らないかもしれません" },
-        { en: "The train may be delayed.", ja: "電車が遅れるかもしれません" }
+        { en: "Could you help me?", ja: "手伝っていただけますか？" },
+        { en: "Could I use your pen?", ja: "あなたのペンを使わせていただけますか？" },
+        { en: "Could you please open the window?", ja: "窓を開けていただけますか？" }
+      ]
+    },
+    {
+      title: "控えめな可能性・推量（could）",
+      examples: [
+        { en: "It could be true.", ja: "それは本当かもしれません" },
+        { en: "He could be at home now.", ja: "彼は今家にいるかもしれません" },
+        { en: "She could have forgotten the meeting.", ja: "彼女は会議を忘れたかもしれません" }
+      ]
+    },
+    {
+      title: "仮定法（could）",
+      examples: [
+        { en: "If I had money, I could buy a car.", ja: "もしお金があれば、車を買えるのに" },
+        { en: "I could help you if I had time.", ja: "もし時間があれば、あなたを手伝えるのに" },
+        { en: "She could speak better if she practiced more.", ja: "もっと練習すれば、彼女はもっと上手に話せるのに" }
       ]
     }
   ],
@@ -717,6 +836,74 @@ const examplesData = {
       ]
     }
   ],
+  shall: [
+    {
+      title: "意志・決意（shall）",
+      examples: [
+        { en: "I shall do my best.", ja: "私は最善を尽くします" },
+        { en: "We shall overcome this difficulty.", ja: "私たちはこの困難を乗り越えます" },
+        { en: "I shall never give up.", ja: "私は決して諦めません" }
+      ]
+    },
+    {
+      title: "提案・申し出（shall）",
+      examples: [
+        { en: "Shall I help you?", ja: "お手伝いしましょうか？" },
+        { en: "Shall we go to the movies?", ja: "映画に行きませんか？" },
+        { en: "Shall I open the window?", ja: "窓を開けましょうか？" }
+      ]
+    },
+    {
+      title: "義務・約束（shall）",
+      examples: [
+        { en: "You shall not pass.", ja: "あなたは通ってはいけません" },
+        { en: "He shall be punished.", ja: "彼は罰せられるでしょう" },
+        { en: "The law shall be obeyed.", ja: "法律は守られなければなりません" }
+      ]
+    },
+    {
+      title: "予測・確信（shall）",
+      examples: [
+        { en: "You shall succeed.", ja: "あなたは成功するでしょう" },
+        { en: "It shall be done.", ja: "それは実行されるでしょう" },
+        { en: "The truth shall set you free.", ja: "真実はあなたを自由にするでしょう" }
+      ]
+    }
+  ],
+  need: [
+    {
+      title: "法助動詞として（否定文・疑問文）",
+      examples: [
+        { en: "You need not worry.", ja: "心配する必要はありません" },
+        { en: "Need I go there?", ja: "そこに行く必要がありますか？" },
+        { en: "He need not come.", ja: "彼は来る必要はありません" }
+      ]
+    },
+    {
+      title: "一般動詞として（need to + 動詞原形）",
+      examples: [
+        { en: "I need to study more.", ja: "もっと勉強する必要があります" },
+        { en: "She needs to finish her work.", ja: "彼女は仕事を終える必要があります" },
+        { en: "We need to hurry.", ja: "急ぐ必要があります" }
+      ]
+    },
+    {
+      title: "否定形の違い",
+      examples: [
+        { en: "You need not worry.", ja: "心配する必要はありません（法助動詞）" },
+        { en: "You don't need to worry.", ja: "心配する必要はありません（一般動詞）" },
+        { en: "He need not come.", ja: "彼は来る必要はありません（法助動詞）" }
+      ]
+    },
+    {
+      title: "疑問文での使い分け",
+      examples: [
+        { en: "Need I go there?", ja: "そこに行く必要がありますか？（法助動詞）" },
+        { en: "Do I need to go there?", ja: "そこに行く必要がありますか？（一般動詞）" },
+        { en: "Need you worry about it?", ja: "それについて心配する必要がありますか？（法助動詞）" }
+      ]
+    }
+  ],
   will: [
     {
       title: "未来・意志（will）",
@@ -732,6 +919,35 @@ const examplesData = {
         { en: "It will rain tomorrow.", ja: "明日雨が降るでしょう" },
         { en: "He will often work late.", ja: "彼はよく遅くまで働きます" },
         { en: "The sun will rise in the east.", ja: "太陽は東から昇るでしょう" }
+      ]
+    }
+  ],
+  "will-would": [
+    {
+      title: "未来・意志（will）",
+      examples: [
+        { en: "I will help you.", ja: "私はあなたを手伝います" },
+        { en: "She will come to the party.", ja: "彼女はパーティーに来るでしょう" },
+        { en: "They will win the game.", ja: "彼らは試合に勝つでしょう" }
+      ]
+    },
+    {
+      title: "予測・習慣（will）",
+      examples: [
+        { en: "It will rain tomorrow.", ja: "明日雨が降るでしょう" },
+        { en: "He will often work late.", ja: "彼はよく遅くまで働きます" },
+        { en: "The sun will rise in the east.", ja: "太陽は東から昇るでしょう" }
+      ]
+    },
+    {
+      title: "丁寧な依頼・仮定法・控えめな推量（would）",
+      examples: [
+        { en: "Would you help me?", ja: "手伝っていただけますか？" },
+        { en: "Would you like some coffee?", ja: "コーヒーはいかがですか？" },
+        { en: "If I had money, I would buy a car.", ja: "もしお金があれば、車を買うのに" },
+        { en: "He said he would come.", ja: "彼は来ると言いました" },
+        { en: "That would be difficult.", ja: "それは難しいでしょう" },
+        { en: "When I was young, I would play tennis every day.", ja: "若い頃は毎日テニスをしていました" }
       ]
     }
   ],
@@ -806,7 +1022,7 @@ const examplesData = {
       examples: [
         { en: "If I had left home earlier, I would not have missed the train.", ja: "もしもっと早く家を出ていたら、電車に乗り遅れなかったのに。" },
         { en: "If she had studied harder, she could have passed the exam.", ja: "もし彼女がもっと勉強していたら、試験に合格できたかもしれない。" },
-        { en: "If it had not rained yesterday, we would have gone hiking.", ja: "もし昨日雨が降らなかったら、ハイキングに行っていただろう。" }
+        { en: "If it hadn't rained yesterday, we would have gone hiking.", ja: "もし昨日雨が降らなかったら、ハイキングに行っていただろう。" }
       ]
     },
     {
@@ -817,8 +1033,437 @@ const examplesData = {
         { en: "I wish I had brought my umbrella.", ja: "傘を持ってきていればよかったのに。" }
       ]
     }
+  ],
+  // 受動態セクション
+  passive_pattern3: [
+    {
+      title: "第3文型の受動態（現在形）",
+      examples: [
+        { en: "A letter is written by me.", ja: "手紙は私によって書かれる" },
+        { en: "The house is built by them.", ja: "その家は彼らによって建てられる" },
+        { en: "English is spoken by many people.", ja: "英語は多くの人々によって話される" }
+      ]
+    },
+    {
+      title: "第3文型の受動態（過去形）",
+      examples: [
+        { en: "The letter was written by him.", ja: "手紙は彼によって書かれた" },
+        { en: "This house was built by my father.", ja: "この家は父によって建てられた" },
+        { en: "The book was published last year.", ja: "その本は去年出版された" }
+      ]
+    },
+    {
+      title: "第3文型の受動態（未来形・完了形）",
+      examples: [
+        { en: "The letter will be written by him.", ja: "手紙は彼によって書かれるだろう" },
+        { en: "The house has been built by them.", ja: "その家は彼らによって建てられた" },
+        { en: "The work will be finished by Friday.", ja: "その仕事は金曜日までに終えられるだろう" }
+      ]
+    }
+  ],
+  passive_pattern4: [
+    {
+      title: "第4文型の受動態（間接目的語を主語）",
+      examples: [
+        { en: "I was given a book by him.", ja: "私は彼によって本をもらった" },
+        { en: "He was shown the picture by her.", ja: "彼は彼女によって写真を見せられた" },
+        { en: "We were taught English by Mr. Smith.", ja: "私たちはスミス先生によって英語を教えられた" }
+      ]
+    },
+    {
+      title: "第4文型の受動態（直接目的語を主語）",
+      examples: [
+        { en: "A book was given to me by him.", ja: "本は彼によって私に与えられた" },
+        { en: "The picture was shown to him by her.", ja: "写真は彼女によって彼に見せられた" },
+        { en: "A present was bought for me by her.", ja: "プレゼントは彼女によって私のために買われた" }
+      ]
+    },
+    {
+      title: "第4文型の受動態（応用）",
+      examples: [
+        { en: "English was taught to us by Mr. Smith.", ja: "英語はスミス先生によって私たちに教えられた" },
+        { en: "The money was sent to him by his mother.", ja: "お金は母親によって彼に送られた" },
+        { en: "A letter was written to me by my friend.", ja: "手紙は友達によって私に書かれた" }
+      ]
+    }
+  ],
+  passive_pattern5: [
+    {
+      title: "第5文型の受動態（基本）",
+      examples: [
+        { en: "He was made president by them.", ja: "彼は彼らによって社長にされた" },
+        { en: "She was elected captain by the team.", ja: "彼女はチームによってキャプテンに選ばれた" },
+        { en: "I was appointed manager by the company.", ja: "私は会社によってマネージャーに任命された" }
+      ]
+    },
+    {
+      title: "第5文型の受動態（不定詞を含む）",
+      examples: [
+        { en: "He was seen to enter the room by me.", ja: "彼は私によって部屋に入るのを見られた" },
+        { en: "I was asked to help them by them.", ja: "私は彼らによって助けてくれるよう頼まれた" },
+        { en: "He is expected to come by us.", ja: "彼は私たちによって来ることが期待されている" }
+      ]
+    },
+    {
+      title: "第5文型の受動態（応用）",
+      examples: [
+        { en: "She was considered to be the best candidate.", ja: "彼女は最良の候補者だと考えられた" },
+        { en: "He was believed to be innocent.", ja: "彼は無実だと信じられた" },
+        { en: "The plan was thought to be impossible.", ja: "その計画は不可能だと考えられた" }
+      ]
+    }
+  ],
+  "emphatic_construction": [
+    "It was I that met him yesterday.",
+    "It was she that wrote this letter.",
+    "It was him that I met yesterday.",
+    "It was this book that she bought.",
+    "It was yesterday that I met him.",
+    "It is in Tokyo that she lives.",
+    "It is you that I love.",
+    "It was John that called you.",
+    "It will be tomorrow that we leave.",
+    "It is not you that I blame.",
+    "It wasn't yesterday that I saw him."
+  ],
+  "modal_auxiliary_verb": [
+    "He can swim.",
+    "She will come tomorrow.",
+    "You must study hard.",
+    "She could help you.",
+    "They would like to join us.",
+    "May I come in?",
+    "It might rain tomorrow.",
+    "Shall we go now?",
+    "You should see a doctor.",
+    "You ought to try harder.",
+    "I used to play tennis."
+  ],
+  "primary_auxiliary_verb": [
+    "I am studying.",
+    "She has finished her work.",
+    "Do you like coffee?",
+    "I have finished my work.",
+    "She is reading a book.",
+    "They are playing soccer.",
+    "The letter was written by John.",
+    "This book is read by many people.",
+    "She has lived here for 10 years.",
+    "They had already left when I arrived.",
+    "I have a car.",
+    "She has two children.",
+    "Does she speak English?",
+    "Did you go to the party?",
+    "I do not like coffee.",
+    "She does not speak French.",
+    "They did not come to the meeting.",
+    "I do like coffee.",
+    "She does speak English."
+  ],
+  "semi_modal_auxiliary_verb": [
+    "I am able to speak English.",
+    "She was able to finish the work.",
+    "They will be able to come tomorrow.",
+    "I have been able to solve this problem.",
+    "I am going to study abroad.",
+    "It is going to rain.",
+    "We are going to the park.",
+    "I was going to call you.",
+    "You have to finish this by tomorrow.",
+    "She has to go to work.",
+    "I had to study all night.",
+    "We will have to leave early.",
+    "He needs to study more.",
+    "I need to buy some groceries.",
+    "She needed to rest.",
+    "You will need to bring your passport.",
+    "I want to learn English.",
+    "She wants to travel around the world.",
+    "He wanted to become a doctor.",
+    "They will want to join us.",
+    "I used to play tennis.",
+    "She used to live in Tokyo.",
+    "I didn't use to like coffee.",
+    "Did you use to study French?"
+  ],
+  conditionals: [
+    {
+      title: "Zero Conditional（ゼロ条件文）",
+      examples: [
+        { en: "If you heat water, it boils.", ja: "水を加熱すると沸騰する" },
+        { en: "If it rains, the ground gets wet.", ja: "雨が降ると地面が濡れる" },
+        { en: "If you don't eat, you get hungry.", ja: "食べないとお腹が空く" }
+      ]
+    },
+    {
+      title: "First Conditional（第一条件文）",
+      examples: [
+        { en: "If it rains tomorrow, I will stay home.", ja: "もし明日雨が降ったら家にいる" },
+        { en: "If you study hard, you will pass the exam.", ja: "一生懸命勉強すれば試験に合格するだろう" },
+        { en: "If he comes, I will be happy.", ja: "もし彼が来たら私は嬉しいだろう" }
+      ]
+    },
+    {
+      title: "Second Conditional（第二条件文）",
+      examples: [
+        { en: "If I had money, I would buy a car.", ja: "もしお金があれば車を買うのに" },
+        { en: "If I were you, I would study harder.", ja: "もし私があなただったらもっと勉強するのに" },
+        { en: "If it were sunny, we would go to the beach.", ja: "もし晴れていれば海に行くのに" }
+      ]
+    },
+    {
+      title: "Third Conditional（第三条件文）",
+      examples: [
+        { en: "If I had studied harder, I would have passed the exam.", ja: "もっと勉強していれば試験に合格していたのに" },
+        { en: "If she had left earlier, she could have passed the exam.", ja: "もっと早く出ていれば試験に合格できたかもしれない。" },
+        { en: "If it hadn't rained, we would have gone hiking.", ja: "雨が降っていなければハイキングに行っていたのに" }
+      ]
+    }
+  ],
+  if_less_subjunctive: [
+    {
+      title: "wish構文（現在の願望）",
+      examples: [
+        { en: "I wish I knew her email address.", ja: "彼女のメールアドレスを知っていればなあ" },
+        { en: "I wish I were taller.", ja: "もっと背が高かったらいいのに" },
+        { en: "I wish I could speak French.", ja: "フランス語を話せればなあ" }
+      ]
+    },
+    {
+      title: "wish構文（過去の後悔）",
+      examples: [
+        { en: "I wish I had studied harder in high school.", ja: "高校時代にもっと勉強しておけばよかったのに" },
+        { en: "I wish I had met him earlier.", ja: "もっと早く彼に会っていればよかったのに" },
+        { en: "I wished I had been a bird when the airplane crashed.", ja: "飛行機が墜落した時私は鳥だったらよかったのに、と思った" }
+      ]
+    },
+    {
+      title: "wish構文（未来への願望）",
+      examples: [
+        { en: "I wish it would stop raining.", ja: "雨が止んでくれたらいいのに" },
+        { en: "I wish you would come to the party.", ja: "あなたがパーティーに来てくれたらいいのに" },
+        { en: "I wish the weather would improve.", ja: "天気が良くなってくれたらいいのに" }
+      ]
+    },
+    {
+      title: "as if / as though構文（現在の仮定）",
+      examples: [
+        { en: "You talk as if you were an expert.", ja: "まるで専門家であるかのように君は話すね" },
+        { en: "He talks as if he knew everything.", ja: "彼はまるですべてを知っているかのように話す" },
+        { en: "She looks as if she is tired.", ja: "彼女は疲れているかのように見える" }
+      ]
+    },
+    {
+      title: "as if / as though構文（過去の仮定）",
+      examples: [
+        { en: "He looked as if he had seen a UFO.", ja: "まるでUFOを見たかのように彼は見えた" },
+        { en: "She looked as if she had seen a ghost.", ja: "彼女はまるで幽霊を見たかのような顔をしていた" },
+        { en: "They behaved as if they had won the lottery.", ja: "彼らは宝くじに当たったかのように振る舞った" }
+      ]
+    },
+    {
+      title: "without構文",
+      examples: [
+        { en: "Without your help, I couldn't have finished this project.", ja: "あなたの助けがなければ、このプロジェクトを完成させることができなかっただろう" },
+        { en: "Without air, no one could live.", ja: "空気が無ければ、誰も生きることはできないだろう" },
+        { en: "Without money, we cannot buy anything.", ja: "お金がなければ、何も買うことができない" }
+      ]
+    },
+    {
+      title: "but for構文",
+      examples: [
+        { en: "But for the rain, we would have gone hiking.", ja: "雨がなければ、ハイキングに行っていただろう" },
+        { en: "But for the accident, he could have been an excellent baseball player.", ja: "事故が無かったら、彼は素晴らしい野球選手になれただろう" },
+        { en: "But for your advice, I would have made a mistake.", ja: "あなたのアドバイスがなければ、私は間違いを犯していただろう" }
+      ]
+    },
+    {
+      title: "otherwise構文（現在・未来）",
+      examples: [
+        { en: "I have to study hard. Otherwise, I would fail the exam.", ja: "一生懸命勉強しなければならない。そうでなければ、試験に落ちるだろう" },
+        { en: "You must hurry. Otherwise, you will miss the train.", ja: "急がなければならない。そうでなければ、電車に乗り遅れるだろう" },
+        { en: "We need to leave now. Otherwise, we would be late.", ja: "今出発する必要がある。そうでなければ、遅刻するだろう" }
+      ]
+    },
+    {
+      title: "otherwise構文（過去）",
+      examples: [
+        { en: "I had to go then; otherwise I would have missed the last train.", ja: "その時私は出発せざるを得なかった。そうでなかったら私は終電を逃していただろう" },
+        { en: "I studied hard. Otherwise, I would have failed the exam.", ja: "一生懸命勉強した。そうでなければ、試験に落ちていただろう" },
+        { en: "She left early. Otherwise, she would have been late for the meeting.", ja: "彼女は早く出発した。そうでなければ、会議に遅れていただろう" }
+      ]
+    }
+  ],
+  dare: [
+    {
+      title: "法助動詞として（否定文・疑問文）",
+      examples: [
+        { en: "I dare not speak to him.", ja: "私は彼に話しかける勇気がありません" },
+        { en: "Dare you tell the truth?", ja: "真実を言う勇気がありますか？" },
+        { en: "He dare not go alone.", ja: "彼は一人で行く勇気がありません" }
+      ]
+    },
+    {
+      title: "一般動詞として（dare to + 動詞原形）",
+      examples: [
+        { en: "I dare to speak my mind.", ja: "私は自分の考えを言う勇気があります" },
+        { en: "She dares to challenge the boss.", ja: "彼女は上司に挑戦する勇気があります" },
+        { en: "They dare to dream big.", ja: "彼らは大きな夢を見る勇気があります" }
+      ]
+    },
+    {
+      title: "否定形の違い",
+      examples: [
+        { en: "I dare not do it.", ja: "私はそれをする勇気がありません（法助動詞）" },
+        { en: "I don't dare to do it.", ja: "私はそれをする勇気がありません（一般動詞）" },
+        { en: "He daren't say a word.", ja: "彼は一言も言う勇気がありません（法助動詞）" }
+      ]
+    },
+    {
+      title: "挑戦・挑発の表現",
+      examples: [
+        { en: "I dare you to jump.", ja: "飛び込む勇気があるか試してみろ" },
+        { en: "How dare you speak to me like that!", ja: "よくもそんな口の利き方をしたものだ！" },
+        { en: "No one dares to oppose him.", ja: "誰も彼に逆らう勇気がありません" }
+      ]
+    }
+  ],
+  infinitive_gerund_identification: [
+    {
+      title: "不定詞のみを目的語に取る動詞",
+      examples: [
+        { en: "I want to study abroad next year.", ja: "私は来年留学したい" },
+        { en: "He decided to quit his job.", ja: "彼は仕事を辞めることに決めた" },
+        { en: "She hopes to become a doctor.", ja: "彼女は医者になることを望んでいる" }
+      ]
+    },
+    {
+      title: "動名詞のみを目的語に取る動詞",
+      examples: [
+        { en: "I enjoy reading books in my free time.", ja: "私は暇な時間に本を読むことを楽しむ" },
+        { en: "She finished writing the report.", ja: "彼女はレポートを書き終えた" },
+        { en: "He suggested going to the movies.", ja: "彼は映画に行くことを提案した" }
+      ]
+    },
+    {
+      title: "両方を目的語に取る動詞（意味が変わる）",
+      examples: [
+        { en: "Remember to lock the door.", ja: "ドアをロックすることを忘れないで" },
+        { en: "I remember meeting him before.", ja: "私は以前彼に会ったことを覚えている" },
+        { en: "I forgot to call her yesterday.", ja: "私は昨日彼女に電話することを忘れた" }
+      ]
+    },
+    {
+      title: "前置詞の後は必ず動名詞",
+      examples: [
+        { en: "I'm interested in learning English.", ja: "私は英語を学ぶことに興味がある" },
+        { en: "Thank you for helping me.", ja: "助けてくれてありがとう" },
+        { en: "He is good at playing tennis.", ja: "彼はテニスをすることが上手だ" }
+      ]
+    },
+    {
+      title: "tryの使い分け",
+      examples: [
+        { en: "I tried to solve the problem.", ja: "私はその問題を解決しようと努力した" },
+        { en: "Try using a different method.", ja: "別の方法を使ってみなさい" },
+        { en: "Stop to buy some milk.", ja: "牛乳を買うために立ち止まる" }
+      ]
+    }
+  ],
+  infinitive_noun: [
+    {
+      title: "主語として",
+      examples: [
+        { en: "To study is important.", ja: "勉強することは大切だ" },
+        { en: "To speak English is difficult.", ja: "英語を話すことは難しい" },
+        { en: "To travel around the world is my dream.", ja: "世界中を旅行することは私の夢だ" }
+      ]
+    },
+    {
+      title: "目的語として",
+      examples: [
+        { en: "I want to study abroad.", ja: "私は留学したい" },
+        { en: "She likes to read books.", ja: "彼女は本を読むことが好きだ" },
+        { en: "He decided to quit his job.", ja: "彼は仕事を辞めることに決めた" }
+      ]
+    },
+    {
+      title: "補語として",
+      examples: [
+        { en: "My dream is to become a doctor.", ja: "私の夢は医者になることだ" },
+        { en: "The plan is to finish by Friday.", ja: "計画は金曜日までに終えることだ" },
+        { en: "Her goal is to learn French.", ja: "彼女の目標はフランス語を学ぶことだ" }
+      ]
+    },
+    {
+      title: "It is + 形容詞 + to do の構文",
+      examples: [
+        { en: "It is important to study hard.", ja: "一生懸命勉強することは大切だ" },
+        { en: "It is difficult to learn a new language.", ja: "新しい言語を学ぶことは難しい" },
+        { en: "It is easy to make mistakes.", ja: "間違いをすることは簡単だ" }
+      ]
+    }
+  ],
+  infinitive_adjective: [
+    {
+      title: "後置修飾（名詞の後）",
+      examples: [
+        { en: "I have a book to read.", ja: "私は読むべき本を持っている" },
+        { en: "She has work to do.", ja: "彼女はすべき仕事がある" },
+        { en: "There is nothing to eat.", ja: "食べるものは何もない" }
+      ]
+    },
+    {
+      title: "場所・時間・方法を表す",
+      examples: [
+        { en: "This is the place to meet.", ja: "これは会う場所だ" },
+        { en: "That is the time to start.", ja: "それは始める時だ" },
+        { en: "This is the way to solve the problem.", ja: "これは問題を解決する方法だ" }
+      ]
+    },
+    {
+      title: "感情・意志を表す形容詞の後",
+      examples: [
+        { en: "I am happy to see you.", ja: "私はあなたに会えて嬉しい" },
+        { en: "She is ready to go.", ja: "彼女は行く準備ができている" },
+        { en: "He is willing to help.", ja: "彼は手伝う気がある" }
+      ]
+    }
+  ],
+  infinitive_adverb: [
+    {
+      title: "目的を表す（〜するために）",
+      examples: [
+        { en: "I went to the library to study.", ja: "私は勉強するために図書館に行った" },
+        { en: "She came here to see you.", ja: "彼女はあなたに会うためにここに来た" },
+        { en: "He works hard to earn money.", ja: "彼はお金を稼ぐために一生懸命働く" }
+      ]
+    },
+    {
+      title: "結果を表す（〜して〜になる）",
+      examples: [
+        { en: "He grew up to be a doctor.", ja: "彼は成長して医者になった" },
+        { en: "She lived to be 100.", ja: "彼女は100歳まで生きた" },
+        { en: "The plan turned out to be successful.", ja: "その計画は成功することが判明した" }
+      ]
+    },
+    {
+      title: "感情の原因を表す",
+      examples: [
+        { en: "I am glad to hear the news.", ja: "私はその知らせを聞いて嬉しい" },
+        { en: "She was surprised to see him.", ja: "彼女は彼を見て驚いた" },
+        { en: "He was disappointed to fail the exam.", ja: "彼は試験に落ちてがっかりした" }
+      ]
+    },
+    {
+      title: "判断の根拠を表す",
+      examples: [
+        { en: "He must be rich to live in such a big house.", ja: "そんな大きな家に住んでいるなんて、彼は金持ちに違いない" },
+        { en: "She must be smart to solve this problem.", ja: "この問題を解けるなんて、彼女は賢いに違いない" },
+        { en: "It must be expensive to buy a car.", ja: "車を買うのは高価に違いない" }
+      ]
+    }
   ]
-  // 他のトピックも同様に追加可能
 };
 
 // 例文セクションを描画する関数

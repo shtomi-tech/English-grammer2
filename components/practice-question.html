@@ -1,17 +1,36 @@
 <div class="apple-card mb-8">
     <h2 class="apple-card-title">和文英訳練習問題</h2>
-    <div class="mt-4">
-        <!-- ステップ1: 難易度選択 -->
-        <div class="mb-4">
-            <label for="difficulty" class="block text-sm font-medium text-gray-700 mb-2">難易度を選択：</label>
-            <select id="difficulty" class="apple-input">
-                <option value="easy">初級（英検3級レベル）</option>
-                <option value="medium">中級（英検準2級レベル）</option>
-                <option value="hard">上級（英検2級レベル）</option>
-            </select>
+    
+    <!-- 練習回数表示 -->
+    <div class="mb-4 p-4 bg-blue-50 rounded-lg">
+        <div class="flex items-center">
+            <span class="text-lg font-semibold text-gray-800 mr-3">練習回数：</span>
+            <div class="flex items-center space-x-1">
+                <span id="practiceCount" class="text-2xl font-bold text-blue-600">0</span>
+                <span class="text-gray-600">/ 5</span>
+            </div>
         </div>
-        
-        <!-- ステップ2: 問題生成ボタン -->
+        <div id="progressBar" class="mt-2 w-full bg-gray-200 rounded-full h-2">
+            <div id="progressFill" class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+        <div id="practiceMessage" class="mt-2 text-sm text-gray-600"></div>
+    </div>
+    
+    <!-- 現在の難易度表示 -->
+    <div class="mb-4 p-4 bg-green-50 rounded-lg">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <span class="text-lg font-semibold text-gray-800 mr-3">現在の難易度：</span>
+                <span id="currentDifficulty" class="text-xl font-bold text-green-600">英検3級レベル（初級）</span>
+            </div>
+            <div class="text-sm text-gray-600">
+                <span id="difficultyExplanation">解答の出来に応じて自動調整されます</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-4">
+        <!-- ステップ1: 問題生成ボタン -->
         <div class="mb-6 flex flex-col items-center">
             <button id="generateQuestion" class="apple-btn main-generate-btn flex items-center justify-center text-lg font-bold px-8 py-3 shadow-lg transition-all">
                 <span class="mr-2 text-2xl">📝</span>和文英訳問題を生成
@@ -26,7 +45,7 @@
             </div>
         </div>
         
-        <!-- ステップ3: 問題表示エリア -->
+        <!-- ステップ2: 問題表示エリア -->
         <div id="questionContainer" class="mt-6 hidden">
             <div class="bg-blue-50 p-6 rounded-lg mb-6">
                 <h3 class="text-lg font-semibold text-gray-800 mb-3">和文英訳問題</h3>
@@ -34,7 +53,7 @@
                 <div id="hints" class="text-sm text-gray-600 bg-yellow-50 p-3 rounded border-l-4 border-yellow-400 hidden"></div>
             </div>
             
-            <!-- ステップ4: 解答フォーム -->
+            <!-- ステップ3: 解答フォーム -->
             <div class="mb-6">
                 <label for="userAnswer" class="block text-sm font-medium text-gray-700 mb-2">あなたの解答：</label>
                 <textarea 
@@ -44,7 +63,7 @@
                 ></textarea>
             </div>
             
-            <!-- ステップ5: 添削ボタン -->
+            <!-- ステップ4: 添削ボタン -->
             <button id="submitAnswer" class="apple-btn main-submit-btn flex items-center justify-center text-lg font-bold px-8 py-3 shadow-lg transition-all">
                 <span class="mr-2 text-2xl">📝</span>添削してもらう
             </button>

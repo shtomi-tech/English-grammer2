@@ -1,6 +1,161 @@
 // バックエンドAPI設定
 const API_BASE_URL = 'http://localhost:3000';
 
+// 練習回数管理
+let practiceCount = 0;
+const MAX_PRACTICE_COUNT = 5;
+
+// 難易度管理
+let currentDifficulty = 'easy'; // easy, medium, hard, expert
+const difficultyLevels = {
+    easy: { name: '英検3級レベル（初級）', color: 'text-green-600' },
+    medium: { name: '英検準2級レベル（中級）', color: 'text-yellow-600' },
+    hard: { name: '英検2級レベル（上級）', color: 'text-red-600' },
+    expert: { name: '英検準1級レベル（最上級）', color: 'text-purple-600' }
+};
+
+// 難易度調整の履歴
+let difficultyHistory = [];
+
+// 難易度を更新する関数
+function updateDifficulty(newDifficulty) {
+    const oldDifficulty = currentDifficulty;
+    currentDifficulty = newDifficulty;
+    
+    // 履歴に追加
+    difficultyHistory.push({
+        from: oldDifficulty,
+        to: newDifficulty,
+        timestamp: new Date()
+    });
+    
+    // UIを更新
+    updateDifficultyDisplay();
+}
+
+// 難易度表示を更新する関数
+function updateDifficultyDisplay() {
+    const difficultyElement = document.getElementById('currentDifficulty');
+    const explanationElement = document.getElementById('difficultyExplanation');
+    
+    if (difficultyElement) {
+        const level = difficultyLevels[currentDifficulty];
+        difficultyElement.textContent = level.name;
+        difficultyElement.className = `text-xl font-bold ${level.color}`;
+    }
+    
+    if (explanationElement) {
+        if (difficultyHistory.length > 0) {
+            const lastChange = difficultyHistory[difficultyHistory.length - 1];
+            if (lastChange.from !== lastChange.to) {
+                const fromName = difficultyLevels[lastChange.from].name;
+                const toName = difficultyLevels[lastChange.to].name;
+                explanationElement.textContent = `前回の解答により ${fromName} → ${toName} に調整されました`;
+            } else {
+                explanationElement.textContent = '解答の出来に応じて自動調整されます';
+            }
+        } else {
+            explanationElement.textContent = '解答の出来に応じて自動調整されます';
+        }
+    }
+}
+
+// 解答の出来に基づいて難易度を調整する関数
+function adjustDifficultyBasedOnPerformance(score) {
+    let newDifficulty = currentDifficulty;
+    
+    if (score >= 80) {
+        // 高得点の場合、難易度を上げる
+        if (currentDifficulty === 'easy') {
+            newDifficulty = 'medium';
+        } else if (currentDifficulty === 'medium') {
+            newDifficulty = 'hard';
+        } else if (currentDifficulty === 'hard') {
+            newDifficulty = 'expert';
+        }
+        // expertの場合はそのまま
+    } else if (score <= 40) {
+        // 低得点の場合、難易度を下げる
+        if (currentDifficulty === 'expert') {
+            newDifficulty = 'hard';
+        } else if (currentDifficulty === 'hard') {
+            newDifficulty = 'medium';
+        } else if (currentDifficulty === 'medium') {
+            newDifficulty = 'easy';
+        }
+        // easyの場合はそのまま
+    }
+    // 40-80点の場合は難易度を維持
+    
+    if (newDifficulty !== currentDifficulty) {
+        updateDifficulty(newDifficulty);
+        return true; // 難易度が変更された
+    }
+    
+    return false; // 難易度は変更されなかった
+}
+
+// 難易度を初期化する関数
+function initializeDifficulty() {
+    // 常に初級レベルから開始
+    currentDifficulty = 'easy';
+    difficultyHistory = [];
+    
+    updateDifficultyDisplay();
+}
+
+// 練習回数を更新する関数
+function updatePracticeCount() {
+    practiceCount++;
+    if (practiceCount > MAX_PRACTICE_COUNT) {
+        practiceCount = MAX_PRACTICE_COUNT;
+    }
+    
+    const countElement = document.getElementById('practiceCount');
+    const progressFill = document.getElementById('progressFill');
+    const practiceMessage = document.getElementById('practiceMessage');
+    
+    if (countElement) {
+        countElement.textContent = practiceCount;
+    }
+    
+    if (progressFill) {
+        const progressPercentage = (practiceCount / MAX_PRACTICE_COUNT) * 100;
+        progressFill.style.width = `${progressPercentage}%`;
+    }
+    
+    if (practiceMessage) {
+        if (practiceCount >= MAX_PRACTICE_COUNT) {
+            practiceMessage.innerHTML = '<span class="text-green-600 font-semibold">🎉 おめでとうございます！5回の練習を完了しました！</span>';
+        } else {
+            const remaining = MAX_PRACTICE_COUNT - practiceCount;
+            practiceMessage.textContent = `あと${remaining}回で完了です。頑張りましょう！`;
+        }
+    }
+}
+
+// 練習回数を初期化する関数
+function initializePracticeCount() {
+    // 常に0から開始
+    practiceCount = 0;
+    
+    const countElement = document.getElementById('practiceCount');
+    const progressFill = document.getElementById('progressFill');
+    const practiceMessage = document.getElementById('practiceMessage');
+    
+    if (countElement) {
+        countElement.textContent = practiceCount;
+    }
+    
+    if (progressFill) {
+        progressFill.style.width = '0%';
+    }
+    
+    if (practiceMessage) {
+        practiceMessage.textContent = '練習を開始しましょう！';
+    }
+}
+
 // 選択された難易度を取得する関数
 function getSelectedDifficulty(generateBtnId) {
     const generateBtn = document.getElementById(generateBtnId);
@@ -139,7 +294,7 @@ function displayWritingFeedback(feedbackData, feedbackId, feedbackContentId) {
 }
 
 // 和文英訳問題生成関数
-async function generateWritingQuestion(topic, difficulty) {
+async function generateWritingQuestion(topic) {
     const generateBtn = document.getElementById('generateQuestion');
     const loadingIndicator = document.getElementById('loadingIndicator');
     const questionContainer = document.getElementById('questionContainer');
@@ -152,24 +307,14 @@ async function generateWritingQuestion(topic, difficulty) {
     try {
         const response = await fetch(`${API_BASE_URL}/api/generate-translation-question`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                topic: topic,
-                difficulty: difficulty
-            })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ topic, difficulty: currentDifficulty })
         });
 
-        if (!response.ok) {
-            throw new Error(`API request failed: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`API request failed: ${response.status}`);
 
         const result = await response.json();
-
-        if (!result.success) {
-            throw new Error(result.error || 'Failed to generate translation question');
-        }
+        if (!result.success) throw new Error(result.error || 'Failed to generate translation question');
 
         displayWritingQuestion(result.data, 'questionContainer', 'question', 'hints');
 
@@ -184,7 +329,7 @@ async function generateWritingQuestion(topic, difficulty) {
 }
 
 // 和文英訳添削関数
-async function submitWritingAnswer(topic, userAnswer, difficulty) {
+async function submitWritingAnswer(topic, userAnswer) {
     const submitBtn = document.getElementById('submitAnswer');
     const feedbackContainer = document.getElementById('feedback');
 
@@ -195,27 +340,40 @@ async function submitWritingAnswer(topic, userAnswer, difficulty) {
     try {
         const response = await fetch(`${API_BASE_URL}/api/grade-translation-answer`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                topic: topic,
-                userAnswer: userAnswer,
-                difficulty: difficulty
-            })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ topic, userAnswer, difficulty: currentDifficulty })
         });
 
-        if (!response.ok) {
-            throw new Error(`API request failed: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`API request failed: ${response.status}`);
 
         const result = await response.json();
-
-        if (!result.success) {
-            throw new Error(result.error || 'Failed to grade translation answer');
-        }
+        if (!result.success) throw new Error(result.error || 'Failed to grade translation answer');
 
         displayWritingFeedback(result.data, 'feedback', 'feedbackContent');
+        
+        // 解答の出来に基づいて難易度を調整
+        if (result.data.overallScore) {
+            const difficultyChanged = adjustDifficultyBasedOnPerformance(result.data.overallScore);
+            if (difficultyChanged) {
+                // 難易度が変更された場合の特別なメッセージを表示
+                setTimeout(() => {
+                    const feedbackContent = document.getElementById('feedbackContent');
+                    if (feedbackContent) {
+                        const difficultyMessage = document.createElement('div');
+                        difficultyMessage.className = 'bg-blue-50 p-4 rounded border-l-4 border-blue-400 mt-4';
+                        const level = difficultyLevels[currentDifficulty];
+                        difficultyMessage.innerHTML = `
+                            <h4 class="font-semibold text-blue-800 mb-2">🎯 難易度調整</h4>
+                            <p class="text-blue-700">あなたの解答の出来に応じて、次回の問題は <strong>${level.name}</strong> で出題されます。</p>
+                        `;
+                        feedbackContent.appendChild(difficultyMessage);
+                    }
+                }, 1000);
+            }
+        }
+        
+        // 添削完了時に練習回数を更新
+        updatePracticeCount();
 
     } catch (error) {
         console.error('Error grading translation answer:', error);
@@ -230,26 +388,23 @@ async function submitWritingAnswer(topic, userAnswer, difficulty) {
 function setupWritingQuestionEventListeners(topic) {
     const generateBtn = document.getElementById('generateQuestion');
     const submitBtn = document.getElementById('submitAnswer');
-    const difficultySelect = document.getElementById('difficulty');
 
     if (generateBtn) {
-        generateBtn.addEventListener('click', function() {
-            const difficulty = difficultySelect.value;
-            generateWritingQuestion(topic, difficulty);
+        generateBtn.addEventListener('click', () => {
+            generateWritingQuestion(topic);
         });
     }
 
     if (submitBtn) {
-        submitBtn.addEventListener('click', function() {
+        submitBtn.addEventListener('click', () => {
             const userAnswer = document.getElementById('userAnswer').value.trim();
-            const difficulty = difficultySelect.value;
             
             if (!userAnswer) {
                 alert('解答を入力してください。');
                 return;
             }
             
-            submitWritingAnswer(topic, userAnswer, difficulty);
+            submitWritingAnswer(topic, userAnswer);
         });
     }
 }
@@ -286,11 +441,101 @@ async function checkServerHealth() {
     }
 }
 
+// grammar.jsonから該当項目を取得して表示する関数
+function renderGrammarExplanation(key, targetId) {
+    fetch('../grammar.json')
+        .then(response => response.json())
+        .then(data => {
+            const explanation = data[key];
+            if (explanation) {
+                document.getElementById(targetId).innerHTML = explanation.replace(/\n/g, '<br>');
+            } else {
+                document.getElementById(targetId).textContent = '説明が見つかりませんでした。';
+            }
+        })
+        .catch(() => {
+            document.getElementById(targetId).textContent = '文法説明の読み込みに失敗しました。';
+        });
+}
+
+// サブメニューのトグル機能
+function setupSubmenuToggles() {
+    // 関係代名詞のトグル
+    const relativePronounToggle = document.getElementById('relative-pronoun-toggle');
+    const relativePronounSubmenu = document.getElementById('relative-pronoun-submenu');
+    const relativePronounIcon = document.getElementById('relative-pronoun-icon');
+    
+    if (relativePronounToggle && relativePronounSubmenu && relativePronounIcon) {
+        relativePronounToggle.addEventListener('click', function() {
+            const isHidden = relativePronounSubmenu.classList.contains('hidden');
+            
+            if (isHidden) {
+                // サブメニューを表示
+                relativePronounSubmenu.classList.remove('hidden');
+                relativePronounIcon.classList.add('rotate-180');
+            } else {
+                // サブメニューを非表示
+                relativePronounSubmenu.classList.add('hidden');
+                relativePronounIcon.classList.remove('rotate-180');
+            }
+        });
+    }
+    
+    // 動詞のトグル
+    const verbToggle = document.getElementById('verb-toggle');
+    const verbSubmenu = document.getElementById('verb-submenu');
+    const verbIcon = document.getElementById('verb-icon');
+    
+    if (verbToggle && verbSubmenu && verbIcon) {
+        verbToggle.addEventListener('click', function() {
+            const isHidden = verbSubmenu.classList.contains('hidden');
+            
+            if (isHidden) {
+                // サブメニューを表示
+                verbSubmenu.classList.remove('hidden');
+                verbIcon.classList.add('rotate-180');
+            } else {
+                // サブメニューを非表示
+                verbSubmenu.classList.add('hidden');
+                verbIcon.classList.remove('rotate-180');
+            }
+        });
+    }
+    
+    // 不定詞のトグル
+    const infinitiveToggle = document.getElementById('infinitive-toggle');
+    const infinitiveSubmenu = document.getElementById('infinitive-submenu');
+    const infinitiveIcon = document.getElementById('infinitive-icon');
+    
+    if (infinitiveToggle && infinitiveSubmenu && infinitiveIcon) {
+        infinitiveToggle.addEventListener('click', function() {
+            const isHidden = infinitiveSubmenu.classList.contains('hidden');
+            
+            if (isHidden) {
+                // サブメニューを表示
+                infinitiveSubmenu.classList.remove('hidden');
+                infinitiveIcon.classList.add('rotate-180');
+            } else {
+                // サブメニューを非表示
+                infinitiveSubmenu.classList.add('hidden');
+                infinitiveIcon.classList.remove('rotate-180');
+            }
+        });
+    }
+}
+
 // ページ読み込み時の初期化
 document.addEventListener('DOMContentLoaded', function() {
     // サーバーの状態をチェック
     checkServerHealth();
 
-    // 難易度選択機能を初期化
-    setupDifficultySelectors();
-}); 
+    // 難易度システムを初期化
+    initializeDifficulty();
+
+    // 練習回数を初期化
+    initializePracticeCount();
+
+    setupSubmenuToggles();
+});
+
+ 

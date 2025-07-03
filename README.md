@@ -28,7 +28,7 @@
 - **文型**: 第1〜5文型とその受動態
 - **句・節**: 動名詞、不定詞、分詞、関係代名詞、関係副詞
 - **時制**: 現在形、過去形、進行形、完了形（現在・過去・未来）
-- **助動詞**: can, will, may, must, should
+- **助動詞**: can, will/would, may/might, must, should
 - **仮定法**: 仮定法過去、過去完了、未来、倒置
 - **比較**: 比較級、最上級、原級
 
@@ -161,9 +161,9 @@ POST /api/generate-question
 - `future_perfect` - 未来完了形（用法、未来完了進行形）
 
 ### 助動詞
-- `can` - can（3用法、be able toとの使い分け、過去形could）
-- `will` - will（用法、be going toとの使い分け、過去形would）
-- `may` - may（用法、mightとの使い分け、過去形might）
+- `can-could` - can/could（能力・許可・依頼・可能性、過去形・丁寧表現・仮定法）
+- `will-would` - will/would（未来・意志・予測・仮定法、過去形・丁寧表現・控えめな推量・過去の習慣）
+- `may-might` - may/might（許可・推量・可能性、控えめな推量・丁寧な許可・仮定法）
 - `must` - must（用法、have toとの使い分け、否定形）
 - `should` - should（用法、ought toとの使い分け、過去形）
 

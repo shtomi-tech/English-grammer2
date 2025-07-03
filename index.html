@@ -13,8 +13,7 @@
 <body class="bg-gray-100">
     <!-- ヘッダー -->
     <header>
-        <div class="container apple-card max-w-6xl mx-auto flex flex-col items-start">
-            <!-- アスキーアートロゴコンテナ -->
+        <div class="container apple-card max-w-6xl mx-auto">
             <div class="logo-container"></div>
         </div>
     </header>
@@ -41,8 +40,21 @@
                     <div class="space-y-2">
                         <a href="parts-of-speech/noun.html" class="block apple-nav-btn text-sm">名詞</a>
                         <a href="parts-of-speech/article.html" class="block apple-nav-btn text-sm">冠詞</a>
-                        <a href="parts-of-speech/be-verb.html" class="block apple-nav-btn text-sm">be動詞</a>
-                        <a href="parts-of-speech/verb.html" class="block apple-nav-btn text-sm">一般動詞</a>
+                        <!-- 動詞サブカテゴリー -->
+                        <div class="relative">
+                            <button id="verb-toggle" class="w-full text-left apple-nav-btn text-sm flex items-center justify-between">
+                                <span>動詞</span>
+                                <svg id="verb-icon" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div id="verb-submenu" class="hidden ml-2 border-l-2 border-blue-200 pl-3 mt-2">
+                                <div class="space-y-1">
+                                    <a href="parts-of-speech/be-verb.html" class="block apple-nav-btn text-xs">be動詞</a>
+                                    <a href="parts-of-speech/verb.html" class="block apple-nav-btn text-xs">一般動詞</a>
+                                </div>
+                            </div>
+                        </div>
                         <a href="parts-of-speech/adjective.html" class="block apple-nav-btn text-sm">形容詞</a>
                         <a href="parts-of-speech/adverb.html" class="block apple-nav-btn text-sm">副詞</a>
                         <a href="parts-of-speech/preposition.html" class="block apple-nav-btn text-sm">前置詞</a>
@@ -59,6 +71,9 @@
                         <a href="sentence-patterns/pattern3.html" class="block apple-nav-btn text-sm">第3文型（S+V+O）</a>
                         <a href="sentence-patterns/pattern4.html" class="block apple-nav-btn text-sm">第4文型（S+V+O1+O2）</a>
                         <a href="sentence-patterns/pattern5.html" class="block apple-nav-btn text-sm">第5文型（S+V+O+C）</a>
+                        <a href="sentence-patterns/passive-pattern3.html" class="block apple-nav-btn text-sm">第3文型の受動態</a>
+                        <a href="sentence-patterns/passive-pattern4.html" class="block apple-nav-btn text-sm">第4文型の受動態</a>
+                        <a href="sentence-patterns/passive-pattern5.html" class="block apple-nav-btn text-sm">第5文型の受動態</a>
                     </div>
                 </div>
 
@@ -67,9 +82,25 @@
                     <h3 class="apple-card-title text-lg mb-4">句</h3>
                     <div class="space-y-2">
                         <a href="phrases/gerund.html" class="block apple-nav-btn text-sm">動名詞</a>
-                        <a href="phrases/infinitive.html" class="block apple-nav-btn text-sm">不定詞</a>
                         <a href="phrases/participle.html" class="block apple-nav-btn text-sm">分詞</a>
                         <a href="phrases/participle-construction.html" class="block apple-nav-btn text-sm">分詞構文</a>
+                        <!-- 不定詞サブカテゴリー -->
+                        <div class="relative">
+                            <button id="infinitive-toggle" class="w-full text-left apple-nav-btn text-sm flex items-center justify-between">
+                                <span>不定詞</span>
+                                <svg id="infinitive-icon" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div id="infinitive-submenu" class="hidden ml-2 border-l-2 border-blue-200 pl-3 mt-2">
+                                <div class="space-y-1">
+                                    <a href="phrases/infinitive-noun.html" class="block apple-nav-btn text-xs">不定詞の名詞的用法</a>
+                                    <a href="phrases/infinitive-adjective.html" class="block apple-nav-btn text-xs">不定詞の形容詞的用法</a>
+                                    <a href="phrases/infinitive-adverb.html" class="block apple-nav-btn text-xs">不定詞の副詞的用法</a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="phrases/infinitive-gerund-identification.html" class="block apple-nav-btn text-sm">不定詞と動名詞の識別</a>
                     </div>
                 </div>
 
@@ -77,10 +108,31 @@
                 <div class="apple-card">
                     <h3 class="apple-card-title text-lg mb-4">節</h3>
                     <div class="space-y-2">
-                        <a href="clauses/relative-pronoun.html" class="block apple-nav-btn text-sm">関係代名詞</a>
+                        <!-- 関係代名詞サブカテゴリー -->
+                        <div class="relative">
+                            <button id="relative-pronoun-toggle" class="w-full text-left apple-nav-btn text-sm flex items-center justify-between">
+                                <span>関係代名詞</span>
+                                <svg id="relative-pronoun-icon" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div id="relative-pronoun-submenu" class="hidden ml-2 border-l-2 border-blue-200 pl-3 mt-2">
+                                <div class="space-y-1">
+                                    <a href="clauses/relative-pronoun.html" class="block apple-nav-btn text-xs">関係代名詞の仕組み</a>
+                                    <a href="clauses/relative-pronoun-subjective.html" class="block apple-nav-btn text-xs">関係代名詞の主格用法</a>
+                                    <a href="clauses/relative-pronoun-objective.html" class="block apple-nav-btn text-xs">関係代名詞の目的格用法</a>
+                                    <a href="clauses/relative-pronoun-possessive.html" class="block apple-nav-btn text-xs">関係代名詞の所有格用法</a>
+                                    <a href="clauses/relative-pronoun-noun-clause.html" class="block apple-nav-btn text-xs">関係代名詞の名詞用法</a>
+                                    <a href="clauses/relative-pronoun-usage.html" class="block apple-nav-btn text-xs">制限用法と非制限用法の関係代名詞の識別</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- その他の節 -->
                         <a href="clauses/relative-adverb.html" class="block apple-nav-btn text-sm">関係副詞</a>
                         <a href="clauses/subordinating-conjunction.html" class="block apple-nav-btn text-sm">従属接続詞</a>
                         <a href="phrases/indirect-question.html" class="block apple-nav-btn text-sm">間接疑問文</a>
+                        <a href="clauses/compound-relative-clause.html" class="block apple-nav-btn text-sm">複合関係副詞</a>
+                        <a href="clauses/emphatic-construction.html" class="block apple-nav-btn text-sm">強調構文</a>
                     </div>
                 </div>
 
@@ -101,11 +153,15 @@
                 <div class="apple-card">
                     <h3 class="apple-card-title text-lg mb-4">助動詞</h3>
                     <div class="space-y-2">
-                        <a href="modals/can.html" class="block apple-nav-btn text-sm">can</a>
-                        <a href="modals/will.html" class="block apple-nav-btn text-sm">will</a>
-                        <a href="modals/may.html" class="block apple-nav-btn text-sm">may</a>
+                        <a href="modals/auxiliary-verb-types.html" class="block apple-nav-btn text-sm">助動詞の種類と分類</a>
+                        <a href="modals/can-could.html" class="block apple-nav-btn text-sm">can/could</a>
+                        <a href="modals/will-would.html" class="block apple-nav-btn text-sm">will/would</a>
+                        <a href="modals/may-might.html" class="block apple-nav-btn text-sm">may/might</a>
                         <a href="modals/must.html" class="block apple-nav-btn text-sm">must</a>
                         <a href="modals/should.html" class="block apple-nav-btn text-sm">should</a>
+                        <a href="modals/shall.html" class="block apple-nav-btn text-sm">shall</a>
+                        <a href="modals/need.html" class="block apple-nav-btn text-sm">need</a>
+                        <a href="modals/dare.html" class="block apple-nav-btn text-sm">dare</a>
                     </div>
                 </div>
 
@@ -117,6 +173,8 @@
                         <a href="subjunctive/past-perfect.html" class="block apple-nav-btn text-sm">仮定法過去完了</a>
                         <a href="subjunctive/future.html" class="block apple-nav-btn text-sm">仮定法未来</a>
                         <a href="subjunctive/inversion.html" class="block apple-nav-btn text-sm">仮定法の倒置</a>
+                        <a href="subjunctive/conditionals.html" class="block apple-nav-btn text-sm">Conditionals</a>
+                        <a href="subjunctive/if-less-subjunctive.html" class="block apple-nav-btn text-sm">ifを使わない仮定法</a>
                     </div>
                 </div>
 
