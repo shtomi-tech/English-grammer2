@@ -156,10 +156,8 @@
                 document.getElementById('indirect-question-explanation').innerHTML = data.indirect_question.replace(/\n/g, '<br>');
             });
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "participle-construction.html", "間接疑問文", "次へ", null);
+            renderNavigation("前へ", "../clauses/subordinating-conjunction.html", "間接疑問文", "次へ", "../clauses/compound-relative-clause.html");
             renderExamples("indirect_question", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
                 setupWritingQuestionEventListeners("indirect_question");
             }, 100);

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第4文型（S+V+O1+O2） - English Learning Hub</title>
+    <title>第5文型 - English Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
@@ -24,7 +24,7 @@
             <span>></span>
             <a href="../index.html#sentence-patterns" class="hover:text-blue-600">文型</a>
             <span>></span>
-            <span class="text-gray-900">第4文型（S+V+O1+O2）</span>
+            <span class="text-gray-900">第5文型</span>
         </div>
     </nav>
 
@@ -95,29 +95,64 @@
                     .then(html => {
                         document.getElementById('learning-guide-container').innerHTML = html;
                         // タイトルと説明文をカスタマイズ
-                        document.getElementById('learning-guide-title-text').textContent = '第4文型の学習方法ガイド';
-                        document.getElementById('learning-guide-step1-desc').textContent = '第4文型の定義と役割をしっかりと理解しましょう';
-                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、第4文型の使い方を学びましょう';
+                        document.getElementById('learning-guide-title-text').textContent = '第5文型の学習方法ガイド';
+                        document.getElementById('learning-guide-step1-desc').textContent = '第5文型の基本構造をしっかりと理解しましょう';
+                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、第5文型の使い方を学びましょう';
                         document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を5回解いてみましょう';
-                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で第4文型がどのように使われているか意識してみましょう';
-                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>第4文型が文の中でどの位置に来るかを意識しましょう';
+                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で第5文型がどのように使われているか意識してみましょう';
+                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>第5文型が文の中でどの位置に来るかを意識しましょう';
                         document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する文型と一緒に：</strong>他の文型との違いも理解しましょう';
-                        document.getElementById('learning-guide-time').innerHTML = '基本概念の理解：<strong>15分</strong> | 例文の確認：<strong>20分</strong> | 練習問題：<strong>25分</strong><br>合計：<strong>約60分</strong>で第4文型の基礎をマスターできます';
+                        document.getElementById('learning-guide-time').innerHTML = '基本概念の理解：<strong>15分</strong> | 例文の確認：<strong>20分</strong> | 練習問題：<strong>25分</strong><br>合計：<strong>約60分</strong>で第5文型の基礎をマスターできます';
                     });
             });
             </script>
 
-            <!-- タイトルパーツ -->
-            <!-- <div class="apple-card mb-8">
-                <h2 class="apple-card-title">文型4</h2>
-                <p class="apple-card-text">主語＋動詞＋目的語＋目的語の文型です。</p>
-            </div> -->
-
-            <!-- 文法説明 -->
+            <!-- 第5文型の概要 -->
             <div class="apple-card mb-8">
-                <h2 class="apple-card-title">第4文型</h2>
+                <h2 class="apple-card-title">第5文型（S+V+O+C）</h2>
                 <div class="mt-4">
-                    <div id="pattern4-explanation" class="apple-section-text"></div>
+                    <p class="apple-section-text mb-4">
+                        第5文型は、主語（S）+ 動詞（V）+ 目的語（O）+ 補語（C）の構造を持つ文型です。
+                        目的語と補語の間に「〜は〜である」という関係が成立します。
+                    </p>
+                    <p class="apple-section-text mb-4">
+                        第5文型には以下の3つの主要なパターンがあります：
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>第5文型（S+V+O+C）</strong>：基本的な第5文型の構造</li>
+                        <li><strong>使役動詞</strong>：「〜させる」「〜してもらう」を表す動詞</li>
+                        <li><strong>知覚動詞</strong>：「〜するのを見る」「〜するのを聞く」を表す動詞</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 第5文型のサブセクション -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- 第5文型（S+V+O+C） -->
+                <div class="apple-card hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="apple-card-title text-lg mb-4">第5文型（S+V+O+C）</h3>
+                    <p class="text-gray-600 mb-4">基本的な第5文型の構造を学びます。主語、動詞、目的語、補語の関係を理解しましょう。</p>
+                    <a href="pattern5.html" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors duration-200">
+                        学習する
+                    </a>
+                </div>
+
+                <!-- 使役動詞 -->
+                <div class="apple-card hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="apple-card-title text-lg mb-4">使役動詞</h3>
+                    <p class="text-gray-600 mb-4">make, have, let, getなどの使役動詞の使い方を学びます。「〜させる」「〜してもらう」の表現をマスターしましょう。</p>
+                    <a href="causative-verb.html" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition-colors duration-200">
+                        学習する
+                    </a>
+                </div>
+
+                <!-- 知覚動詞 -->
+                <div class="apple-card hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="apple-card-title text-lg mb-4">知覚動詞</h3>
+                    <p class="text-gray-600 mb-4">see, hear, feel, watchなどの知覚動詞の使い方を学びます。五感を通じた経験を表現できるようになりましょう。</p>
+                    <a href="perception-verb.html" class="inline-block bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded transition-colors duration-200">
+                        学習する
+                    </a>
                 </div>
             </div>
 
@@ -131,83 +166,6 @@
                 .then(res => res.text())
                 .then(html => {
                   document.getElementById('practice-question-container').innerHTML = html;
-                });
-            </script>
-
-            <!-- 第4文型から第3文型への書き換え練習問題 -->
-            <div id="pattern4-to-pattern3-practice-container"></div>
-            <script>
-              fetch('../components/pattern4-to-pattern3-practice.html')
-                .then(res => res.text())
-                .then(html => {
-                  document.getElementById('pattern4-to-pattern3-practice-container').innerHTML = html;
-                  // 練習問題のJavaScriptを再初期化
-                  setTimeout(function() {
-                    const script = document.createElement('script');
-                    script.textContent = `
-                      (function() {
-                        const checkButtons = document.querySelectorAll('.check-answer-btn');
-                        const resetButton = document.getElementById('reset-practice');
-                        let answeredQuestions = new Set();
-
-                        checkButtons.forEach(button => {
-                          button.addEventListener('click', function() {
-                            const questionCard = button.closest('.question-card');
-                            const input = questionCard.querySelector('.answer-input-full');
-                            const explanation = questionCard.querySelector('.answer-explanation');
-                            const correctAnswer = input.dataset.correct;
-                            const userAnswer = input.value.trim().toLowerCase();
-                            const correctAnswerLower = correctAnswer.toLowerCase();
-
-                            if (answeredQuestions.has(questionCard)) {
-                              return;
-                            }
-
-                            if (userAnswer === correctAnswerLower) {
-                              input.classList.add('correct');
-                              input.classList.remove('incorrect');
-                              explanation.classList.remove('hidden');
-                              answeredQuestions.add(questionCard);
-                            } else {
-                              input.classList.add('incorrect');
-                              input.classList.remove('correct');
-                              explanation.classList.remove('hidden');
-                              answeredQuestions.add(questionCard);
-                            }
-
-                            // 全問回答済みの場合の処理を削除
-                          });
-                        });
-
-                        if (resetButton) {
-                          resetButton.addEventListener('click', function() {
-                            document.querySelectorAll('.answer-input-full').forEach(input => {
-                              input.value = '';
-                              input.classList.remove('correct', 'incorrect');
-                            });
-
-                            document.querySelectorAll('.answer-explanation').forEach(explanation => {
-                              explanation.classList.add('hidden');
-                            });
-
-                            answeredQuestions.clear();
-                          });
-                        }
-
-
-
-                        document.querySelectorAll('.answer-input-full').forEach(input => {
-                          input.addEventListener('keypress', function(e) {
-                            if (e.key === 'Enter') {
-                              const button = this.closest('.question-card').querySelector('.check-answer-btn');
-                              if (button) button.click();
-                            }
-                          });
-                        });
-                      })();
-                    `;
-                    document.head.appendChild(script);
-                  }, 200);
                 });
             </script>
 
@@ -227,19 +185,13 @@
     <script src="/navigation.js"></script>
     <script src="/examples.js"></script>
     <script>
-        // 文法説明をgrammar.jsonから読み込む
-        fetch('../grammar.json')
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById('pattern4-explanation').innerHTML = data.pattern_4.replace(/\n/g, '<br>');
-            });
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "pattern3.html", "第4文型", "次へ", "pattern5.html");
-            renderExamples("pattern4", "examples-container");
+            renderNavigation("前へ", "pattern4.html", "第5文型", "次へ", "passive-pattern3.html");
+            renderExamples("pattern5", "examples-container");
             
             // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
-                setupWritingQuestionEventListeners("pattern4");
+                setupWritingQuestionEventListeners("pattern5");
             }, 100);
         });
     </script>

@@ -37,6 +37,9 @@
             </div>
             <!-- 練習問題 -->
             <div id="practice-question-area"></div>
+            
+            <!-- ナビゲーション -->
+            <div id="nav-placeholder"></div>
         </div>
     </main>
     <footer class="bg-gray-800 text-white py-8 mt-12">
@@ -45,10 +48,12 @@
         </div>
     </footer>
     <script src="../script.js"></script>
+    <script src="/navigation.js"></script>
     <script>
         // ページ読み込み時に文法説明を表示
         document.addEventListener('DOMContentLoaded', function() {
             renderGrammarExplanation('conditionals', 'conditionals-explanation');
+            renderNavigation("前へ", "inversion.html", "Conditionals", "次へ", "if-less-subjunctive.html");
             // 各コンポーネントを読み込んで埋め込む
             fetch('../components/learning-guide.html').then(r=>r.text()).then(html=>{
                 document.getElementById('learning-guide-area').innerHTML = html;

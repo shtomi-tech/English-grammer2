@@ -472,11 +472,11 @@ function setupSubmenuToggles() {
             if (isHidden) {
                 // サブメニューを表示
                 relativePronounSubmenu.classList.remove('hidden');
-                relativePronounIcon.classList.add('rotate-180');
+                relativePronounIcon.style.transform = 'rotate(180deg)';
             } else {
                 // サブメニューを非表示
                 relativePronounSubmenu.classList.add('hidden');
-                relativePronounIcon.classList.remove('rotate-180');
+                relativePronounIcon.style.transform = 'rotate(0deg)';
             }
         });
     }
@@ -493,11 +493,11 @@ function setupSubmenuToggles() {
             if (isHidden) {
                 // サブメニューを表示
                 verbSubmenu.classList.remove('hidden');
-                verbIcon.classList.add('rotate-180');
+                verbIcon.style.transform = 'rotate(180deg)';
             } else {
                 // サブメニューを非表示
                 verbSubmenu.classList.add('hidden');
-                verbIcon.classList.remove('rotate-180');
+                verbIcon.style.transform = 'rotate(0deg)';
             }
         });
     }
@@ -514,11 +514,32 @@ function setupSubmenuToggles() {
             if (isHidden) {
                 // サブメニューを表示
                 infinitiveSubmenu.classList.remove('hidden');
-                infinitiveIcon.classList.add('rotate-180');
+                infinitiveIcon.style.transform = 'rotate(180deg)';
             } else {
                 // サブメニューを非表示
                 infinitiveSubmenu.classList.add('hidden');
-                infinitiveIcon.classList.remove('rotate-180');
+                infinitiveIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+    }
+    
+    // 動名詞のトグル
+    const gerundToggle = document.getElementById('gerund-toggle');
+    const gerundSubmenu = document.getElementById('gerund-submenu');
+    const gerundIcon = document.getElementById('gerund-icon');
+    
+    if (gerundToggle && gerundSubmenu && gerundIcon) {
+        gerundToggle.addEventListener('click', function() {
+            const isHidden = gerundSubmenu.classList.contains('hidden');
+            
+            if (isHidden) {
+                // サブメニューを表示
+                gerundSubmenu.classList.remove('hidden');
+                gerundIcon.style.transform = 'rotate(180deg)';
+            } else {
+                // サブメニューを非表示
+                gerundSubmenu.classList.add('hidden');
+                gerundIcon.style.transform = 'rotate(0deg)';
             }
         });
     }

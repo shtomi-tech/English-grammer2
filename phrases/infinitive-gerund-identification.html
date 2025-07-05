@@ -128,6 +128,19 @@
                 });
             </script>
 
+            <!-- 不定詞と動名詞の識別クイズ -->
+            <div id="infinitive-gerund-quiz-container"></div>
+            <script>
+            fetch('../components/infinitive-gerund-quiz.html')
+              .then(res => res.text())
+              .then(html => {
+                document.getElementById('infinitive-gerund-quiz-container').innerHTML = html;
+                // HTML挿入後にJSを動的ロード
+                const script = document.createElement('script');
+                script.src = '../components/infinitive-gerund-quiz.js';
+                document.body.appendChild(script);
+              });
+            </script>
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
         </div>
@@ -146,12 +159,25 @@
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
             .then(data => {
-                document.getElementById('grammar-content').innerHTML = data.infinitive_gerund_identification.replace(/\n/g, '<br>');
+                if (data.infinitive_gerund_identification) {
+                    document.getElementById('grammar-content').innerHTML = data.infinitive_gerund_identification.replace(/\n/g, '<br>');
+                } else {
+                    document.getElementById('grammar-content').textContent = '文法説明が見つかりませんでした。';
+                }
+            })
+            .catch(error => {
+                console.error('Error loading grammar explanation:', error);
+                document.getElementById('grammar-content').textContent = '文法説明の読み込みに失敗しました。';
             });
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "infinitive-adverb.html", "不定詞と動名詞の識別", "次へ", "../index.html#phrases");
+            renderNavigation("前へ", "gerund.html", "不定詞と動名詞の識別", "次へ", "infinitive-logical-subject.html");
             renderExamples("infinitive_gerund_identification", "examples-container");
             
             // 和文英訳問題のイベントリスナーを設定

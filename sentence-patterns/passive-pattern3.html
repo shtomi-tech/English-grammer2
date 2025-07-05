@@ -128,6 +128,114 @@
                 });
             </script>
 
+            <!-- 能動態と受動態の書き換え練習問題 -->
+            <div id="active-passive-practice-container"></div>
+            <script>
+              fetch('../components/active-passive-practice.html')
+                .then(res => res.text())
+                .then(html => {
+                  document.getElementById('active-passive-practice-container').innerHTML = html;
+                  // 練習問題のJavaScriptを再初期化
+                  setTimeout(function() {
+                    const script = document.createElement('script');
+                    script.textContent = `
+                      (function() {
+                        const checkButtons = document.querySelectorAll('.check-answer-btn');
+                        const resetButton = document.getElementById('reset-practice');
+                        const resultsDiv = document.getElementById('practice-results');
+                        let answeredQuestions = new Set();
+
+                        checkButtons.forEach(button => {
+                          button.addEventListener('click', function() {
+                            const questionCard = button.closest('.question-card');
+                            const input = questionCard.querySelector('.answer-input-full');
+                            const explanation = questionCard.querySelector('.answer-explanation');
+                            const correctAnswer = input.dataset.correct;
+                            const userAnswer = input.value.trim().toLowerCase();
+                            const correctAnswerLower = correctAnswer.toLowerCase();
+
+                            if (answeredQuestions.has(questionCard)) {
+                              return;
+                            }
+
+                            if (userAnswer === correctAnswerLower) {
+                              input.classList.add('correct');
+                              input.classList.remove('incorrect');
+                              explanation.classList.remove('hidden');
+                              answeredQuestions.add(questionCard);
+                            } else {
+                              input.classList.add('incorrect');
+                              input.classList.remove('correct');
+                              explanation.classList.remove('hidden');
+                              answeredQuestions.add(questionCard);
+                            }
+
+                            if (answeredQuestions.size === 5) {
+                              showResults();
+                            }
+                          });
+                        });
+
+                        if (resetButton) {
+                          resetButton.addEventListener('click', function() {
+                            document.querySelectorAll('.answer-input-full').forEach(input => {
+                              input.value = '';
+                              input.classList.remove('correct', 'incorrect');
+                            });
+
+                            document.querySelectorAll('.answer-explanation').forEach(explanation => {
+                              explanation.classList.add('hidden');
+                            });
+
+                            if (resultsDiv) {
+                              resultsDiv.classList.add('hidden');
+                            }
+
+                            answeredQuestions.clear();
+                          });
+                        }
+
+                        function showResults() {
+                          const correctCount = document.querySelectorAll('.answer-input-full.correct').length;
+                          const accuracy = Math.round((correctCount / 5) * 100);
+
+                          const correctCountElement = document.getElementById('correct-count');
+                          const accuracyRateElement = document.getElementById('accuracy-rate');
+                          const resultMessageElement = document.getElementById('result-message');
+
+                          if (correctCountElement) correctCountElement.textContent = correctCount;
+                          if (accuracyRateElement) accuracyRateElement.textContent = accuracy + '%';
+
+                          let message = '';
+                          if (accuracy === 100) {
+                            message = '素晴らしい！完璧に理解できています。';
+                          } else if (accuracy >= 80) {
+                            message = 'とても良い成績です！少し復習すれば完璧になります。';
+                          } else if (accuracy >= 60) {
+                            message = '基本的な理解はできています。もう少し練習しましょう。';
+                          } else {
+                            message = '基本から復習しましょう。能動態と受動態の関係をしっかり理解することが大切です。';
+                          }
+
+                          if (resultMessageElement) resultMessageElement.textContent = message;
+                          if (resultsDiv) resultsDiv.classList.remove('hidden');
+                        }
+
+                        document.querySelectorAll('.answer-input-full').forEach(input => {
+                          input.addEventListener('keypress', function(e) {
+                            if (e.key === 'Enter') {
+                              const button = this.closest('.question-card').querySelector('.check-answer-btn');
+                              if (button) button.click();
+                            }
+                          });
+                        });
+                      })();
+                    `;
+                    document.head.appendChild(script);
+                  }, 200);
+                });
+            </script>
+
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
         </div>

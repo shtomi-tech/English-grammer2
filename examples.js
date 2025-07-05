@@ -360,6 +360,45 @@ const examplesData = {
         { en: "The teacher taught us grammar.", ja: "先生は私たちに文法を教えた" },
         { en: "She showed me the way.", ja: "彼女は私に道を教えてくれた" }
       ]
+    },
+    {
+      title: "ask → of の書き換え",
+      examples: [
+        { en: "I asked him a question.", ja: "私は彼に質問をした（第4文型）" },
+        { en: "I asked a question of him.", ja: "私は彼に質問をした（第3文型）" },
+        { en: "She asked me a favor.", ja: "彼女は私に頼み事をした（第4文型）" },
+        { en: "She asked a favor of me.", ja: "彼女は私に頼み事をした（第3文型）" }
+      ]
+    },
+    {
+      title: "「与える」系動詞 → to の書き換え",
+      examples: [
+        { en: "He gave me a book.", ja: "彼は私に本をくれた（第4文型）" },
+        { en: "He gave a book to me.", ja: "彼は私に本をくれた（第3文型）" },
+        { en: "She sent him a letter.", ja: "彼女は彼に手紙を送った（第4文型）" },
+        { en: "She sent a letter to him.", ja: "彼女は彼に手紙を送った（第3文型）" },
+        { en: "I told her the truth.", ja: "私は彼女に真実を話した（第4文型）" },
+        { en: "I told the truth to her.", ja: "私は彼女に真実を話した（第3文型）" }
+      ]
+    },
+    {
+      title: "「Xして」+「与える」系動詞 → for の書き換え",
+      examples: [
+        { en: "My mother bought me a present.", ja: "母は私にプレゼントを買った（第4文型）" },
+        { en: "My mother bought a present for me.", ja: "母は私にプレゼントを買った（第3文型）" },
+        { en: "She made me a cake.", ja: "彼女は私にケーキを作った（第4文型）" },
+        { en: "She made a cake for me.", ja: "彼女は私にケーキを作った（第3文型）" },
+        { en: "I cooked him dinner.", ja: "私は彼に夕食を作った（第4文型）" },
+        { en: "I cooked dinner for him.", ja: "私は彼に夕食を作った（第3文型）" }
+      ]
+    },
+    {
+      title: "書き換えできない動詞",
+      examples: [
+        { en: "It took me two hours.", ja: "それには私に2時間かかった" },
+        { en: "The book cost me 1000 yen.", ja: "その本は私に1000円かかった" },
+        { en: "This shortcut saved me 30 minutes.", ja: "この近道は私に30分を節約した" }
+      ]
     }
   ],
   pattern5: [
@@ -377,6 +416,140 @@ const examplesData = {
         { en: "The news made us sad.", ja: "そのニュースは私たちを悲しくさせた" },
         { en: "I found the book interesting.", ja: "私はその本を面白いと思った" },
         { en: "She kept the room clean.", ja: "彼女は部屋を清潔に保った" }
+      ]
+    }
+  ],
+  causative_verb: [
+    {
+      title: "make（強制的に〜させる）",
+      examples: [
+        { en: "My mother made me clean my room.", ja: "母は私に部屋を掃除させた" },
+        { en: "The teacher made the students study hard.", ja: "先生は生徒たちに一生懸命勉強させた" },
+        { en: "The boss made the employees work overtime.", ja: "上司は従業員に残業させた" }
+      ]
+    },
+    {
+      title: "have（〜してもらう、〜させる）",
+      examples: [
+        { en: "I had my car repaired.", ja: "私は車を修理してもらった" },
+        { en: "She had her hair cut.", ja: "彼女は髪を切ってもらった" },
+        { en: "I had him help me with my homework.", ja: "私は彼に宿題を手伝ってもらった" }
+      ]
+    },
+    {
+      title: "let（〜することを許す、〜させる）",
+      examples: [
+        { en: "My parents let me go to the party.", ja: "両親は私がパーティーに行くことを許した" },
+        { en: "Let me help you.", ja: "私に手伝わせてください" },
+        { en: "My teacher let me use the computer.", ja: "先生は私がコンピュータを使うことを許可した" }
+      ]
+    },
+    {
+      title: "get（〜してもらう、〜させる）",
+      examples: [
+        { en: "I got my friend to help me move.", ja: "私は友達に引っ越しを手伝ってもらった" },
+        { en: "She got her children to do their homework.", ja: "彼女は子供たちに宿題をさせた" },
+        { en: "I got my brother to lend me some money.", ja: "私は兄にお金を貸してもらった" }
+      ]
+    }
+  ],
+  perception_verb: [
+    {
+      title: "see（見る）",
+      examples: [
+        { en: "I saw him enter the room.", ja: "私は彼が部屋に入るのを見た" },
+        { en: "I saw him opening the door.", ja: "私は彼がドアを開けているのを見た" },
+        { en: "I saw the door opened.", ja: "私はドアが開けられているのを見た" }
+      ]
+    },
+    {
+      title: "hear（聞く）",
+      examples: [
+        { en: "I heard her sing a song.", ja: "私は彼女が歌を歌うのを聞いた" },
+        { en: "I heard her singing in the shower.", ja: "私は彼女がシャワーで歌っているのを聞いた" },
+        { en: "I heard the song sung beautifully.", ja: "私は歌が美しく歌われているのを聞いた" }
+      ]
+    },
+    {
+      title: "feel（感じる）",
+      examples: [
+        { en: "I felt the ground shake.", ja: "私は地面が揺れるのを感じた" },
+        { en: "I felt something moving.", ja: "私は何かが動いているのを感じた" },
+        { en: "I felt the wind blow through my hair.", ja: "私は風が髪をなびかせるのを感じた" }
+      ]
+    },
+    {
+      title: "watch（見守る、観察する）",
+      examples: [
+        { en: "I watched the children play.", ja: "私は子供たちが遊ぶのを見守った" },
+        { en: "I watched the sun setting.", ja: "私は太陽が沈むのを見た" },
+        { en: "I watched the bird build its nest.", ja: "私は鳥が巣を作るのを観察した" }
+      ]
+    },
+    {
+      title: "notice（気づく）",
+      examples: [
+        { en: "I noticed him leave early.", ja: "私は彼が早く帰るのに気づいた" },
+        { en: "I noticed something strange happening.", ja: "私は何か奇妙なことが起こっているのに気づいた" },
+        { en: "I noticed the flowers blooming.", ja: "私は花が咲いているのに気づいた" }
+      ]
+    },
+    {
+      title: "observe（観察する）",
+      examples: [
+        { en: "I observed the students working hard.", ja: "私は生徒たちが一生懸命働いているのを観察した" },
+        { en: "I observed the bird build its nest.", ja: "私は鳥が巣を作るのを観察した" },
+        { en: "I observed the experiment being conducted.", ja: "私は実験が行われているのを観察した" }
+      ]
+    }
+  ],
+  there_is: [
+    {
+      title: "現在形のThere is構文",
+      examples: [
+        { en: "There is a book on the table.", ja: "テーブルの上に本があります" },
+        { en: "There are three students in the classroom.", ja: "教室に3人の生徒がいます" },
+        { en: "There is water in the bottle.", ja: "ボトルに水があります" }
+      ]
+    },
+    {
+      title: "過去形のThere is構文",
+      examples: [
+        { en: "There was a cat in the garden.", ja: "庭に猫がいました" },
+        { en: "There were many people at the party.", ja: "パーティーに多くの人がいました" },
+        { en: "There was no time to waste.", ja: "無駄にする時間はありませんでした" }
+      ]
+    },
+    {
+      title: "未来形のThere is構文",
+      examples: [
+        { en: "There will be a meeting tomorrow.", ja: "明日会議があります" },
+        { en: "There will be many guests at the wedding.", ja: "結婚式に多くのゲストが来るでしょう" },
+        { en: "There will be rain this afternoon.", ja: "今日の午後は雨が降るでしょう" }
+      ]
+    },
+    {
+      title: "否定形のThere is構文",
+      examples: [
+        { en: "There isn't any milk in the fridge.", ja: "冷蔵庫に牛乳がありません" },
+        { en: "There aren't any students in the classroom.", ja: "教室に生徒がいません" },
+        { en: "There wasn't a car in the parking lot.", ja: "駐車場に車がありませんでした" }
+      ]
+    },
+    {
+      title: "疑問形のThere is構文",
+      examples: [
+        { en: "Is there a bank near here?", ja: "この近くに銀行がありますか？" },
+        { en: "Are there any restaurants in this area?", ja: "この地域にレストランがありますか？" },
+        { en: "How many students are there in your class?", ja: "あなたのクラスに何人の生徒がいますか？" }
+      ]
+    },
+    {
+      title: "応用例文",
+      examples: [
+        { en: "There has been an accident.", ja: "事故がありました" },
+        { en: "There must be a mistake.", ja: "間違いがあるに違いありません" },
+        { en: "There is nothing to worry about.", ja: "心配することは何もありません" }
       ]
     }
   ],
@@ -1370,6 +1543,143 @@ const examplesData = {
       ]
     }
   ],
+  infinitive_gerund_logical_subject: [
+    {
+      title: "不定詞の意味上の主語（文の主語と同じ）",
+      examples: [
+        { en: "I want to study abroad.", ja: "私は留学したい" },
+        { en: "She decided to quit her job.", ja: "彼女は仕事を辞めることに決めた" },
+        { en: "He hopes to become a doctor.", ja: "彼は医者になることを望んでいる" }
+      ]
+    },
+    {
+      title: "不定詞の意味上の主語（文の主語と異なる）",
+      examples: [
+        { en: "I want you to study abroad.", ja: "私はあなたに留学してほしい" },
+        { en: "She asked me to help her.", ja: "彼女は私に助けてくれるよう頼んだ" },
+        { en: "He told them to be quiet.", ja: "彼は彼らに静かにするよう言った" }
+      ]
+    },
+    {
+      title: "動名詞の意味上の主語（文の主語と同じ）",
+      examples: [
+        { en: "I enjoy reading books.", ja: "私は本を読むことを楽しむ" },
+        { en: "She finished writing the report.", ja: "彼女はレポートを書き終えた" },
+        { en: "He suggested going to the movies.", ja: "彼は映画に行くことを提案した" }
+      ]
+    },
+    {
+      title: "動名詞の意味上の主語（文の主語と異なる）",
+      examples: [
+        { en: "I appreciate your helping me.", ja: "私はあなたが私を助けてくれることに感謝します" },
+        { en: "She doesn't like his smoking.", ja: "彼女は彼がタバコを吸うことが好きではない" },
+        { en: "He insisted on my going with him.", ja: "彼は私が一緒に行くことを主張した" }
+      ]
+    },
+    {
+      title: "for + 名詞 + to不定詞の構文",
+      examples: [
+        { en: "It is important for students to study hard.", ja: "生徒が一生懸命勉強することは重要だ" },
+        { en: "I arranged for him to meet the manager.", ja: "私は彼がマネージャーに会う手配をした" },
+        { en: "It is difficult for me to understand this.", ja: "私にとってこれを理解するのは難しい" }
+      ]
+    },
+    {
+      title: "意味上の主語の重要性",
+      examples: [
+        { en: "I want to study.", ja: "私は勉強したい" },
+        { en: "I want you to study.", ja: "私はあなたに勉強してほしい" },
+        { en: "I don't like smoking.", ja: "私はタバコを吸うことが好きではない" },
+        { en: "I don't like his smoking.", ja: "私は彼がタバコを吸うことが好きではない" }
+      ]
+    }
+  ],
+  infinitive_logical_subject: [
+    {
+      title: "不定詞の意味上の主語（文の主語と同じ）",
+      examples: [
+        { en: "I want to study abroad.", ja: "私は留学したい" },
+        { en: "She decided to quit her job.", ja: "彼女は仕事を辞めることに決めた" },
+        { en: "He hopes to become a doctor.", ja: "彼は医者になることを望んでいる" }
+      ]
+    },
+    {
+      title: "不定詞の意味上の主語（文の主語と異なる）",
+      examples: [
+        { en: "I want you to study abroad.", ja: "私はあなたに留学してほしい" },
+        { en: "She asked me to help her.", ja: "彼女は私に助けてくれるよう頼んだ" },
+        { en: "They expect him to arrive on time.", ja: "彼らは彼が時間通りに到着することを期待している" }
+      ]
+    },
+    {
+      title: "for + 名詞 + to不定詞の構文",
+      examples: [
+        { en: "It is important for students to study hard.", ja: "生徒が一生懸命勉強することは重要だ" },
+        { en: "I arranged for him to meet the manager.", ja: "私は彼がマネージャーに会う手配をした" },
+        { en: "It is difficult for me to understand this.", ja: "私にとってこれを理解するのは難しい" }
+      ]
+    },
+    {
+      title: "動詞の目的語としての不定詞",
+      examples: [
+        { en: "I want you to come.", ja: "私はあなたに来てほしい" },
+        { en: "She told me to wait here.", ja: "彼女は私にここで待つように言った" },
+        { en: "He asked her to help him.", ja: "彼は彼女に助けてくれるよう頼んだ" }
+      ]
+    },
+    {
+      title: "不定詞の意味上の主語の重要性",
+      examples: [
+        { en: "I want to study.", ja: "私は勉強したい" },
+        { en: "I want you to study.", ja: "私はあなたに勉強してほしい" },
+        { en: "It is easy to solve.", ja: "それを解決するのは簡単だ" },
+        { en: "It is easy for you to solve.", ja: "あなたにとってそれを解決するのは簡単だ" }
+      ]
+    }
+  ],
+  gerund_logical_subject: [
+    {
+      title: "動名詞の意味上の主語（文の主語と同じ）",
+      examples: [
+        { en: "I enjoy reading books.", ja: "私は本を読むことを楽しむ" },
+        { en: "She finished writing the report.", ja: "彼女はレポートを書き終えた" },
+        { en: "He stopped smoking last year.", ja: "彼は去年タバコを吸うことをやめた" }
+      ]
+    },
+    {
+      title: "動名詞の意味上の主語（文の主語と異なる）",
+      examples: [
+        { en: "I appreciate your helping me.", ja: "私はあなたが私を助けてくれることに感謝します" },
+        { en: "She doesn't like his smoking.", ja: "彼女は彼がタバコを吸うことが好きではない" },
+        { en: "I don't mind their being late.", ja: "私は彼らが遅れることを気にしません" }
+      ]
+    },
+    {
+      title: "所有格 + 動名詞（正式な表現）",
+      examples: [
+        { en: "I don't mind your being late.", ja: "あなたが遅れることを気にしません" },
+        { en: "She insisted on my going with her.", ja: "彼女は私が一緒に行くことを主張した" },
+        { en: "I appreciate his helping us.", ja: "私は彼が私たちを助けてくれることに感謝します" }
+      ]
+    },
+    {
+      title: "目的格 + 動名詞（口語的な表現）",
+      examples: [
+        { en: "I don't mind you being late.", ja: "あなたが遅れることを気にしません" },
+        { en: "She insisted on me going with her.", ja: "彼女は私が一緒に行くことを主張した" },
+        { en: "I appreciate him helping us.", ja: "私は彼が私たちを助けてくれることに感謝します" }
+      ]
+    },
+    {
+      title: "動名詞の意味上の主語の重要性",
+      examples: [
+        { en: "I don't like smoking.", ja: "私はタバコを吸うことが好きではない" },
+        { en: "I don't like his smoking.", ja: "私は彼がタバコを吸うことが好きではない" },
+        { en: "I appreciate helping.", ja: "私は助けることに感謝します" },
+        { en: "I appreciate your helping.", ja: "私はあなたが助けてくれることに感謝します" }
+      ]
+    }
+  ],
   infinitive_noun: [
     {
       title: "主語として",
@@ -1461,6 +1771,35 @@ const examplesData = {
         { en: "He must be rich to live in such a big house.", ja: "そんな大きな家に住んでいるなんて、彼は金持ちに違いない" },
         { en: "She must be smart to solve this problem.", ja: "この問題を解けるなんて、彼女は賢いに違いない" },
         { en: "It must be expensive to buy a car.", ja: "車を買うのは高価に違いない" }
+      ]
+    }
+  ],
+  word_phrase_clause: [
+    {
+      title: "単語（Word）",
+      examples: [
+        { en: "book", ja: "本（名詞）" },
+        { en: "read", ja: "読む（動詞）" },
+        { en: "beautiful", ja: "美しい（形容詞）" },
+        { en: "quickly", ja: "速く（副詞）" }
+      ]
+    },
+    {
+      title: "句（Phrase）",
+      examples: [
+        { en: "a beautiful flower", ja: "美しい花（名詞句）" },
+        { en: "very quickly", ja: "とても速く（副詞句）" },
+        { en: "in the morning", ja: "朝に（前置詞句）" },
+        { en: "interested in music", ja: "音楽に興味がある（形容詞句）" }
+      ]
+    },
+    {
+      title: "節（Clause）",
+      examples: [
+        { en: "I like music.", ja: "私は音楽が好きだ（主節）" },
+        { en: "what you said", ja: "あなたが言ったこと（名詞節）" },
+        { en: "who lives next door", ja: "隣に住んでいる（形容詞節）" },
+        { en: "when I was young", ja: "私が若かった時（副詞節）" }
       ]
     }
   ]

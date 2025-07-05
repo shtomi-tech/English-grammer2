@@ -145,12 +145,25 @@
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
             .then(data => {
-                document.getElementById('infinitive-noun-explanation').innerHTML = data.infinitive_noun.replace(/\n/g, '<br>');
+                if (data.infinitive_noun) {
+                    document.getElementById('infinitive-noun-explanation').innerHTML = data.infinitive_noun.replace(/\n/g, '<br>');
+                } else {
+                    document.getElementById('infinitive-noun-explanation').textContent = '文法説明が見つかりませんでした。';
+                }
+            })
+            .catch(error => {
+                console.error('Error loading grammar explanation:', error);
+                document.getElementById('infinitive-noun-explanation').textContent = '文法説明の読み込みに失敗しました。';
             });
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "participle-construction.html", "不定詞の名詞的用法", "次へ", "infinitive-adjective.html");
+            renderNavigation("前へ", "../index.html#phrases", "不定詞の名詞的用法", "次へ", "infinitive-adjective.html");
             renderExamples("infinitive_noun", "examples-container");
             
             // 和文英訳問題のイベントリスナーを設定

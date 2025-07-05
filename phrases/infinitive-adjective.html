@@ -145,9 +145,22 @@
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
             .then(data => {
-                document.getElementById('infinitive-adjective-explanation').innerHTML = data.infinitive_adjective.replace(/\n/g, '<br>');
+                if (data.infinitive_adjective) {
+                    document.getElementById('infinitive-adjective-explanation').innerHTML = data.infinitive_adjective.replace(/\n/g, '<br>');
+                } else {
+                    document.getElementById('infinitive-adjective-explanation').textContent = '文法説明が見つかりませんでした。';
+                }
+            })
+            .catch(error => {
+                console.error('Error loading grammar explanation:', error);
+                document.getElementById('infinitive-adjective-explanation').textContent = '文法説明の読み込みに失敗しました。';
             });
         document.addEventListener('DOMContentLoaded', function() {
             renderNavigation("前へ", "infinitive-noun.html", "不定詞の形容詞的用法", "次へ", "infinitive-adverb.html");

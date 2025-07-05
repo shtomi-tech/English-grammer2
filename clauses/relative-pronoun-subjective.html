@@ -145,13 +145,24 @@
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
             .then(data => {
                 // 関係代名詞の主格用法の部分のみを抽出
                 const fullText = data.relative_pronoun_subjective;
                 if (fullText) {
                     document.getElementById('relative-pronoun-subjective-explanation').innerHTML = fullText.replace(/\n/g, '<br>');
+                } else {
+                    document.getElementById('relative-pronoun-subjective-explanation').textContent = '文法説明が見つかりませんでした。';
                 }
+            })
+            .catch(error => {
+                console.error('Error loading grammar explanation:', error);
+                document.getElementById('relative-pronoun-subjective-explanation').textContent = '文法説明の読み込みに失敗しました。';
             });
         document.addEventListener('DOMContentLoaded', function() {
             renderNavigation("前へ", "relative-pronoun.html", "関係代名詞の主格用法", "次へ", "relative-pronoun-objective.html");

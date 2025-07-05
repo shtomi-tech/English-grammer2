@@ -9,6 +9,93 @@
     <!-- SF Pro Display (Apple公式フォント) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
+    <style>
+        /* 文法説明コンポーネントのスタイル調整 */
+        .grammar-explanation {
+            background: transparent !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+        }
+        
+        .grammar-explanation .grammar-content {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .grammar-explanation .grammar-navigation {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .grammar-explanation .grammar-controls {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 名詞ページ専用のスタイル調整 */
+        .grammar-explanation .grammar-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #374151;
+        }
+        
+        .grammar-explanation .grammar-text code {
+            background: #f3f4f6;
+            color: #dc2626;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            font-size: 14px;
+        }
+        
+        .grammar-explanation .grammar-text strong {
+            color: #1f2937;
+            font-weight: 600;
+        }
+        
+        /* シンプル文法説明コンポーネントのスタイル調整 */
+        #simple-grammar-explanation {
+            background: white !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+            padding: 24px !important;
+            margin-bottom: 24px !important;
+        }
+        
+        #simple-grammar-title {
+            font-size: 1.5rem !important;
+            color: #2563eb !important;
+            margin-bottom: 16px !important;
+            font-weight: 600 !important;
+        }
+        
+        #simple-grammar-body {
+            font-size: 16px !important;
+            line-height: 1.8 !important;
+            color: #374151 !important;
+        }
+        
+        #simple-grammar-body code {
+            background: #f3f4f6;
+            color: #dc2626;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            font-size: 14px;
+        }
+        
+        #simple-grammar-body strong {
+            color: #1f2937;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body class="bg-gray-100">
     <!-- ヘッダー -->
@@ -121,13 +208,8 @@
             });
             </script>
 
-            <!-- 文法解説パーツ -->
-            <div class="apple-card mb-8">
-                <h2 class="apple-card-title">名詞</h2>
-                <div class="mt-4">
-                    <div id="noun-explanation" class="apple-section-text"></div>
-                </div>
-            </div>
+            <!-- 文法説明コンポーネント -->
+            <div id="grammar-explanation-container"></div>
 
             <!-- 例文セクション -->
             <div id="examples-container"></div>
@@ -158,15 +240,53 @@
     <script src="../navigation.js"></script>
     <script src="/examples.js"></script>
     <script>
-        // 文法説明を読み込む
-        fetch('../grammar.json')
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById('noun-explanation').innerHTML = data.noun.replace(/\n/g, '<br>');
-            });
+        // 文法説明コンポーネントを読み込む
+        async function loadGrammarComponent() {
+            try {
+                const response = await fetch('../components/grammar-explanation.html');
+                if (!response.ok) {
+                    throw new Error('文法説明コンポーネントの読み込みに失敗しました');
+                }
+                const html = await response.text();
+                document.getElementById('grammar-explanation-container').innerHTML = html;
+                
+                // コンポーネントが読み込まれた後、名詞の説明を表示
+                setTimeout(() => {
+                    if (typeof showSimpleGrammarExplanation === 'function') {
+                        showSimpleGrammarExplanation('noun', '名詞');
+                    }
+                }, 100);
+                
+                console.log('文法説明コンポーネントが読み込まれました');
+            } catch (error) {
+                console.error('コンポーネント読み込みエラー:', error);
+                // フォールバック: 従来の方法で文法説明を表示
+                fetch('../grammar.json')
+                    .then(res => {
+                        if (!res.ok) throw new Error('Network response was not ok');
+                        return res.json();
+                    })
+                    .then(data => {
+                        document.getElementById('grammar-explanation-container').innerHTML = `
+                            <div class="apple-card">
+                                <h2 class="apple-card-title">名詞</h2>
+                                <div class="apple-card-text">
+                                    ${data.noun.replace(/\n/g, '<br>')}
+                                </div>
+                            </div>
+                        `;
+                    })
+                    .catch(e => {
+                        document.getElementById('grammar-explanation-container').innerHTML = '<span style="color:red">文法データの取得に失敗しました。</span>';
+                    });
+            }
+        }
 
         // イベントリスナーを設定
         document.addEventListener('DOMContentLoaded', function() {
+            // 文法説明コンポーネントを読み込み
+            loadGrammarComponent();
+            
             // 難易度選択機能を初期化
             setupDifficultySelectors();
 

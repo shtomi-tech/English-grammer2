@@ -1,0 +1,65 @@
+<!-- 不定詞と動名詞の識別練習（空欄補充型） -->
+<div class="apple-card mb-8">
+    <h2 class="apple-card-title flex items-center">
+        <svg class="w-6 h-6 mr-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        不定詞と動名詞の識別練習
+    </h2>
+    <div class="mb-6">
+        <p class="text-gray-700 mb-4">
+            次の英文の空欄に適切な形（to do / doing など）を入力してください。
+        </p>
+    </div>
+    <div id="infinitive-gerund-questions" class="space-y-6">
+        <!-- 問題リストはJSで生成 -->
+    </div>
+    <!-- 結果表示 -->
+    <div id="practice-results" class="hidden mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
+        <h3 class="text-xl font-bold text-gray-800 mb-4">練習結果</h3>
+        <div class="flex items-center justify-between mb-4">
+            <span class="text-lg">正解数：<span id="correct-count" class="font-bold text-green-600">0</span> / 10</span>
+            <span class="text-lg">正答率：<span id="accuracy-rate" class="font-bold text-blue-600">0%</span></span>
+        </div>
+        <div class="text-sm text-gray-600">
+            <p id="result-message"></p>
+        </div>
+    </div>
+    <!-- リセットボタン -->
+    <div class="mt-6 text-center">
+        <button id="reset-practice" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded transition-colors">
+            練習をリセット
+        </button>
+    </div>
+</div>
+
+<style>
+.answer-input-full {
+    border: 2px solid #e5e7eb;
+    border-radius: 0.375rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+    width: 180px;
+    transition: border-color 0.2s;
+    color: #000000;
+}
+.answer-input-full:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    color: #000000;
+}
+.answer-input-full.correct {
+    border-color: #10b981;
+    background-color: #f0fdf4;
+    color: #000000;
+}
+.answer-input-full.incorrect {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+    color: #000000;
+}
+.answer-input-full::placeholder {
+    color: #6b7280;
+}
+</style>

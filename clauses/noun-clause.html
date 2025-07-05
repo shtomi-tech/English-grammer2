@@ -152,8 +152,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             renderNavigation("前へ", null, "名詞節", "次へ", "relative-pronoun.html");
             renderExamples("noun_clause", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
                 setupWritingQuestionEventListeners("noun_clause");
             }, 100);

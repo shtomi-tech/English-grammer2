@@ -1,0 +1,244 @@
+<!-- 既存の文法ページに統合する例 -->
+<div class="grammar-page-integration">
+  <!-- 既存のページヘッダー -->
+  <div class="page-header">
+    <h1>英語文法学習</h1>
+    <p>体系的に英語文法を学びましょう</p>
+  </div>
+  
+  <!-- 既存のナビゲーション -->
+  <nav class="grammar-nav">
+    <ul>
+      <li><a href="#parts-of-speech">品詞</a></li>
+      <li><a href="#sentence-patterns">文型</a></li>
+      <li><a href="#phrases">句</a></li>
+      <li><a href="#clauses">節</a></li>
+      <li><a href="#modals">助動詞</a></li>
+    </ul>
+  </nav>
+  
+  <!-- 文法説明コンポーネントを統合 -->
+  <div class="grammar-section">
+    <h2 id="grammar-explanation-section">文法説明</h2>
+    <div id="grammar-explanation-container">
+      <!-- 文法説明コンポーネントがここに読み込まれます -->
+    </div>
+  </div>
+  
+  <!-- 既存の練習問題セクション -->
+  <div class="practice-section">
+    <h2>練習問題</h2>
+    <div id="practice-container">
+      <!-- 練習問題コンポーネントがここに配置されます -->
+    </div>
+  </div>
+</div>
+
+<style>
+.grammar-page-integration {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.page-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.grammar-nav {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.grammar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.grammar-nav li {
+  margin: 0;
+}
+
+.grammar-nav a {
+  text-decoration: none;
+  color: #2c3e50;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background: #ecf0f1;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  display: block;
+}
+
+.grammar-nav a:hover {
+  background: #3498db;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.grammar-section {
+  margin-bottom: 40px;
+}
+
+.grammar-section h2 {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #3498db;
+}
+
+.practice-section {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 30px;
+  margin-top: 40px;
+}
+
+.practice-section h2 {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .grammar-page-integration {
+    padding: 15px;
+  }
+  
+  .page-header h1 {
+    font-size: 2rem;
+  }
+  
+  .page-header p {
+    font-size: 1rem;
+  }
+  
+  .grammar-nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .grammar-nav a {
+    text-align: center;
+  }
+}
+</style>
+
+<script>
+// 文法説明コンポーネントを統合するためのスクリプト
+class GrammarPageIntegration {
+  constructor() {
+    this.init();
+  }
+
+  async init() {
+    await this.loadGrammarComponent();
+    this.setupNavigation();
+  }
+
+  async loadGrammarComponent() {
+    try {
+      const response = await fetch('/components/grammar-explanation.html');
+      if (!response.ok) {
+        throw new Error('文法説明コンポーネントの読み込みに失敗しました');
+      }
+      const html = await response.text();
+      document.getElementById('grammar-explanation-container').innerHTML = html;
+      
+      console.log('文法説明コンポーネントが統合されました');
+    } catch (error) {
+      console.error('コンポーネント統合エラー:', error);
+      this.showError('文法説明コンポーネントの読み込みに失敗しました。');
+    }
+  }
+
+  setupNavigation() {
+    // ナビゲーションリンクのスムーススクロール
+    document.querySelectorAll('.grammar-nav a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  }
+
+  showError(message) {
+    const container = document.getElementById('grammar-explanation-container');
+    container.innerHTML = `
+      <div style="background: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 20px; border-radius: 8px; text-align: center;">
+        <h3>⚠️ エラー</h3>
+        <p>${message}</p>
+        <p>サーバーが起動していることを確認してください。</p>
+      </div>
+    `;
+  }
+}
+
+// ページ読み込み時に統合を開始
+document.addEventListener('DOMContentLoaded', () => {
+  new GrammarPageIntegration();
+});
+
+// 既存のページとの互換性を保つためのヘルパー関数
+window.GrammarIntegration = {
+  // 特定の文法項目を表示する関数
+  showGrammarItem: function(key) {
+    // 文法説明コンポーネントが読み込まれた後に実行
+    setTimeout(() => {
+      const grammarComponent = window.grammarExplanation;
+      if (grammarComponent && grammarComponent.showItem) {
+        grammarComponent.showItem(key);
+      }
+    }, 500);
+  },
+  
+  // 文法説明コンポーネントの状態を取得する関数
+  getGrammarState: function() {
+    const grammarComponent = window.grammarExplanation;
+    if (grammarComponent) {
+      return {
+        currentIndex: grammarComponent.currentIndex,
+        currentKey: grammarComponent.grammarKeys[grammarComponent.currentIndex],
+        totalItems: grammarComponent.grammarKeys.length
+      };
+    }
+    return null;
+  }
+};
+</script> 

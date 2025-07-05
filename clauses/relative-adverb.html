@@ -150,10 +150,8 @@
                 document.getElementById('relative-adverb-explanation').innerHTML = data.relative_adverb.replace(/\n/g, '<br>');
             });
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "relative-pronoun-noun-clause.html", "関係副詞", "次へ", "subordinating-conjunction.html");
+            renderNavigation("前へ", "relative-pronoun-usage.html", "関係副詞", "次へ", "subordinating-conjunction.html");
             renderExamples("relative_adverb", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
                 setupWritingQuestionEventListeners("relative_adverb");
             }, 100);

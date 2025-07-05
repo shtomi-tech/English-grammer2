@@ -150,10 +150,8 @@
                 document.getElementById('compound-relative-clause-explanation').innerHTML = data.compound_relative_clause.replace(/\n/g, '<br>');
             });
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "relative-pronoun-noun-clause.html", "複合関係詞節", "次へ", "emphatic-construction.html");
+            renderNavigation("前へ", "../phrases/indirect-question.html", "複合関係副詞", "次へ", "emphatic-construction.html");
             renderExamples("compound_relative_clause", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
                 setupWritingQuestionEventListeners("compound_relative_clause");
             }, 100);

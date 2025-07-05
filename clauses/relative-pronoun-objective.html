@@ -145,19 +145,28 @@
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
             .then(data => {
                 // 関係代名詞の目的格用法の部分のみを抽出
                 const fullText = data.relative_pronoun_objective;
                 if (fullText) {
                     document.getElementById('relative-pronoun-objective-explanation').innerHTML = fullText.replace(/\n/g, '<br>');
+                } else {
+                    document.getElementById('relative-pronoun-objective-explanation').textContent = '文法説明が見つかりませんでした。';
                 }
+            })
+            .catch(error => {
+                console.error('Error loading grammar explanation:', error);
+                document.getElementById('relative-pronoun-objective-explanation').textContent = '文法説明の読み込みに失敗しました。';
             });
         document.addEventListener('DOMContentLoaded', function() {
             renderNavigation("前へ", "relative-pronoun-subjective.html", "関係代名詞の目的格用法", "次へ", "relative-pronoun-possessive.html");
             renderExamples("relative_pronoun_objective", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
                 setupWritingQuestionEventListeners("relative_pronoun_objective");
             }, 100);

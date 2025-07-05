@@ -150,10 +150,8 @@
                 document.getElementById('subordinating-conjunction-explanation').innerHTML = data.subordinating_conjunction.replace(/\n/g, '<br>');
             });
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "relative-adverb.html", "従属接続詞", "次へ", null);
+            renderNavigation("前へ", "relative-adverb.html", "従属接続詞", "次へ", "../phrases/indirect-question.html");
             renderExamples("subordinating_conjunction", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
                 setupWritingQuestionEventListeners("subordinating_conjunction");
             }, 100);

@@ -151,12 +151,25 @@
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
             .then(data => {
-                document.getElementById('participle-explanation').innerHTML = data.participle.replace(/\n/g, '<br>');
+                if (data.participle) {
+                    document.getElementById('participle-explanation').innerHTML = data.participle.replace(/\n/g, '<br>');
+                } else {
+                    document.getElementById('participle-explanation').textContent = '文法説明が見つかりませんでした。';
+                }
+            })
+            .catch(error => {
+                console.error('Error loading grammar explanation:', error);
+                document.getElementById('participle-explanation').textContent = '文法説明の読み込みに失敗しました。';
             });
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "gerund.html", "分詞", "次へ", "participle-construction.html");
+            renderNavigation("前へ", "infinitive-gerund-identification.html", "分詞", "次へ", "participle-construction.html");
             renderExamples("participle", "examples-container");
             
             // 和文英訳問題のイベントリスナーを設定
