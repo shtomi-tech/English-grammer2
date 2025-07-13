@@ -149,11 +149,14 @@
             .then(data => {
                 document.getElementById('noun-clause-explanation').innerHTML = data.noun_clause.replace(/\n/g, '<br>');
             });
+        // ページ固有の設定
+        const currentTopic = 'noun-clause';
+        
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", null, "名詞節", "次へ", "relative-pronoun.html");
+            renderNavigation("前へ", "relative-pronoun.html", "名詞節", "次へ", "adverb-clause.html");
             renderExamples("noun_clause", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners("noun_clause");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ifを使わない仮定法 - English Learning Hub</title>
+    <title>if節がない仮定法 - English Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
@@ -24,7 +24,7 @@
             <span>></span>
             <a href="../index.html#subjunctive" class="hover:text-blue-600">仮定法</a>
             <span>></span>
-            <span class="text-gray-900">ifを使わない仮定法</span>
+            <span class="text-gray-900">if節がない仮定法</span>
         </div>
     </nav>
 
@@ -95,12 +95,12 @@
                     .then(html => {
                         document.getElementById('learning-guide-container').innerHTML = html;
                         // タイトルと説明文をカスタマイズ
-                        document.getElementById('learning-guide-title-text').textContent = 'ifを使わない仮定法の学習方法ガイド';
-                        document.getElementById('learning-guide-step1-desc').textContent = 'ifを使わない仮定法の定義と役割をしっかりと理解しましょう';
-                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、ifを使わない仮定法の使い方を学びましょう';
+                        document.getElementById('learning-guide-title-text').textContent = 'if節がない仮定法の学習方法ガイド';
+                        document.getElementById('learning-guide-step1-desc').textContent = 'if節がない仮定法の定義と役割をしっかりと理解しましょう';
+                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、if節がない仮定法の使い方を学びましょう';
                         document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を5回解いてみましょう';
-                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章でifを使わない仮定法がどのように使われているか意識してみましょう';
-                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>ifを使わない仮定法が文の中でどの位置に来るかを意識しましょう';
+                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章でif節がない仮定法がどのように使われているか意識してみましょう';
+                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>if節がない仮定法が文の中でどの位置に来るかを意識しましょう';
                         document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する仮定法と一緒に：</strong>通常の仮定法との違いも理解しましょう';
                     });
             });
@@ -108,7 +108,7 @@
 
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
-                <h2 class="apple-card-title">ifを使わない仮定法の文法説明</h2>
+                <h2 class="apple-card-title">if節がない仮定法の文法説明</h2>
                 <div class="mt-4">
                     <div id="if-less-subjunctive-explanation" class="apple-section-text"></div>
                 </div>
@@ -149,13 +149,14 @@
             .then(data => {
                 document.getElementById('if-less-subjunctive-explanation').innerHTML = data.if_less_subjunctive.replace(/\n/g, '<br>');
             });
+        // ページ固有の設定
+        const currentTopic = 'if-less-subjunctive';
+        
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "conditionals.html", "ifを使わない仮定法", "次へ", null);
+            renderNavigation("前へ", "inversion.html", "if節なし仮定法", "次へ", "../index.html#subjunctive");
             renderExamples("if_less_subjunctive", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
-                setupWritingQuestionEventListeners("if_less_subjunctive");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

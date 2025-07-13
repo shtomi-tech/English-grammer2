@@ -149,23 +149,20 @@
     <script src="/navigation.js"></script>
     <script src="/examples.js"></script>
     <script>
-        // ページ固有の設定
-        const currentTopic = 'must';
-        const topicName = '助動詞must';
-        // grammar.jsonから説明を読み込む
+        // 文法説明をgrammar.jsonから読み込んで表示
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
                 document.getElementById('must-explanation').innerHTML = data.modal_must.replace(/\n/g, '<br>');
             });
-        // ページ読み込み時の処理
+        // ページ固有の設定
+        const currentTopic = 'must';
+        
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "may-might.html", "must", "次へ", "should.html");
+            renderNavigation("前へ", "should.html", "must", "次へ", "need.html");
             renderExamples("must", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
-                setupWritingQuestionEventListeners("must");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

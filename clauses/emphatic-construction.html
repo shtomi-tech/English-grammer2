@@ -150,7 +150,7 @@
                 document.getElementById('emphatic-construction-explanation').innerHTML = data.emphatic_construction.replace(/\n/g, '<br>');
             });
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "compound-relative-clause.html", "強調構文", "次へ", null);
+            renderNavigation("前へ", "compound-relative-clause.html", "強調構文", "次へ", "../sentence-types/exclamatory-sentence.html");
             renderExamples("emphatic_construction", "examples-container");
             setTimeout(() => {
                 setupWritingQuestionEventListeners("emphatic_construction");

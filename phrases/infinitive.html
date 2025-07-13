@@ -96,27 +96,21 @@
                         document.getElementById('learning-guide-container').innerHTML = html;
                         // タイトルと説明文をカスタマイズ
                         document.getElementById('learning-guide-title-text').textContent = '不定詞の学習方法ガイド';
-                        document.getElementById('learning-guide-step1-desc').textContent = '不定詞の定義と役割をしっかりと理解しましょう';
-                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、不定詞の使い方を学びましょう';
-                        document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を5回解いてみましょう';
-                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で不定詞がどのように使われているか意識してみましょう';
-                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>不定詞が文の中でどの位置に来るかを意識しましょう';
-                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する表現と一緒に：</strong>動名詞や分詞との違いも理解しましょう';
+                        document.getElementById('learning-guide-step1-desc').textContent = '不定詞の基本的な形と意味を理解しましょう';
+                        document.getElementById('learning-guide-step2-desc').textContent = '不定詞の3つの用法（名詞的・形容詞的・副詞的）を学びましょう';
+                        document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を解いてみましょう';
+                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>to + 動詞原形を覚える：</strong>不定詞は必ず「to + 動詞の原形」の形になります';
+                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>用法の違いを理解：</strong>名詞的・形容詞的・副詞的の3つの用法を区別しましょう';
+                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>意味上の主語に注意：</strong>不定詞の動作を行う主体を明確にしましょう';
                     });
             });
             </script>
-
-            <!-- タイトルパーツ -->
-            <!-- <div class="apple-card mb-8">
-                <h2 class="apple-card-title">不定詞</h2>
-                <p class="apple-card-text">to + 動詞の原形で、名詞・形容詞・副詞の働きをします。</p>
-            </div> -->
 
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">不定詞</h2>
                 <div class="mt-4">
-                    <div id="infinitive-explanation" class="apple-section-text"></div>
+                    <div id="grammar-content" class="apple-section-text"></div>
                 </div>
             </div>
 
@@ -151,12 +145,25 @@
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
             .then(data => {
-                document.getElementById('infinitive-explanation').innerHTML = data.infinitive.replace(/\n/g, '<br>');
+                if (data.infinitive) {
+                    document.getElementById('grammar-content').innerHTML = data.infinitive.replace(/\n/g, '<br>');
+                } else {
+                    document.getElementById('grammar-content').textContent = '文法説明が見つかりませんでした。';
+                }
+            })
+            .catch(error => {
+                console.error('Error loading grammar explanation:', error);
+                document.getElementById('grammar-content').textContent = '文法説明の読み込みに失敗しました。';
             });
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", null, "不定詞", "次へ", "gerund.html");
+            renderNavigation("前へ", "gerund.html", "不定詞", "次へ", "infinitive-gerund-identification.html");
             renderExamples("infinitive", "examples-container");
             
             // 和文英訳問題のイベントリスナーを設定

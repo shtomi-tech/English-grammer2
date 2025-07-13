@@ -39,7 +39,7 @@ async function generateFillInTheBlank(topic, difficulty = 'medium', numBlanks = 
       break;
     case 'adjective':
       topicDescription = '形容詞（名詞を修飾する語）';
-      examFocus = '形容詞の語順、限定用法・叙述用法、比較級・最上級の不規則変化';
+      examFocus = '形容詞の語順、限定用法・叙述用法、比輼級・最上級の不規則変化';
       specificExamples = '例：a beautiful old Japanese car（語順）、The car is beautiful（叙述用法）、good-better-best（不規則変化）';
       commonMistakes = 'よくある間違い：形容詞の語順、限定用法と叙述用法の区別、比較級・最上級の作り方';
       break;
@@ -128,6 +128,12 @@ async function generateFillInTheBlank(topic, difficulty = 'medium', numBlanks = 
       examFocus = '進行形の用法、状態動詞との関係、進行形の特殊用法';
       specificExamples = '例：I am studying（現在進行）、I was studying（過去進行）、I will be studying（未来進行）';
       commonMistakes = 'よくある間違い：状態動詞の進行形使用、進行形と単純形の混同';
+      break;
+    case 'perfect-tenses':
+      topicDescription = '完了形（現在完了・過去完了・未来完了）';
+      examFocus = '完了形の3つの用法（完了・経験・継続）と時制ごとの使い分け、過去・未来との違い';
+      specificExamples = '例：I have finished my homework.（現在完了）／I had finished dinner when he came home.（過去完了）／I will have finished my homework by 8 o\'clock.（未来完了）';
+      commonMistakes = 'よくある間違い：現在完了と過去形の混同、過去完了の時系列の誤り、未来完了のbyの使い方';
       break;
     // 文型
     case 'pattern1':
@@ -474,6 +480,12 @@ async function generateWritingQuestion(topic, difficulty = 'medium') {
       specificExamples = '例：I am studying（現在進行）、I was studying（過去進行）、I will be studying（未来進行）';
       commonMistakes = 'よくある間違い：状態動詞の進行形使用、進行形と単純形の混同';
       break;
+    case 'perfect-tenses':
+      topicDescription = '完了形（現在完了・過去完了・未来完了）';
+      examFocus = '完了形の3つの用法（完了・経験・継続）と時制ごとの使い分け、過去・未来との違い';
+      specificExamples = '例：I have finished my homework.（現在完了）／I had finished dinner when he came home.（過去完了）／I will have finished my homework by 8 o\'clock.（未来完了）';
+      commonMistakes = 'よくある間違い：現在完了と過去形の混同、過去完了の時系列の誤り、未来完了のbyの使い方';
+      break;
     // 文型
     case 'pattern1':
       topicDescription = '第1文型（S+V）';
@@ -782,6 +794,10 @@ async function gradeWritingAnswer(topic, userAnswer, difficulty = 'medium') {
       evaluationCriteria = '進行形の適切な使用、現在・過去・未来進行形の使い分け';
       commonMistakes = '状態動詞の進行形使用、進行形と単純形の混同、進行形の用法の誤解';
       break;
+    case 'perfect-tenses':
+      evaluationCriteria = '完了形の3つの用法（完了・経験・継続）と時制ごとの使い分け、過去・未来との違い';
+      commonMistakes = 'よくある間違い：現在完了と過去形の混同、過去完了の時系列の誤り、未来完了のbyの使い方';
+      break;
     // 文型
     case 'pattern1':
       evaluationCriteria = '第1文型（S+V）の適切な使用、自動詞の使い方';
@@ -870,6 +886,10 @@ async function gradeWritingAnswer(topic, userAnswer, difficulty = 'medium') {
     case 'subjunctive_inversion':
       evaluationCriteria = '仮定法倒置の適切な使用、ifの省略・語順の倒置';
       commonMistakes = '倒置の語順、ifの省略の条件、仮定法倒置の用法の誤解';
+      break;
+    case 'perfect-tenses':
+      evaluationCriteria = '完了形の3つの用法（完了・経験・継続）と時制ごとの使い分け、過去・未来との違い';
+      commonMistakes = 'よくある間違い：現在完了と過去形の混同、過去完了の時系列の誤り、未来完了のbyの使い方';
       break;
     default:
       evaluationCriteria = '基本的な文法の正確性、語順、語彙の適切性';
@@ -986,7 +1006,7 @@ ${userAnswer}
 }
 
 // 和文英訳問題生成関数
-async function generateTranslationQuestion(topic, difficulty = 'medium') {
+async function generateTranslationQuestion(topic, difficulty = 'medium', grammarExplanation = '') {
   // トピックに応じた具体的なプロンプトを生成
   let topicDescription = '';
   let examFocus = '';
@@ -1109,6 +1129,10 @@ async function generateTranslationQuestion(topic, difficulty = 'medium') {
       examFocus = '進行形の用法、状態動詞との関係、進行形の特殊用法';
       specificExamples = '例：I am studying（現在進行）、I was studying（過去進行）、I will be studying（未来進行）';
       commonMistakes = 'よくある間違い：状態動詞の進行形使用、進行形と単純形の混同';
+      break;
+    case 'perfect-tenses':
+      topicDescription = '完了形の3つの用法（完了・経験・継続）と時制ごとの使い分け、過去・未来との違い';
+      commonMistakes = 'よくある間違い：現在完了と過去形の混同、過去完了の時系列の誤り、未来完了のbyの使い方';
       break;
     // 文型
     case 'pattern1':
@@ -1241,6 +1265,10 @@ async function generateTranslationQuestion(topic, difficulty = 'medium') {
       specificExamples = '例：Were I rich, I would buy a house（ifの省略）、Had I known, I would have helped（ifの省略）';
       commonMistakes = 'よくある間違い：倒置の語順、ifの省略の条件';
       break;
+    case 'perfect-tenses':
+      evaluationCriteria = '完了形の3つの用法（完了・経験・継続）と時制ごとの使い分け、過去・未来との違い';
+      commonMistakes = 'よくある間違い：現在完了と過去形の混同、過去完了の時系列の誤り、未来完了のbyの使い方';
+      break;
     default:
       topicDescription = '英語文法の基礎';
       examFocus = '基本的な文法事項';
@@ -1257,12 +1285,20 @@ async function generateTranslationQuestion(topic, difficulty = 'medium') {
   const setting = difficultySettings[difficulty];
 
   const prompt = `
+【文法説明】
+${grammarExplanation}
+
 あなたは英語教育の専門家です。以下の条件に基づいて和文英訳問題を作成してください。
 
 【トピック】${topicDescription}
 【試験対象】${examFocus}
 【具体的な例】${specificExamples}
 【よくある間違い】${commonMistakes}
+
+【重要：文法説明に基づく問題作成】
+上記の【文法説明】に記載されている文法事項を重点的に練習できる問題を作成してください。
+その文法事項の理解度を試すような実践的な問題にしてください。
+文法説明で説明されている内容を実際に使う必要がある問題にしてください。
 
 【難易度設定】
 - 複雑さ: ${setting.complexity}
@@ -1276,9 +1312,10 @@ async function generateTranslationQuestion(topic, difficulty = 'medium') {
 
 【要求事項】
 1. 日本語で1つの文章を問題文として作成してください（和文英訳用）
-2. その文法事項の理解度を試すような実践的な問題にしてください
-3. 難易度に応じた適切なヒントを2-3個提供してください
-4. 問題は以下のJSON形式で返してください：
+2. 【文法説明】で説明されている文法事項を必ず使用する必要がある問題にしてください
+3. その文法事項の理解度を試すような実践的な問題にしてください
+4. 難易度に応じた適切なヒントを2-3個提供してください
+5. 問題は以下のJSON形式で返してください：
 
 {
   "question": "問題文（日本語の1つの文章）",
@@ -1291,8 +1328,9 @@ async function generateTranslationQuestion(topic, difficulty = 'medium') {
 - 問題文は必ず1つの文章のみにしてください
 - 複数の文章や段落にしないでください
 - 1文程度の長さにしてください（短すぎず長すぎない適切な長さ）
-- その文法事項を効果的に練習できる内容にしてください
+- 【文法説明】で説明されている文法事項を効果的に練習できる内容にしてください
 - 実用的で理解しやすい文章にしてください
+- その文法事項を使わないと正しく訳せない問題にしてください
 `;
 
   try {

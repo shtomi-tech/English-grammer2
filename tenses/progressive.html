@@ -155,13 +155,14 @@
             .then(data => {
                 document.getElementById('progressive-explanation').innerHTML = data.progressive.replace(/\n/g, '<br>');
             });
+        // ページ固有の設定
+        const currentTopic = 'progressive';
+        
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "future-perfect.html", "進行形", "次へ", null);
+            renderNavigation("前へ", "past-tense.html", "進行形", "次へ", "perfect-tenses.html");
             renderExamples("progressive", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
-                setupWritingQuestionEventListeners("progressive");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

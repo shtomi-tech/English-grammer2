@@ -185,13 +185,14 @@
     <script src="/navigation.js"></script>
     <script src="/examples.js"></script>
     <script>
+        // ページ固有の設定
+        const currentTopic = 'passive';
+        
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "pattern5-main.html", "受動態", "次へ", "pattern1.html");
+            renderNavigation("前へ", "pattern5.html", "受動態", "次へ", "causative-verb.html");
             renderExamples("passive", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
-                setupWritingQuestionEventListeners("passive");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

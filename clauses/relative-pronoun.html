@@ -162,11 +162,14 @@
                 console.error('Error loading grammar explanation:', error);
                 document.getElementById('relative-pronoun-explanation').textContent = '文法説明の読み込みに失敗しました。';
             });
+        // ページ固有の設定
+        const currentTopic = 'relative-pronoun';
+        
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "noun-clause.html", "関係代名詞の仕組み", "次へ", "relative-pronoun-subjective.html");
+            renderNavigation("前へ", null, "関係代名詞の仕組み", "次へ", "relative-pronoun-restrictive-nonrestrictive.html");
             renderExamples("relative_pronoun", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners("relative_pronoun");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

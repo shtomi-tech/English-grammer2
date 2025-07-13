@@ -155,13 +155,14 @@
             .then(data => {
                 document.getElementById('will-would-explanation').innerHTML = data.modal_will_would.replace(/\n/g, '<br>');
             });
+        // ページ固有の設定
+        const currentTopic = 'will-would';
+        
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "can-could.html", "will/would", "次へ", "may-might.html");
-            renderExamples("will-would", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
+            renderNavigation("前へ", "can-could.html", "will-would", "次へ", "shall.html");
+            renderExamples("will_would", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners("will-would");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

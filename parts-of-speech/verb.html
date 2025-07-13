@@ -122,7 +122,7 @@
 
             <!-- 文法解説パーツ -->
             <div class="apple-card mb-8">
-                <h2 class="apple-card-title">動詞</h2>
+                <h2 class="apple-card-title">一般動詞</h2>
                 <div class="mt-4">
                     <div id="verb-explanation" class="apple-section-text"></div>
                 </div>
@@ -161,21 +161,17 @@
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('verb-explanation').innerHTML = data.verb.replace(/\n/g, '<br>');
+                document.getElementById('verb-explanation').innerHTML = data.general_verb.replace(/\n/g, '<br>');
             });
 
-        // イベントリスナーを設定
+        // ページ固有の設定
+        const currentTopic = 'verb';
+        
         document.addEventListener('DOMContentLoaded', function() {
-            // 難易度選択機能を初期化
-            setupDifficultySelectors();
-            renderNavigation("前へ", "be-verb.html", "一般動詞", "次へ", "adjective.html");
-            
-            // 例文セクション生成
-            renderExamples("verb", "examples-container");
-            
-            // 英作文問題のイベントリスナーを設定
+            renderNavigation("前へ", "be-verb.html", "一般動詞", "次へ", "adverb.html");
+            renderExamples("general_verb", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners("verb");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

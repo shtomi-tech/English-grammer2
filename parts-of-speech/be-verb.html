@@ -164,18 +164,14 @@
                 document.getElementById('be-verb-explanation').innerHTML = data.be_verb.replace(/\n/g, '<br>');
             });
 
-        // イベントリスナーを設定
+        // ページ固有の設定
+        const currentTopic = 'be-verb';
+        
         document.addEventListener('DOMContentLoaded', function() {
-            // 難易度選択機能を初期化
-            setupDifficultySelectors();
-            renderNavigation("前へ", "article.html", "be動詞", "次へ", "verb.html");
-            
-            // 例文セクション生成
+            renderNavigation("前へ", null, "be動詞", "次へ", "verb.html");
             renderExamples("be_verb", "examples-container");
-            
-            // 英作文問題のイベントリスナーを設定
             setTimeout(() => {
-                setupWritingQuestionEventListeners("be_verb");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>仮定法過去完了 - English Learning Hub</title>
+    <title>疑問詞 to V - English Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
@@ -12,7 +12,7 @@
     <!-- ヘッダー -->
     <header class="apple-header px-6 py-6 mb-8">
         <div class="container mx-auto flex flex-col items-start">
-            <h1 class="apple-title">仮定法</h1>
+            <h1 class="apple-title">節</h1>
             <p class="apple-sub mt-2">英文法の基礎から学ぼう</p>
         </div>
     </header>
@@ -22,9 +22,9 @@
         <div class="flex items-center space-x-2 text-sm text-gray-600">
             <a href="../index.html" class="hover:text-blue-600">ホーム</a>
             <span>></span>
-            <a href="../index.html#subjunctive" class="hover:text-blue-600">仮定法</a>
+            <a href="../index.html#phrases" class="hover:text-blue-600">句</a>
             <span>></span>
-            <span class="text-gray-900">仮定法過去完了</span>
+            <span class="text-gray-900">疑問詞 to V</span>
         </div>
     </nav>
 
@@ -95,33 +95,27 @@
                     .then(html => {
                         document.getElementById('learning-guide-container').innerHTML = html;
                         // タイトルと説明文をカスタマイズ
-                        document.getElementById('learning-guide-title-text').textContent = '仮定法過去完了の学習方法ガイド';
-                        document.getElementById('learning-guide-step1-desc').textContent = '仮定法過去完了の定義と役割をしっかりと理解しましょう';
-                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、仮定法過去完了の使い方を学びましょう';
+                        document.getElementById('learning-guide-title-text').textContent = '疑問詞 to Vの学習方法ガイド';
+                        document.getElementById('learning-guide-step1-desc').textContent = '疑問詞 to Vの定義と役割をしっかりと理解しましょう';
+                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、疑問詞 to Vの使い方を学びましょう';
                         document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を5回解いてみましょう';
-                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で仮定法過去完了がどのように使われているか意識してみましょう';
-                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>仮定法過去完了が文の中でどの位置に来るかを意識しましょう';
-                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する仮定法と一緒に：</strong>仮定法過去や仮定法未来との違いも理解しましょう';
+                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で疑問詞 to Vがどのように使われているか意識してみましょう';
+                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>疑問詞 to Vが文の中でどの位置に来るかを意識しましょう';
+                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する節と一緒に：</strong>名詞節や不定詞との関係も理解しましょう';
                     });
             });
             </script>
 
-            <!-- タイトルパーツ -->
-            <!-- <div class="apple-card mb-8">
-                <h2 class="apple-card-title">仮定法過去完了</h2>
-                <p class="apple-card-text">過去の事実に反する仮定を表す表現です。</p>
-            </div> -->
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
-                <h2 class="apple-card-title">仮定法過去完了の文法説明</h2>
+                <h2 class="apple-card-title">疑問詞 to V</h2>
                 <div class="mt-4">
-                    <div id="subjunctive-past-perfect-explanation" class="apple-section-text"></div>
+                    <div id="interrogative-to-infinitive-explanation" class="apple-section-text"></div>
                 </div>
             </div>
 
             <!-- 例文 -->
-            <div id="examples-container" class="mt-4"></div>
+            <div id="examples-container"></div>
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
@@ -147,21 +141,19 @@
 
     <script src="../script.js"></script>
     <script src="/navigation.js"></script>
-    <script src="../examples.js"></script>
+    <script src="/examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('subjunctive-past-perfect-explanation').innerHTML = data.subjunctive_past_perfect.replace(/\n/g, '<br>');
+                document.getElementById('interrogative-to-infinitive-explanation').innerHTML = data.interrogative_to_infinitive.replace(/\n/g, '<br>');
             });
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "past.html", "仮定法過去完了", "次へ", "future.html");
-            renderExamples("subjunctive_past_perfect", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
+            renderNavigation("前へ", "with-absolute-construction.html", "疑問詞 to V", "次へ", null);
+            renderExamples("interrogative_to_infinitive", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners("subjunctive_past_perfect");
+                setupWritingQuestionEventListeners("interrogative_to_infinitive");
             }, 100);
         });
     </script>

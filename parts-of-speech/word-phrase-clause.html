@@ -159,7 +159,9 @@
                 document.getElementById('word-phrase-clause-explanation').innerHTML = data.word_phrase_clause.replace(/\n/g, '<br>');
             });
 
-        // イベントリスナーを設定
+        // ページ固有の設定
+        const currentTopic = 'word-phrase-clause';
+        
         document.addEventListener('DOMContentLoaded', function() {
             // 難易度選択機能を初期化
             setupDifficultySelectors();
@@ -172,7 +174,7 @@
             
             // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
-                setupWritingQuestionEventListeners("word_phrase_clause");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

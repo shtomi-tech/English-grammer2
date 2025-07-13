@@ -305,10 +305,25 @@ async function generateWritingQuestion(topic) {
     questionContainer.classList.add('hidden');
 
     try {
+        // grammar.jsonから説明文を取得
+        const grammarRes = await fetch('../grammar.json');
+        const grammarData = await grammarRes.json();
+        
+        // currentTopicをgrammar.jsonのキー形式に変換
+        let grammarKey = typeof currentTopic !== 'undefined' ? currentTopic : topic;
+        
+        // ハイフンをアンダースコアに変換する関数
+        function convertToGrammarKey(key) {
+            return key.replace(/-/g, '_');
+        }
+        
+        grammarKey = convertToGrammarKey(grammarKey);
+        let grammarExplanation = grammarData[grammarKey] || '';
+
         const response = await fetch(`${API_BASE_URL}/api/generate-translation-question`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ topic, difficulty: currentDifficulty })
+            body: JSON.stringify({ topic, difficulty: currentDifficulty, grammarExplanation })
         });
 
         if (!response.ok) throw new Error(`API request failed: ${response.status}`);
@@ -540,6 +555,48 @@ function setupSubmenuToggles() {
                 // サブメニューを非表示
                 gerundSubmenu.classList.add('hidden');
                 gerundIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+    }
+    
+    // 前置詞のトグル
+    const prepositionToggle = document.getElementById('preposition-toggle');
+    const prepositionSubmenu = document.getElementById('preposition-submenu');
+    const prepositionIcon = document.getElementById('preposition-icon');
+    
+    if (prepositionToggle && prepositionSubmenu && prepositionIcon) {
+        prepositionToggle.addEventListener('click', function() {
+            const isHidden = prepositionSubmenu.classList.contains('hidden');
+            
+            if (isHidden) {
+                // サブメニューを表示
+                prepositionSubmenu.classList.remove('hidden');
+                prepositionIcon.style.transform = 'rotate(180deg)';
+            } else {
+                // サブメニューを非表示
+                prepositionSubmenu.classList.add('hidden');
+                prepositionIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+    }
+    
+    // -ing形の4つの可能性のトグル
+    const ingFourToggle = document.getElementById('ing-four-toggle');
+    const ingFourSubmenu = document.getElementById('ing-four-submenu');
+    const ingFourIcon = document.getElementById('ing-four-icon');
+    
+    if (ingFourToggle && ingFourSubmenu && ingFourIcon) {
+        ingFourToggle.addEventListener('click', function() {
+            const isHidden = ingFourSubmenu.classList.contains('hidden');
+            
+            if (isHidden) {
+                // サブメニューを表示
+                ingFourSubmenu.classList.remove('hidden');
+                ingFourIcon.style.transform = 'rotate(180deg)';
+            } else {
+                // サブメニューを非表示
+                ingFourSubmenu.classList.add('hidden');
+                ingFourIcon.style.transform = 'rotate(0deg)';
             }
         });
     }

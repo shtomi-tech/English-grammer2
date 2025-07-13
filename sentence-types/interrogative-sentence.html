@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>不定詞の形容詞的用法 - English Learning Hub</title>
+    <title>疑問文 - English Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
@@ -12,7 +12,7 @@
     <!-- ヘッダー -->
     <header class="apple-header px-6 py-6 mb-8">
         <div class="container mx-auto flex flex-col items-start">
-            <h1 class="apple-title">句</h1>
+            <h1 class="apple-title">文の種類</h1>
             <p class="apple-sub mt-2">英文法の基礎から学ぼう</p>
         </div>
     </header>
@@ -22,9 +22,9 @@
         <div class="flex items-center space-x-2 text-sm text-gray-600">
             <a href="../index.html" class="hover:text-blue-600">ホーム</a>
             <span>></span>
-            <a href="../index.html#phrases" class="hover:text-blue-600">句</a>
+            <a href="../index.html#sentence-types" class="hover:text-blue-600">文の種類</a>
             <span>></span>
-            <span class="text-gray-900">不定詞の形容詞的用法</span>
+            <span class="text-gray-900">疑問文</span>
         </div>
     </nav>
 
@@ -95,27 +95,59 @@
                     .then(html => {
                         document.getElementById('learning-guide-container').innerHTML = html;
                         // タイトルと説明文をカスタマイズ
-                        document.getElementById('learning-guide-title-text').textContent = '不定詞の形容詞的用法の学習方法ガイド';
-                        document.getElementById('learning-guide-step1-desc').textContent = '不定詞の形容詞的用法の定義と役割をしっかりと理解しましょう';
-                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、不定詞の形容詞的用法の使い方を学びましょう';
+                        document.getElementById('learning-guide-title-text').textContent = '疑問文の学習方法ガイド';
+                        document.getElementById('learning-guide-step1-desc').textContent = '疑問文の種類と基本構造をしっかりと理解しましょう';
+                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、Yes/No疑問文と疑問詞疑問文の使い方を学びましょう';
                         document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を5回解いてみましょう';
-                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で不定詞の形容詞的用法がどのように使われているか意識してみましょう';
-                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>不定詞の形容詞的用法が文の中でどの位置に来るかを意識しましょう';
-                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する表現と一緒に：</strong>不定詞の他の用法や関係代名詞との違いも理解しましょう';
+                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で疑問文がどのように使われているか意識してみましょう';
+                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>疑問文の語順と倒置のルールを意識しましょう';
+                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する表現と一緒に：</strong>間接疑問文や平叙文との違いも理解しましょう';
                     });
             });
             </script>
 
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
-                <h2 class="apple-card-title">不定詞の形容詞的用法</h2>
+                <h2 class="apple-card-title">疑問文</h2>
                 <div class="mt-4">
-                    <div id="infinitive-adjective-explanation" class="apple-section-text"></div>
+                    <div id="interrogative-sentence-explanation" class="apple-section-text"></div>
                 </div>
             </div>
 
             <!-- 例文 -->
-            <div id="examples-container"></div>
+            <div class="apple-card mb-8">
+                <h2 class="apple-card-title">例文</h2>
+                <div class="mt-4 space-y-4">
+                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
+                        <h3 class="font-semibold mb-3 text-lg">Yes/No疑問文</h3>
+                        <div class="space-y-3">
+                            <p><span class="text-xl font-bold text-blue-300">Are you a student?</span><br><span class="text-base font-semibold text-gray-200">（あなたは学生ですか？）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">Do you like music?</span><br><span class="text-base font-semibold text-gray-200">（あなたは音楽が好きですか？）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">Can you swim?</span><br><span class="text-base font-semibold text-gray-200">（あなたは泳げますか？）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">Is she beautiful?</span><br><span class="text-base font-semibold text-gray-200">（彼女は美しいですか？）</span></p>
+                        </div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
+                        <h3 class="font-semibold mb-3 text-lg">疑問詞疑問文</h3>
+                        <div class="space-y-3">
+                            <p><span class="text-xl font-bold text-blue-300">What is your name?</span><br><span class="text-base font-semibold text-gray-200">（あなたの名前は何ですか？）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">Where do you live?</span><br><span class="text-base font-semibold text-gray-200">（あなたはどこに住んでいますか？）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">When did you arrive?</span><br><span class="text-base font-semibold text-gray-200">（あなたはいつ到着しましたか？）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">How do you go to school?</span><br><span class="text-base font-semibold text-gray-200">（あなたはどうやって学校に行きますか？）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">Why are you late?</span><br><span class="text-base font-semibold text-gray-200">（なぜあなたは遅れましたか？）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">Who is that person?</span><br><span class="text-base font-semibold text-gray-200">（あの人は誰ですか？）</span></p>
+                        </div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
+                        <h3 class="font-semibold mb-3 text-lg">選択疑問文</h3>
+                        <div class="space-y-3">
+                            <p><span class="text-xl font-bold text-blue-300">Do you like coffee or tea?</span><br><span class="text-base font-semibold text-gray-200">（コーヒーと紅茶のどちらが好きですか？）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">Are you going by bus or train?</span><br><span class="text-base font-semibold text-gray-200">（バスと電車のどちらで行きますか？）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">Which do you prefer, summer or winter?</span><br><span class="text-base font-semibold text-gray-200">（夏と冬のどちらが好きですか？）</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
@@ -141,34 +173,20 @@
 
     <script src="../script.js"></script>
     <script src="/navigation.js"></script>
-    <script src="/examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-                return res.json();
-            })
+            .then(res => res.json())
             .then(data => {
-                if (data.infinitive_adjective) {
-                    document.getElementById('infinitive-adjective-explanation').innerHTML = data.infinitive_adjective.replace(/\n/g, '<br>');
-                } else {
-                    document.getElementById('infinitive-adjective-explanation').textContent = '文法説明が見つかりませんでした。';
-                }
-            })
-            .catch(error => {
-                console.error('Error loading grammar explanation:', error);
-                document.getElementById('infinitive-adjective-explanation').textContent = '文法説明の読み込みに失敗しました。';
+                document.getElementById('interrogative-sentence-explanation').innerHTML = data.interrogative_sentence.replace(/\n/g, '<br>');
             });
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "infinitive-noun.html", "不定詞の形容詞的用法", "次へ", "infinitive-adverb.html");
-            renderExamples("infinitive_adjective", "examples-container");
+            renderNavigation("前へ", "exclamatory-sentence.html", "疑問文", "次へ", "declarative-sentence.html");
+            renderExamples("interrogative_sentence", "examples-container");
             
             // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
-                setupWritingQuestionEventListeners("infinitive_adjective");
+                setupWritingQuestionEventListeners("interrogative_sentence");
             }, 100);
         });
     </script>

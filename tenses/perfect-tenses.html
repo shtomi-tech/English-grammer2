@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>現在完了形 - English Learning Hub</title>
+    <title>完了形 - English Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
@@ -24,7 +24,7 @@
             <span>></span>
             <a href="../index.html#tenses" class="hover:text-blue-600">時制</a>
             <span>></span>
-            <span class="text-gray-900">現在完了形</span>
+            <span class="text-gray-900">完了形</span>
         </div>
     </nav>
 
@@ -95,28 +95,22 @@
                     .then(html => {
                         document.getElementById('learning-guide-container').innerHTML = html;
                         // タイトルと説明文をカスタマイズ
-                        document.getElementById('learning-guide-title-text').textContent = '現在完了形の学習方法ガイド';
-                        document.getElementById('learning-guide-step1-desc').textContent = '現在完了形の定義と役割をしっかりと理解しましょう';
-                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、現在完了形の使い方を学びましょう';
+                        document.getElementById('learning-guide-title-text').textContent = '完了形の学習方法ガイド';
+                        document.getElementById('learning-guide-step1-desc').textContent = '完了形の定義と役割をしっかりと理解しましょう';
+                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、完了形の使い方を学びましょう';
                         document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を5回解いてみましょう';
-                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で現在完了形がどのように使われているか意識してみましょう';
-                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>現在完了形が文の中でどの位置に来るかを意識しましょう';
-                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する時制と一緒に：</strong>過去形や過去完了形との違いも理解しましょう';
+                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で完了形がどのように使われているか意識してみましょう';
+                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>完了形が文の中でどの位置に来るかを意識しましょう';
+                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する時制と一緒に：</strong>現在形や過去形との違いも理解しましょう';
                     });
             });
             </script>
 
-            <!-- タイトルパーツ -->
-            <!-- <div class="apple-card mb-8">
-                <h2 class="apple-card-title">現在完了</h2>
-                <p class="apple-card-text">過去の出来事と現在の関係を表す時制です。</p>
-            </div> -->
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
-                <h2 class="apple-card-title">現在完了</h2>
+                <h2 class="apple-card-title">完了形</h2>
                 <div class="mt-4">
-                    <div id="present-perfect-explanation" class="apple-section-text"></div>
+                    <div id="perfect-tenses-explanation" class="apple-section-text"></div>
                 </div>
             </div>
 
@@ -149,19 +143,21 @@
     <script src="/navigation.js"></script>
     <script src="/examples.js"></script>
     <script>
+        // ページ固有の設定
+        const currentTopic = 'perfect-tenses';
+        
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('present-perfect-explanation').innerHTML = data.present_perfect.replace(/\n/g, '<br>');
+                document.getElementById('perfect-tenses-explanation').innerHTML = data.perfect_tenses.replace(/\n/g, '<br>');
             });
-        document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "past-tense.html", "現在完了", "次へ", "past-perfect.html");
-            renderExamples("present_perfect", "examples-container");
             
-            // 和文英訳問題のイベントリスナーを設定
+        document.addEventListener('DOMContentLoaded', function() {
+            renderNavigation("前へ", "progressive.html", "完了形", "次へ", "tense-agreement.html");
+            renderExamples("perfect_tenses", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners("present_perfect");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

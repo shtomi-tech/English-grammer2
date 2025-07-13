@@ -151,21 +151,12 @@
     <script>
         // ページ固有の設定
         const currentTopic = 'dare';
-        const topicName = '助動詞dare';
-        // grammar.jsonから説明を読み込む
-        fetch('../grammar.json')
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById('dare-explanation').innerHTML = data.modal_dare.replace(/\n/g, '<br>');
-            });
-        // ページ読み込み時の処理
+        
         document.addEventListener('DOMContentLoaded', function() {
             renderNavigation("前へ", "need.html", "dare", "次へ", null);
             renderExamples("dare", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
-                setupWritingQuestionEventListeners("dare");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

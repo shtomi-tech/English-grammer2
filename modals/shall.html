@@ -149,23 +149,20 @@
     <script src="/navigation.js"></script>
     <script src="/examples.js"></script>
     <script>
-        // ページ固有の設定
-        const currentTopic = 'shall';
-        const topicName = '助動詞shall';
-        // grammar.jsonから説明を読み込む
+        // 文法説明をgrammar.jsonから読み込んで表示
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
                 document.getElementById('shall-explanation').innerHTML = data.modal_shall.replace(/\n/g, '<br>');
             });
-        // ページ読み込み時の処理
+        // ページ固有の設定
+        const currentTopic = 'shall';
+        
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "should.html", "shall", "次へ", "need.html");
+            renderNavigation("前へ", "will-would.html", "shall", "次へ", "should.html");
             renderExamples("shall", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
-                setupWritingQuestionEventListeners("shall");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

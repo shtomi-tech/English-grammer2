@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>動名詞の意味上の主語 - English Learning Hub</title>
+    <title>感嘆文 - English Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
@@ -12,7 +12,7 @@
     <!-- ヘッダー -->
     <header class="apple-header px-6 py-6 mb-8">
         <div class="container mx-auto flex flex-col items-start">
-            <h1 class="apple-title">句</h1>
+            <h1 class="apple-title">文の種類</h1>
             <p class="apple-sub mt-2">英文法の基礎から学ぼう</p>
         </div>
     </header>
@@ -22,9 +22,9 @@
         <div class="flex items-center space-x-2 text-sm text-gray-600">
             <a href="../index.html" class="hover:text-blue-600">ホーム</a>
             <span>></span>
-            <a href="../index.html#phrases" class="hover:text-blue-600">句</a>
+            <a href="../index.html#sentence-types" class="hover:text-blue-600">文の種類</a>
             <span>></span>
-            <span class="text-gray-900">動名詞の意味上の主語</span>
+            <span class="text-gray-900">感嘆文</span>
         </div>
     </nav>
 
@@ -95,27 +95,55 @@
                     .then(html => {
                         document.getElementById('learning-guide-container').innerHTML = html;
                         // タイトルと説明文をカスタマイズ
-                        document.getElementById('learning-guide-title-text').textContent = '動名詞の意味上の主語の学習方法ガイド';
-                        document.getElementById('learning-guide-step1-desc').textContent = '動名詞の意味上の主語の概念と重要性を理解しましょう';
-                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、意味上の主語の使い方を学びましょう';
+                        document.getElementById('learning-guide-title-text').textContent = '感嘆文の学習方法ガイド';
+                        document.getElementById('learning-guide-step1-desc').textContent = '感嘆文の定義と役割をしっかりと理解しましょう';
+                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、感嘆文の使い方を学びましょう';
                         document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を5回解いてみましょう';
-                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で動名詞の意味上の主語がどのように使われているか意識してみましょう';
-                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>所有格・目的格の使い分けを意識しましょう';
-                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する表現と一緒に：</strong>不定詞の意味上の主語との違いも理解しましょう';
+                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で感嘆文がどのように使われているか意識してみましょう';
+                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>感嘆文が文の中でどの位置に来るかを意識しましょう';
+                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する表現と一緒に：</strong>疑問文や平叙文との違いも理解しましょう';
                     });
             });
             </script>
 
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
-                <h2 class="apple-card-title">動名詞の意味上の主語</h2>
+                <h2 class="apple-card-title">感嘆文</h2>
                 <div class="mt-4">
-                    <div id="gerund-logical-subject-explanation" class="apple-section-text"></div>
+                    <div id="exclamatory-sentence-explanation" class="apple-section-text"></div>
                 </div>
             </div>
 
             <!-- 例文 -->
-            <div id="examples-container"></div>
+            <div class="apple-card mb-8">
+                <h2 class="apple-card-title">例文</h2>
+                <div class="mt-4 space-y-4">
+                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
+                        <h3 class="font-semibold mb-3 text-lg">Whatを使った感嘆文</h3>
+                        <div class="space-y-3">
+                            <p><span class="text-xl font-bold text-blue-300">What a beautiful day!</span><br><span class="text-base font-semibold text-gray-200">（なんて美しい日なんだろう！）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">What an interesting book!</span><br><span class="text-base font-semibold text-gray-200">（なんて面白い本なんだろう！）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">What a surprise!</span><br><span class="text-base font-semibold text-gray-200">（なんて驚きなんだろう！）</span></p>
+                        </div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
+                        <h3 class="font-semibold mb-3 text-lg">Howを使った感嘆文</h3>
+                        <div class="space-y-3">
+                            <p><span class="text-xl font-bold text-blue-300">How beautiful she is!</span><br><span class="text-base font-semibold text-gray-200">（彼女はなんて美しいんだろう！）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">How fast he runs!</span><br><span class="text-base font-semibold text-gray-200">（彼はなんて速く走るんだろう！）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">How delicious this food is!</span><br><span class="text-base font-semibold text-gray-200">（この食べ物はなんて美味しいんだろう！）</span></p>
+                        </div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
+                        <h3 class="font-semibold mb-3 text-lg">その他の感嘆表現</h3>
+                        <div class="space-y-3">
+                            <p><span class="text-xl font-bold text-blue-300">Wow! That's amazing!</span><br><span class="text-base font-semibold text-gray-200">（わあ！それはすごい！）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">Oh my God! I can't believe it!</span><br><span class="text-base font-semibold text-gray-200">（まあ！信じられない！）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">Fantastic! You did it!</span><br><span class="text-base font-semibold text-gray-200">（素晴らしい！やったね！）</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
@@ -141,23 +169,22 @@
 
     <script src="../script.js"></script>
     <script src="/navigation.js"></script>
-    <script src="/examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('gerund-logical-subject-explanation').innerHTML = data.gerund_logical_subject.replace(/\n/g, '<br>');
+                document.getElementById('exclamatory-sentence-explanation').innerHTML = data.exclamatory_sentence.replace(/\n/g, '<br>');
             });
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "infinitive-logical-subject.html", "動名詞の意味上の主語", "次へ", "participle.html");
-            renderExamples("gerund_logical_subject", "examples-container");
+            renderNavigation("前へ", "conditionals.html", "感嘆文", "次へ", "interrogative-sentence.html");
+            renderExamples("exclamatory_sentence", "examples-container");
             
             // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
-                setupWritingQuestionEventListeners("gerund_logical_subject");
+                setupWritingQuestionEventListeners("exclamatory_sentence");
             }, 100);
         });
     </script>
 </body>
-</html>
+</html> 

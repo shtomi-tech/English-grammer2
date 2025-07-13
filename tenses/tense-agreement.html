@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時制の一致 - English Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="bg-gray-100">
+    <!-- ヘッダー -->
+    <header class="apple-header px-6 py-6 mb-8">
+        <div class="container mx-auto flex flex-col items-start">
+            <h1 class="apple-title">時制</h1>
+            <p class="apple-sub mt-2">英文法の基礎から学ぼう</p>
+        </div>
+    </header>
+
+    <!-- パンくずリスト -->
+    <nav class="container mx-auto px-6 mb-6">
+        <div class="flex items-center space-x-2 text-sm text-gray-600">
+            <a href="../index.html" class="hover:text-blue-600">ホーム</a>
+            <span>></span>
+            <a href="../index.html#tenses" class="hover:text-blue-600">時制</a>
+            <span>></span>
+            <span class="text-gray-900">時制の一致</span>
+        </div>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-6 py-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- 学習方法ガイド（共通パーツ） -->
+            <div id="learning-guide-container"></div>
+
+            <!-- 文法説明 -->
+            <div class="apple-card mb-8">
+                <h2 class="apple-card-title">時制の一致</h2>
+                <div class="mt-4">
+                    <div id="tense-agreement-explanation" class="apple-section-text"></div>
+                </div>
+            </div>
+
+            <!-- 例文 -->
+            <div id="examples-container"></div>
+
+            <!-- 練習問題 -->
+            <div id="practice-question-container"></div>
+            <script>
+              fetch('../components/practice-question.html')
+                .then(res => res.text())
+                .then(html => {
+                  document.getElementById('practice-question-container').innerHTML = html;
+                });
+            </script>
+
+            <!-- ナビゲーション -->
+            <div id="nav-placeholder"></div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 English Learning Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="/navigation.js"></script>
+    <script src="/examples.js"></script>
+    <script>
+        // 学習方法ガイドの読み込みとカスタマイズ
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('../components/learning-guide.html')
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('learning-guide-container').innerHTML = html;
+                    // タイトルと説明文をカスタマイズ
+                    document.getElementById('learning-guide-title-text').textContent = '時制の一致の学習方法ガイド';
+                    document.getElementById('learning-guide-step1-desc').textContent = '時制の一致の定義と役割をしっかりと理解しましょう';
+                    document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、時制の一致の使い方を学びましょう';
+                    document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を5回解いてみましょう';
+                    document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で時制の一致がどのように使われているか意識してみましょう';
+                    document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>時制の一致が文の中でどの位置に来るかを意識しましょう';
+                    document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する時制と一緒に：</strong>他の時制との違いも理解しましょう';
+                });
+        });
+
+        // 文法説明をgrammar.jsonから読み込む
+        fetch('../grammar.json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('tense-agreement-explanation').innerHTML = data.tense_agreement.replace(/\n/g, '<br>');
+            });
+            
+        // ページ固有の設定
+        const currentTopic = 'tense-agreement';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            renderNavigation("前へ", "perfect-tenses.html", "時制の一致", "次へ", null);
+            renderExamples("tense_agreement", "examples-container");
+            setTimeout(() => {
+                setupWritingQuestionEventListeners(currentTopic);
+            }, 100);
+        });
+    </script>
+</body>
+</html> 

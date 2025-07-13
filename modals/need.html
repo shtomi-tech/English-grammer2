@@ -149,23 +149,20 @@
     <script src="/navigation.js"></script>
     <script src="/examples.js"></script>
     <script>
-        // ページ固有の設定
-        const currentTopic = 'need';
-        const topicName = '助動詞need';
-        // grammar.jsonから説明を読み込む
+        // 文法説明をgrammar.jsonから読み込んで表示
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
                 document.getElementById('need-explanation').innerHTML = data.modal_need.replace(/\n/g, '<br>');
             });
-        // ページ読み込み時の処理
+        // ページ固有の設定
+        const currentTopic = 'need';
+        
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "shall.html", "need", "次へ", "dare.html");
+            renderNavigation("前へ", "dare.html", "need", "次へ", "auxiliary-verb-types.html");
             renderExamples("need", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
-                setupWritingQuestionEventListeners("need");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

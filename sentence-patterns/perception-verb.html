@@ -150,13 +150,14 @@
             .then(data => {
                 document.getElementById('perception-verb-explanation').innerHTML = data.perception_verb.replace(/\n/g, '<br>');
             });
+        // ページ固有の設定
+        const currentTopic = 'perception-verb';
+        
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "causative-verb.html", "知覚動詞", "次へ", "pattern1.html");
+            renderNavigation("前へ", "causative-verb.html", "知覚動詞", "次へ", "there-is.html");
             renderExamples("perception_verb", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
-                setupWritingQuestionEventListeners("perception_verb");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

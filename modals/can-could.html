@@ -149,19 +149,20 @@
     <script src="/navigation.js"></script>
     <script src="/examples.js"></script>
     <script>
-        // 文法説明をgrammar.jsonから読み込む
+        // 文法説明をgrammar.jsonから読み込んで表示
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
                 document.getElementById('can-could-explanation').innerHTML = data.modal_can_could.replace(/\n/g, '<br>');
             });
+        // ページ固有の設定
+        const currentTopic = 'can-could';
+        
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "auxiliary-verb-types.html", "can/could", "次へ", "will-would.html");
-            renderExamples("can-could", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
+            renderNavigation("前へ", null, "can-could", "次へ", "will-would.html");
+            renderExamples("can_could", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners("can-could");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

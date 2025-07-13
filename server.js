@@ -57,9 +57,9 @@ app.post('/api/grade-writing-answer', async (req, res) => {
 
 // 和文英訳問題生成API
 app.post('/api/generate-translation-question', async (req, res) => {
-  const { topic, difficulty } = req.body;
+  const { topic, difficulty, grammarExplanation } = req.body;
   try {
-    const result = await generateTranslationQuestion(topic, difficulty);
+    const result = await generateTranslationQuestion(topic, difficulty, grammarExplanation);
     res.json({ success: true, data: result });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });

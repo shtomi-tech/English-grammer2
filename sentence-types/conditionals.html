@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>過去完了 - English Learning Hub</title>
+    <title>条件文 - English Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
@@ -12,7 +12,7 @@
     <!-- ヘッダー -->
     <header class="apple-header px-6 py-6 mb-8">
         <div class="container mx-auto flex flex-col items-start">
-            <h1 class="apple-title">English Learning Hub</h1>
+            <h1 class="apple-title">文の種類</h1>
             <p class="apple-sub mt-2">英文法の基礎から学ぼう</p>
         </div>
     </header>
@@ -22,9 +22,9 @@
         <div class="flex items-center space-x-2 text-sm text-gray-600">
             <a href="../index.html" class="hover:text-blue-600">ホーム</a>
             <span>></span>
-            <a href="../index.html#tenses" class="hover:text-blue-600">時制</a>
+            <a href="../index.html#sentence-types" class="hover:text-blue-600">文の種類</a>
             <span>></span>
-            <span class="text-gray-900">過去完了</span>
+            <span class="text-gray-900">条件文</span>
         </div>
     </nav>
 
@@ -95,33 +95,63 @@
                     .then(html => {
                         document.getElementById('learning-guide-container').innerHTML = html;
                         // タイトルと説明文をカスタマイズ
-                        document.getElementById('learning-guide-title-text').textContent = '過去完了形の学習方法ガイド';
-                        document.getElementById('learning-guide-step1-desc').textContent = '過去完了形の定義と役割をしっかりと理解しましょう';
-                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、過去完了形の使い方を学びましょう';
+                        document.getElementById('learning-guide-title-text').textContent = '条件文の学習方法ガイド';
+                        document.getElementById('learning-guide-step1-desc').textContent = '条件文の定義と役割をしっかりと理解しましょう';
+                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、条件文の使い方を学びましょう';
                         document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を5回解いてみましょう';
-                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で過去完了形がどのように使われているか意識してみましょう';
-                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>過去完了形が文の中でどの位置に来るかを意識しましょう';
-                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する時制と一緒に：</strong>現在完了形や過去形との違いも理解しましょう';
+                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で条件文がどのように使われているか意識してみましょう';
+                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>条件文が文の中でどの位置に来るかを意識しましょう';
+                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する表現と一緒に：</strong>仮定法や他の文の種類との違いも理解しましょう';
                     });
             });
             </script>
 
-            <!-- タイトルパーツ -->
-            <!-- <div class="apple-card mb-8">
-                <h2 class="apple-card-title">過去完了</h2>
-                <p class="apple-card-text">過去のある時点までに完了した動作を表す時制です。</p>
-            </div> -->
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
-                <h2 class="apple-card-title">過去完了</h2>
+                <h2 class="apple-card-title">条件文</h2>
                 <div class="mt-4">
-                    <div id="past-perfect-explanation" class="apple-section-text"></div>
+                    <div id="conditionals-explanation" class="apple-section-text"></div>
                 </div>
             </div>
 
             <!-- 例文 -->
-            <div id="examples-container"></div>
+            <div class="apple-card mb-8">
+                <h2 class="apple-card-title">例文</h2>
+                <div class="mt-4 space-y-4">
+                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
+                        <h3 class="font-semibold mb-3 text-lg">0条件文（一般的な事実）</h3>
+                        <div class="space-y-3">
+                            <p><span class="text-xl font-bold text-blue-300">If you heat water to 100°C, it boils.</span><br><span class="text-base font-semibold text-gray-200">（水を100度まで熱すると、沸騰する。）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">If it rains, the ground gets wet.</span><br><span class="text-base font-semibold text-gray-200">（雨が降ると、地面が濡れる。）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">If you don't eat, you get hungry.</span><br><span class="text-base font-semibold text-gray-200">（食べないと、お腹が空く。）</span></p>
+                        </div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
+                        <h3 class="font-semibold mb-3 text-lg">第1条件文（現在・未来の可能性）</h3>
+                        <div class="space-y-3">
+                            <p><span class="text-xl font-bold text-blue-300">If it rains tomorrow, I will stay at home.</span><br><span class="text-base font-semibold text-gray-200">（明日雨が降ったら、家にいる。）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">If you study hard, you will pass the exam.</span><br><span class="text-base font-semibold text-gray-200">（一生懸命勉強すれば、試験に合格する。）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">If he comes, I will be happy.</span><br><span class="text-base font-semibold text-gray-200">（彼が来たら、私は幸せになる。）</span></p>
+                        </div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
+                        <h3 class="font-semibold mb-3 text-lg">第2条件文（仮定・不可能な状況）</h3>
+                        <div class="space-y-3">
+                            <p><span class="text-xl font-bold text-blue-300">If I were rich, I would buy a big house.</span><br><span class="text-base font-semibold text-gray-200">（もし私がお金持ちだったら、大きな家を買う。）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">If I had time, I would help you.</span><br><span class="text-base font-semibold text-gray-200">（時間があれば、あなたを助ける。）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">If you studied harder, you would get better grades.</span><br><span class="text-base font-semibold text-gray-200">（もっと勉強すれば、もっと良い成績を取る。）</span></p>
+                        </div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
+                        <h3 class="font-semibold mb-3 text-lg">第3条件文（過去の仮定）</h3>
+                        <div class="space-y-3">
+                            <p><span class="text-xl font-bold text-blue-300">If I had studied harder, I would have passed the exam.</span><br><span class="text-base font-semibold text-gray-200">（もっと勉強していれば、試験に合格していた。）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">If you had told me earlier, I would have helped you.</span><br><span class="text-base font-semibold text-gray-200">（もっと早く教えてくれれば、助けていた。）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">If it had not rained, we would have gone to the park.</span><br><span class="text-base font-semibold text-gray-200">（雨が降っていなければ、公園に行っていた。）</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
@@ -147,21 +177,20 @@
 
     <script src="../script.js"></script>
     <script src="/navigation.js"></script>
-    <script src="/examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('past-perfect-explanation').innerHTML = data.past_perfect.replace(/\n/g, '<br>');
+                document.getElementById('conditionals-explanation').innerHTML = data.conditionals.replace(/\n/g, '<br>');
             });
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "present-perfect.html", "過去完了", "次へ", "future-perfect.html");
-            renderExamples("past_perfect", "examples-container");
+            renderNavigation("前へ", "imperative-sentence.html", "条件文", "次へ", "exclamatory-sentence.html");
+            renderExamples("conditionals", "examples-container");
             
             // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
-                setupWritingQuestionEventListeners("past_perfect");
+                setupWritingQuestionEventListeners("conditionals");
             }, 100);
         });
     </script>

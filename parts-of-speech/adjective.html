@@ -163,18 +163,14 @@
                 document.getElementById('adjective-explanation').innerHTML = data.adjective.replace(/\n/g, '<br>');
             });
 
-        // イベントリスナーを設定
+        // ページ固有の設定
+        const currentTopic = 'adjective';
+        
         document.addEventListener('DOMContentLoaded', function() {
-            // 難易度選択機能を初期化
-            setupDifficultySelectors();
             renderNavigation("前へ", "verb.html", "形容詞", "次へ", "adverb.html");
-            
-            // 例文セクション生成
             renderExamples("adjective", "examples-container");
-            
-            // 英作文問題のイベントリスナーを設定
             setTimeout(() => {
-                setupWritingQuestionEventListeners("adjective");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

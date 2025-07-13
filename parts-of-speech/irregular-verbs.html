@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>関係代名詞の所有格用法 - English Learning Hub</title>
+    <title>不規則動詞 - English Learning Hub</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- SF Pro Display (Apple公式フォント) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -12,25 +14,32 @@
     <!-- ヘッダー -->
     <header class="apple-header px-6 py-6 mb-8">
         <div class="container mx-auto flex flex-col items-start">
-            <h1 class="apple-title">関係代名詞の所有格用法</h1>
-            <p class="apple-sub mt-2">英語の関係代名詞の所有格を理解しよう</p>
+            <div class="flex items-center space-x-4">
+                <a href="../index.html" class="text-white hover:text-gray-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </a>
+                <h1 class="apple-title">品詞</h1>
+            </div>
+            <p class="apple-sub mt-2">品詞の基礎を学ぼう</p>
         </div>
     </header>
-
-    <!-- パンくずリスト -->
-    <nav class="container mx-auto px-6 mb-6">
-        <div class="flex items-center space-x-2 text-sm text-gray-600">
-            <a href="../index.html" class="hover:text-blue-600">ホーム</a>
-            <span>></span>
-            <a href="../index.html#clauses" class="hover:text-blue-600">節</a>
-            <span>></span>
-            <span class="text-gray-900">関係代名詞の所有格用法</span>
-        </div>
-    </nav>
 
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
+            <!-- パンくずリスト -->
+            <nav class="mb-6">
+                <ol class="flex items-center space-x-2 text-sm text-gray-600">
+                    <li><a href="../index.html" class="hover:text-blue-600">ホーム</a></li>
+                    <li><span class="mx-2">/</span></li>
+                    <li><a href="../index.html" class="hover:text-blue-600">品詞</a></li>
+                    <li><span class="mx-2">/</span></li>
+                    <li class="text-gray-900">不規則動詞</li>
+                </ol>
+            </nav>
+
             <!-- 学習方法ガイド（共通パーツ） -->
             <div id="learning-guide-container"></div>
 
@@ -95,27 +104,41 @@
                     .then(html => {
                         document.getElementById('learning-guide-container').innerHTML = html;
                         // タイトルと説明文をカスタマイズ
-                        document.getElementById('learning-guide-title-text').textContent = '関係代名詞の所有格用法の学習方法ガイド';
-                        document.getElementById('learning-guide-step1-desc').textContent = '関係代名詞の所有格の定義と役割をしっかりと理解しましょう';
-                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、whoseの使い方を学びましょう';
+                        document.getElementById('learning-guide-title-text').textContent = '不規則動詞の学習方法ガイド';
+                        document.getElementById('learning-guide-step1-desc').textContent = '不規則動詞の定義と特徴をしっかりと理解しましょう';
+                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、不規則動詞の使い方を学びましょう';
                         document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を5回解いてみましょう';
-                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で所有格の関係代名詞がどのように使われているか意識してみましょう';
-                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>所有格の関係代名詞が文の中でどの位置に来るかを意識しましょう';
-                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する節と一緒に：</strong>主格や目的格との違いも理解しましょう';
+                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>パターン別に覚える：</strong>同じ変化パターンの動詞をグループ化して覚えましょう';
+                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>頻度順に覚える：</strong>最もよく使われる動詞から覚えましょう';
+                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>意味別に覚える：</strong>関連する意味の動詞を一緒に覚えましょう';
                     });
             });
             </script>
 
-            <!-- 文法説明 -->
+            <!-- 文法解説パーツ -->
             <div class="apple-card mb-8">
-                <h2 class="apple-card-title">関係代名詞の所有格用法</h2>
+                <h2 class="apple-card-title">不規則動詞</h2>
                 <div class="mt-4">
-                    <div id="relative-pronoun-possessive-explanation" class="apple-section-text"></div>
+                    <div id="irregular-verbs-explanation" class="apple-section-text"></div>
                 </div>
             </div>
 
-            <!-- 例文 -->
+            <!-- 例文セクション -->
             <div id="examples-container"></div>
+
+            <!-- 時制変換問題 -->
+            <div id="tense-conversion-container"></div>
+            <script>
+              fetch('../components/tense-conversion-practice.html')
+                .then(res => res.text())
+                .then(html => {
+                  document.getElementById('tense-conversion-container').innerHTML = html;
+                  // 練習のJavaScriptを読み込み
+                  const script = document.createElement('script');
+                  script.src = '../components/tense-conversion-practice.js';
+                  document.head.appendChild(script);
+                });
+            </script>
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
@@ -140,37 +163,26 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="/navigation.js"></script>
+    <script src="../navigation.js"></script>
     <script src="/examples.js"></script>
     <script>
-        // 文法説明をgrammar.jsonから読み込む
+        // 文法説明を読み込む
         fetch('../grammar.json')
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-                return res.json();
-            })
+            .then(res => res.json())
             .then(data => {
-                // 関係代名詞の所有格用法の部分のみを抽出
-                const fullText = data.relative_pronoun_possessive;
-                if (fullText) {
-                    document.getElementById('relative-pronoun-possessive-explanation').innerHTML = fullText.replace(/\n/g, '<br>');
-                } else {
-                    document.getElementById('relative-pronoun-possessive-explanation').textContent = '文法説明が見つかりませんでした。';
-                }
-            })
-            .catch(error => {
-                console.error('Error loading grammar explanation:', error);
-                document.getElementById('relative-pronoun-possessive-explanation').textContent = '文法説明の読み込みに失敗しました。';
+                document.getElementById('irregular-verbs-explanation').innerHTML = data.irregular_verbs.replace(/\n/g, '<br>');
             });
+
+        // ページ固有の設定
+        const currentTopic = 'irregular_verbs';
+        
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "relative-pronoun-objective.html", "関係代名詞の所有格用法", "次へ", "relative-pronoun-noun-clause.html");
-            renderExamples("relative_pronoun_possessive", "examples-container");
+            renderNavigation("前へ", "verb.html", "不規則動詞", "次へ", "adjective.html");
+            renderExamples("irregular_verbs", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners("relative_pronoun_possessive");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>
 </body>
-</html>
+</html> 

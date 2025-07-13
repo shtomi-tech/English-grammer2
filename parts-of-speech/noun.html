@@ -238,8 +238,11 @@
 
     <script src="../script.js"></script>
     <script src="../navigation.js"></script>
-    <script src="/examples.js"></script>
+    <script src="../examples.js"></script>
     <script>
+        // ページ固有の設定
+        const currentTopic = 'noun';
+        
         // 文法説明コンポーネントを読み込む
         async function loadGrammarComponent() {
             try {

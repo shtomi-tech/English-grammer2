@@ -159,18 +159,14 @@
                 document.getElementById('article-explanation').innerHTML = data.article.replace(/\n/g, '<br>');
             });
 
-        // イベントリスナーを設定
+        // ページ固有の設定
+        const currentTopic = 'article';
+        
         document.addEventListener('DOMContentLoaded', function() {
-            // 難易度選択機能を初期化
-            setupDifficultySelectors();
             renderNavigation("前へ", "noun.html", "冠詞", "次へ", "be-verb.html");
-            
-            // 例文セクション生成
             renderExamples("article", "examples-container");
-            
-            // 英作文問題のイベントリスナーを設定
             setTimeout(() => {
-                setupWritingQuestionEventListeners("article");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>

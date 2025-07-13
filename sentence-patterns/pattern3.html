@@ -150,15 +150,15 @@
     <script src="/navigation.js"></script>
     <script src="/examples.js"></script>
     <script>
-        // 文型説明をgrammar.jsonから読み込む
-        fetch('../grammar.json')
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById('pattern3-explanation').innerHTML = data.pattern_3.replace(/\n/g, '<br>');
-            });
+        // ページ固有の設定
+        const currentTopic = 'pattern3';
+        
         document.addEventListener('DOMContentLoaded', function() {
             renderNavigation("前へ", "pattern2.html", "第3文型", "次へ", "pattern4.html");
-            renderExamples("pattern3", "examples-container");
+            renderExamples("pattern_3", "examples-container");
+            setTimeout(() => {
+                setupWritingQuestionEventListeners(currentTopic);
+            }, 100);
         });
     </script>
 </body>

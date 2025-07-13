@@ -156,13 +156,14 @@
             .then(data => {
                 document.getElementById('pattern1-explanation').innerHTML = data.pattern_1.replace(/\n/g, '<br>');
             });
+        // ページ固有の設定
+        const currentTopic = 'pattern1';
+        
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "perception-verb.html", "第1文型", "次へ", "there-is.html");
-            renderExamples("pattern1", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
+            renderNavigation("前へ", null, "第1文型", "次へ", "pattern2.html");
+            renderExamples("pattern_1", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners("pattern1");
+                setupWritingQuestionEventListeners(currentTopic);
             }, 100);
         });
     </script>
