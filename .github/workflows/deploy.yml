@@ -2,47 +2,28 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, "静的サイト" ]
   pull_request:
     branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      
+    - uses: actions/checkout@v3
+    
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18'
         
     - name: Install dependencies
-      run: npm install
+      run: npm ci
       
-    - name: Build static site
-      run: |
-        # 静的ファイルをコピー
-        mkdir -p dist
-        cp -r *.html dist/
-        cp -r *.css dist/
-        cp -r *.js dist/
-        cp -r components/ dist/
-        cp -r clauses/ dist/
-        cp -r comparison/ dist/
-        cp -r modals/ dist/
-        cp -r parts-of-speech/ dist/
-        cp -r phrases/ dist/
-        cp -r sentence-patterns/ dist/
-        cp -r subjunctive/ dist/
-        cp -r tenses/ dist/
-        cp grammar.json dist/
-        
-    - name: Deploy to GitHub Pages
+    - name: Build and deploy
       uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/main'
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/静的サイト'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist 
+        publish_dir: .
+        publish_branch: gh-pages 

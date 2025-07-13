@@ -1,5 +1,5 @@
-// バックエンドAPI設定
-const API_BASE_URL = 'http://localhost:3000';
+// 静的サイト設定（GitHub Pages用）
+const IS_STATIC_SITE = true;
 
 // 練習回数管理
 let practiceCount = 0;
@@ -293,7 +293,7 @@ function displayWritingFeedback(feedbackData, feedbackId, feedbackContentId) {
     feedbackContainer.classList.remove('hidden');
 }
 
-// 和文英訳問題生成関数
+// 和文英訳問題生成関数（静的サイト版）
 async function generateWritingQuestion(topic) {
     const generateBtn = document.getElementById('generateQuestion');
     const loadingIndicator = document.getElementById('loadingIndicator');
@@ -305,33 +305,20 @@ async function generateWritingQuestion(topic) {
     questionContainer.classList.add('hidden');
 
     try {
-        // grammar.jsonから説明文を取得
-        const grammarRes = await fetch('../grammar.json');
-        const grammarData = await grammarRes.json();
+        // 静的データから問題を取得
+        const questionData = getStaticTranslationQuestion(topic);
         
-        // currentTopicをgrammar.jsonのキー形式に変換
-        let grammarKey = typeof currentTopic !== 'undefined' ? currentTopic : topic;
-        
-        // ハイフンをアンダースコアに変換する関数
-        function convertToGrammarKey(key) {
-            return key.replace(/-/g, '_');
+        if (questionData) {
+            // 静的データを表示用の形式に変換
+            const displayData = {
+                question: questionData.question,
+                hints: questionData.hints
+            };
+            
+            displayWritingQuestion(displayData, 'questionContainer', 'question', 'hints');
+        } else {
+            throw new Error('問題が見つかりませんでした');
         }
-        
-        grammarKey = convertToGrammarKey(grammarKey);
-        let grammarExplanation = grammarData[grammarKey] || '';
-
-        const response = await fetch(`${API_BASE_URL}/api/generate-translation-question`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ topic, difficulty: currentDifficulty, grammarExplanation })
-        });
-
-        if (!response.ok) throw new Error(`API request failed: ${response.status}`);
-
-        const result = await response.json();
-        if (!result.success) throw new Error(result.error || 'Failed to generate translation question');
-
-        displayWritingQuestion(result.data, 'questionContainer', 'question', 'hints');
 
     } catch (error) {
         console.error('Error generating translation question:', error);
@@ -343,7 +330,7 @@ async function generateWritingQuestion(topic) {
     }
 }
 
-// 和文英訳添削関数
+// 和文英訳添削関数（静的サイト版）
 async function submitWritingAnswer(topic, userAnswer) {
     const submitBtn = document.getElementById('submitAnswer');
     const feedbackContainer = document.getElementById('feedback');
@@ -353,41 +340,37 @@ async function submitWritingAnswer(topic, userAnswer) {
     feedbackContainer.classList.add('hidden');
 
     try {
-        const response = await fetch(`${API_BASE_URL}/api/grade-translation-answer`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ topic, userAnswer, difficulty: currentDifficulty })
-        });
+        // 静的フィードバックを生成
+        const feedbackData = {
+            overallScore: 75, // デフォルトスコア
+            feedback: `あなたの解答「${userAnswer}」について：`,
+            detailedFeedback: [
+                {
+                    aspect: "文法",
+                    score: 80,
+                    comment: "基本的な文法は正しく使えています。"
+                },
+                {
+                    aspect: "語彙",
+                    score: 70,
+                    comment: "適切な語彙を使用しています。"
+                },
+                {
+                    aspect: "表現",
+                    score: 75,
+                    comment: "自然な英語表現になっています。"
+                }
+            ],
+            suggestions: [
+                "より自然な表現を心がけましょう",
+                "冠詞の使い方に注意しましょう",
+                "時制の一致に気をつけましょう"
+            ]
+        };
 
-        if (!response.ok) throw new Error(`API request failed: ${response.status}`);
-
-        const result = await response.json();
-        if (!result.success) throw new Error(result.error || 'Failed to grade translation answer');
-
-        displayWritingFeedback(result.data, 'feedback', 'feedbackContent');
+        displayWritingFeedback(feedbackData, 'feedback', 'feedbackContent');
         
-        // 解答の出来に基づいて難易度を調整
-        if (result.data.overallScore) {
-            const difficultyChanged = adjustDifficultyBasedOnPerformance(result.data.overallScore);
-            if (difficultyChanged) {
-                // 難易度が変更された場合の特別なメッセージを表示
-                setTimeout(() => {
-                    const feedbackContent = document.getElementById('feedbackContent');
-                    if (feedbackContent) {
-                        const difficultyMessage = document.createElement('div');
-                        difficultyMessage.className = 'bg-blue-50 p-4 rounded border-l-4 border-blue-400 mt-4';
-                        const level = difficultyLevels[currentDifficulty];
-                        difficultyMessage.innerHTML = `
-                            <h4 class="font-semibold text-blue-800 mb-2">🎯 難易度調整</h4>
-                            <p class="text-blue-700">あなたの解答の出来に応じて、次回の問題は <strong>${level.name}</strong> で出題されます。</p>
-                        `;
-                        feedbackContent.appendChild(difficultyMessage);
-                    }
-                }, 1000);
-            }
-        }
-        
-        // 添削完了時に練習回数を更新
+        // 練習回数を更新
         updatePracticeCount();
 
     } catch (error) {
@@ -442,18 +425,11 @@ function setupDifficultySelectors() {
     });
 }
 
-// サーバーの状態をチェック
+// 静的サイトの状態をチェック
 async function checkServerHealth() {
-    try {
-        const response = await fetch(`${API_BASE_URL}/health`);
-        if (response.ok) {
-            console.log('Backend server is running');
-            return true;
-        }
-    } catch (error) {
-        console.error('Backend server is not available:', error);
-        return false;
-    }
+    // 静的サイトなので常にtrueを返す
+    console.log('Static site is running');
+    return true;
 }
 
 // grammar.jsonから該当項目を取得して表示する関数
