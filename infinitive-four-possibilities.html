@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不定詞の4つの可能性 - English Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100">
+    <!-- ヘッダー -->
+    <header class="apple-header px-6 py-6 mb-8">
+        <div class="container mx-auto flex flex-col items-start">
+            <h1 class="apple-title">句</h1>
+            <p class="apple-sub mt-2">英文法の基礎から学ぼう</p>
+        </div>
+    </header>
+
+    <!-- パンくずリスト -->
+    <nav class="container mx-auto px-6 mb-6">
+        <div class="flex items-center space-x-2 text-sm text-gray-600">
+            <a href="index.html" class="hover:text-blue-600">ホーム</a>
+            <span>></span>
+            <a href="index.html#phrases" class="hover:text-blue-600">句</a>
+            <span>></span>
+            <span class="text-gray-900">不定詞の4つの可能性</span>
+        </div>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-6 py-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- 学習方法ガイド（共通パーツ） -->
+            <div id="learning-guide-container"></div>
+
+            <!-- 学習時間計測ストップウォッチ -->
+            <div class="apple-card mb-8">
+                <h2 class="apple-card-title flex items-center">
+                    <svg class="w-6 h-6 mr-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    学習時間を計測しよう
+                </h2>
+                <div class="flex flex-col items-center">
+                    <div id="timer-display" class="text-5xl font-mono font-bold text-blue-400 bg-white px-8 py-4 rounded-xl shadow mb-6 border-2 border-blue-100">
+                        00:00:00
+                    </div>
+                    <div class="flex space-x-4">
+                        <button id="start-timer" class="transition bg-gradient-to-r from-green-200 to-blue-200 hover:from-green-300 hover:to-blue-300 text-blue-800 font-bold py-2 px-6 rounded-full shadow-md hover:scale-105 duration-150">スタート</button>
+                        <button id="stop-timer" class="transition bg-gradient-to-r from-pink-200 to-red-200 hover:from-pink-300 hover:to-red-300 text-red-700 font-bold py-2 px-6 rounded-full shadow-md hover:scale-105 duration-150">ストップ</button>
+                        <button id="reset-timer" class="transition bg-gradient-to-r from-gray-200 to-gray-300 hover:from-gray-300 hover:to-gray-400 text-gray-700 font-bold py-2 px-6 rounded-full shadow-md hover:scale-105 duration-150">リセット</button>
+                    </div>
+                </div>
+
+                <script>
+                // ストップウォッチ機能
+                let timerInterval;
+                let elapsed = 0;
+                let running = false;
+                function updateTimerDisplay() {
+                  const hours = String(Math.floor(elapsed / 3600)).padStart(2, '0');
+                  const minutes = String(Math.floor((elapsed % 3600) / 60)).padStart(2, '0');
+                  const seconds = String(elapsed % 60).padStart(2, '0');
+                  document.getElementById('timer-display').textContent = `${hours}:${minutes}:${seconds}`;
+                }
+                document.getElementById('start-timer').onclick = function() {
+                  if (!running) {
+                    running = true;
+                    timerInterval = setInterval(() => {
+                      elapsed++;
+                      updateTimerDisplay();
+                    }, 1000);
+                  }
+                };
+                document.getElementById('stop-timer').onclick = function() {
+                  running = false;
+                  clearInterval(timerInterval);
+                };
+                document.getElementById('reset-timer').onclick = function() {
+                  running = false;
+                  clearInterval(timerInterval);
+                  elapsed = 0;
+                  updateTimerDisplay();
+                };
+                updateTimerDisplay();
+                </script>
+            </div>
+
+            <script>
+            // 学習方法ガイドの読み込みとカスタマイズ
+            document.addEventListener('DOMContentLoaded', function() {
+                fetch('components/learning-guide.html')
+                    .then(res => res.text())
+                    .then(html => {
+                        document.getElementById('learning-guide-container').innerHTML = html;
+                        // タイトルと説明文をカスタマイズ
+                        document.getElementById('learning-guide-title-text').textContent = '不定詞の4つの可能性の学習方法ガイド';
+                        document.getElementById('learning-guide-step1-desc').textContent = '不定詞の4つの用法の定義と役割をしっかりと理解しましょう';
+                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、それぞれの用法の使い方を学びましょう';
+                        document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を5回解いてみましょう';
+                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で不定詞がどのように使われているか意識してみましょう';
+                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>不定詞が文の中でどの位置に来るかを意識しましょう';
+                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する表現と一緒に：</strong>動名詞、分詞構文との違いも理解しましょう';
+                    });
+            });
+            </script>
+
+            <!-- 文法説明 -->
+            <div class="apple-card mb-8">
+                <h2 class="apple-card-title">不定詞の4つの可能性</h2>
+                <div class="mt-4">
+                    <div id="infinitive-four-explanation" class="apple-section-text"></div>
+                </div>
+            </div>
+
+            <!-- 例文 -->
+            <div class="apple-card mb-8">
+                <h2 class="apple-card-title">例文</h2>
+                <div class="mt-4 space-y-4">
+                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
+                        <h3 class="font-semibold mb-3 text-lg">助動詞の一部+述語動詞</h3>
+                        <div class="space-y-3">
+                            <p><span class="text-xl font-bold text-blue-300">I want to study English.</span><br><span class="text-base font-semibold text-gray-200">（私は英語を勉強したい）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">She decided to quit her job.</span><br><span class="text-base font-semibold text-gray-200">（彼女は仕事を辞めることに決めた）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">He hopes to become a doctor.</span><br><span class="text-base font-semibold text-gray-200">（彼は医者になることを望んでいる）</span></p>
+                        </div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
+                        <h3 class="font-semibold mb-3 text-lg">不定詞の名詞的用法</h3>
+                        <div class="space-y-3">
+                            <p><span class="text-xl font-bold text-blue-300">To study abroad is my dream.</span><br><span class="text-base font-semibold text-gray-200">（留学することは私の夢です）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">I like to read books.</span><br><span class="text-base font-semibold text-gray-200">（私は本を読むことが好きです）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">My dream is to become a teacher.</span><br><span class="text-base font-semibold text-gray-200">（私の夢は先生になることです）</span></p>
+                        </div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
+                        <h3 class="font-semibold mb-3 text-lg">不定詞の形容詞的用法</h3>
+                        <div class="space-y-3">
+                            <p><span class="text-xl font-bold text-blue-300">I have a book to read.</span><br><span class="text-base font-semibold text-gray-200">（私は読むべき本があります）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">She is the person to ask.</span><br><span class="text-base font-semibold text-gray-200">（彼女は尋ねるべき人です）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">I need something to eat.</span><br><span class="text-base font-semibold text-gray-200">（私は食べるものが必要です）</span></p>
+                        </div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
+                        <h3 class="font-semibold mb-3 text-lg">不定詞の副詞的用法</h3>
+                        <div class="space-y-3">
+                            <p><span class="text-xl font-bold text-blue-300">I went to the library to study.</span><br><span class="text-base font-semibold text-gray-200">（私は勉強するために図書館に行った）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">I worked hard to pass the exam.</span><br><span class="text-base font-semibold text-gray-200">（私は試験に合格するために一生懸命勉強した）</span></p>
+                            <p><span class="text-xl font-bold text-blue-300">I was happy to see you.</span><br><span class="text-base font-semibold text-gray-200">（私はあなたに会えて嬉しかった）</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 練習問題 -->
+            <div id="practice-question-container"></div>
+            <script>
+              fetch('components/practice-question.html')
+                .then(res => res.text())
+                .then(html => {
+                  document.getElementById('practice-question-container').innerHTML = html;
+                });
+            </script>
+
+            <!-- ナビゲーション -->
+            <div id="nav-placeholder"></div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 English Learning Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="navigation.js"></script>
+    <script>
+        // 文法説明をgrammar.jsonから読み込む
+        fetch('grammar.json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('infinitive-four-explanation').innerHTML = data.infinitive_four_possibilities.replace(/\n/g, '<br>');
+            });
+        document.addEventListener('DOMContentLoaded', function() {
+            renderNavigation("前へ", "phrases/participle-construction.html", "不定詞の4つの可能性", "次へ", "phrases/with-absolute-construction.html");
+            renderExamples("infinitive_four_possibilities", "examples-container");
+            
+            // 和文英訳問題のイベントリスナーを設定
+            setTimeout(() => {
+                setupWritingQuestionEventListeners("infinitive_four_possibilities");
+            }, 100);
+        });
+    </script>
+</body>
+</html> 

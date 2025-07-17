@@ -2407,6 +2407,117 @@ const examplesData = {
         { en: "They will have arrived by noon.", ja: "彼らは正午までに到着しているでしょう" }
       ]
     }
+  ],
+  dummy_it: [
+    {
+      title: "仮主語it（不定詞）",
+      examples: [
+        { en: "It is important to study English.", ja: "英語を勉強することは重要です" },
+        { en: "It takes time to learn a new language.", ja: "新しい言語を学ぶには時間がかかります" },
+        { en: "It is difficult to understand this grammar.", ja: "この文法を理解することは難しいです" },
+        { en: "It is easy to make mistakes.", ja: "間違いをすることは簡単です" },
+        { en: "It is necessary to practice every day.", ja: "毎日練習することは必要です" }
+      ]
+    },
+    {
+      title: "仮主語it（動名詞）",
+      examples: [
+        { en: "It is fun studying English.", ja: "英語を勉強することは楽しいです" },
+        { en: "It takes effort learning a new language.", ja: "新しい言語を学ぶには努力が必要です" },
+        { en: "It is enjoyable reading books.", ja: "本を読むことは楽しいです" },
+        { en: "It is tiring working long hours.", ja: "長時間働くことは疲れます" },
+        { en: "It is relaxing listening to music.", ja: "音楽を聴くことはリラックスできます" }
+      ]
+    },
+    {
+      title: "仮主語it（名詞節）",
+      examples: [
+        { en: "It is well known that he is honest.", ja: "彼が正直であることはよく知られています" },
+        { en: "It is true what you said.", ja: "あなたが言ったことは真実です" },
+        { en: "It seems that she is busy.", ja: "彼女は忙しいようです" },
+        { en: "It is said that he is rich.", ja: "彼はお金持ちだと言われています" },
+        { en: "It is clear that you are right.", ja: "あなたが正しいことは明らかです" }
+      ]
+    },
+    {
+      title: "仮目的語it（不定詞）",
+      examples: [
+        { en: "I find it difficult to study English.", ja: "私は英語を勉強することを難しいと感じます" },
+        { en: "I think it important to learn a new language.", ja: "私は新しい言語を学ぶことを重要だと思います" },
+        { en: "I find it enjoyable to read books.", ja: "私は本を読むことを楽しいと感じます" },
+        { en: "I consider it necessary to practice every day.", ja: "私は毎日練習することを必要だと考えます" },
+        { en: "I find it interesting to travel abroad.", ja: "私は海外旅行することを興味深いと感じます" }
+      ]
+    },
+    {
+      title: "仮目的語it（動名詞・名詞節）",
+      examples: [
+        { en: "I find it enjoyable studying English.", ja: "私は英語を勉強することを楽しいと感じます" },
+        { en: "I think it true that he is honest.", ja: "私は彼が正直であることを真実だと思います" },
+        { en: "I find it interesting what you said.", ja: "私はあなたが言ったことを興味深いと感じます" },
+        { en: "I consider it important learning grammar.", ja: "私は文法を学ぶことを重要だと考えます" },
+        { en: "I find it relaxing listening to music.", ja: "私は音楽を聴くことをリラックスできると感じます" }
+      ]
+    },
+    {
+      title: "よくある間違い",
+      examples: [
+        { en: "× To study English is important. → ○ It is important to study English.", ja: "長い主語はitで置き換える" },
+        { en: "× I find to study English difficult. → ○ I find it difficult to study English.", ja: "長い目的語はitで置き換える" },
+        { en: "× That he is honest is well known. → ○ It is well known that he is honest.", ja: "長い主語はitで置き換える" },
+        { en: "× I think to practice every day necessary. → ○ I think it necessary to practice every day.", ja: "長い目的語はitで置き換える" }
+      ]
+    }
+  ],
+  restrictive_nonrestrictive: [
+    {
+      title: "制限用法の例文",
+      examples: [
+        { en: "The students who study hard will pass the exam.", ja: "一生懸命勉強する生徒は試験に合格するでしょう" },
+        { en: "The book which I bought yesterday is very interesting.", ja: "昨日私が買った本はとても面白いです" },
+        { en: "People who live in Tokyo know about this restaurant.", ja: "東京に住んでいる人はこのレストランを知っています" },
+        { en: "The man who is wearing a red hat is my teacher.", ja: "赤い帽子をかぶっている男性は私の先生です" },
+        { en: "The car which is parked in front of the house is mine.", ja: "家の前に駐車されている車は私のものです" }
+      ]
+    },
+    {
+      title: "非制限用法の例文",
+      examples: [
+        { en: "My brother, who lives in Osaka, is a doctor.", ja: "私の兄は、大阪に住んでいますが、医者です" },
+        { en: "Tokyo, which is the capital of Japan, is a very large city.", ja: "東京は、日本の首都ですが、とても大きな都市です" },
+        { en: "Mr. Smith, who teaches English, is very kind.", ja: "スミス先生は、英語を教えていますが、とても親切です" },
+        { en: "My sister, who is a nurse, works at the hospital.", ja: "私の姉は、看護師ですが、その病院で働いています" },
+        { en: "Mount Fuji, which is the highest mountain in Japan, is very beautiful.", ja: "富士山は、日本で一番高い山ですが、とても美しいです" }
+      ]
+    },
+    {
+      title: "制限用法と非制限用法の比較",
+      examples: [
+        { en: "The book which I bought yesterday is interesting. (制限用法)", ja: "昨日私が買った本は面白いです（カンマなし、本を特定）" },
+        { en: "My book, which I bought yesterday, is interesting. (非制限用法)", ja: "私の本は、昨日買ったのですが、面白いです（カンマあり、追加情報）" },
+        { en: "Students who study hard will pass. (制限用法)", ja: "一生懸命勉強する生徒は合格する（カンマなし、生徒を限定）" },
+        { en: "My students, who study hard, will pass. (非制限用法)", ja: "私の生徒たちは、一生懸命勉強していますが、合格する（カンマあり、追加情報）" }
+      ]
+    },
+    {
+      title: "よくある間違い",
+      examples: [
+        { en: "× My brother who lives in Osaka is a doctor. → ○ My brother, who lives in Osaka, is a doctor.", ja: "非制限用法にはカンマが必要" },
+        { en: "× The students, who study hard, will pass. → ○ The students who study hard will pass.", ja: "制限用法にはカンマは不要" },
+        { en: "× Tokyo which is the capital of Japan is large. → ○ Tokyo, which is the capital of Japan, is large.", ja: "固有名詞の後は通常非制限用法" },
+        { en: "× My friend John who lives in Tokyo is coming. → ○ My friend John, who lives in Tokyo, is coming.", ja: "固有名詞の後は通常非制限用法" }
+      ]
+    },
+    {
+      title: "見分け方のポイント",
+      examples: [
+        { en: "カンマなし → 制限用法", ja: "先行詞を限定・特定する" },
+        { en: "カンマあり → 非制限用法", ja: "追加情報を提供する" },
+        { en: "固有名詞 → 通常非制限用法", ja: "既に特定されているため" },
+        { en: "代名詞 → 通常非制限用法", ja: "既に特定されているため" },
+        { en: "省略しても意味が変わる → 制限用法", ja: "重要な情報のため" }
+      ]
+    }
   ]
 };
 

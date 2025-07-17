@@ -21,15 +21,7 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-6xl mx-auto">
-            <!-- サイト紹介 -->
-            <div class="apple-card mb-8">
-                <h2 class="apple-card-title">このサイトについて</h2>
-                <p class="apple-card-text">
-                    このウェブサイトは、英語の基礎となる英文法を学ぶためのリソースです。<br>
-                    各単元の解説を読み、練習問題に挑戦して理解を深めていきましょう。<br>
-                    下のカテゴリーから学習したい項目を選択してください。
-                </p>
-            </div>
+
 
             <!-- メインカテゴリー -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -39,6 +31,7 @@
                     <h3 class="apple-card-title text-lg mb-4">品詞</h3>
                     <div class="space-y-2">
                         <a href="parts-of-speech/noun.html" class="block apple-nav-btn text-sm">名詞</a>
+                        <a href="parts-of-speech/countable-uncountable-nouns.html" class="block apple-nav-btn text-sm">可算名詞と不可算名詞</a>
                         <a href="parts-of-speech/article.html" class="block apple-nav-btn text-sm">冠詞</a>
                         <!-- 動詞サブカテゴリー -->
                         <div class="relative">
@@ -51,8 +44,10 @@
                             <div id="verb-submenu" class="hidden ml-2 border-l-2 border-blue-200 pl-3 mt-2">
                                 <div class="space-y-1">
                                     <a href="parts-of-speech/be-verb.html" class="block apple-nav-btn text-xs">be動詞</a>
+                                    <a href="parts-of-speech/be-five-possibilities.html" class="block apple-nav-btn text-xs">beの5つの可能性</a>
                                     <a href="parts-of-speech/verb.html" class="block apple-nav-btn text-xs">一般動詞</a>
                                     <a href="parts-of-speech/irregular-verbs.html" class="block apple-nav-btn text-xs">不規則動詞</a>
+                                    <a href="parts-of-speech/verb-forms.html" class="block apple-nav-btn text-xs">動詞の原形を用いる場所</a>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +69,8 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="parts-of-speech/conjunction.html" class="block apple-nav-btn text-sm">接続詞</a>
+                        <a href="parts-of-speech/coordinating-conjunction.html" class="block apple-nav-btn text-sm">等位接続詞</a>
+                        <a href="parts-of-speech/subordinating-conjunction.html" class="block apple-nav-btn text-sm">従属接続詞</a>
                         <a href="parts-of-speech/word-phrase-clause.html" class="block apple-nav-btn text-sm">単語・句・節</a>
                     </div>
                 </div>
@@ -92,7 +88,7 @@
                             </button>
                             <div id="pattern1-submenu" class="ml-4 space-y-1 hidden">
                                 <a href="sentence-patterns/pattern1.html" class="block apple-nav-btn text-sm opacity-75 hover:opacity-100">　第1文型(S+V)</a>
-                                <a href="sentence-patterns/there-is.html" class="block apple-nav-btn text-sm opacity-75 hover:opacity-100">　There is構文</a>
+                                <a href="sentence-patterns/there-is.html" class="block apple-nav-btn text-sm opacity-75 hover:opacity-100">　There構文</a>
                             </div>
                         </div>
                         <a href="sentence-patterns/pattern2.html" class="block apple-nav-btn text-sm">第2文型（S+V+C）</a>
@@ -131,21 +127,8 @@
                 <div class="apple-card">
                     <h3 class="apple-card-title text-lg mb-4">句</h3>
                     <div class="space-y-2">
-                        <!-- 不定詞サブカテゴリー -->
-                        <div class="relative">
-                            <button id="infinitive-toggle" class="w-full text-left apple-nav-btn text-sm flex items-center justify-between">
-                                <span>不定詞</span>
-                                <svg id="infinitive-icon" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                </svg>
-                            </button>
-                            <div id="infinitive-submenu" class="hidden ml-2 border-l-2 border-blue-200 pl-3 mt-2">
-                                <div class="space-y-1">
-                                    <a href="phrases/infinitive.html" class="block apple-nav-btn text-xs">不定詞</a>
-                                    <a href="phrases/be-to-infinitive.html" class="block apple-nav-btn text-xs">be to 不定詞</a>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="infinitive-four-possibilities.html" class="block apple-nav-btn text-sm">不定詞の4つの可能性</a>
+                        <a href="dummy-it.html" class="block apple-nav-btn text-sm">仮主語・仮目的語のit</a>
                         <a href="phrases/infinitive-gerund-identification.html" class="block apple-nav-btn text-sm">不定詞と動名詞の識別</a>
                         <a href="phrases/infinitive-gerund-logical-subject.html" class="block apple-nav-btn text-sm">不定詞と動名詞の意味上の主語</a>
                         <!-- -ing形の4つの可能性サブカテゴリー -->
@@ -187,13 +170,13 @@
                             <div id="relative-pronoun-submenu" class="hidden ml-2 border-l-2 border-blue-200 pl-3 mt-2">
                                 <div class="space-y-1">
                                     <a href="clauses/relative-pronoun.html" class="block apple-nav-btn text-xs">関係代名詞の仕組み</a>
-                                    <a href="clauses/relative-pronoun-restrictive-nonrestrictive.html" class="block apple-nav-btn text-xs">制限用法と非制限用法の関係代名詞の識別</a>
                                     <a href="clauses/preposition-relative-pronoun.html" class="block apple-nav-btn text-xs">前置詞＋関係代名詞</a>
                                 </div>
                             </div>
                         </div>
                         <!-- その他の節 -->
                         <a href="clauses/relative-adverb.html" class="block apple-nav-btn text-sm">関係副詞</a>
+                        <a href="clauses/restrictive-nonrestrictive.html" class="block apple-nav-btn text-sm">制限用法と非制限用法</a>
                         <a href="clauses/subordinating-conjunction.html" class="block apple-nav-btn text-sm">従属接続詞</a>
                         <a href="phrases/indirect-question.html" class="block apple-nav-btn text-sm">間接疑問文</a>
                         <a href="clauses/compound-relative-clause.html" class="block apple-nav-btn text-sm">複合関係副詞</a>
@@ -236,47 +219,47 @@
                         <a href="modals/must.html" class="block apple-nav-btn text-sm">must</a>
                         <a href="modals/should.html" class="block apple-nav-btn text-sm">should</a>
                         <a href="modals/shall.html" class="block apple-nav-btn text-sm">shall</a>
-                        <a href="modals/need.html" class="block apple-nav-btn text-sm">need</a>
-                        <a href="modals/dare.html" class="block apple-nav-btn text-sm">dare</a>
                     </div>
                 </div>
 
-                <!-- 仮定法/比較 -->
+                <!-- 比較 -->
                 <div class="apple-card">
-                    <h3 class="apple-card-title text-lg mb-4">仮定法/比較</h3>
+                    <h3 class="apple-card-title text-lg mb-4">比較</h3>
                     <div class="space-y-2">
-                        <a href="subjunctive/formulas.html" class="block apple-nav-btn text-sm">仮定法の公式</a>
-                        <a href="subjunctive/inversion.html" class="block apple-nav-btn text-sm">仮定法の倒置</a>
-                        <a href="subjunctive/if-less-subjunctive.html" class="block apple-nav-btn text-sm">if節がない仮定法</a>
                         <a href="comparison/comparative.html" class="block apple-nav-btn text-sm">比較級</a>
                         <a href="comparison/superlative.html" class="block apple-nav-btn text-sm">最上級</a>
                         <a href="comparison/positive.html" class="block apple-nav-btn text-sm">原級比較</a>
                     </div>
                 </div>
 
-            </div>
-
-            <!-- 学習の進め方 -->
-            <div class="apple-card mt-8">
-                <h2 class="apple-card-title">学習の進め方</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
-                    <div class="text-center">
-                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">1</div>
-                        <h3 class="font-semibold mb-2">基礎から学ぶ</h3>
-                        <p class="text-sm text-gray-600">品詞から始めて、文の構造を理解しましょう</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">2</div>
-                        <h3 class="font-semibold mb-2">練習問題に挑戦</h3>
-                        <p class="text-sm text-gray-600">AI生成の問題で理解度を確認しましょう</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">3</div>
-                        <h3 class="font-semibold mb-2">応用する</h3>
-                        <p class="text-sm text-gray-600">学んだ文法を使って文章を作ってみましょう</p>
+                <!-- 法 -->
+                <div class="apple-card">
+                    <h3 class="apple-card-title text-lg mb-4">法</h3>
+                    <div class="space-y-2">
+                        <a href="mood/indicative.html" class="block apple-nav-btn text-sm">直説法</a>
+                        <a href="mood/imperative.html" class="block apple-nav-btn text-sm">命令法</a>
+                        <!-- 仮定法サブカテゴリー -->
+                        <div class="relative">
+                            <button id="subjunctive-toggle" class="w-full text-left apple-nav-btn text-sm flex items-center justify-between">
+                                <span>仮定法</span>
+                                <svg id="subjunctive-icon" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div id="subjunctive-submenu" class="hidden ml-2 border-l-2 border-blue-200 pl-3 mt-2">
+                                <div class="space-y-1">
+                                    <a href="subjunctive/formulas.html" class="block apple-nav-btn text-xs">仮定法の公式</a>
+                                    <a href="subjunctive/inversion.html" class="block apple-nav-btn text-xs">仮定法の倒置</a>
+                                    <a href="subjunctive/if-less-subjunctive.html" class="block apple-nav-btn text-xs">if節がない仮定法</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
+
+
         </div>
     </main>
 

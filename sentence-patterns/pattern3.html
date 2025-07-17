@@ -115,7 +115,7 @@
 
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
-                <h2 class="apple-card-title">文型3</h2>
+                <h2 class="apple-card-title">第3文型（S+V+O）</h2>
                 <div class="mt-4">
                     <div id="pattern3-explanation" class="apple-section-text"></div>
                 </div>
@@ -152,6 +152,13 @@
     <script>
         // ページ固有の設定
         const currentTopic = 'pattern3';
+        
+        // 文法説明を読み込む
+        fetch('../grammar.json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('pattern3-explanation').innerHTML = data.pattern_3.replace(/\n/g, '<br>');
+            });
         
         document.addEventListener('DOMContentLoaded', function() {
             renderNavigation("前へ", "pattern2.html", "第3文型", "次へ", "pattern4.html");

@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>接続詞 - English Learning Hub</title>
+    <title>動詞の原形を用いる場所 - English Learning Hub</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- SF Pro Display (Apple公式フォント) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -34,15 +36,10 @@
                     <li><span class="mx-2">/</span></li>
                     <li><a href="../index.html" class="hover:text-blue-600">品詞</a></li>
                     <li><span class="mx-2">/</span></li>
-                    <li class="text-gray-900">接続詞</li>
+                    <li class="text-gray-900">動詞の原形を用いる場所</li>
                 </ol>
             </nav>
 
-            <!-- タイトルパーツ -->
-            <!-- <div class="apple-card mb-8">
-                <h2 class="apple-card-title">接続詞</h2>
-                <p class="apple-card-text">語や文をつなぐ働きをする品詞です。</p>
-            </div> -->
             <!-- 学習方法ガイド（共通パーツ） -->
             <div id="learning-guide-container"></div>
 
@@ -107,22 +104,22 @@
                     .then(html => {
                         document.getElementById('learning-guide-container').innerHTML = html;
                         // タイトルと説明文をカスタマイズ
-                        document.getElementById('learning-guide-title-text').textContent = '接続詞の学習方法ガイド';
-                        document.getElementById('learning-guide-step1-desc').textContent = '接続詞の定義と役割をしっかりと理解しましょう';
-                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、接続詞の使い方を学びましょう';
+                        document.getElementById('learning-guide-title-text').textContent = '動詞の原形の学習方法ガイド';
+                        document.getElementById('learning-guide-step1-desc').textContent = '動詞の原形が使われる5つの場所を理解しましょう';
+                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、動詞の原形の使い方を学びましょう';
                         document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を5回解いてみましょう';
-                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>身の回りの文と文のつながりを英語でどう表すか考えてみましょう';
-                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>接続詞が文の中でどの位置に来るかを意識しましょう';
-                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する品詞と一緒に：</strong>他の品詞との関係も理解しましょう';
+                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>5つの場所を覚える：</strong>toの後、助動詞の後、命令文、使役動詞、仮定法現在を覚えましょう';
+                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>動詞の原形がどの位置に来るかを意識しましょう';
+                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する文法と一緒に：</strong>不定詞、助動詞、使役動詞との関係も理解しましょう';
                     });
             });
             </script>
 
             <!-- 文法解説パーツ -->
             <div class="apple-card mb-8">
-                <h2 class="apple-card-title">接続詞</h2>
+                <h2 class="apple-card-title">動詞の原形を用いる場所</h2>
                 <div class="mt-4">
-                    <div id="conjunction-explanation" class="apple-section-text"></div>
+                    <div id="verb-forms-explanation" class="apple-section-text"></div>
                 </div>
             </div>
 
@@ -159,15 +156,15 @@
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('conjunction-explanation').innerHTML = data.conjunction.replace(/\n/g, '<br>');
+                document.getElementById('verb-forms-explanation').innerHTML = data.verb_forms.replace(/\n/g, '<br>');
             });
 
         // ページ固有の設定
-        const currentTopic = 'conjunction';
+        const currentTopic = 'verb_forms';
         
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "preposition.html", "接続詞", "次へ", "word-phrase-clause.html");
-            renderExamples("conjunction", "examples-container");
+            renderNavigation("前へ", "irregular-verbs.html", "動詞の原形を用いる場所", "次へ", "adjective.html");
+            renderExamples("verb_forms", "examples-container");
             setTimeout(() => {
                 setupWritingQuestionEventListeners(currentTopic);
             }, 100);

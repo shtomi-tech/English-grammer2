@@ -576,6 +576,27 @@ function setupSubmenuToggles() {
             }
         });
     }
+    
+    // 仮定法のトグル
+    const subjunctiveToggle = document.getElementById('subjunctive-toggle');
+    const subjunctiveSubmenu = document.getElementById('subjunctive-submenu');
+    const subjunctiveIcon = document.getElementById('subjunctive-icon');
+    
+    if (subjunctiveToggle && subjunctiveSubmenu && subjunctiveIcon) {
+        subjunctiveToggle.addEventListener('click', function() {
+            const isHidden = subjunctiveSubmenu.classList.contains('hidden');
+            
+            if (isHidden) {
+                // サブメニューを表示
+                subjunctiveSubmenu.classList.remove('hidden');
+                subjunctiveIcon.style.transform = 'rotate(180deg)';
+            } else {
+                // サブメニューを非表示
+                subjunctiveSubmenu.classList.add('hidden');
+                subjunctiveIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+    }
 }
 
 // ページ読み込み時の初期化
