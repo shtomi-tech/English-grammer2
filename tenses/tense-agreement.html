@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
+    <style>
+      .apple-card { width: 100% !important; max-width: none !important; }
+      .apple-section-text { width: 100% !important; max-width: none !important; }
+    </style>
 </head>
 <body class="bg-gray-100">
     <!-- ヘッダー -->
@@ -31,8 +35,6 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
 
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
@@ -71,22 +73,6 @@
     <script src="/navigation.js"></script>
     <script src="/examples.js"></script>
     <script>
-        // 学習方法ガイドの読み込みとカスタマイズ
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('../components/learning-guide.html')
-                .then(res => res.text())
-                .then(html => {
-                    document.getElementById('learning-guide-container').innerHTML = html;
-                    // タイトルと説明文をカスタマイズ
-                    document.getElementById('learning-guide-title-text').textContent = '時制の一致の学習方法ガイド';
-                    document.getElementById('learning-guide-step1-desc').textContent = '時制の一致の定義と役割をしっかりと理解しましょう';
-                    document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、時制の一致の使い方を学びましょう';
-                    document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を5回解いてみましょう';
-                    document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で時制の一致がどのように使われているか意識してみましょう';
-                    document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>時制の一致が文の中でどの位置に来るかを意識しましょう';
-                    document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する時制と一緒に：</strong>他の時制との違いも理解しましょう';
-                });
-        });
 
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
@@ -108,3 +94,5 @@
     </script>
 </body>
 </html> 
+
+

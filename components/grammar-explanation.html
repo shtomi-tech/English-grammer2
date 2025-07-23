@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文法説明コンポーネント</title>
+    <style>
+        /* 文法説明コンポーネントのスタイル */
+        .grammar-explanation {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            margin: 20px 0;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .grammar-content {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .grammar-content h3 {
+            color: #007AFF;
+            margin-bottom: 16px;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .grammar-content p {
+            margin-bottom: 12px;
+        }
+
+        .grammar-content code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            color: #e83e8c;
+        }
+
+        .grammar-content ul {
+            margin: 12px 0;
+            padding-left: 20px;
+        }
+
+        .grammar-content li {
+            margin-bottom: 8px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .error {
+            background: #fff5f5;
+            border: 1px solid #fed7d7;
+            border-radius: 8px;
+            padding: 16px;
+            color: #c53030;
+            text-align: center;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e5ea;
+        }
+
+        .nav-button {
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+
+        .nav-button:hover {
+            background: #0056CC;
+        }
+
+        .nav-button:disabled {
+            background: #c7c7cc;
+            cursor: not-allowed;
+        }
+
+        .grammar-index {
+            margin-top: 20px;
+            padding: 16px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .grammar-index h4 {
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .grammar-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .grammar-link {
+            background: #007AFF;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 12px;
+            transition: background-color 0.2s;
+        }
+
+        .grammar-link:hover {
+            background: #0056CC;
+        }
+    </style>
+</head>
+<body>
+    <div class="grammar-explanation">
+        <div id="grammar-content" class="grammar-content">
+            <div class="loading">読み込み中...</div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-button" id="prev-button" onclick="showPreviousGrammar()">前へ</button>
+            <button class="nav-button" id="next-button" onclick="showNextGrammar()">次へ</button>
+        </div>
+        
+        <div class="grammar-index">
+            <h4>📚 文法項目一覧</h4>
+            <div class="grammar-links" id="grammar-links">
+                <!-- 文法項目のリンクがここに表示されます -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let grammarData = {};
+        let currentGrammarIndex = 0;
+        let grammarKeys = [];
+
+        // grammar.jsonを読み込む
+        async function loadGrammarData() {
+            try {
+                const response = await fetch('../grammar.json');
+                if (!response.ok) {
+                    throw new Error('grammar.jsonの読み込みに失敗しました');
+                }
+                grammarData = await response.json();
+                grammarKeys = Object.keys(grammarData);
+                showGrammarIndex();
+                showGrammarByKey('pattern_1'); // デフォルトで第1文型を表示
+            } catch (error) {
+                console.error('grammar.jsonの読み込みエラー:', error);
+                document.getElementById('grammar-content').innerHTML = `
+                    <div class="error">
+                        <h3>データの読み込みに失敗しました</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // 文法項目を表示
+        function showGrammarByKey(key) {
+            if (!grammarData[key]) {
+                document.getElementById('grammar-content').innerHTML = `
+                    <div class="error">
+                        <h3>文法項目が見つかりません</h3>
+                        <p>キー: ${key}</p>
+                    </div>
+                `;
+                return;
+            }
+
+            currentGrammarIndex = grammarKeys.indexOf(key);
+            const content = grammarData[key];
+            
+            // HTMLタグを適切にレンダリング
+            const formattedContent = content
+                .replace(/<code>/g, '<code>')
+                .replace(/<\/code>/g, '</code>')
+                .replace(/\n/g, '<br>');
+
+            document.getElementById('grammar-content').innerHTML = `
+                <h3>${getGrammarTitle(key)}</h3>
+                <div>${formattedContent}</div>
+            `;
+
+            updateNavigation();
+        }
+
+        // 文法項目のタイトルを取得
+        function getGrammarTitle(key) {
+            const titles = {
+                'pattern_1': '第1文型（S+V）',
+                'pattern_2': '第2文型（S+V+C）',
+                'pattern_3': '第3文型（S+V+O）',
+                'pattern_4': '第4文型（S+V+O+O）',
+                'pattern_5': '第5文型（S+V+O+C）',
+                'passive_pattern3': '第3文型の受動態',
+                'passive_pattern4': '第4文型の受動態',
+                'passive_pattern5': '第5文型の受動態'
+            };
+            return titles[key] || key;
+        }
+
+        // 前の文法項目を表示
+        function showPreviousGrammar() {
+            if (currentGrammarIndex > 0) {
+                currentGrammarIndex--;
+                showGrammarByKey(grammarKeys[currentGrammarIndex]);
+            }
+        }
+
+        // 次の文法項目を表示
+        function showNextGrammar() {
+            if (currentGrammarIndex < grammarKeys.length - 1) {
+                currentGrammarIndex++;
+                showGrammarByKey(grammarKeys[currentGrammarIndex]);
+            }
+        }
+
+        // ナビゲーションボタンを更新
+        function updateNavigation() {
+            const prevButton = document.getElementById('prev-button');
+            const nextButton = document.getElementById('next-button');
+            
+            prevButton.disabled = currentGrammarIndex === 0;
+            nextButton.disabled = currentGrammarIndex === grammarKeys.length - 1;
+        }
+
+        // 文法項目のインデックスを表示
+        function showGrammarIndex() {
+            const linksContainer = document.getElementById('grammar-links');
+            const patternKeys = grammarKeys.filter(key => key.startsWith('pattern_') || key.startsWith('passive_'));
+            
+            linksContainer.innerHTML = patternKeys.map(key => 
+                `<a href="#" class="grammar-link" onclick="showGrammarByKey('${key}')">${getGrammarTitle(key)}</a>`
+            ).join('');
+        }
+
+        // 外部から呼び出せる関数
+        window.showGrammarExplanation = function(key) {
+            showGrammarByKey(key);
+        };
+
+        // ページ読み込み時にデータを読み込む
+        document.addEventListener('DOMContentLoaded', loadGrammarData);
+    </script>
+</body>
+</html> 

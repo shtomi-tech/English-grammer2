@@ -1,18 +1,38 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< Updated upstream:phrases/be-to-infinitive.html
     <title>be to 不定詞 - English Learning Hub</title>
+=======
+    <title>制限的・非制限的関係詞 - English Learning Hub</title>
+>>>>>>> Stashed changes:clauses/restrictive-nonrestrictive.html
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
+    <style>
+        /* 制限的・非制限的関係詞ページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
+    </style>
 </head>
 <body class="bg-gray-100">
     <!-- ヘッダー -->
     <header class="apple-header px-6 py-6 mb-8">
         <div class="container mx-auto flex flex-col items-start">
+<<<<<<< Updated upstream:phrases/be-to-infinitive.html
             <h1 class="apple-title">句</h1>
+=======
+            <h1 class="apple-title">節</h1>
+>>>>>>> Stashed changes:clauses/restrictive-nonrestrictive.html
             <p class="apple-sub mt-2">英文法の基礎から学ぼう</p>
         </div>
     </header>
@@ -24,7 +44,11 @@
             <span>></span>
             <a href="../index.html#phrases" class="hover:text-blue-600">句</a>
             <span>></span>
+<<<<<<< Updated upstream:phrases/be-to-infinitive.html
             <span class="text-gray-900">be to 不定詞</span>
+=======
+            <span class="text-gray-900">制限的・非制限的関係詞</span>
+>>>>>>> Stashed changes:clauses/restrictive-nonrestrictive.html
         </div>
     </nav>
 
@@ -34,6 +58,7 @@
             <!-- 学習方法ガイド（共通パーツ） -->
             <div id="learning-guide-container"></div>
 
+<<<<<<< Updated upstream:phrases/be-to-infinitive.html
             <!-- 学習時間計測ストップウォッチ -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title flex items-center">
@@ -109,6 +134,11 @@
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">be to 不定詞</h2>
+=======
+            <!-- 文法説明 -->
+            <div class="apple-card mb-8">
+                <h2 class="apple-card-title">制限的・非制限的関係詞</h2>
+>>>>>>> Stashed changes:clauses/restrictive-nonrestrictive.html
                 <div class="mt-4">
                     <div id="be-to-infinitive-explanation" class="apple-section-text"></div>
                 </div>
@@ -119,13 +149,6 @@
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              fetch('../components/practice-question.html')
-                .then(res => res.text())
-                .then(html => {
-                  document.getElementById('practice-question-container').innerHTML = html;
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -140,18 +163,14 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="/navigation.js"></script>
-    <script src="/examples.js"></script>
+    <script src="../navigation.js"></script>
+    <script src="../examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-                return res.json();
-            })
+            .then(res => res.json())
             .then(data => {
+<<<<<<< Updated upstream:phrases/be-to-infinitive.html
                 if (data.be_to_infinitive) {
                     document.getElementById('be-to-infinitive-explanation').innerHTML = data.be_to_infinitive.replace(/\n/g, '<br>');
                 } else {
@@ -169,8 +188,19 @@
             // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
                 setupWritingQuestionEventListeners("be_to_infinitive");
+=======
+                document.getElementById('restrictive-nonrestrictive-explanation').innerHTML = data.restrictive_nonrestrictive.replace(/\n/g, '<br>');
+            });
+        document.addEventListener('DOMContentLoaded', function() {
+            renderNavigation("前へ", "relative-pronoun.html", "制限的・非制限的関係詞", "次へ", "subordinating-conjunction.html");
+            renderExamples("restrictive_nonrestrictive", "examples-container");
+            setTimeout(() => {
+                setupWritingQuestionEventListeners("restrictive_nonrestrictive");
+>>>>>>> Stashed changes:clauses/restrictive-nonrestrictive.html
             }, 100);
         });
     </script>
 </body>
 </html> 
+
+

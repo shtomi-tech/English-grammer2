@@ -1,0 +1,806 @@
+/* Apple Design System - Human Interface Guidelines 準拠 */
+
+/* ========================================
+   1. カラーシステム
+   ======================================== */
+:root {
+  /* プライマリカラー */
+  --primary-blue: #007AFF;
+  --primary-blue-dark: #0056CC;
+  --primary-blue-light: #4DA3FF;
+  
+  /* セカンダリカラー */
+  --secondary-gray: #8E8E93;
+  --secondary-gray-dark: #636366;
+  --secondary-gray-light: #C7C7CC;
+  
+  /* アクセントカラー */
+  --accent-green: #34C759;
+  --accent-orange: #FF9500;
+  --accent-red: #FF3B30;
+  --accent-purple: #AF52DE;
+  
+  /* セマンティックカラー */
+  --success: #34C759;
+  --success-bg: rgba(52, 199, 89, 0.1);
+  --warning: #FF9500;
+  --warning-bg: rgba(255, 149, 0, 0.1);
+  --error: #FF3B30;
+  --error-bg: rgba(255, 59, 48, 0.1);
+  --info: #007AFF;
+  --info-bg: rgba(0, 122, 255, 0.1);
+  
+  /* ニュートラルカラー */
+  --gray-50: #F2F2F7;
+  --gray-100: #E5E5EA;
+  --gray-200: #D1D1D6;
+  --gray-300: #C7C7CC;
+  --gray-400: #AEAEB2;
+  --gray-500: #8E8E93;
+  --gray-600: #636366;
+  --gray-700: #48484A;
+  --gray-800: #3A3A3C;
+  --gray-900: #1C1C1E;
+  
+  /* 背景色 */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F2F2F7;
+  --bg-tertiary: #E5E5EA;
+  
+  /* テキスト色 */
+  --text-primary: #000000;
+  --text-secondary: #3C3C43;
+  --text-tertiary: #8E8E93;
+  --text-quaternary: #C7C7CC;
+}
+
+/* ========================================
+   2. タイポグラフィ
+   ======================================== */
+:root {
+  /* フォントファミリー */
+  --font-family-primary: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-secondary: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  
+  /* フォントサイズ */
+  --text-display-large: 3.5rem;    /* 56px */
+  --text-display-medium: 2.75rem;  /* 44px */
+  --text-display-small: 2.25rem;   /* 36px */
+  --text-headline-large: 2rem;     /* 32px */
+  --text-headline-medium: 1.75rem; /* 28px */
+  --text-headline-small: 1.5rem;   /* 24px */
+  --text-title-large: 1.375rem;    /* 22px */
+  --text-title-medium: 1.25rem;    /* 20px */
+  --text-title-small: 1.125rem;    /* 18px */
+  --text-body-large: 1.125rem;     /* 18px */
+  --text-body-medium: 1rem;        /* 16px */
+  --text-body-small: 0.875rem;     /* 14px */
+  --text-label-large: 0.875rem;    /* 14px */
+  --text-label-medium: 0.8125rem;  /* 13px */
+  --text-label-small: 0.75rem;     /* 12px */
+  
+  /* フォントウェイト */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-heavy: 800;
+  
+  /* ライン高 */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.4;
+  --line-height-relaxed: 1.6;
+  --line-height-loose: 1.8;
+}
+
+/* ========================================
+   3. 余白・間隔
+   ======================================== */
+:root {
+  /* スペーシングスケール */
+  --space-0: 0;
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  
+  /* レイアウトスペーシング */
+  --container-padding: var(--space-4);
+  --container-padding-large: var(--space-6);
+  --section-spacing: var(--space-8);
+  --section-spacing-large: var(--space-12);
+  --component-spacing: var(--space-4);
+  --component-spacing-small: var(--space-2);
+  --component-spacing-large: var(--space-6);
+}
+
+/* ========================================
+   4. 角丸
+   ======================================== */
+:root {
+  /* ボーダーラディウス */
+  --radius-none: 0;
+  --radius-small: 0.25rem;    /* 4px */
+  --radius-medium: 0.5rem;    /* 8px */
+  --radius-large: 0.75rem;    /* 12px */
+  --radius-xl: 1rem;          /* 16px */
+  --radius-2xl: 1.5rem;       /* 24px */
+  --radius-3xl: 2rem;         /* 32px */
+  --radius-full: 9999px;
+  
+  /* 用途別角丸 */
+  --radius-button: var(--radius-medium);
+  --radius-button-large: var(--radius-large);
+  --radius-card: var(--radius-large);
+  --radius-card-large: var(--radius-xl);
+  --radius-input: var(--radius-medium);
+  --radius-modal: var(--radius-xl);
+}
+
+/* ========================================
+   5. 影の効果
+   ======================================== */
+:root {
+  /* シャドウスケール */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm-colored: 0 1px 2px 0 rgba(0, 122, 255, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md-colored: 0 4px 6px -1px rgba(0, 122, 255, 0.1), 0 2px 4px -1px rgba(0, 122, 255, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg-colored: 0 10px 15px -3px rgba(0, 122, 255, 0.1), 0 4px 6px -2px rgba(0, 122, 255, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-xl-colored: 0 20px 25px -5px rgba(0, 122, 255, 0.1), 0 10px 10px -5px rgba(0, 122, 255, 0.04);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  
+  /* 用途別シャドウ */
+  --shadow-card: var(--shadow-md);
+  --shadow-card-hover: var(--shadow-lg);
+  --shadow-button: var(--shadow-sm);
+  --shadow-button-hover: var(--shadow-md);
+  --shadow-modal: var(--shadow-xl);
+  --shadow-dropdown: var(--shadow-lg);
+}
+
+/* ========================================
+   6. アニメーション
+   ======================================== */
+:root {
+  /* トランジション */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.2s ease;
+  --transition-slow: 0.3s ease;
+  
+  /* イージング */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================
+   7. レスポンシブデザイン
+   ======================================== */
+:root {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* ========================================
+   8. ベーススタイル
+   ======================================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family-primary);
+  font-size: var(--text-body-medium);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   9. ボタンコンポーネント
+   ======================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-button);
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.3);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* プライマリボタン */
+.btn-primary {
+  background: var(--primary-blue);
+  color: white;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-body-medium);
+  box-shadow: var(--shadow-button);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-blue-dark);
+  box-shadow: var(--shadow-button-hover);
+  transform: translateY(-1px);
+}
+
+/* セカンダリボタン */
+.btn-secondary {
+  background: transparent;
+  color: var(--primary-blue);
+  border: 1px solid var(--primary-blue);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-body-medium);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--primary-blue);
+  color: white;
+}
+
+/* テキストボタン */
+.btn-text {
+  background: transparent;
+  color: var(--primary-blue);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-body-medium);
+}
+
+.btn-text:hover:not(:disabled) {
+  background: rgba(0, 122, 255, 0.1);
+}
+
+/* ボタンサイズ */
+.btn-small {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-body-small);
+}
+
+.btn-large {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--text-body-large);
+}
+
+/* ========================================
+   10. カードコンポーネント
+   ======================================== */
+.card {
+  background: var(--bg-primary);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-6);
+  transition: all var(--transition-normal);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  margin-bottom: var(--space-4);
+}
+
+.card-title {
+  font-size: var(--text-title-medium);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  line-height: var(--line-height-tight);
+}
+
+.card-subtitle {
+  font-size: var(--text-body-medium);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.card-content {
+  color: var(--text-secondary);
+  line-height: var(--line-height-normal);
+}
+
+.card-footer {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--gray-200);
+}
+
+/* ========================================
+   11. 入力フィールドコンポーネント
+   ======================================== */
+.input {
+  background: var(--bg-primary);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-input);
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-family-primary);
+  font-size: var(--text-body-medium);
+  color: var(--text-primary);
+  transition: all var(--transition-normal);
+  width: 100%;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+.input:disabled {
+  background: var(--bg-secondary);
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+}
+
+.input-error {
+  border-color: var(--error);
+}
+
+.input-error:focus {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.1);
+}
+
+.input::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* 入力グループ */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.input-label {
+  font-size: var(--text-label-medium);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+}
+
+.input-error-message {
+  font-size: var(--text-label-small);
+  color: var(--error);
+  margin-top: var(--space-1);
+}
+
+/* ========================================
+   12. アラートコンポーネント
+   ======================================== */
+.alert {
+  padding: var(--space-4);
+  border-radius: var(--radius-medium);
+  margin-bottom: var(--space-4);
+  border-left: 4px solid;
+  font-size: var(--text-body-medium);
+  line-height: var(--line-height-normal);
+}
+
+.alert-success {
+  background: var(--success-bg);
+  border-left-color: var(--success);
+  color: var(--success);
+}
+
+.alert-warning {
+  background: var(--warning-bg);
+  border-left-color: var(--warning);
+  color: var(--warning);
+}
+
+.alert-error {
+  background: var(--error-bg);
+  border-left-color: var(--error);
+  color: var(--error);
+}
+
+.alert-info {
+  background: var(--info-bg);
+  border-left-color: var(--info);
+  color: var(--info);
+}
+
+/* ========================================
+   13. バッジコンポーネント
+   ======================================== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: var(--text-label-small);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+}
+
+.badge-primary {
+  background: var(--primary-blue);
+  color: white;
+}
+
+.badge-secondary {
+  background: var(--gray-200);
+  color: var(--text-secondary);
+}
+
+.badge-success {
+  background: var(--success);
+  color: white;
+}
+
+.badge-warning {
+  background: var(--warning);
+  color: white;
+}
+
+.badge-error {
+  background: var(--error);
+  color: white;
+}
+
+/* ========================================
+   14. モーダルコンポーネント
+   ======================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  background: var(--bg-primary);
+  border-radius: var(--radius-modal);
+  box-shadow: var(--shadow-modal);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  animation: modalSlideIn 0.3s var(--ease-out);
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-header {
+  padding: var(--space-6);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.modal-title {
+  font-size: var(--text-title-large);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.modal-content {
+  padding: var(--space-6);
+}
+
+.modal-footer {
+  padding: var(--space-6);
+  border-top: 1px solid var(--gray-200);
+  display: flex;
+  gap: var(--space-3);
+  justify-content: flex-end;
+}
+
+/* ========================================
+   15. ナビゲーションコンポーネント
+   ======================================== */
+.nav {
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--gray-200);
+  padding: var(--space-4) 0;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  font-size: var(--text-title-medium);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.nav-menu {
+  display: flex;
+  gap: var(--space-6);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-normal);
+}
+
+.nav-link:hover {
+  color: var(--primary-blue);
+}
+
+.nav-link.active {
+  color: var(--primary-blue);
+}
+
+/* ========================================
+   16. レイアウトユーティリティ
+   ======================================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.container-fluid {
+  width: 100%;
+  padding: 0 var(--space-4);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 calc(-1 * var(--space-2));
+}
+
+.col {
+  flex: 1;
+  padding: 0 var(--space-2);
+}
+
+/* グリッドシステム */
+.col-1 { flex: 0 0 8.333333%; }
+.col-2 { flex: 0 0 16.666667%; }
+.col-3 { flex: 0 0 25%; }
+.col-4 { flex: 0 0 33.333333%; }
+.col-5 { flex: 0 0 41.666667%; }
+.col-6 { flex: 0 0 50%; }
+.col-7 { flex: 0 0 58.333333%; }
+.col-8 { flex: 0 0 66.666667%; }
+.col-9 { flex: 0 0 75%; }
+.col-10 { flex: 0 0 83.333333%; }
+.col-11 { flex: 0 0 91.666667%; }
+.col-12 { flex: 0 0 100%; }
+
+/* ========================================
+   17. ユーティリティクラス
+   ======================================== */
+/* スペーシング */
+.m-0 { margin: 0; }
+.m-1 { margin: var(--space-1); }
+.m-2 { margin: var(--space-2); }
+.m-3 { margin: var(--space-3); }
+.m-4 { margin: var(--space-4); }
+.m-5 { margin: var(--space-5); }
+.m-6 { margin: var(--space-6); }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--space-1); }
+.mt-2 { margin-top: var(--space-2); }
+.mt-3 { margin-top: var(--space-3); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-5 { margin-top: var(--space-5); }
+.mt-6 { margin-top: var(--space-6); }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--space-1); }
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-3 { margin-bottom: var(--space-3); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-5 { margin-bottom: var(--space-5); }
+.mb-6 { margin-bottom: var(--space-6); }
+
+.p-0 { padding: 0; }
+.p-1 { padding: var(--space-1); }
+.p-2 { padding: var(--space-2); }
+.p-3 { padding: var(--space-3); }
+.p-4 { padding: var(--space-4); }
+.p-5 { padding: var(--space-5); }
+.p-6 { padding: var(--space-6); }
+
+/* テキスト */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-error { color: var(--error); }
+.text-info { color: var(--info); }
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.text-small { font-size: var(--text-body-small); }
+.text-medium { font-size: var(--text-body-medium); }
+.text-large { font-size: var(--text-body-large); }
+
+.font-regular { font-weight: var(--font-weight-regular); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+
+/* ディスプレイ */
+.d-block { display: block; }
+.d-inline { display: inline; }
+.d-inline-block { display: inline-block; }
+.d-flex { display: flex; }
+.d-inline-flex { display: inline-flex; }
+.d-none { display: none; }
+
+/* フレックス */
+.justify-start { justify-content: flex-start; }
+.justify-end { justify-content: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.items-center { align-items: center; }
+.items-baseline { align-items: baseline; }
+.items-stretch { align-items: stretch; }
+
+/* ========================================
+   18. アクセシビリティ
+   ======================================== */
+/* フォーカス表示 */
+.focus-visible {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+/* スクリーンリーダー専用 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 高コントラストモード対応 */
+@media (prefers-contrast: high) {
+  :root {
+    --text-primary: #000000;
+    --text-secondary: #1C1C1E;
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F2F2F7;
+  }
+}
+
+/* モーション軽減 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========================================
+   19. レスポンシブ対応
+   ======================================== */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+  
+  .modal {
+    margin: var(--space-4);
+    max-width: calc(100vw - var(--space-8));
+  }
+  
+  .row {
+    flex-direction: column;
+  }
+  
+  .col {
+    margin-bottom: var(--space-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-3);
+  }
+  
+  .card {
+    padding: var(--space-4);
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}
+
+/* ========================================
+   20. ダークモード対応
+   ======================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #000000;
+    --bg-secondary: #1C1C1E;
+    --bg-tertiary: #2C2C2E;
+    --text-primary: #FFFFFF;
+    --text-secondary: #EBEBF5;
+    --text-tertiary: #EBEBF599;
+    --text-quaternary: #EBEBF54D;
+    --gray-50: #1C1C1E;
+    --gray-100: #2C2C2E;
+    --gray-200: #3A3A3C;
+    --gray-300: #48484A;
+    --gray-400: #636366;
+    --gray-500: #8E8E93;
+    --gray-600: #AEAEB2;
+    --gray-700: #C7C7CC;
+    --gray-800: #D1D1D6;
+    --gray-900: #E5E5EA;
+  }
+} 

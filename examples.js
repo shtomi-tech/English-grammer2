@@ -1,4 +1,4 @@
-// examples.js
+﻿// examples.js
 
 // 例文データ（例：比較級ページ用）
 const examplesData = {
@@ -2426,3 +2426,4 @@ function renderExamples(topic, containerId) {
   html += `</div></div>`;
   document.getElementById(containerId).innerHTML = html;
 } 
+

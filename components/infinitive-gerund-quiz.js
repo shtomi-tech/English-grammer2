@@ -1,4 +1,4 @@
-(function() {
+﻿(function() {
   // クイズデータ
   const quizData = [
     {
@@ -280,3 +280,4 @@
 
   renderQuestion(current);
 })(); 
+

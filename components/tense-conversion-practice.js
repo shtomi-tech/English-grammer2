@@ -1,4 +1,4 @@
-// 時制変換問題のデータ（動詞穴埋め形式＋日本語訳）
+﻿// 時制変換問題のデータ（動詞穴埋め形式＋日本語訳）
 const tenseConversionProblems = [
     // 過去形への変換
     {
@@ -390,3 +390,4 @@ function initTensePractice() {
 // DOMContentLoadedとページ読み込み完了の両方で初期化を試行
 document.addEventListener('DOMContentLoaded', initTensePractice);
 window.addEventListener('load', initTensePractice); 
+

@@ -1,5 +1,6 @@
-/* フューチャーライクなデザイン */
+/* 新しい配色配分 */
 :root {
+<<<<<<< Updated upstream
     --neon-blue: #00d4ff;
     --neon-purple: #8b5cf6;
     --neon-pink: #ec4899;
@@ -9,13 +10,23 @@
     --glass-border: rgba(255, 255, 255, 0.2);
     --text-primary: #ffffff;
     --text-secondary: #a0a0a0;
+=======
+    --army-blue: #101841;
+    --coolish-blue: #70acce;
+    --maldive-blue: #144da0;
+    --white-bg: #ffffff;
+    --glass-bg: rgba(16, 24, 65, 0.1);
+    --glass-border: rgba(16, 24, 65, 0.2);
+    --text-primary: #101841;
+    --text-secondary: #2d3748;
+>>>>>>> Stashed changes
 }
 
 body {
     font-family: 'SF Pro Display', 'Inter', 'Noto Sans JP', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    background: var(--white-bg);
     color: var(--text-primary);
     position: relative;
     overflow-x: hidden;
@@ -30,9 +41,9 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 20% 80%, rgba(16, 24, 65, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(112, 172, 206, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(20, 77, 160, 0.02) 0%, transparent 50%);
     animation: backgroundShift 20s ease-in-out infinite;
     z-index: -1;
 }
@@ -45,12 +56,12 @@ body::before {
 }
 
 .apple-header {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
     backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     color: var(--text-primary);
     box-shadow: 
-        0 8px 32px rgba(0, 212, 255, 0.1),
+        0 8px 32px rgba(16, 24, 65, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
     border-radius: 0 0 30px 30px;
     position: relative;
@@ -64,7 +75,7 @@ body::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(16, 24, 65, 0.1), transparent);
     animation: shimmer 3s infinite;
 }
 
@@ -77,17 +88,17 @@ body::before {
     font-size: 2.5rem;
     font-weight: 700;
     letter-spacing: -0.02em;
-    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    background: linear-gradient(135deg, var(--coolish-blue), var(--maldive-blue));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+    text-shadow: 0 0 30px rgba(16, 24, 65, 0.3);
     animation: titleGlow 2s ease-in-out infinite alternate;
 }
 
 @keyframes titleGlow {
-    0% { filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3)); }
-    100% { filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.6)); }
+    0% { filter: drop-shadow(0 0 10px rgba(16, 24, 65, 0.3)); }
+    100% { filter: drop-shadow(0 0 20px rgba(16, 24, 65, 0.6)); }
 }
 
 .apple-sub {
@@ -97,13 +108,13 @@ body::before {
 }
 
 .apple-nav-btn {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(16, 24, 65, 0.1) 0%, rgba(20, 77, 160, 0.1) 100%);
     backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     color: var(--text-primary);
     border-radius: 20px;
     box-shadow: 
-        0 4px 20px rgba(0, 212, 255, 0.1),
+        0 4px 20px rgba(16, 24, 65, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
     font-size: 1.1rem;
     font-weight: 600;
@@ -122,7 +133,7 @@ body::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(16, 24, 65, 0.2), transparent);
     transition: left 0.5s;
 }
 
@@ -131,21 +142,21 @@ body::before {
 }
 
 .apple-nav-btn:hover, .apple-nav-btn:focus {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+    background: linear-gradient(135deg, rgba(16, 24, 65, 0.2) 0%, rgba(20, 77, 160, 0.2) 100%);
     box-shadow: 
-        0 8px 30px rgba(0, 212, 255, 0.2),
-        0 0 0 1px rgba(0, 212, 255, 0.3);
+        0 8px 30px rgba(16, 24, 65, 0.2),
+        0 0 0 1px rgba(16, 24, 65, 0.3);
     transform: translateY(-3px) scale(1.05);
-    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    text-shadow: 0 0 10px rgba(16, 24, 65, 0.5);
 }
 
 .apple-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
     backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 25px;
     box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 8px 32px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
     padding: 2.5rem;
     margin-bottom: 2rem;
@@ -161,7 +172,7 @@ body::before {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+    background: linear-gradient(90deg, transparent, var(--maldive-blue), transparent);
     animation: borderGlow 2s ease-in-out infinite;
 }
 
@@ -173,7 +184,7 @@ body::before {
 .apple-card:hover {
     transform: translateY(-5px);
     box-shadow: 
-        0 15px 40px rgba(0, 212, 255, 0.2),
+        0 15px 40px rgba(16, 24, 65, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
@@ -183,7 +194,7 @@ body::before {
     color: var(--text-primary);
     margin-bottom: 1.5rem;
     letter-spacing: -0.02em;
-    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    background: linear-gradient(135deg, var(--maldive-blue), var(--coolish-blue));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -202,7 +213,7 @@ body::before {
     color: var(--text-primary);
     margin: 2rem 0 1rem 0;
     letter-spacing: -0.01em;
-    background: linear-gradient(135deg, var(--neon-blue), var(--neon-pink));
+    background: linear-gradient(135deg, var(--maldive-blue), var(--coolish-blue));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -218,21 +229,21 @@ body::before {
 /* 例文内の英語の部分を強調するスタイル */
 .apple-section-text code,
 .apple-section-text .example {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-    border: 1px solid rgba(0, 212, 255, 0.3);
+    background: linear-gradient(135deg, rgba(16, 24, 65, 0.1) 0%, rgba(20, 77, 160, 0.1) 100%);
+    border: 1px solid rgba(16, 24, 65, 0.3);
     border-radius: 6px;
     padding: 0.25rem 0.5rem;
     font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-    color: var(--neon-blue);
+    color: var(--maldive-blue);
     font-weight: 500;
-    text-shadow: 0 0 5px rgba(0, 212, 255, 0.3);
+    text-shadow: 0 0 5px rgba(16, 24, 65, 0.3);
 }
 
 /* 例文の見出しを強調 */
 .apple-section-text strong {
-    color: var(--neon-purple);
+    color: var(--coolish-blue);
     font-weight: 600;
-    text-shadow: 0 0 5px rgba(139, 92, 246, 0.3);
+    text-shadow: 0 0 5px rgba(112, 172, 206, 0.3);
 }
 
 /* 例文内の日本語訳を区別 */
@@ -243,7 +254,7 @@ body::before {
 
 /* 大学受験向け問題情報表示 */
 .exam-info {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(16, 24, 65, 0.1) 0%, rgba(20, 77, 160, 0.1) 100%);
     backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     border-radius: 12px;
@@ -265,7 +276,7 @@ body::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(16, 24, 65, 0.1), transparent);
     animation: examInfoShimmer 2s ease-in-out infinite;
 }
 
@@ -295,7 +306,7 @@ body::before {
 }
 
 .difficulty-btn {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
     backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     color: var(--text-secondary);
@@ -317,7 +328,7 @@ body::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(49, 130, 206, 0.2), transparent);
     transition: left 0.5s;
 }
 
@@ -326,20 +337,20 @@ body::before {
 }
 
 .difficulty-btn:hover {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
-    border-color: rgba(0, 212, 255, 0.3);
+    background: linear-gradient(135deg, rgba(16, 24, 65, 0.15) 0%, rgba(20, 77, 160, 0.15) 100%);
+    border-color: rgba(16, 24, 65, 0.3);
     color: var(--text-primary);
     transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(16, 24, 65, 0.2);
 }
 
 .difficulty-btn.active {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
-    border-color: rgba(0, 212, 255, 0.5);
+    background: linear-gradient(135deg, rgba(16, 24, 65, 0.3) 0%, rgba(20, 77, 160, 0.3) 100%);
+    border-color: rgba(16, 24, 65, 0.5);
     color: var(--text-primary);
     box-shadow: 
-        0 4px 15px rgba(0, 212, 255, 0.3),
-        0 0 0 1px rgba(0, 212, 255, 0.4);
+        0 4px 15px rgba(16, 24, 65, 0.3),
+        0 0 0 1px rgba(16, 24, 65, 0.4);
     transform: translateY(-1px);
 }
 
@@ -369,7 +380,7 @@ body::before {
 }
 
 .apple-ai-section {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(16, 24, 65, 0.05) 0%, rgba(20, 77, 160, 0.05) 100%);
     backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
@@ -387,8 +398,8 @@ body::before {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 20% 80%, rgba(16, 24, 65, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(20, 77, 160, 0.1) 0%, transparent 50%);
     animation: rotate 20s linear infinite;
     z-index: -1;
 }
@@ -401,19 +412,19 @@ body::before {
 .apple-ai-title {
     font-size: 1.3rem;
     font-weight: 600;
-    color: var(--neon-blue);
+    color: var(--coolish-blue);
     margin-bottom: 1rem;
-    text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+    text-shadow: 0 0 10px rgba(16, 24, 65, 0.3);
 }
 
 .apple-ai-btn {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+    background: linear-gradient(135deg, rgba(16, 24, 65, 0.2) 0%, rgba(20, 77, 160, 0.2) 100%);
     backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     color: var(--text-primary);
     border-radius: 15px;
     box-shadow: 
-        0 4px 20px rgba(0, 212, 255, 0.2),
+        0 4px 20px rgba(16, 24, 65, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
     font-size: 1rem;
     font-weight: 600;
@@ -432,7 +443,7 @@ body::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(16, 24, 65, 0.3), transparent);
     transition: left 0.5s;
 }
 
@@ -441,10 +452,10 @@ body::before {
 }
 
 .apple-ai-btn:hover, .apple-ai-btn:focus {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
+    background: linear-gradient(135deg, rgba(16, 24, 65, 0.3) 0%, rgba(20, 77, 160, 0.3) 100%);
     box-shadow: 
-        0 8px 30px rgba(0, 212, 255, 0.3),
-        0 0 0 1px rgba(0, 212, 255, 0.4);
+        0 8px 30px rgba(16, 24, 65, 0.3),
+        0 0 0 1px rgba(16, 24, 65, 0.4);
     transform: translateY(-2px) scale(1.02);
 }
 
@@ -455,7 +466,7 @@ body::before {
 }
 
 .apple-question-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
     backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border);
     border-radius: 18px;
@@ -481,13 +492,13 @@ body::before {
 }
 
 .apple-option-btn {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
     backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     color: var(--text-primary);
     border-radius: 15px;
     box-shadow: 
-        0 4px 15px rgba(0, 0, 0, 0.2),
+        0 4px 15px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
     font-size: 1rem;
     font-weight: 500;
@@ -507,7 +518,7 @@ body::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(49, 130, 206, 0.2), transparent);
     transition: left 0.5s;
 }
 
@@ -516,10 +527,10 @@ body::before {
 }
 
 .apple-option-btn:hover {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+    background: linear-gradient(135deg, rgba(49, 130, 206, 0.15) 0%, rgba(99, 179, 237, 0.15) 100%);
     box-shadow: 
-        0 6px 25px rgba(0, 212, 255, 0.2),
-        0 0 0 1px rgba(0, 212, 255, 0.3);
+        0 6px 25px rgba(49, 130, 206, 0.2),
+        0 0 0 1px rgba(49, 130, 206, 0.3);
     transform: translateY(-2px);
 }
 
@@ -553,7 +564,7 @@ body::before {
 }
 
 .apple-feedback {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
     backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border);
     border-radius: 15px;
@@ -562,7 +573,7 @@ body::before {
     font-size: 1rem;
     line-height: 1.6;
     color: var(--text-primary);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
@@ -595,7 +606,7 @@ body::before {
     width: 40px;
     height: 40px;
     border: 3px solid var(--glass-border);
-    border-top: 3px solid var(--neon-blue);
+    border-top: 3px solid var(--coolish-blue);
     border-radius: 50%;
     animation: apple-spin 1s linear infinite;
     margin-bottom: 1rem;
@@ -647,17 +658,17 @@ body::before {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    background: linear-gradient(135deg, var(--maldive-blue), var(--coolish-blue));
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+    background: linear-gradient(135deg, var(--coolish-blue), var(--army-blue));
 }
 
 /* 穴埋め問題用スタイル */
 .apple-select {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
     backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     color: var(--text-primary);
@@ -672,17 +683,17 @@ body::before {
 }
 
 .apple-select:focus {
-    border-color: var(--neon-blue);
-    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+    border-color: var(--maldive-blue);
+    box-shadow: 0 0 0 2px rgba(16, 24, 65, 0.2);
 }
 
 .apple-select option {
-    background: var(--dark-bg);
+    background: var(--white-bg);
     color: var(--text-primary);
 }
 
 .apple-input {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
     backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     color: var(--text-primary);
@@ -697,8 +708,8 @@ body::before {
 }
 
 .apple-input:focus {
-    border-color: var(--neon-blue);
-    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+    border-color: var(--maldive-blue);
+    box-shadow: 0 0 0 2px rgba(16, 24, 65, 0.2);
 }
 
 .apple-input.correct {
@@ -725,18 +736,18 @@ body::before {
     display: inline-block;
     min-width: 120px;
     height: 40px;
-    border: 2px dashed var(--neon-blue);
+    border: 2px dashed var(--maldive-blue);
     border-radius: 8px;
     margin: 0 8px;
-    background: rgba(0, 212, 255, 0.1);
+    background: rgba(16, 24, 65, 0.1);
     position: relative;
     transition: all 0.3s ease;
 }
 
 .fill-blank-blank:hover {
-    border-color: var(--neon-purple);
-    background: rgba(139, 92, 246, 0.1);
-    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+    border-color: var(--coolish-blue);
+    background: rgba(112, 172, 206, 0.1);
+    box-shadow: 0 0 15px rgba(112, 172, 206, 0.3);
 }
 
 /* レスポンシブ対応 */
@@ -765,27 +776,27 @@ body::before {
     line-height: 1.2;
     margin: 0 auto;
     animation: logoGlow 3s ease-in-out infinite alternate;
-    filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.3));
+    filter: drop-shadow(0 0 20px rgba(16, 24, 65, 0.3));
     transition: all 0.3s ease;
 }
 
 .ascii-logo:hover {
-    filter: drop-shadow(0 0 30px rgba(255, 107, 53, 0.6));
+    filter: drop-shadow(0 0 30px rgba(16, 24, 65, 0.6));
     transform: scale(1.02);
 }
 
 @keyframes logoGlow {
     0% {
         text-shadow: 
-            0 0 10px rgba(255, 107, 53, 0.5),
-            0 0 20px rgba(255, 107, 53, 0.3),
-            0 0 30px rgba(255, 107, 53, 0.1);
+            0 0 10px rgba(16, 24, 65, 0.5),
+            0 0 20px rgba(16, 24, 65, 0.3),
+            0 0 30px rgba(16, 24, 65, 0.1);
     }
     100% {
         text-shadow: 
-            0 0 15px rgba(255, 107, 53, 0.7),
-            0 0 25px rgba(255, 107, 53, 0.5),
-            0 0 35px rgba(255, 107, 53, 0.3);
+            0 0 15px rgba(16, 24, 65, 0.7),
+            0 0 25px rgba(16, 24, 65, 0.5),
+            0 0 35px rgba(16, 24, 65, 0.3);
     }
 }
 
@@ -805,13 +816,13 @@ body::before {
 }
 
 #generateQuestion, .main-generate-btn {
-    background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+    background: linear-gradient(90deg, var(--maldive-blue) 0%, var(--coolish-blue) 100%);
     color: #fff;
     font-size: 1.2rem;
     font-weight: bold;
     border: none;
     border-radius: 9999px;
-    box-shadow: 0 4px 20px rgba(56,189,248,0.15), 0 1.5px 4px rgba(37,99,235,0.12);
+    box-shadow: 0 4px 20px rgba(16,24,65,0.15), 0 1.5px 4px rgba(16,24,65,0.12);
     padding: 1rem 2.5rem;
     cursor: pointer;
     transition: transform 0.15s, box-shadow 0.15s, background 0.3s;
@@ -819,19 +830,19 @@ body::before {
     margin-bottom: 0.5rem;
 }
 #generateQuestion:hover, .main-generate-btn:hover {
-    background: linear-gradient(90deg, #1d4ed8 0%, #0ea5e9 100%);
+    background: linear-gradient(90deg, var(--army-blue) 0%, var(--maldive-blue) 100%);
     transform: scale(1.06) translateY(-2px);
-    box-shadow: 0 8px 32px rgba(56,189,248,0.25), 0 2px 8px rgba(37,99,235,0.18);
+    box-shadow: 0 8px 32px rgba(16,24,65,0.25), 0 2px 8px rgba(16,24,65,0.18);
 }
 
 #submitAnswer, .main-submit-btn {
-    background: linear-gradient(90deg, #22c55e 0%, #16a34a 100%);
+    background: linear-gradient(90deg, var(--coolish-blue) 0%, var(--maldive-blue) 100%);
     color: #fff;
     font-size: 1.2rem;
     font-weight: bold;
     border: none;
     border-radius: 9999px;
-    box-shadow: 0 4px 20px rgba(34,197,94,0.15), 0 1.5px 4px rgba(22,163,74,0.12);
+    box-shadow: 0 4px 20px rgba(112,172,206,0.15), 0 1.5px 4px rgba(112,172,206,0.12);
     padding: 1rem 2.5rem;
     cursor: pointer;
     transition: transform 0.15s, box-shadow 0.15s, background 0.3s;
@@ -839,16 +850,16 @@ body::before {
     margin-bottom: 0.5rem;
 }
 #submitAnswer:hover, .main-submit-btn:hover {
-    background: linear-gradient(90deg, #16a34a 0%, #22d3ee 100%);
+    background: linear-gradient(90deg, var(--maldive-blue) 0%, var(--army-blue) 100%);
     transform: scale(1.06) translateY(-2px);
-    box-shadow: 0 8px 32px rgba(34,197,94,0.25), 0 2px 8px rgba(22,163,74,0.18);
+    box-shadow: 0 8px 32px rgba(112,172,206,0.25), 0 2px 8px rgba(112,172,206,0.18);
 }
 
 /* 学習方法ガイド専用背景ラッパー */
 .learning-guide-bg {
-  background: linear-gradient(135deg, #232946 0%, #3e497a 50%, #a7c7e7 100%);
+  background: linear-gradient(135deg, var(--army-blue) 0%, var(--maldive-blue) 50%, var(--coolish-blue) 100%);
   border-radius: 32px;
-  box-shadow: 0 8px 40px 0 rgba(0,0,0,0.18), 0 1.5px 8px 0 rgba(80,80,160,0.08);
+  box-shadow: 0 8px 40px 0 rgba(16,24,65,0.18), 0 1.5px 8px 0 rgba(16,24,65,0.08);
   margin-bottom: 2.5rem;
   margin-top: 0.5rem;
   padding-top: 2.5rem;

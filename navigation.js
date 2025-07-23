@@ -1,4 +1,4 @@
-// navigation.js
+﻿// navigation.js
 function renderNavigation(prevLabel, prevUrl, centerLabel, nextLabel, nextUrl) {
   const navHtml = `
     <div class="apple-card flex justify-between items-center mt-8 px-8 py-4 rounded-2xl shadow-lg bg-gradient-to-br from-blue-900/60 to-blue-700/40">
@@ -9,3 +9,4 @@ function renderNavigation(prevLabel, prevUrl, centerLabel, nextLabel, nextUrl) {
   `;
   document.getElementById('nav-placeholder').innerHTML = navHtml;
 } 
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
+    <style>
+      .apple-card { width: 100% !important; max-width: none !important; }
+      .apple-section-text { width: 100% !important; max-width: none !important; }
+    </style>
 </head>
 <body class="bg-gray-100">
     <!-- ヘッダー -->
@@ -35,53 +39,10 @@
             <div id="learning-guide-container"></div>
 
             <!-- 学習時間計測ストップウォッチ -->
-            <div class="apple-card mb-8">
-                <h2 class="apple-card-title flex items-center">
-                    <svg class="w-6 h-6 mr-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    学習時間を計測しよう
-                </h2>
-                <div class="flex flex-col items-center">
-                    <div id="timer-display" class="text-5xl font-mono font-bold text-blue-400 bg-white px-8 py-4 rounded-xl shadow mb-6 border-2 border-blue-100">
-                        00:00:00
-                    </div>
-                    <div class="flex space-x-4">
-                        <button id="start-timer" class="transition bg-gradient-to-r from-green-200 to-blue-200 hover:from-green-300 hover:to-blue-300 text-blue-800 font-bold py-2 px-6 rounded-full shadow-md hover:scale-105 duration-150">スタート</button>
-                        <button id="stop-timer" class="transition bg-gradient-to-r from-pink-200 to-red-200 hover:from-pink-300 hover:to-red-300 text-red-700 font-bold py-2 px-6 rounded-full shadow-md hover:scale-105 duration-150">ストップ</button>
-                        <button id="reset-timer" class="transition bg-gradient-to-r from-gray-200 to-gray-300 hover:from-gray-300 hover:to-gray-400 text-gray-700 font-bold py-2 px-6 rounded-full shadow-md hover:scale-105 duration-150">リセット</button>
-                    </div>
-                </div>
 
                 <script>
                 // ストップウォッチ機能
-                let timerInterval;
-                let elapsed = 0;
-                let running = false;
-                function updateTimerDisplay() {
-                  const hours = String(Math.floor(elapsed / 3600)).padStart(2, '0');
-                  const minutes = String(Math.floor((elapsed % 3600) / 60)).padStart(2, '0');
-                  const seconds = String(elapsed % 60).padStart(2, '0');
-                  document.getElementById('timer-display').textContent = `${hours}:${minutes}:${seconds}`;
-                }
-                document.getElementById('start-timer').onclick = function() {
-                  if (!running) {
-                    running = true;
-                    timerInterval = setInterval(() => {
-                      elapsed++;
-                      updateTimerDisplay();
-                    }, 1000);
-                  }
-                };
-                document.getElementById('stop-timer').onclick = function() {
-                  running = false;
-                  clearInterval(timerInterval);
-                };
-                document.getElementById('reset-timer').onclick = function() {
-                  running = false;
-                  clearInterval(timerInterval);
-                  elapsed = 0;
-                  updateTimerDisplay();
+                
                 };
                 updateTimerDisplay();
                 </script>
@@ -93,17 +54,7 @@
                 fetch('../components/learning-guide.html')
                     .then(res => res.text())
                     .then(html => {
-                        document.getElementById('learning-guide-container').innerHTML = html;
-                        // タイトルと説明文をカスタマイズ
-                        document.getElementById('learning-guide-title-text').textContent = '最上級の学習方法ガイド';
-                        document.getElementById('learning-guide-step1-desc').textContent = '最上級の定義と役割をしっかりと理解しましょう';
-                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、最上級の使い方を学びましょう';
-                        document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を5回解いてみましょう';
-                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>身の回りの物事を最上級で表現してみましょう';
-                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>最上級が文の中でどの位置に来るかを意識しましょう';
-                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する表現と一緒に：</strong>原級や比較級との違いも理解しましょう';
-                    });
-            });
+                        
             </script>
 
             <!-- 文法説明 -->
@@ -120,10 +71,7 @@
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
             <script>
-              fetch('../components/practice-question.html')
-                .then(res => res.text())
-                .then(html => {
-                  document.getElementById('practice-question-container').innerHTML = html;
+              
                 });
             </script>
 
@@ -161,3 +109,5 @@
     </script>
 </body>
 </html> 
+
+

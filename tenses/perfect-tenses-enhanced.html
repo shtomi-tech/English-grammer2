@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>完了形 - English Learning Hub</title>
+    <link rel="stylesheet" href="../apple-design-system.css">
+    <style>
+        .grammar-highlight {
+            background: linear-gradient(120deg, var(--accent-purple), var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+        
+        .tense-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-6) 0;
+        }
+        
+        .tense-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-large);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-small);
+            transition: all 0.3s ease;
+        }
+        
+        .tense-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .tense-title {
+            color: var(--primary-blue);
+            font-size: var(--text-title-small);
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+        }
+        
+        .example-sentence {
+            background: var(--gray-50);
+            padding: var(--space-4);
+            border-radius: var(--radius-medium);
+            margin: var(--space-3) 0;
+            border-left: 4px solid var(--primary-blue);
+        }
+        
+        .usage-point {
+            background: var(--info-bg);
+            padding: var(--space-4);
+            border-radius: var(--radius-medium);
+            margin: var(--space-3) 0;
+            border-left: 4px solid var(--info);
+        }
+        
+        .warning-point {
+            background: var(--warning-bg);
+            padding: var(--space-4);
+            border-radius: var(--radius-medium);
+            margin: var(--space-3) 0;
+            border-left: 4px solid var(--warning);
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="apple-header">
+        <div class="container">
+            <h1 class="apple-title">完了形</h1>
+            <p class="apple-subtitle">過去から現在、未来への時間の流れを表現</p>
+        </div>
+    </header>
+
+    <!-- パンくずリスト -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <a href="../index.html">ホーム</a>
+            <span class="separator">></span>
+            <a href="../index.html#tenses">時制</a>
+            <span class="separator">></span>
+            <span class="current">完了形</span>
+        </div>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 概要 -->
+            <section class="content-section">
+                <h2 class="section-title">完了形とは</h2>
+                <p class="section-text">
+                    完了形は、<span class="grammar-highlight">過去の動作や状態が現在に影響を与えている</span>ことを表現する時制です。
+                    単純な過去形とは異なり、過去から現在までの継続的な関係を示します。
+                </p>
+                
+                <div class="usage-point">
+                    <h4>💡 完了形の特徴</h4>
+                    <ul class="list-disc">
+                        <li>過去の動作が現在に影響を与えている</li>
+                        <li>経験を表す</li>
+                        <li>継続を表す</li>
+                        <li>完了を表す</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 完了形の種類 -->
+            <section class="content-section">
+                <h2 class="section-title">完了形の種類</h2>
+                
+                <div class="tense-grid">
+                    <!-- 現在完了形 -->
+                    <div class="tense-card">
+                        <h3 class="tense-title">現在完了形</h3>
+                        <p class="text-sm text-gray-600 mb-4">have/has + 過去分詞</p>
+                        
+                        <div class="example-sentence">
+                            <strong>肯定文:</strong> I have finished my homework.
+                            <br><small>私は宿題を終えたところです。</small>
+                        </div>
+                        
+                        <div class="example-sentence">
+                            <strong>否定文:</strong> I haven't seen that movie.
+                            <br><small>私はその映画を見たことがありません。</small>
+                        </div>
+                        
+                        <div class="example-sentence">
+                            <strong>疑問文:</strong> Have you ever been to Japan?
+                            <br><small>あなたは日本に行ったことがありますか？</small>
+                        </div>
+                    </div>
+
+                    <!-- 過去完了形 -->
+                    <div class="tense-card">
+                        <h3 class="tense-title">過去完了形</h3>
+                        <p class="text-sm text-gray-600 mb-4">had + 過去分詞</p>
+                        
+                        <div class="example-sentence">
+                            <strong>肯定文:</strong> I had finished my homework before dinner.
+                            <br><small>私は夕食前に宿題を終えていました。</small>
+                        </div>
+                        
+                        <div class="example-sentence">
+                            <strong>否定文:</strong> I hadn't seen that movie before.
+                            <br><small>私は以前その映画を見たことがありませんでした。</small>
+                        </div>
+                        
+                        <div class="example-sentence">
+                            <strong>疑問文:</strong> Had you ever been to Japan before last year?
+                            <br><small>去年以前に日本に行ったことがありましたか？</small>
+                        </div>
+                    </div>
+
+                    <!-- 未来完了形 -->
+                    <div class="tense-card">
+                        <h3 class="tense-title">未来完了形</h3>
+                        <p class="text-sm text-gray-600 mb-4">will have + 過去分詞</p>
+                        
+                        <div class="example-sentence">
+                            <strong>肯定文:</strong> I will have finished my homework by tomorrow.
+                            <br><small>私は明日までに宿題を終えているでしょう。</small>
+                        </div>
+                        
+                        <div class="example-sentence">
+                            <strong>否定文:</strong> I won't have finished my homework by then.
+                            <br><small>私はその時までに宿題を終えていないでしょう。</small>
+                        </div>
+                        
+                        <div class="example-sentence">
+                            <strong>疑問文:</strong> Will you have finished your work by Friday?
+                            <br><small>金曜日までに仕事を終えているでしょうか？</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 使い分け -->
+            <section class="content-section">
+                <h2 class="section-title">使い分けのポイント</h2>
+                
+                <div class="usage-point">
+                    <h4>🎯 現在完了形の使い方</h4>
+                    <ul class="list-disc">
+                        <li><strong>経験:</strong> I have been to Paris. (パリに行ったことがある)</li>
+                        <li><strong>完了:</strong> I have finished my work. (仕事を終えた)</li>
+                        <li><strong>継続:</strong> I have lived here for 5 years. (5年間ここに住んでいる)</li>
+                        <li><strong>最近の出来事:</strong> I have just arrived. (今到着したところ)</li>
+                    </ul>
+                </div>
+
+                <div class="usage-point">
+                    <h4>🎯 過去完了形の使い方</h4>
+                    <ul class="list-disc">
+                        <li><strong>過去の過去:</strong> I had finished my work before he arrived. (彼が来る前に仕事を終えていた)</li>
+                        <li><strong>過去の経験:</strong> I had never seen such a beautiful sunset. (そんな美しい夕日を見たことがなかった)</li>
+                        <li><strong>過去の継続:</strong> I had lived there for 10 years before I moved. (引っ越す前に10年間そこに住んでいた)</li>
+                    </ul>
+                </div>
+
+                <div class="usage-point">
+                    <h4>🎯 未来完了形の使い方</h4>
+                    <ul class="list-disc">
+                        <li><strong>未来の完了:</strong> I will have finished my work by next week. (来週までに仕事を終えている)</li>
+                        <li><strong>未来の経験:</strong> By next year, I will have visited 20 countries. (来年までに20カ国を訪れている)</li>
+                        <li><strong>未来の継続:</strong> I will have been working here for 10 years next month. (来月でここで10年間働いている)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 注意点 -->
+            <section class="content-section">
+                <h2 class="section-title">重要な注意点</h2>
+                
+                <div class="warning-point">
+                    <h4>⚠️ よくある間違い</h4>
+                    <ul class="list-disc">
+                        <li><strong>時間の表現:</strong> 現在完了形では「for」「since」を使う</li>
+                        <li><strong>過去形との違い:</strong> 過去形は単純な過去、完了形は現在への影響</li>
+                        <li><strong>副詞の使用:</strong> 「just」「already」「yet」「never」など</li>
+                    </ul>
+                </div>
+
+                <div class="example-sentence">
+                    <strong>正しい例:</strong>
+                    <br>I have lived here for 5 years. (現在完了形)
+                    <br>I lived here for 5 years. (過去形 - 今は住んでいない)
+                </div>
+
+                <div class="example-sentence">
+                    <strong>時間表現の例:</strong>
+                    <br>I have been studying English since 2020. (2020年から)
+                    <br>I have been studying English for 3 years. (3年間)
+                </div>
+            </section>
+
+            <!-- 練習問題 -->
+            <section class="content-section">
+                <h2 class="section-title">練習問題</h2>
+                
+                <div class="practice-card">
+                    <h4>問題1: 適切な完了形を選びなさい</h4>
+                    <div class="practice-question">
+                        <p>I _____ (finish) my homework before dinner.</p>
+                        <div class="answer-options">
+                            <button class="btn-secondary" onclick="checkAnswer('had finished', this)">had finished</button>
+                            <button class="btn-secondary" onclick="checkAnswer('had finished', this)">have finished</button>
+                            <button class="btn-secondary" onclick="checkAnswer('had finished', this)">will have finished</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="practice-card">
+                    <h4>問題2: 適切な完了形を選びなさい</h4>
+                    <div class="practice-question">
+                        <p>She _____ (never/be) to Japan before last year.</p>
+                        <div class="answer-options">
+                            <button class="btn-secondary" onclick="checkAnswer('had never been', this)">has never been</button>
+                            <button class="btn-secondary" onclick="checkAnswer('had never been', this)">had never been</button>
+                            <button class="btn-secondary" onclick="checkAnswer('had never been', this)">will have never been</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ナビゲーション -->
+            <nav class="navigation">
+                <a href="progressive.html" class="btn-secondary">← 進行形</a>
+                <a href="tense-agreement.html" class="btn-primary">時制の一致 →</a>
+            </nav>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="apple-footer">
+        <div class="container">
+            <p>&copy; 2024 English Learning Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function checkAnswer(correctAnswer, button) {
+            const buttons = button.parentElement.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.classList.remove('btn-success', 'btn-error');
+                btn.disabled = true;
+            });
+            
+            if (button.textContent === correctAnswer) {
+                button.classList.add('btn-success');
+                showMessage('正解です！', 'success');
+            } else {
+                button.classList.add('btn-error');
+                showMessage('不正解です。正解は「' + correctAnswer + '」です。', 'error');
+            }
+        }
+
+        function showMessage(message, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `alert alert-${type}`;
+            messageDiv.textContent = message;
+            
+            const container = document.querySelector('.practice-card');
+            container.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html> 

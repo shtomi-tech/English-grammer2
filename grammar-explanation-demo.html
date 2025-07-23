@@ -1,144 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>文法説明コンポーネント - デモ</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            margin: 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
-        }
-        
-        .demo-header {
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-        }
-        
-        .demo-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .demo-header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        
-        .demo-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .feature-list {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 30px;
-            color: white;
-        }
-        
-        .feature-list h2 {
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-        
-        .feature-list ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .feature-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .feature-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .feature-list li::before {
-            content: "✓";
-            color: #2ecc71;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .usage-instructions {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-        }
-        
-        .usage-instructions h2 {
-            color: #2c3e50;
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-        
-        .usage-instructions code {
-            background: #f8f9fa;
-            color: #e74c3c;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-        }
-        
-        .usage-instructions pre {
-            background: #2c3e50;
-            color: #ecf0f1;
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 15px 0;
-        }
-        
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-        
-        .back-to-top:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-        }
-        
-        @media (max-width: 768px) {
-            .demo-header h1 {
-                font-size: 2rem;
-            }
-            
-            .demo-header p {
-                font-size: 1rem;
-            }
-            
-            .back-to-top {
-                bottom: 20px;
-                right: 20px;
-                padding: 12px;
-                font-size: 18px;
-            }
-        }
+      .apple-card { width: 100% !important; max-width: none !important; }
+      .apple-section-text { width: 100% !important; max-width: none !important; }
     </style>
 </head>
 <body>
@@ -242,3 +111,5 @@ fetch('/components/grammar-explanation.html')
     </script>
 </body>
 </html> 
+
+

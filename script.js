@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 // バックエンドAPI設定
 const API_BASE_URL = 'http://localhost:3000';
+=======
+﻿// 静的サイト設定（GitHub Pages用）
+const IS_STATIC_SITE = true;
+>>>>>>> Stashed changes
 
 // 練習回数管理
 let practiceCount = 0;
@@ -616,4 +621,4 @@ document.addEventListener('DOMContentLoaded', function() {
     setupSubmenuToggles();
 });
 
- 
+

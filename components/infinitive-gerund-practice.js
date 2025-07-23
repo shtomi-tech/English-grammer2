@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+﻿document.addEventListener('DOMContentLoaded', function() {
     // 問題データ
     const questions = [
         {
@@ -142,3 +142,4 @@ document.addEventListener('DOMContentLoaded', function() {
     renderQuestions();
     setupLogic();
 }); 
+

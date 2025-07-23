@@ -1,3 +1,8 @@
+<<<<<<< Updated upstream
+=======
+﻿// GitHub Pages用に静的サイト化したため、サーバー機能は無効化
+/*
+>>>>>>> Stashed changes
 require('dotenv').config();
 
 const OpenAI = require('openai');
@@ -89,4 +94,13 @@ app.get('/*.html', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+<<<<<<< Updated upstream
 });
+=======
+});
+*/
+
+// GitHub Pages用の静的サイト
+console.log('Static site for GitHub Pages');
+
+>>>>>>> Stashed changes

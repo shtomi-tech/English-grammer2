@@ -1,4 +1,4 @@
-// ロゴコンポーネントを動的に読み込む関数
+﻿// ロゴコンポーネントを動的に読み込む関数
 async function loadLogo(targetElement) {
     try {
         const response = await fetch('components/logo.html');
@@ -45,3 +45,4 @@ function enhanceLogoAnimation() {
 
 // ページ読み込み完了後にアニメーション効果を適用
 window.addEventListener('load', enhanceLogoAnimation); 
+
