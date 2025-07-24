@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* 付帯状況のwith構文ページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -35,28 +43,6 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
-            <!-- 学習時間計測ストップウォッチ -->
-
-                <script>
-                // ストップウォッチ機能
-                
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <script>
-            // 学習方法ガイドの読み込みとカスタマイズ
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('../components/learning-guide.html')
-                    .then(res => res.text())
-                    .then(html => {
-                        
-            </script>
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">付帯状況のwith構文</h2>
@@ -66,58 +52,10 @@
             </div>
 
             <!-- 例文 -->
-            <div class="apple-card mb-8">
-                <h2 class="apple-card-title">例文</h2>
-                <div class="mt-4 space-y-4">
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">with + 名詞 + 現在分詞</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">With his hands shaking, he opened the letter.</span><br><span class="text-base font-semibold text-gray-200">（手を震わせながら、彼は手紙を開いた。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">With tears running down her face, she told me the truth.</span><br><span class="text-base font-semibold text-gray-200">（涙を流しながら、彼女は私に真実を話した。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">With the children playing in the garden, I could work quietly.</span><br><span class="text-base font-semibold text-gray-200">（子供たちが庭で遊んでいる間、私は静かに働くことができた。）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">with + 名詞 + 過去分詞</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">With the door closed, the room was very quiet.</span><br><span class="text-base font-semibold text-gray-200">（ドアが閉められた状態で、部屋はとても静かだった。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">With all the work finished, I felt relieved.</span><br><span class="text-base font-semibold text-gray-200">（全ての仕事が終えられて、私は安心した。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">With the problem solved, we could move forward.</span><br><span class="text-base font-semibold text-gray-200">（問題が解決されて、私たちは前に進むことができた。）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">with + 名詞 + 形容詞</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">With the door open, the room was cold.</span><br><span class="text-base font-semibold text-gray-200">（ドアが開いた状態で、部屋は寒かった。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">With his eyes wide open, he stared at the screen.</span><br><span class="text-base font-semibold text-gray-200">（目を大きく開けて、彼は画面を見つめた。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">With the weather fine, we decided to go hiking.</span><br><span class="text-base font-semibold text-gray-200">（天気が良かったので、私たちはハイキングに行くことに決めた。）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">with + 名詞 + 前置詞句</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">With tears in her eyes, she said goodbye.</span><br><span class="text-base font-semibold text-gray-200">（目に涙を浮かべて、彼女は別れを告げた。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">With a smile on his face, he greeted everyone.</span><br><span class="text-base font-semibold text-gray-200">（顔に笑顔を浮かべて、彼は皆に挨拶した。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">With a book in his hand, he walked to the library.</span><br><span class="text-base font-semibold text-gray-200">（手に本を持って、彼は図書館に向かった。）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">with + 名詞 + 不定詞</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">With so much work to do, I can't go out tonight.</span><br><span class="text-base font-semibold text-gray-200">（やるべき仕事がたくさんあるので、今夜は出かけられない。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">With nothing to worry about, he slept peacefully.</span><br><span class="text-base font-semibold text-gray-200">（心配することが何もないので、彼は安らかに眠った。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">With many people to meet, I was very busy.</span><br><span class="text-base font-semibold text-gray-200">（会うべき人がたくさんいるので、私はとても忙しかった。）</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="examples-container"></div>
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -133,18 +71,18 @@
 
     <script src="../script.js"></script>
     <script src="../navigation.js"></script>
+    <script src="../examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('with-absolute-construction-explanation').innerHTML = data.with_absolute_construction.replace(/\n/g, '<br>');
+                document.getElementById('with-absolute-construction-explanation').innerHTML = data.with_absolute_construction ? data.with_absolute_construction.replace(/\n/g, '<br>') : '付帯状況のwith構文の説明が準備中です。';
             });
-        document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "participle-construction.html", "付帯状況のwith構文", "次へ", "infinitive-gerund-logical-subject.html");
-            renderExamples("with_absolute_construction", "examples-container");
             
-            // 和文英訳問題のイベントリスナーを設定
+        document.addEventListener('DOMContentLoaded', function() {
+            renderNavigation("前へ", "../past-participle-four-possibilities.html", "付帯状況のwith構文", "次へ", "interrogative-to-infinitive.html");
+            renderExamples("with_absolute_construction", "examples-container");
             setTimeout(() => {
                 setupWritingQuestionEventListeners("with_absolute_construction");
             }, 100);

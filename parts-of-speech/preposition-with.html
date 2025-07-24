@@ -86,14 +86,8 @@
 
         // イベントリスナーを設定
         document.addEventListener('DOMContentLoaded', function() {
-            // 難易度選択機能を初期化
-            setupDifficultySelectors();
-            renderNavigation("前へ", "preposition.html", "前置詞withの用法", "次へ", "conjunction.html");
-            
-            // 例文セクション生成
+            renderNavigation("前へ", "adverb.html", "前置詞withの用法", "次へ", "preposition-by.html");
             renderExamples("preposition_with", "examples-container");
-            
-            // 英作文問題のイベントリスナーを設定
             setTimeout(() => {
                 setupWritingQuestionEventListeners("preposition_with");
             }, 100);

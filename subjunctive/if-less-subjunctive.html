@@ -7,12 +7,24 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
+    <style>
+        /* if節がない仮定法ページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
+    </style>
 </head>
 <body class="bg-gray-100">
     <!-- ヘッダー -->
     <header class="apple-header px-6 py-6 mb-8">
         <div class="container mx-auto flex flex-col items-start">
-            <h1 class="apple-title">仮定法</h1>
+            <h1 class="apple-title">仮定法/比較</h1>
             <p class="apple-sub mt-2">英文法の基礎から学ぼう</p>
         </div>
     </header>
@@ -22,7 +34,7 @@
         <div class="flex items-center space-x-2 text-sm text-gray-600">
             <a href="../index.html" class="hover:text-blue-600">ホーム</a>
             <span>></span>
-            <a href="../index.html#subjunctive" class="hover:text-blue-600">仮定法</a>
+            <a href="../index.html#subjunctive" class="hover:text-blue-600">仮定法/比較</a>
             <span>></span>
             <span class="text-gray-900">if節がない仮定法</span>
         </div>
@@ -31,19 +43,16 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
-                <h2 class="apple-card-title">if節がない仮定法の文法説明</h2>
+                <h2 class="apple-card-title">if節がない仮定法</h2>
                 <div class="mt-4">
                     <div id="if-less-subjunctive-explanation" class="apple-section-text"></div>
                 </div>
             </div>
 
             <!-- 例文 -->
-            <div id="examples-container" class="mt-4"></div>
+            <div id="examples-container"></div>
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
@@ -68,16 +77,14 @@
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('if-less-subjunctive-explanation').innerHTML = data.if_less_subjunctive.replace(/\n/g, '<br>');
+                document.getElementById('if-less-subjunctive-explanation').innerHTML = data.if_less_subjunctive ? data.if_less_subjunctive.replace(/\n/g, '<br>') : 'if節がない仮定法の説明が準備中です。';
             });
-        // ページ固有の設定
-        const currentTopic = 'if-less-subjunctive';
-        
+            
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "inversion.html", "if節なし仮定法", "次へ", "../index.html#subjunctive");
+            renderNavigation("前へ", "inversion.html", "if節がない仮定法", "次へ", "../comparison/comparative.html");
             renderExamples("if_less_subjunctive", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners(currentTopic);
+                setupWritingQuestionEventListeners("if_less_subjunctive");
             }, 100);
         });
     </script>

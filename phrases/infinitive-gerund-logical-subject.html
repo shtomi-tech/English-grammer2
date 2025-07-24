@@ -8,11 +8,18 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* 不定詞と動名詞の意味上の主語ページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
-<body>
 <body class="bg-gray-100">
     <!-- ヘッダー -->
     <header class="apple-header px-6 py-6 mb-8">
@@ -36,33 +43,11 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
-            <!-- 学習時間計測ストップウォッチ -->
-
-                <script>
-                // ストップウォッチ機能
-                
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <script>
-            // 学習方法ガイドの読み込みとカスタマイズ
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('../components/learning-guide.html')
-                    .then(res => res.text())
-                    .then(html => {
-                        
-            </script>
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">不定詞と動名詞の意味上の主語</h2>
                 <div class="mt-4">
-                    <div id="grammar-content" class="apple-section-text"></div>
+                    <div id="infinitive-gerund-logical-subject-explanation" class="apple-section-text"></div>
                 </div>
             </div>
 
@@ -71,10 +56,6 @@
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -89,33 +70,19 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="/navigation.js"></script>
-    <script src="/examples.js"></script>
+    <script src="../navigation.js"></script>
+    <script src="../examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-                return res.json();
-            })
+            .then(res => res.json())
             .then(data => {
-                if (data.infinitive_gerund_logical_subject) {
-                    document.getElementById('grammar-content').innerHTML = data.infinitive_gerund_logical_subject.replace(/\n/g, '<br>');
-                } else {
-                    document.getElementById('grammar-content').textContent = '文法説明が見つかりませんでした。';
-                }
-            })
-            .catch(error => {
-                console.error('Error loading grammar explanation:', error);
-                document.getElementById('grammar-content').textContent = '文法説明の読み込みに失敗しました。';
+                document.getElementById('infinitive-gerund-logical-subject-explanation').innerHTML = data.infinitive_gerund_logical_subject ? data.infinitive_gerund_logical_subject.replace(/\n/g, '<br>') : '不定詞と動名詞の意味上の主語の説明が準備中です。';
             });
-        document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "infinitive-gerund-identification.html", "不定詞と動名詞の意味上の主語", "次へ", "participle.html");
-            renderExamples("infinitive_gerund_logical_subject", "examples-container");
             
-            // 和文英訳問題のイベントリスナーを設定
+        document.addEventListener('DOMContentLoaded', function() {
+            renderNavigation("前へ", "infinitive-gerund-identification.html", "不定詞と動名詞の意味上の主語", "次へ", "../ing-four-possibilities.html");
+            renderExamples("infinitive_gerund_logical_subject", "examples-container");
             setTimeout(() => {
                 setupWritingQuestionEventListeners("infinitive_gerund_logical_subject");
             }, 100);

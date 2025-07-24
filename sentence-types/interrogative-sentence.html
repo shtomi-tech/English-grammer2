@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* 疑問文ページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -35,28 +43,6 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
-            <!-- 学習時間計測ストップウォッチ -->
-
-                <script>
-                // ストップウォッチ機能
-                
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <script>
-            // 学習方法ガイドの読み込みとカスタマイズ
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('../components/learning-guide.html')
-                    .then(res => res.text())
-                    .then(html => {
-                        
-            </script>
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">疑問文</h2>
@@ -66,46 +52,10 @@
             </div>
 
             <!-- 例文 -->
-            <div class="apple-card mb-8">
-                <h2 class="apple-card-title">例文</h2>
-                <div class="mt-4 space-y-4">
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">Yes/No疑問文</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">Are you a student?</span><br><span class="text-base font-semibold text-gray-200">（あなたは学生ですか？）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Do you like music?</span><br><span class="text-base font-semibold text-gray-200">（あなたは音楽が好きですか？）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Can you swim?</span><br><span class="text-base font-semibold text-gray-200">（あなたは泳げますか？）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Is she beautiful?</span><br><span class="text-base font-semibold text-gray-200">（彼女は美しいですか？）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">疑問詞疑問文</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">What is your name?</span><br><span class="text-base font-semibold text-gray-200">（あなたの名前は何ですか？）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Where do you live?</span><br><span class="text-base font-semibold text-gray-200">（あなたはどこに住んでいますか？）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">When did you arrive?</span><br><span class="text-base font-semibold text-gray-200">（あなたはいつ到着しましたか？）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">How do you go to school?</span><br><span class="text-base font-semibold text-gray-200">（あなたはどうやって学校に行きますか？）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Why are you late?</span><br><span class="text-base font-semibold text-gray-200">（なぜあなたは遅れましたか？）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Who is that person?</span><br><span class="text-base font-semibold text-gray-200">（あの人は誰ですか？）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">選択疑問文</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">Do you like coffee or tea?</span><br><span class="text-base font-semibold text-gray-200">（コーヒーと紅茶のどちらが好きですか？）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Are you going by bus or train?</span><br><span class="text-base font-semibold text-gray-200">（バスと電車のどちらで行きますか？）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Which do you prefer, summer or winter?</span><br><span class="text-base font-semibold text-gray-200">（夏と冬のどちらが好きですか？）</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="examples-container"></div>
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -120,19 +70,19 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="/navigation.js"></script>
+    <script src="../navigation.js"></script>
+    <script src="../examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('interrogative-sentence-explanation').innerHTML = data.interrogative_sentence.replace(/\n/g, '<br>');
+                document.getElementById('interrogative-sentence-explanation').innerHTML = data.interrogative_sentence ? data.interrogative_sentence.replace(/\n/g, '<br>') : '疑問文の説明が準備中です。';
             });
+            
         document.addEventListener('DOMContentLoaded', function() {
             renderNavigation("前へ", "exclamatory-sentence.html", "疑問文", "次へ", "declarative-sentence.html");
             renderExamples("interrogative_sentence", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
                 setupWritingQuestionEventListeners("interrogative_sentence");
             }, 100);

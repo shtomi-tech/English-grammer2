@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>助動詞may/might - English Learning Hub</title>
+    <title>may/might - English Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* may/mightページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -35,39 +43,11 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
-            <!-- 学習時間計測ストップウォッチ -->
-
-                <script>
-                // ストップウォッチ機能
-                
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <script>
-            // 学習方法ガイドの読み込みとカスタマイズ
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('../components/learning-guide.html')
-                    .then(res => res.text())
-                    .then(html => {
-                        
-            </script>
-
-            <!-- タイトルパーツ -->
-            <!-- <div class="apple-card mb-8">
-                <h2 class="apple-card-title">may/might</h2>
-                <p class="apple-card-text">許可・推量などを表す助動詞です。</p>
-            </div> -->
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">may/might</h2>
                 <div class="mt-4">
-                    <div id="modal-may-might-explanation" class="apple-section-text"></div>
+                    <div id="may-might-explanation" class="apple-section-text"></div>
                 </div>
             </div>
 
@@ -76,10 +56,6 @@
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -94,23 +70,21 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="/navigation.js"></script>
-    <script src="/examples.js"></script>
+    <script src="../navigation.js"></script>
+    <script src="../examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('modal-may-might-explanation').innerHTML = data.modal_may_might.replace(/\n/g, '<br>');
+                document.getElementById('may-might-explanation').innerHTML = data.may_might ? data.may_might.replace(/\n/g, '<br>') : 'may/mightの説明が準備中です。';
             });
-        // ページ固有の設定
-        const currentTopic = 'may-might';
-        
+            
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "will-would.html", "may-might", "次へ", "must.html");
+            renderNavigation("前へ", "will-would.html", "may/might", "次へ", "must.html");
             renderExamples("may_might", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners(currentTopic);
+                setupWritingQuestionEventListeners("may_might");
             }, 100);
         });
     </script>

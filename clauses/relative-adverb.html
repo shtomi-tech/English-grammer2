@@ -43,11 +43,6 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
-            <!-- 学習時間計測ストップウォッチ -->
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">関係副詞</h2>
@@ -82,8 +77,9 @@
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('relative-adverb-explanation').innerHTML = data.relative_adverb.replace(/\n/g, '<br>');
+                document.getElementById('relative-adverb-explanation').innerHTML = data.relative_adverb ? data.relative_adverb.replace(/\n/g, '<br>') : '関係副詞の説明が準備中です。';
             });
+            
         document.addEventListener('DOMContentLoaded', function() {
             renderNavigation("前へ", "preposition-relative-pronoun.html", "関係副詞", "次へ", "subordinating-conjunction.html");
             renderExamples("relative_adverb", "examples-container");

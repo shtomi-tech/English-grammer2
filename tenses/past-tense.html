@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* 過去形ページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -35,37 +43,9 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
-            <!-- 学習時間計測ストップウォッチ -->
-
-                <script>
-                // ストップウォッチ機能
-                
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <script>
-            // 学習方法ガイドの読み込みとカスタマイズ
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('../components/learning-guide.html')
-                    .then(res => res.text())
-                    .then(html => {
-                        
-            </script>
-
-            <!-- タイトルパーツ -->
-            <!-- <div class="apple-card mb-8">
-                <h2 class="apple-card-title">過去時制</h2>
-                <p class="apple-card-text">過去の出来事や状態を表す時制です。</p>
-            </div> -->
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
-                <h2 class="apple-card-title">過去時制</h2>
+                <h2 class="apple-card-title">過去形</h2>
                 <div class="mt-4">
                     <div id="past-tense-explanation" class="apple-section-text"></div>
                 </div>
@@ -76,10 +56,6 @@
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -94,23 +70,21 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="/navigation.js"></script>
-    <script src="/examples.js"></script>
+    <script src="../navigation.js"></script>
+    <script src="../examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('past-tense-explanation').innerHTML = data.past_tense.replace(/\n/g, '<br>');
+                document.getElementById('past-tense-explanation').innerHTML = data.past_tense ? data.past_tense.replace(/\n/g, '<br>') : '過去形の説明が準備中です。';
             });
-        // ページ固有の設定
-        const currentTopic = 'past-tense';
-        
+            
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "third-person-singular-present-s.html", "過去形", "次へ", "progressive.html");
+            renderNavigation("前へ", "third-person-singular-present-s.html", "過去形", "次へ", "perfect-tenses.html");
             renderExamples("past_tense", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners(currentTopic);
+                setupWritingQuestionEventListeners("past_tense");
             }, 100);
         });
     </script>

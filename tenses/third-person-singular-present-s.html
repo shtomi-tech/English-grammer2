@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* 3人称・単数・現在のsページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -35,22 +43,6 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習時間計測ストップウォッチ -->
-
-                <script>
-                // ストップウォッチ機能
-                
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <!-- タイトルパーツ -->
-            <!-- <div class="apple-card mb-8">
-                <h2 class="apple-card-title">3人称・単数・現在のs</h2>
-                <p class="apple-card-text">英語の現在時制における重要な文法規則です。</p>
-            </div> -->
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">3人称・単数・現在のs</h2>
@@ -64,13 +56,6 @@
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              fetch('../components/practice-question.html')
-                .then(res => res.text())
-                .then(html => {
-                  document.getElementById('practice-question-container').innerHTML = html;
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -85,24 +70,21 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="/navigation.js"></script>
-    <script src="/examples.js"></script>
+    <script src="../navigation.js"></script>
+    <script src="../examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('third-person-singular-present-s-explanation').innerHTML = data.third_person_singular_present_s.replace(/\n/g, '<br>');
+                document.getElementById('third-person-singular-present-s-explanation').innerHTML = data.third_person_singular_present_s ? data.third_person_singular_present_s.replace(/\n/g, '<br>') : '3人称・単数・現在のsの説明が準備中です。';
             });
             
-        // ページ固有の設定
-        const currentTopic = 'third-person-singular-present-s';
-        
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "present-tense.html", "3人称単数現在のs", "次へ", "past-tense.html");
+            renderNavigation("前へ", "present-tense.html", "3人称・単数・現在のs", "次へ", "past-tense.html");
             renderExamples("third_person_singular_present_s", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners(currentTopic);
+                setupWritingQuestionEventListeners("third_person_singular_present_s");
             }, 100);
         });
     </script>

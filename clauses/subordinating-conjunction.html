@@ -43,9 +43,6 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">従属接続詞</h2>
@@ -80,8 +77,9 @@
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('subordinating-conjunction-explanation').innerHTML = data.subordinating_conjunction.replace(/\n/g, '<br>');
+                document.getElementById('subordinating-conjunction-explanation').innerHTML = data.subordinating_conjunction ? data.subordinating_conjunction.replace(/\n/g, '<br>') : '従属接続詞の説明が準備中です。';
             });
+            
         document.addEventListener('DOMContentLoaded', function() {
             renderNavigation("前へ", "relative-adverb.html", "従属接続詞", "次へ", "../phrases/indirect-question.html");
             renderExamples("subordinating_conjunction", "examples-container");

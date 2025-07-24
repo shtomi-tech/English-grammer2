@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* 時制の一致ページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -35,7 +43,6 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">時制の一致</h2>
@@ -49,13 +56,6 @@
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              fetch('../components/practice-question.html')
-                .then(res => res.text())
-                .then(html => {
-                  document.getElementById('practice-question-container').innerHTML = html;
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -70,25 +70,21 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="/navigation.js"></script>
-    <script src="/examples.js"></script>
+    <script src="../navigation.js"></script>
+    <script src="../examples.js"></script>
     <script>
-
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('tense-agreement-explanation').innerHTML = data.tense_agreement.replace(/\n/g, '<br>');
+                document.getElementById('tense-agreement-explanation').innerHTML = data.tense_agreement ? data.tense_agreement.replace(/\n/g, '<br>') : '時制の一致の説明が準備中です。';
             });
             
-        // ページ固有の設定
-        const currentTopic = 'tense-agreement';
-        
         document.addEventListener('DOMContentLoaded', function() {
             renderNavigation("前へ", "perfect-tenses.html", "時制の一致", "次へ", null);
             renderExamples("tense_agreement", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners(currentTopic);
+                setupWritingQuestionEventListeners("tense_agreement");
             }, 100);
         });
     </script>

@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>助動詞dare - English Learning Hub</title>
+    <title>dare - English Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* dareページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -35,48 +43,6 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
-            <!-- 学習時間計測ストップウォッチ -->
-
-                <script>
-                // ストップウォッチ機能
-                
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <script>
-            // 学習方法ガイドの読み込みとカスタマイズ
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('../components/learning-guide.html')
-                    .then(res => res.text())
-                    .then(html => {
-<<<<<<< Updated upstream:modals/dare.html
-                        document.getElementById('learning-guide-container').innerHTML = html;
-                        // タイトルと説明文をカスタマイズ
-                        document.getElementById('learning-guide-title-text').textContent = '助動詞dareの学習方法ガイド';
-                        document.getElementById('learning-guide-step1-desc').textContent = '助動詞dareの定義と役割をしっかりと理解しましょう';
-                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、助動詞dareの使い方を学びましょう';
-                        document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を5回解いてみましょう';
-                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で助動詞dareがどのように使われているか意識してみましょう';
-                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>助動詞dareが文の中でどの位置に来るかを意識しましょう';
-                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する助動詞と一緒に：</strong>他の助動詞との違いも理解しましょう';
-                    });
-            });
-=======
-                        
->>>>>>> Stashed changes:parts-of-speech/verb-forms.html
-            </script>
-
-            <!-- タイトルパーツ -->
-            <!-- <div class="apple-card mb-8">
-                <h2 class="apple-card-title">dare</h2>
-                <p class="apple-card-text">勇気・挑戦などを表す助動詞です。</p>
-            </div> -->
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">dare</h2>
@@ -90,10 +56,6 @@
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -108,17 +70,21 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="/navigation.js"></script>
-    <script src="/examples.js"></script>
+    <script src="../navigation.js"></script>
+    <script src="../examples.js"></script>
     <script>
-        // ページ固有の設定
-        const currentTopic = 'dare';
-        
+        // 文法説明をgrammar.jsonから読み込む
+        fetch('../grammar.json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('dare-explanation').innerHTML = data.dare ? data.dare.replace(/\n/g, '<br>') : 'dareの説明が準備中です。';
+            });
+            
         document.addEventListener('DOMContentLoaded', function() {
             renderNavigation("前へ", "need.html", "dare", "次へ", null);
             renderExamples("dare", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners(currentTopic);
+                setupWritingQuestionEventListeners("dare");
             }, 100);
         });
     </script>

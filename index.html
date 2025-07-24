@@ -21,7 +21,6 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-6xl mx-auto">
-<<<<<<< Updated upstream
             <!-- サイト紹介 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">このサイトについて</h2>
@@ -31,8 +30,6 @@
                     下のカテゴリーから学習したい項目を選択してください。
                 </p>
             </div>
-=======
->>>>>>> Stashed changes
 
             <!-- メインカテゴリー -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -71,7 +68,6 @@
                             </button>
                             <div id="preposition-submenu" class="hidden ml-2 border-l-2 border-blue-200 pl-3 mt-2">
                                 <div class="space-y-1">
-                                    <a href="parts-of-speech/preposition.html" class="block apple-nav-btn text-xs">前置詞の基本</a>
                                     <a href="parts-of-speech/preposition-with.html" class="block apple-nav-btn text-xs">前置詞withの用法</a>
                                     <a href="parts-of-speech/preposition-by.html" class="block apple-nav-btn text-xs">前置詞byの用法</a>
                                 </div>
@@ -95,7 +91,7 @@
                             </button>
                             <div id="pattern1-submenu" class="ml-4 space-y-1 hidden">
                                 <a href="sentence-patterns/pattern1.html" class="block apple-nav-btn text-sm opacity-75 hover:opacity-100">　第1文型(S+V)</a>
-                                <a href="sentence-patterns/there-is.html" class="block apple-nav-btn text-sm opacity-75 hover:opacity-100">　There is構文</a>
+                                <a href="sentence-patterns/there-is.html" class="block apple-nav-btn text-sm opacity-75 hover:opacity-100">　There構文</a>
                             </div>
                         </div>
                         <a href="sentence-patterns/pattern2.html" class="block apple-nav-btn text-sm">第2文型（S+V+C）</a>
@@ -228,7 +224,7 @@
                     </div>
                 </div>
 
-                                <!-- 助動詞 -->
+                <!-- 助動詞 -->
                 <div class="apple-card">
                     <h3 class="apple-card-title text-lg mb-4">助動詞</h3>
                     <div class="space-y-2">
@@ -259,30 +255,7 @@
 
             </div>
 
-<<<<<<< Updated upstream
-            <!-- 学習の進め方 -->
-            <div class="apple-card mt-8">
-                <h2 class="apple-card-title">学習の進め方</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
-                    <div class="text-center">
-                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">1</div>
-                        <h3 class="font-semibold mb-2">基礎から学ぶ</h3>
-                        <p class="text-sm text-gray-600">品詞から始めて、文の構造を理解しましょう</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">2</div>
-                        <h3 class="font-semibold mb-2">練習問題に挑戦</h3>
-                        <p class="text-sm text-gray-600">AI生成の問題で理解度を確認しましょう</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3">3</div>
-                        <h3 class="font-semibold mb-2">応用する</h3>
-                        <p class="text-sm text-gray-600">学んだ文法を使って文章を作ってみましょう</p>
-                    </div>
-                </div>
-            </div>
-=======
->>>>>>> Stashed changes
+
         </div>
     </main>
 
@@ -293,8 +266,123 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- リファクタリングされたスクリプト -->
+    <script src="utils/api.js"></script>
+    <script src="utils/ui.js"></script>
+    <script src="utils/state.js"></script>
+    <script src="app.js"></script>
     <script src="components/logo.js"></script>
+    
+    <!-- アプリケーション初期化 -->
+    <script>
+        // アプリケーションを初期化
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                await initializeApp();
+                console.log('アプリケーションが正常に初期化されました');
+                
+                // トグル機能を直接設定
+                setupDirectToggles();
+            } catch (error) {
+                console.error('アプリケーションの初期化に失敗しました:', error);
+            }
+        });
+        
+        // 直接的なトグル機能設定
+        function setupDirectToggles() {
+            // 動詞トグル
+            const verbToggle = document.getElementById('verb-toggle');
+            const verbSubmenu = document.getElementById('verb-submenu');
+            const verbIcon = document.getElementById('verb-icon');
+            
+            if (verbToggle && verbSubmenu && verbIcon) {
+                verbToggle.addEventListener('click', () => {
+                    const isHidden = verbSubmenu.classList.contains('hidden');
+                    if (isHidden) {
+                        verbSubmenu.classList.remove('hidden');
+                        verbIcon.style.transform = 'rotate(180deg)';
+                    } else {
+                        verbSubmenu.classList.add('hidden');
+                        verbIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            }
+            
+            // 前置詞トグル
+            const prepositionToggle = document.getElementById('preposition-toggle');
+            const prepositionSubmenu = document.getElementById('preposition-submenu');
+            const prepositionIcon = document.getElementById('preposition-icon');
+            
+            if (prepositionToggle && prepositionSubmenu && prepositionIcon) {
+                prepositionToggle.addEventListener('click', () => {
+                    const isHidden = prepositionSubmenu.classList.contains('hidden');
+                    if (isHidden) {
+                        prepositionSubmenu.classList.remove('hidden');
+                        prepositionIcon.style.transform = 'rotate(180deg)';
+                    } else {
+                        prepositionSubmenu.classList.add('hidden');
+                        prepositionIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            }
+            
+            // 不定詞トグル
+            const infinitiveToggle = document.getElementById('infinitive-toggle');
+            const infinitiveSubmenu = document.getElementById('infinitive-submenu');
+            const infinitiveIcon = document.getElementById('infinitive-icon');
+            
+            if (infinitiveToggle && infinitiveSubmenu && infinitiveIcon) {
+                infinitiveToggle.addEventListener('click', () => {
+                    const isHidden = infinitiveSubmenu.classList.contains('hidden');
+                    if (isHidden) {
+                        infinitiveSubmenu.classList.remove('hidden');
+                        infinitiveIcon.style.transform = 'rotate(180deg)';
+                    } else {
+                        infinitiveSubmenu.classList.add('hidden');
+                        infinitiveIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            }
+            
+            // 関係代名詞トグル
+            const relativePronounToggle = document.getElementById('relative-pronoun-toggle');
+            const relativePronounSubmenu = document.getElementById('relative-pronoun-submenu');
+            const relativePronounIcon = document.getElementById('relative-pronoun-icon');
+            
+            if (relativePronounToggle && relativePronounSubmenu && relativePronounIcon) {
+                relativePronounToggle.addEventListener('click', () => {
+                    const isHidden = relativePronounSubmenu.classList.contains('hidden');
+                    if (isHidden) {
+                        relativePronounSubmenu.classList.remove('hidden');
+                        relativePronounIcon.style.transform = 'rotate(180deg)';
+                    } else {
+                        relativePronounSubmenu.classList.add('hidden');
+                        relativePronounIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            }
+            
+            // -ing形の4つの可能性トグル
+            const ingFourToggle = document.getElementById('ing-four-toggle');
+            const ingFourSubmenu = document.getElementById('ing-four-submenu');
+            const ingFourIcon = document.getElementById('ing-four-icon');
+            
+            if (ingFourToggle && ingFourSubmenu && ingFourIcon) {
+                ingFourToggle.addEventListener('click', () => {
+                    const isHidden = ingFourSubmenu.classList.contains('hidden');
+                    if (isHidden) {
+                        ingFourSubmenu.classList.remove('hidden');
+                        ingFourIcon.style.transform = 'rotate(180deg)';
+                    } else {
+                        ingFourSubmenu.classList.add('hidden');
+                        ingFourIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            }
+        }
+    </script>
+    
+    <!-- レガシー関数（後方互換性のため） -->
     <script>
         // 第1文型のトグル機能
         function togglePattern1() {
@@ -337,11 +425,6 @@
                 arrow.style.transform = 'rotate(0deg)';
             }
         }
-
-        // トグル機能はscript.jsで処理されるため削除
-        document.addEventListener('DOMContentLoaded', function() {
-            // すべてのトグル機能はscript.jsのsetupSubmenuToggles関数で処理
-        });
     </script>
 </body>
 </html>

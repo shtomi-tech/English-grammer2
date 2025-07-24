@@ -43,9 +43,6 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">強調構文</h2>
@@ -80,10 +77,11 @@
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('emphatic-construction-explanation').innerHTML = data.emphatic_construction.replace(/\n/g, '<br>');
+                document.getElementById('emphatic-construction-explanation').innerHTML = data.emphatic_construction ? data.emphatic_construction.replace(/\n/g, '<br>') : '強調構文の説明が準備中です。';
             });
+            
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "compound-relative-clause.html", "強調構文", "次へ", "noun-clause.html");
+            renderNavigation("前へ", "compound-relative-clause.html", "強調構文", "次へ", null);
             renderExamples("emphatic_construction", "examples-container");
             setTimeout(() => {
                 setupWritingQuestionEventListeners("emphatic_construction");

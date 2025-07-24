@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* 命令文ページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -35,28 +43,6 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
-            <!-- 学習時間計測ストップウォッチ -->
-
-                <script>
-                // ストップウォッチ機能
-                
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <script>
-            // 学習方法ガイドの読み込みとカスタマイズ
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('../components/learning-guide.html')
-                    .then(res => res.text())
-                    .then(html => {
-                        
-            </script>
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">命令文</h2>
@@ -66,54 +52,10 @@
             </div>
 
             <!-- 例文 -->
-            <div class="apple-card mb-8">
-                <h2 class="apple-card-title">例文</h2>
-                <div class="mt-4 space-y-4">
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">肯定命令文</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">Open the door.</span><br><span class="text-base font-semibold text-gray-200">（ドアを開けてください。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Come here.</span><br><span class="text-base font-semibold text-gray-200">（ここに来てください。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Study hard.</span><br><span class="text-base font-semibold text-gray-200">（一生懸命勉強してください。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Be quiet.</span><br><span class="text-base font-semibold text-gray-200">（静かにしてください。）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">否定命令文</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">Don't open the door.</span><br><span class="text-base font-semibold text-gray-200">（ドアを開けないでください。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Don't come here.</span><br><span class="text-base font-semibold text-gray-200">（ここに来ないでください。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Don't be late.</span><br><span class="text-base font-semibold text-gray-200">（遅れないでください。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Don't make noise.</span><br><span class="text-base font-semibold text-gray-200">（騒音を立てないでください。）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">丁寧な命令文</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">Please open the door.</span><br><span class="text-base font-semibold text-gray-200">（ドアを開けてください。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Please come here.</span><br><span class="text-base font-semibold text-gray-200">（ここに来てください。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Please be quiet.</span><br><span class="text-base font-semibold text-gray-200">（静かにしてください。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Please help me.</span><br><span class="text-base font-semibold text-gray-200">（私を助けてください。）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">Let's命令文</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">Let's go to the park.</span><br><span class="text-base font-semibold text-gray-200">（公園に行きましょう。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Let's study together.</span><br><span class="text-base font-semibold text-gray-200">（一緒に勉強しましょう。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Let's have lunch.</span><br><span class="text-base font-semibold text-gray-200">（昼食を食べましょう。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Let's start the meeting.</span><br><span class="text-base font-semibold text-gray-200">（会議を始めましょう。）</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="examples-container"></div>
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -128,19 +70,19 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="/navigation.js"></script>
+    <script src="../navigation.js"></script>
+    <script src="../examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('imperative-sentence-explanation').innerHTML = data.imperative_sentence.replace(/\n/g, '<br>');
+                document.getElementById('imperative-sentence-explanation').innerHTML = data.imperative_sentence ? data.imperative_sentence.replace(/\n/g, '<br>') : '命令文の説明が準備中です。';
             });
+            
         document.addEventListener('DOMContentLoaded', function() {
             renderNavigation("前へ", "declarative-sentence.html", "命令文", "次へ", "conditionals.html");
             renderExamples("imperative_sentence", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
                 setupWritingQuestionEventListeners("imperative_sentence");
             }, 100);

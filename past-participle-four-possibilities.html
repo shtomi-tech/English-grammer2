@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* 過去分詞の4つの可能性ページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -35,81 +43,19 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
-            <!-- 学習時間計測ストップウォッチ -->
-
-                <script>
-                // ストップウォッチ機能
-                
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <script>
-            // 学習方法ガイドの読み込みとカスタマイズ
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('components/learning-guide.html')
-                    .then(res => res.text())
-                    .then(html => {
-                        
-            </script>
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">過去分詞の4つの可能性</h2>
                 <div class="mt-4">
-                    <div id="past-participle-four-explanation" class="apple-section-text"></div>
+                    <div id="past-participle-four-possibilities-explanation" class="apple-section-text"></div>
                 </div>
             </div>
 
             <!-- 例文 -->
-            <div class="apple-card mb-8">
-                <h2 class="apple-card-title">例文</h2>
-                <div class="mt-4 space-y-4">
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">受動態（Passive Voice）</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">The book was written by Shakespeare.</span><br><span class="text-base font-semibold text-gray-200">（その本はシェイクスピアによって書かれました）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">The house is being built.</span><br><span class="text-base font-semibold text-gray-200">（その家は建てられています）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">The letter has been sent.</span><br><span class="text-base font-semibold text-gray-200">（その手紙は送られました）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">完了形（Perfect Tense）</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">I have finished my homework.</span><br><span class="text-base font-semibold text-gray-200">（私は宿題を終えました）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">She had already left when I arrived.</span><br><span class="text-base font-semibold text-gray-200">（私が到着した時、彼女は既に去っていました）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">They will have completed the project by next week.</span><br><span class="text-base font-semibold text-gray-200">（彼らは来週までにそのプロジェクトを完了しているでしょう）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">過去分詞形容詞的用法（Past Participle as Adjective）</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">I bought a broken watch.</span><br><span class="text-base font-semibold text-gray-200">（私は壊れた時計を買いました）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">The movie was interesting.</span><br><span class="text-base font-semibold text-gray-200">（その映画は興味深かったです）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Look at the closed door.</span><br><span class="text-base font-semibold text-gray-200">（閉まったドアを見てください）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">分詞構文（Participle Construction）</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">Written in English, the book is easy to read.</span><br><span class="text-base font-semibold text-gray-200">（英語で書かれているので、その本は読みやすいです）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Exhausted from work, I went to bed early.</span><br><span class="text-base font-semibold text-gray-200">（仕事で疲れていたので、私は早く寝ました）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Not satisfied with the result, he tried again.</span><br><span class="text-base font-semibold text-gray-200">（結果に満足していなかったので、彼はもう一度試しました）</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="examples-container"></div>
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -125,18 +71,18 @@
 
     <script src="script.js"></script>
     <script src="navigation.js"></script>
+    <script src="examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('past-participle-four-explanation').innerHTML = data.past_participle_four_possibilities.replace(/\n/g, '<br>');
+                document.getElementById('past-participle-four-possibilities-explanation').innerHTML = data.past_participle_four_possibilities ? data.past_participle_four_possibilities.replace(/\n/g, '<br>') : '過去分詞の4つの可能性の説明が準備中です。';
             });
+            
         document.addEventListener('DOMContentLoaded', function() {
             renderNavigation("前へ", "phrases/participle-construction.html", "過去分詞の4つの可能性", "次へ", "phrases/with-absolute-construction.html");
             renderExamples("past_participle_four_possibilities", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
                 setupWritingQuestionEventListeners("past_participle_four_possibilities");
             }, 100);

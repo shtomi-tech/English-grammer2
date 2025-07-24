@@ -8,15 +8,23 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* 間接疑問文ページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
     <!-- ヘッダー -->
     <header class="apple-header px-6 py-6 mb-8">
         <div class="container mx-auto flex flex-col items-start">
-            <h1 class="apple-title">句</h1>
+            <h1 class="apple-title">節</h1>
             <p class="apple-sub mt-2">英文法の基礎から学ぼう</p>
         </div>
     </header>
@@ -26,7 +34,7 @@
         <div class="flex items-center space-x-2 text-sm text-gray-600">
             <a href="../index.html" class="hover:text-blue-600">ホーム</a>
             <span>></span>
-            <a href="../index.html#phrases" class="hover:text-blue-600">句</a>
+            <a href="../index.html#clauses" class="hover:text-blue-600">節</a>
             <span>></span>
             <span class="text-gray-900">間接疑問文</span>
         </div>
@@ -35,52 +43,20 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
-            <!-- 学習時間計測ストップウォッチ -->
-
-                <script>
-                // ストップウォッチ機能
-                
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <script>
-            // 学習方法ガイドの読み込みとカスタマイズ
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('../components/learning-guide.html')
-                    .then(res => res.text())
-                    .then(html => {
-                        
-            </script>
-            <!-- 文法解説パーツ -->
+            <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">間接疑問文</h2>
                 <div class="mt-4">
                     <div id="indirect-question-explanation" class="apple-section-text"></div>
                 </div>
             </div>
-            <!-- 例文パーツ -->
-            <div class="apple-card mb-8">
-                <h2 class="apple-card-title">例文</h2>
-                <div class="mt-4 space-y-4">
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <p><span class="text-xl font-bold text-blue-300">I don't know where the station is.</span><br><span class="text-base font-semibold text-gray-200">（駅がどこにあるか知りません）</span></p>
-                        <p><span class="text-xl font-bold text-blue-300">Please tell me what time the train leaves.</span><br><span class="text-base font-semibold text-gray-200">（その電車が何時に出発するか教えてください）</span></p>
-                        <p><span class="text-xl font-bold text-blue-300">I wonder if he is busy.</span><br><span class="text-base font-semibold text-gray-200">（彼が忙しいかどうかと思います）</span></p>
-                        <p><span class="text-xl font-bold text-blue-300">Do you know who that woman is?</span><br><span class="text-base font-semibold text-gray-200">（あの女性が誰か知っていますか？）</span></p>
-                    </div>
-                </div>
-            </div>
+
+            <!-- 例文 -->
+            <div id="examples-container"></div>
+
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              
-                });
-            </script>
+
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
         </div>
@@ -94,17 +70,18 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="/navigation.js"></script>
-    <script src="/examples.js"></script>
+    <script src="../navigation.js"></script>
+    <script src="../examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('indirect-question-explanation').innerHTML = data.indirect_question.replace(/\n/g, '<br>');
+                document.getElementById('indirect-question-explanation').innerHTML = data.indirect_question ? data.indirect_question.replace(/\n/g, '<br>') : '間接疑問文の説明が準備中です。';
             });
+            
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "../clauses/subordinating-conjunction.html", "間接疑問文", "次へ", "../clauses/compound-relative-clause.html");
+            renderNavigation("前へ", "clauses/subordinating-conjunction.html", "間接疑問文", "次へ", "../clauses/compound-relative-clause.html");
             renderExamples("indirect_question", "examples-container");
             setTimeout(() => {
                 setupWritingQuestionEventListeners("indirect_question");

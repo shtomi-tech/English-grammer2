@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>前置詞+関係代名詞 - English Learning Hub</title>
+    <title>前置詞＋関係代名詞 - English Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-        /* 前置詞+関係代名詞ページ専用のスタイル調整 */
+        /* 前置詞＋関係代名詞ページ専用のスタイル調整 */
         .apple-card {
             width: 100% !important;
             max-width: none !important;
@@ -36,19 +36,16 @@
             <span>></span>
             <a href="../index.html#clauses" class="hover:text-blue-600">節</a>
             <span>></span>
-            <span class="text-gray-900">前置詞+関係代名詞</span>
+            <span class="text-gray-900">前置詞＋関係代名詞</span>
         </div>
     </nav>
 
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
-                <h2 class="apple-card-title">前置詞+関係代名詞</h2>
+                <h2 class="apple-card-title">前置詞＋関係代名詞</h2>
                 <div class="mt-4">
                     <div id="preposition-relative-pronoun-explanation" class="apple-section-text"></div>
                 </div>
@@ -80,14 +77,11 @@
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('preposition-relative-pronoun-explanation').innerHTML = data.preposition_relative_pronoun.replace(/\n/g, '<br>');
+                document.getElementById('preposition-relative-pronoun-explanation').innerHTML = data.preposition_relative_pronoun ? data.preposition_relative_pronoun.replace(/\n/g, '<br>') : '前置詞＋関係代名詞の説明が準備中です。';
             });
+            
         document.addEventListener('DOMContentLoaded', function() {
-<<<<<<< Updated upstream
             renderNavigation("前へ", "relative-pronoun-restrictive-nonrestrictive.html", "前置詞＋関係代名詞", "次へ", "relative-adverb.html");
-=======
-            renderNavigation("前へ", "relative-clause.html", "前置詞+関係代名詞", "次へ", "relative-pronoun.html");
->>>>>>> Stashed changes
             renderExamples("preposition_relative_pronoun", "examples-container");
             setTimeout(() => {
                 setupWritingQuestionEventListeners("preposition_relative_pronoun");

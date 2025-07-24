@@ -88,18 +88,10 @@
         const currentTopic = 'word-phrase-clause';
         
         document.addEventListener('DOMContentLoaded', function() {
-            // 難易度選択機能を初期化
-            setupDifficultySelectors();
-
-            // ナビゲーション生成
-            renderNavigation("前へ", "conjunction.html", "単語・句・節", "次へ", null);
-            
-            // 例文セクション生成
+            renderNavigation("前へ", "conjunction.html", "単語・句・節", "次へ", "noun.html");
             renderExamples("word_phrase_clause", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
-                setupWritingQuestionEventListeners(currentTopic);
+                setupWritingQuestionEventListeners("word_phrase_clause");
             }, 100);
         });
     </script>

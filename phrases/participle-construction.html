@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* 分詞構文ページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -35,34 +43,6 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
-            <!-- 学習時間計測ストップウォッチ -->
-
-                <script>
-                // ストップウォッチ機能
-                
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <script>
-            // 学習方法ガイドの読み込みとカスタマイズ
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('../components/learning-guide.html')
-                    .then(res => res.text())
-                    .then(html => {
-                        
-            </script>
-
-            <!-- タイトルパーツ -->
-            <!-- <div class="apple-card mb-8">
-                <h2 class="apple-card-title">分詞構文</h2>
-                <p class="apple-card-text">分詞を使って副詞的に意味を加える構文です。</p>
-            </div> -->
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">分詞構文</h2>
@@ -72,50 +52,10 @@
             </div>
 
             <!-- 例文 -->
-            <div class="apple-card mb-8">
-                <h2 class="apple-card-title">例文</h2>
-                <div class="mt-4 space-y-4">
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">時を表す分詞構文</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">Walking down the street, I met an old friend.</span><br><span class="text-base font-semibold text-gray-200">（通りを歩いている時、古い友人に会った）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Having finished my homework, I watched TV.</span><br><span class="text-base font-semibold text-gray-200">（宿題を終えた後、テレビを見た）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Arriving at the station, I found the train had left.</span><br><span class="text-base font-semibold text-gray-200">（駅に着くと、電車は出発していた）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">理由を表す分詞構文</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">Being tired, I went to bed early.</span><br><span class="text-base font-semibold text-gray-200">（疲れていたので、早く寝た）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Not knowing the answer, I kept silent.</span><br><span class="text-base font-semibold text-gray-200">（答えを知らなかったので、黙っていた）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Having no money, I couldn't buy the book.</span><br><span class="text-base font-semibold text-gray-200">（お金がなかったので、本を買えなかった）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">条件を表す分詞構文</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">Weather permitting, we'll have a picnic.</span><br><span class="text-base font-semibold text-gray-200">（天気が良ければ、ピクニックをします）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Given more time, I could finish it.</span><br><span class="text-base font-semibold text-gray-200">（もっと時間があれば、終えられる）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Taking the train, you can get there in an hour.</span><br><span class="text-base font-semibold text-gray-200">（電車に乗れば、1時間で着けます）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">譲歩を表す分詞構文</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">Admitting his mistake, he didn't apologize.</span><br><span class="text-base font-semibold text-gray-200">（間違いを認めていたが、謝らなかった）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Though tired, he continued working.</span><br><span class="text-base font-semibold text-gray-200">（疲れていたが、働き続けた）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Being young, he was very wise.</span><br><span class="text-base font-semibold text-gray-200">（若かったが、とても賢かった）</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="examples-container"></div>
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -130,19 +70,19 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="/navigation.js"></script>
+    <script src="../navigation.js"></script>
+    <script src="../examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('participle-construction-explanation').innerHTML = data.participle_construction.replace(/\n/g, '<br>');
+                document.getElementById('participle-construction-explanation').innerHTML = data.participle_construction ? data.participle_construction.replace(/\n/g, '<br>') : '分詞構文の説明が準備中です。';
             });
-        document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "participle.html", "分詞構文", "次へ", "../ing-four-possibilities.html");
-            renderExamples("participle_construction", "examples-container");
             
-            // 和文英訳問題のイベントリスナーを設定
+        document.addEventListener('DOMContentLoaded', function() {
+            renderNavigation("前へ", "participle.html", "分詞構文", "次へ", "../past-participle-four-possibilities.html");
+            renderExamples("participle_construction", "examples-container");
             setTimeout(() => {
                 setupWritingQuestionEventListeners("participle_construction");
             }, 100);

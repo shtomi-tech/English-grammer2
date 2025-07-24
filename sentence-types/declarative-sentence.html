@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* 平叙文ページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -35,28 +43,6 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
-            <!-- 学習時間計測ストップウォッチ -->
-
-                <script>
-                // ストップウォッチ機能
-                
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <script>
-            // 学習方法ガイドの読み込みとカスタマイズ
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('../components/learning-guide.html')
-                    .then(res => res.text())
-                    .then(html => {
-                        
-            </script>
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">平叙文</h2>
@@ -66,54 +52,10 @@
             </div>
 
             <!-- 例文 -->
-            <div class="apple-card mb-8">
-                <h2 class="apple-card-title">例文</h2>
-                <div class="mt-4 space-y-4">
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">肯定平叙文</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">I am a student.</span><br><span class="text-base font-semibold text-gray-200">（私は学生です。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">She likes music.</span><br><span class="text-base font-semibold text-gray-200">（彼女は音楽が好きです。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">They live in Tokyo.</span><br><span class="text-base font-semibold text-gray-200">（彼らは東京に住んでいます。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">The weather is nice today.</span><br><span class="text-base font-semibold text-gray-200">（今日は天気が良いです。）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">否定平叙文</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">I am not a teacher.</span><br><span class="text-base font-semibold text-gray-200">（私は先生ではありません。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">She doesn't like coffee.</span><br><span class="text-base font-semibold text-gray-200">（彼女はコーヒーが好きではありません。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">They don't live here.</span><br><span class="text-base font-semibold text-gray-200">（彼らはここに住んでいません。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">He cannot swim.</span><br><span class="text-base font-semibold text-gray-200">（彼は泳げません。）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">複合平叙文</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">I like music, and she likes art.</span><br><span class="text-base font-semibold text-gray-200">（私は音楽が好きで、彼女は芸術が好きです。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">He studies hard, but he doesn't get good grades.</span><br><span class="text-base font-semibold text-gray-200">（彼は一生懸命勉強するが、良い成績を取らない。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">I went to the store, and I bought some food.</span><br><span class="text-base font-semibold text-gray-200">（私は店に行って、食べ物を買いました。）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">5つの文型の平叙文</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">Birds fly.</span><br><span class="text-base font-semibold text-gray-200">（鳥は飛びます。第1文型）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">I am happy.</span><br><span class="text-base font-semibold text-gray-200">（私は幸せです。第2文型）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">He reads books.</span><br><span class="text-base font-semibold text-gray-200">（彼は本を読みます。第3文型）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">I gave him a book.</span><br><span class="text-base font-semibold text-gray-200">（私は彼に本をあげました。第4文型）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">I made him happy.</span><br><span class="text-base font-semibold text-gray-200">（私は彼を幸せにしました。第5文型）</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="examples-container"></div>
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -128,19 +70,19 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="/navigation.js"></script>
+    <script src="../navigation.js"></script>
+    <script src="../examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('declarative-sentence-explanation').innerHTML = data.declarative_sentence.replace(/\n/g, '<br>');
+                document.getElementById('declarative-sentence-explanation').innerHTML = data.declarative_sentence ? data.declarative_sentence.replace(/\n/g, '<br>') : '平叙文の説明が準備中です。';
             });
+            
         document.addEventListener('DOMContentLoaded', function() {
             renderNavigation("前へ", "interrogative-sentence.html", "平叙文", "次へ", "imperative-sentence.html");
             renderExamples("declarative_sentence", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
             setTimeout(() => {
                 setupWritingQuestionEventListeners("declarative_sentence");
             }, 100);

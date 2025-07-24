@@ -12,8 +12,9 @@ yarn-error.log*
 .env.production.local
 
 # ログファイル
-logs
+logs/
 *.log
+pm2.log
 
 # ランタイムデータ
 pids

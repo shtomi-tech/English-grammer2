@@ -795,8 +795,7 @@ const examplesData = {
       examples: [
         { en: "Are you a student?", ja: "あなたは学生ですか？" },
         { en: "Do you like music?", ja: "あなたは音楽が好きですか？" },
-        { en: "Can you swim?", ja: "あなたは泳げますか？" },
-        { en: "Is she beautiful?", ja: "彼女は美しいですか？" }
+        { en: "Can you swim?", ja: "あなたは泳げますか？" }
       ]
     },
     {
@@ -804,10 +803,7 @@ const examplesData = {
       examples: [
         { en: "What is your name?", ja: "あなたの名前は何ですか？" },
         { en: "Where do you live?", ja: "あなたはどこに住んでいますか？" },
-        { en: "When did you arrive?", ja: "あなたはいつ到着しましたか？" },
-        { en: "How do you go to school?", ja: "あなたはどうやって学校に行きますか？" },
-        { en: "Why are you late?", ja: "なぜあなたは遅れましたか？" },
-        { en: "Who is that person?", ja: "あの人は誰ですか？" }
+        { en: "When did you arrive?", ja: "あなたはいつ到着しましたか？" }
       ]
     },
     {
@@ -825,9 +821,7 @@ const examplesData = {
       examples: [
         { en: "I am a student.", ja: "私は学生です。" },
         { en: "She likes music.", ja: "彼女は音楽が好きです。" },
-        { en: "They live in Tokyo.", ja: "彼らは東京に住んでいます。" },
-        { en: "The weather is nice today.", ja: "今日は天気が良いです。" },
-        { en: "He can speak English.", ja: "彼は英語を話せます。" }
+        { en: "They live in Tokyo.", ja: "彼らは東京に住んでいます。" }
       ]
     },
     {
@@ -835,9 +829,7 @@ const examplesData = {
       examples: [
         { en: "I am not a teacher.", ja: "私は先生ではありません。" },
         { en: "She doesn't like coffee.", ja: "彼女はコーヒーが好きではありません。" },
-        { en: "They don't live here.", ja: "彼らはここに住んでいません。" },
-        { en: "He cannot swim.", ja: "彼は泳げません。" },
-        { en: "It is not raining.", ja: "雨が降っていません。" }
+        { en: "They don't live here.", ja: "彼らはここに住んでいません。" }
       ]
     },
     {
@@ -853,9 +845,7 @@ const examplesData = {
       examples: [
         { en: "Birds fly.", ja: "鳥は飛びます。（第1文型）" },
         { en: "I am happy.", ja: "私は幸せです。（第2文型）" },
-        { en: "He reads books.", ja: "彼は本を読みます。（第3文型）" },
-        { en: "I gave him a book.", ja: "私は彼に本をあげました。（第4文型）" },
-        { en: "I made him happy.", ja: "私は彼を幸せにしました。（第5文型）" }
+        { en: "He reads books.", ja: "彼は本を読みます。（第3文型）" }
       ]
     }
   ],
@@ -865,9 +855,7 @@ const examplesData = {
       examples: [
         { en: "Open the door.", ja: "ドアを開けてください。" },
         { en: "Come here.", ja: "ここに来てください。" },
-        { en: "Study hard.", ja: "一生懸命勉強してください。" },
-        { en: "Be quiet.", ja: "静かにしてください。" },
-        { en: "Listen carefully.", ja: "注意深く聞いてください。" }
+        { en: "Study hard.", ja: "一生懸命勉強してください。" }
       ]
     },
     {
@@ -875,9 +863,7 @@ const examplesData = {
       examples: [
         { en: "Don't open the door.", ja: "ドアを開けないでください。" },
         { en: "Don't come here.", ja: "ここに来ないでください。" },
-        { en: "Don't be late.", ja: "遅れないでください。" },
-        { en: "Don't make noise.", ja: "騒音を立てないでください。" },
-        { en: "Don't forget your homework.", ja: "宿題を忘れないでください。" }
+        { en: "Don't be late.", ja: "遅れないでください。" }
       ]
     },
     {
@@ -886,7 +872,6 @@ const examplesData = {
         { en: "Please open the door.", ja: "ドアを開けてください。" },
         { en: "Please come here.", ja: "ここに来てください。" },
         { en: "Please be quiet.", ja: "静かにしてください。" },
-        { en: "Please help me.", ja: "私を助けてください。" },
         { en: "Please wait a moment.", ja: "少し待ってください。" }
       ]
     },
@@ -895,9 +880,7 @@ const examplesData = {
       examples: [
         { en: "Let's go to the park.", ja: "公園に行きましょう。" },
         { en: "Let's study together.", ja: "一緒に勉強しましょう。" },
-        { en: "Let's have lunch.", ja: "昼食を食べましょう。" },
-        { en: "Let's start the meeting.", ja: "会議を始めましょう。" },
-        { en: "Let's clean the room.", ja: "部屋を掃除しましょう。" }
+        { en: "Let's have lunch.", ja: "昼食を食べましょう。" }
       ]
     }
   ],
@@ -976,8 +959,7 @@ const examplesData = {
       examples: [
         { en: "The students who study hard will pass. (制限用法)", ja: "一生懸命勉強する生徒は合格する（複数の生徒の中から）" },
         { en: "My brother, who studies hard, will pass. (非制限用法)", ja: "私の兄は、一生懸命勉強するが、合格する（兄は一人で特定されている）" },
-        { en: "The books which are on the desk are mine. (制限用法)", ja: "机の上にある本は私のものだ（複数の本の中から）" },
-        { en: "These books, which are on the desk, are mine. (非制限用法)", ja: "これらの本は、机の上にあるが、私のものだ（本は既に特定されている）" }
+        { en: "The books which are on the desk are mine. (制限用法)", ja: "机の上にある本は私のものだ（複数の本の中から）" }
       ]
     }
   ],
@@ -1065,9 +1047,7 @@ const examplesData = {
       examples: [
         { en: "This is the house where I was born.", ja: "ここが私が生まれた家です" },
         { en: "I remember the place where we first met.", ja: "私は私たちが初めて会った場所を覚えている" },
-        { en: "The restaurant where we had dinner was excellent.", ja: "私たちが夕食を食べたレストランは素晴らしかった" },
-        { en: "The city where I grew up is very beautiful.", ja: "私が育った街はとても美しい" },
-        { en: "This is the park where children play every day.", ja: "ここが子供たちが毎日遊ぶ公園です" }
+        { en: "The restaurant where we had dinner was excellent.", ja: "私たちが夕食を食べたレストランは素晴らしかった" }
       ]
     },
     {
@@ -1075,9 +1055,7 @@ const examplesData = {
       examples: [
         { en: "This is the day when we met.", ja: "これは私たちが出会った日です" },
         { en: "I remember the time when I was a student.", ja: "私は学生だった時のことを覚えている" },
-        { en: "The moment when she arrived was unforgettable.", ja: "彼女が到着した瞬間は忘れられない" },
-        { en: "Summer is the season when flowers bloom.", ja: "夏は花が咲く季節です" },
-        { en: "The year when I graduated was 2020.", ja: "私が卒業した年は2020年でした" }
+        { en: "The moment when she arrived was unforgettable.", ja: "彼女が到着した瞬間は忘れられない" }
       ]
     },
     {
@@ -1085,9 +1063,7 @@ const examplesData = {
       examples: [
         { en: "That is the reason why he left.", ja: "それが彼が去った理由です" },
         { en: "I don't understand the reason why she is angry.", ja: "私は彼女が怒っている理由がわからない" },
-        { en: "The reason why I called you is important.", ja: "私があなたに電話した理由は重要です" },
-        { en: "Nobody knows the reason why he quit his job.", ja: "誰も彼が仕事を辞めた理由を知らない" },
-        { en: "The reason why the meeting was cancelled is clear.", ja: "会議がキャンセルされた理由は明確です" }
+        { en: "The reason why I called you is important.", ja: "私があなたに電話した理由は重要です" }
       ]
     },
     {
@@ -1095,9 +1071,7 @@ const examplesData = {
       examples: [
         { en: "This is the way how he solved the problem.", ja: "これが彼がその問題を解決した方法です" },
         { en: "I don't know the way how to explain this.", ja: "私はこれを説明する方法がわからない" },
-        { en: "The method how we can learn English is practice.", ja: "私たちが英語を学べる方法は練習です" },
-        { en: "She showed me the way how to make this dish.", ja: "彼女は私にこの料理の作り方を教えてくれた" },
-        { en: "The process how this machine works is complicated.", ja: "この機械が働く過程は複雑です" }
+        { en: "The method how we can learn English is practice.", ja: "私たちが英語を学べる方法は練習です" }
       ]
     }
   ],
@@ -1107,8 +1081,7 @@ const examplesData = {
       examples: [
         { en: "I went home because it was late.", ja: "遅かったので家に帰った" },
         { en: "If it rains, we will stay home.", ja: "雨が降ったら家にいる" },
-        { en: "I will call you when I arrive.", ja: "到着したら電話します" },
-        { en: "Though he is young, he is wise.", ja: "彼は若いけれど賢い" }
+        { en: "I will call you when I arrive.", ja: "到着したら電話します" }
       ]
     }
   ],
@@ -2416,10 +2389,13 @@ function renderExamples(topic, containerId) {
   if (!data) return;
   let html = `<div class='apple-card mb-8'><h2 class='apple-card-title'>例文</h2><div class='mt-4 space-y-6'>`;
   data.forEach(section => {
-    html += `<div class='bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20'>`;
-    html += `<h3 class='font-semibold mb-3 text-lg'>${section.title}</h3><div class='space-y-3'>`;
+    html += `<div class='bg-white/95 backdrop-blur-[20px] shadow-lg py-6 px-8 rounded-xl border border-gray-200'>`;
+    html += `<h3 class='font-bold mb-4 text-xl text-gray-800'>${section.title}</h3><div class='space-y-4'>`;
     section.examples.forEach(ex => {
-      html += `<p><span class='text-xl font-bold text-blue-300'>${ex.en}</span><br><span class='text-base font-semibold text-gray-200'>（${ex.ja}）</span></p>`;
+      html += `<div class='bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg'>`;
+      html += `<p class='text-lg font-bold text-blue-800 mb-2'>${ex.en}</p>`;
+      html += `<p class='text-base font-medium text-gray-700'>（${ex.ja}）</p>`;
+      html += `</div>`;
     });
     html += `</div></div>`;
   });

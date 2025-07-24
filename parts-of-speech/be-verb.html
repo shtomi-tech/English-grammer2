@@ -4,67 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>be動詞 - English Learning Hub</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- SF Pro Display (Apple公式フォント) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* be動詞ページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
     <!-- ヘッダー -->
     <header class="apple-header px-6 py-6 mb-8">
         <div class="container mx-auto flex flex-col items-start">
-            <div class="flex items-center space-x-4">
-                <a href="../index.html" class="text-white hover:text-gray-200">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                    </svg>
-                </a>
-                <h1 class="apple-title">品詞</h1>
-            </div>
-            <p class="apple-sub mt-2">品詞の基礎を学ぼう</p>
+            <h1 class="apple-title">品詞</h1>
+            <p class="apple-sub mt-2">英文法の基礎から学ぼう</p>
         </div>
     </header>
+
+    <!-- パンくずリスト -->
+    <nav class="container mx-auto px-6 mb-6">
+        <div class="flex items-center space-x-2 text-sm text-gray-600">
+            <a href="../index.html" class="hover:text-blue-600">ホーム</a>
+            <span>></span>
+            <a href="../index.html#parts-of-speech" class="hover:text-blue-600">品詞</a>
+            <span>></span>
+            <span class="text-gray-900">be動詞</span>
+        </div>
+    </nav>
 
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- パンくずリスト -->
-            <nav class="mb-6">
-                <ol class="flex items-center space-x-2 text-sm text-gray-600">
-                    <li><a href="../index.html" class="hover:text-blue-600">ホーム</a></li>
-                    <li><span class="mx-2">/</span></li>
-                    <li><a href="../index.html" class="hover:text-blue-600">品詞</a></li>
-                    <li><span class="mx-2">/</span></li>
-                    <li class="text-gray-900">be動詞</li>
-                </ol>
-            </nav>
-
-            <!-- タイトルパーツ -->
-            <!-- 
-
-                <script>
-                // ストップウォッチ機能
-                
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <script>
-            // 学習方法ガイドの読み込みとカスタマイズ
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('../components/learning-guide.html')
-                    .then(res => res.text())
-                    .then(html => {
-                        
-            </script>
-
-            <!-- 文法解説パーツ -->
+            <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">be動詞</h2>
                 <div class="mt-4">
@@ -72,15 +51,11 @@
                 </div>
             </div>
 
-            <!-- 例文セクション -->
+            <!-- 例文 -->
             <div id="examples-container"></div>
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -96,23 +71,20 @@
 
     <script src="../script.js"></script>
     <script src="../navigation.js"></script>
-    <script src="/examples.js"></script>
+    <script src="../examples.js"></script>
     <script>
-        // 文法説明を読み込む
+        // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('be-verb-explanation').innerHTML = data.be_verb.replace(/\n/g, '<br>');
+                document.getElementById('be-verb-explanation').innerHTML = data.be_verb ? data.be_verb.replace(/\n/g, '<br>') : 'be動詞の説明が準備中です。';
             });
-
-        // ページ固有の設定
-        const currentTopic = 'be-verb';
-        
+            
         document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", null, "be動詞", "次へ", "verb.html");
+            renderNavigation("前へ", "article.html", "be動詞", "次へ", "verb.html");
             renderExamples("be_verb", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners(currentTopic);
+                setupWritingQuestionEventListeners("be_verb");
             }, 100);
         });
     </script>

@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* 条件文ページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -35,28 +43,6 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
-            <!-- 学習時間計測ストップウォッチ -->
-
-                <script>
-                // ストップウォッチ機能
-                
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <script>
-            // 学習方法ガイドの読み込みとカスタマイズ
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('../components/learning-guide.html')
-                    .then(res => res.text())
-                    .then(html => {
-                        
-            </script>
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">条件文</h2>
@@ -66,50 +52,10 @@
             </div>
 
             <!-- 例文 -->
-            <div class="apple-card mb-8">
-                <h2 class="apple-card-title">例文</h2>
-                <div class="mt-4 space-y-4">
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">0条件文（一般的な事実）</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">If you heat water to 100°C, it boils.</span><br><span class="text-base font-semibold text-gray-200">（水を100度まで熱すると、沸騰する。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">If it rains, the ground gets wet.</span><br><span class="text-base font-semibold text-gray-200">（雨が降ると、地面が濡れる。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">If you don't eat, you get hungry.</span><br><span class="text-base font-semibold text-gray-200">（食べないと、お腹が空く。）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">第1条件文（現在・未来の可能性）</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">If it rains tomorrow, I will stay at home.</span><br><span class="text-base font-semibold text-gray-200">（明日雨が降ったら、家にいる。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">If you study hard, you will pass the exam.</span><br><span class="text-base font-semibold text-gray-200">（一生懸命勉強すれば、試験に合格する。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">If he comes, I will be happy.</span><br><span class="text-base font-semibold text-gray-200">（彼が来たら、私は幸せになる。）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">第2条件文（仮定・不可能な状況）</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">If I were rich, I would buy a big house.</span><br><span class="text-base font-semibold text-gray-200">（もし私がお金持ちだったら、大きな家を買う。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">If I had time, I would help you.</span><br><span class="text-base font-semibold text-gray-200">（時間があれば、あなたを助ける。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">If you studied harder, you would get better grades.</span><br><span class="text-base font-semibold text-gray-200">（もっと勉強すれば、もっと良い成績を取る。）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">第3条件文（過去の仮定）</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">If I had studied harder, I would have passed the exam.</span><br><span class="text-base font-semibold text-gray-200">（もっと勉強していれば、試験に合格していた。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">If you had told me earlier, I would have helped you.</span><br><span class="text-base font-semibold text-gray-200">（もっと早く教えてくれれば、助けていた。）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">If it had not rained, we would have gone to the park.</span><br><span class="text-base font-semibold text-gray-200">（雨が降っていなければ、公園に行っていた。）</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="examples-container"></div>
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -124,19 +70,19 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="/navigation.js"></script>
+    <script src="../navigation.js"></script>
+    <script src="../examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('conditionals-explanation').innerHTML = data.conditionals.replace(/\n/g, '<br>');
+                document.getElementById('conditionals-explanation').innerHTML = data.conditionals ? data.conditionals.replace(/\n/g, '<br>') : '条件文の説明が準備中です。';
             });
-        document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "imperative-sentence.html", "条件文", "次へ", "exclamatory-sentence.html");
-            renderExamples("conditionals", "examples-container");
             
-            // 和文英訳問題のイベントリスナーを設定
+        document.addEventListener('DOMContentLoaded', function() {
+            renderNavigation("前へ", "imperative-sentence.html", "条件文", "次へ", null);
+            renderExamples("conditionals", "examples-container");
             setTimeout(() => {
                 setupWritingQuestionEventListeners("conditionals");
             }, 100);

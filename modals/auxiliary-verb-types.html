@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* 助動詞の種類と分類ページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -35,28 +43,6 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
-            <!-- 学習時間計測ストップウォッチ -->
-
-                <script>
-                // ストップウォッチ機能
-                
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <script>
-            // 学習方法ガイドの読み込みとカスタマイズ
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('../components/learning-guide.html')
-                    .then(res => res.text())
-                    .then(html => {
-                        
-            </script>
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">助動詞の種類と分類</h2>
@@ -70,10 +56,6 @@
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -88,30 +70,21 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="/navigation.js"></script>
-    <script src="/examples.js"></script>
+    <script src="../navigation.js"></script>
+    <script src="../examples.js"></script>
     <script>
-        // ページ固有の設定
-        const currentTopic = 'auxiliary-verb-types';
-        
+        // 文法説明をgrammar.jsonから読み込む
+        fetch('../grammar.json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('auxiliary-verb-types-explanation').innerHTML = data.auxiliary_verb_types ? data.auxiliary_verb_types.replace(/\n/g, '<br>') : '助動詞の種類と分類の説明が準備中です。';
+            });
+            
         document.addEventListener('DOMContentLoaded', function() {
-            // 文法説明を読み込んで表示
-            fetch('../grammar.json')
-                .then(response => response.json())
-                .then(data => {
-                    const explanation = data.auxiliary_verb_types;
-                    if (explanation) {
-                        document.getElementById('auxiliary-verb-types-explanation').innerHTML = explanation.replace(/\n/g, '<br>');
-                    }
-                })
-                .catch(error => {
-                    console.error('文法説明の読み込みに失敗しました:', error);
-                });
-
             renderNavigation("前へ", null, "助動詞の種類と分類", "次へ", "can-could.html");
             renderExamples("auxiliary_verb_types", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners(currentTopic);
+                setupWritingQuestionEventListeners("auxiliary_verb_types");
             }, 100);
         });
     </script>

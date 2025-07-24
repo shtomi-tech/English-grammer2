@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* 第4文型の受動態ページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -35,28 +43,6 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
-            <!-- 学習時間計測ストップウォッチ -->
-
-                <script>
-                // ストップウォッチ機能
-                
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <script>
-            // 学習方法ガイドの読み込みとカスタマイズ
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('../components/learning-guide.html')
-                    .then(res => res.text())
-                    .then(html => {
-                        
-            </script>
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">第4文型の受動態</h2>
@@ -70,118 +56,6 @@
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              
-                });
-            </script>
-
-            <!-- 能動態と受動態の書き換え練習問題 -->
-            <div id="active-passive-practice-container"></div>
-            <script>
-              fetch('../components/active-passive-practice-pattern4.html')
-                .then(res => res.text())
-                .then(html => {
-                  document.getElementById('active-passive-practice-container').innerHTML = html;
-                  // 練習問題のJavaScriptを再初期化
-                  setTimeout(function() {
-                    const script = document.createElement('script');
-                    script.textContent = `
-                      (function() {
-                        const checkButtons = document.querySelectorAll('.check-answer-btn');
-                        const resetButton = document.getElementById('reset-practice');
-                        const resultsDiv = document.getElementById('practice-results');
-                        let answeredQuestions = new Set();
-
-                        checkButtons.forEach(button => {
-                          button.addEventListener('click', function() {
-                            const questionCard = button.closest('.question-card');
-                            const input = questionCard.querySelector('.answer-input-full');
-                            const explanation = questionCard.querySelector('.answer-explanation');
-                            const correctAnswer = input.dataset.correct;
-                            const userAnswer = input.value.trim().toLowerCase();
-                            const correctAnswerLower = correctAnswer.toLowerCase();
-
-                            if (answeredQuestions.has(questionCard)) {
-                              return;
-                            }
-
-                            if (userAnswer === correctAnswerLower) {
-                              input.classList.add('correct');
-                              input.classList.remove('incorrect');
-                              explanation.classList.remove('hidden');
-                              answeredQuestions.add(questionCard);
-                            } else {
-                              input.classList.add('incorrect');
-                              input.classList.remove('correct');
-                              explanation.classList.remove('hidden');
-                              answeredQuestions.add(questionCard);
-                            }
-
-                            if (answeredQuestions.size === 5) {
-                              showResults();
-                            }
-                          });
-                        });
-
-                        if (resetButton) {
-                          resetButton.addEventListener('click', function() {
-                            document.querySelectorAll('.answer-input-full').forEach(input => {
-                              input.value = '';
-                              input.classList.remove('correct', 'incorrect');
-                            });
-
-                            document.querySelectorAll('.answer-explanation').forEach(explanation => {
-                              explanation.classList.add('hidden');
-                            });
-
-                            if (resultsDiv) {
-                              resultsDiv.classList.add('hidden');
-                            }
-
-                            answeredQuestions.clear();
-                          });
-                        }
-
-                        function showResults() {
-                          const correctCount = document.querySelectorAll('.answer-input-full.correct').length;
-                          const accuracy = Math.round((correctCount / 5) * 100);
-
-                          const correctCountElement = document.getElementById('correct-count');
-                          const accuracyRateElement = document.getElementById('accuracy-rate');
-                          const resultMessageElement = document.getElementById('result-message');
-
-                          if (correctCountElement) correctCountElement.textContent = correctCount;
-                          if (accuracyRateElement) accuracyRateElement.textContent = accuracy + '%';
-
-                          let message = '';
-                          if (accuracy === 100) {
-                            message = '素晴らしい！第4文型の受動態を完璧に理解できています。';
-                          } else if (accuracy >= 80) {
-                            message = 'とても良い成績です！第4文型の特徴を少し復習すれば完璧になります。';
-                          } else if (accuracy >= 60) {
-                            message = '基本的な理解はできています。第4文型の間接目的語と直接目的語の順序をもう少し練習しましょう。';
-                          } else {
-                            message = '基本から復習しましょう。第4文型の受動態では間接目的語と直接目的語の順序が重要です。';
-                          }
-
-                          if (resultMessageElement) resultMessageElement.textContent = message;
-                          if (resultsDiv) resultsDiv.classList.remove('hidden');
-                        }
-
-                        document.querySelectorAll('.answer-input-full').forEach(input => {
-                          input.addEventListener('keypress', function(e) {
-                            if (e.key === 'Enter') {
-                              const button = this.closest('.question-card').querySelector('.check-answer-btn');
-                              if (button) button.click();
-                            }
-                          });
-                        });
-                      })();
-                    `;
-                    document.head.appendChild(script);
-                  }, 200);
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -196,18 +70,22 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="/navigation.js"></script>
-    <script src="/examples.js"></script>
+    <script src="../navigation.js"></script>
+    <script src="../examples.js"></script>
     <script>
-        // 文型説明をgrammar.jsonから読み込む
+        // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('passive-pattern4-explanation').innerHTML = data.passive_pattern4.replace(/\n/g, '<br>');
+                document.getElementById('passive-pattern4-explanation').innerHTML = data.passive_pattern4 ? data.passive_pattern4.replace(/\n/g, '<br>') : '第4文型の受動態の説明が準備中です。';
             });
+            
         document.addEventListener('DOMContentLoaded', function() {
             renderNavigation("前へ", "passive-pattern3.html", "第4文型の受動態", "次へ", "passive-pattern5.html");
             renderExamples("passive_pattern4", "examples-container");
+            setTimeout(() => {
+                setupWritingQuestionEventListeners("passive_pattern4");
+            }, 100);
         });
     </script>
 </body>

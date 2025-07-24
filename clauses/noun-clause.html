@@ -80,7 +80,7 @@
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('noun-clause-explanation').innerHTML = data.noun_clause.replace(/\n/g, '<br>');
+                document.getElementById('noun-clause-explanation').innerHTML = data.noun_clause ? data.noun_clause.replace(/\n/g, '<br>') : '名詞節の説明が準備中です。';
             });
         document.addEventListener('DOMContentLoaded', function() {
             renderNavigation("前へ", "emphatic-construction.html", "名詞節", "次へ", "preposition-relative-pronoun.html");

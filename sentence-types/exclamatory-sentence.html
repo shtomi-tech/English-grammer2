@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-      .apple-card { width: 100% !important; max-width: none !important; }
-      .apple-section-text { width: 100% !important; max-width: none !important; }
+        /* 感嘆文ページ専用のスタイル調整 */
+        .apple-card {
+            width: 100% !important;
+            max-width: none !important;
+        }
+        
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -35,28 +43,6 @@
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- 学習方法ガイド（共通パーツ） -->
-            <div id="learning-guide-container"></div>
-
-            <!-- 学習時間計測ストップウォッチ -->
-
-                <script>
-                // ストップウォッチ機能
-                
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <script>
-            // 学習方法ガイドの読み込みとカスタマイズ
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('../components/learning-guide.html')
-                    .then(res => res.text())
-                    .then(html => {
-                        
-            </script>
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
                 <h2 class="apple-card-title">感嘆文</h2>
@@ -66,42 +52,10 @@
             </div>
 
             <!-- 例文 -->
-            <div class="apple-card mb-8">
-                <h2 class="apple-card-title">例文</h2>
-                <div class="mt-4 space-y-4">
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">Whatを使った感嘆文</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">What a beautiful day!</span><br><span class="text-base font-semibold text-gray-200">（なんて美しい日なんだろう！）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">What an interesting book!</span><br><span class="text-base font-semibold text-gray-200">（なんて面白い本なんだろう！）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">What a surprise!</span><br><span class="text-base font-semibold text-gray-200">（なんて驚きなんだろう！）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">Howを使った感嘆文</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">How beautiful she is!</span><br><span class="text-base font-semibold text-gray-200">（彼女はなんて美しいんだろう！）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">How fast he runs!</span><br><span class="text-base font-semibold text-gray-200">（彼はなんて速く走るんだろう！）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">How delicious this food is!</span><br><span class="text-base font-semibold text-gray-200">（この食べ物はなんて美味しいんだろう！）</span></p>
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-[20px] shadow-lg py-4 px-6 rounded-lg border border-white/20">
-                        <h3 class="font-semibold mb-3 text-lg">その他の感嘆表現</h3>
-                        <div class="space-y-3">
-                            <p><span class="text-xl font-bold text-blue-300">Wow! That's amazing!</span><br><span class="text-base font-semibold text-gray-200">（わあ！それはすごい！）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Oh my God! I can't believe it!</span><br><span class="text-base font-semibold text-gray-200">（まあ！信じられない！）</span></p>
-                            <p><span class="text-xl font-bold text-blue-300">Fantastic! You did it!</span><br><span class="text-base font-semibold text-gray-200">（素晴らしい！やったね！）</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="examples-container"></div>
 
             <!-- 練習問題 -->
             <div id="practice-question-container"></div>
-            <script>
-              
-                });
-            </script>
 
             <!-- ナビゲーション -->
             <div id="nav-placeholder"></div>
@@ -116,19 +70,19 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="/navigation.js"></script>
+    <script src="../navigation.js"></script>
+    <script src="../examples.js"></script>
     <script>
         // 文法説明をgrammar.jsonから読み込む
         fetch('../grammar.json')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('exclamatory-sentence-explanation').innerHTML = data.exclamatory_sentence.replace(/\n/g, '<br>');
+                document.getElementById('exclamatory-sentence-explanation').innerHTML = data.exclamatory_sentence ? data.exclamatory_sentence.replace(/\n/g, '<br>') : '感嘆文の説明が準備中です。';
             });
-        document.addEventListener('DOMContentLoaded', function() {
-            renderNavigation("前へ", "conditionals.html", "感嘆文", "次へ", "interrogative-sentence.html");
-            renderExamples("exclamatory_sentence", "examples-container");
             
-            // 和文英訳問題のイベントリスナーを設定
+        document.addEventListener('DOMContentLoaded', function() {
+            renderNavigation("前へ", null, "感嘆文", "次へ", "interrogative-sentence.html");
+            renderExamples("exclamatory_sentence", "examples-container");
             setTimeout(() => {
                 setupWritingQuestionEventListeners("exclamatory_sentence");
             }, 100);

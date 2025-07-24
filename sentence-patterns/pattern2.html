@@ -4,106 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>第2文型（S+V+C） - English Learning Hub</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- SF Pro Display (Apple公式フォント) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+Pro+Display:400,700&display=swap">
     <link rel="stylesheet" href="../style.css">
     <style>
-        /* 文法説明コンポーネントのスタイル調整 */
-        .grammar-explanation {
-            background: transparent !important;
-            box-shadow: none !important;
-            padding: 0 !important;
-            width: 100% !important;
-            max-width: none !important;
-        }
-        
-        .grammar-explanation .grammar-content {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            width: 100% !important;
-            max-width: none !important;
-        }
-        
-        .grammar-explanation .grammar-navigation {
-            background: white;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 20px 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            width: 100% !important;
-            max-width: none !important;
-        }
-        
-        .grammar-explanation .grammar-controls {
-            background: white;
-            border-radius: 12px;
-            padding: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            width: 100% !important;
-            max-width: none !important;
-        }
-        
         /* 第2文型ページ専用のスタイル調整 */
-        .grammar-explanation .grammar-text {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #374151;
-        }
-        
-        .grammar-explanation .grammar-text code {
-            background: #f3f4f6;
-            color: #dc2626;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-            font-size: 14px;
-        }
-        
-        .grammar-explanation .grammar-text strong {
-            color: #1f2937;
-            font-weight: 600;
-        }
-        
-        /* シンプル文法説明コンポーネントのスタイル調整 */
-        #simple-grammar-explanation {
-            background: white !important;
-            border-radius: 12px !important;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
-            padding: 24px !important;
-            margin-bottom: 24px !important;
+        .apple-card {
             width: 100% !important;
             max-width: none !important;
         }
         
-        #simple-grammar-title {
-            font-size: 1.5rem !important;
-            color: #2563eb !important;
-            margin-bottom: 16px !important;
-            font-weight: 600 !important;
-        }
-        
-        #simple-grammar-body {
-            font-size: 16px !important;
-            line-height: 1.8 !important;
-            color: #374151 !important;
-        }
-        
-        #simple-grammar-body code {
-            background: #f3f4f6;
-            color: #dc2626;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-            font-size: 14px;
-        }
-        
-        #simple-grammar-body strong {
-            color: #1f2937;
-            font-weight: 600;
+        .apple-section-text {
+            width: 100% !important;
+            max-width: none !important;
         }
     </style>
 </head>
@@ -111,108 +24,34 @@
     <!-- ヘッダー -->
     <header class="apple-header px-6 py-6 mb-8">
         <div class="container mx-auto flex flex-col items-start">
-            <div class="flex items-center space-x-4">
-                <a href="../index.html" class="text-white hover:text-gray-200">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                    </svg>
-                </a>
-                <h1 class="apple-title">文型</h1>
-            </div>
+            <h1 class="apple-title">文型</h1>
             <p class="apple-sub mt-2">英文法の基礎から学ぼう</p>
         </div>
     </header>
 
+    <!-- パンくずリスト -->
+    <nav class="container mx-auto px-6 mb-6">
+        <div class="flex items-center space-x-2 text-sm text-gray-600">
+            <a href="../index.html" class="hover:text-blue-600">ホーム</a>
+            <span>></span>
+            <a href="../index.html#sentence-patterns" class="hover:text-blue-600">文型</a>
+            <span>></span>
+            <span class="text-gray-900">第2文型（S+V+C）</span>
+        </div>
+    </nav>
+
     <!-- メインコンテンツ -->
     <main class="container mx-auto px-6 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- パンくずリスト -->
-            <nav class="mb-6">
-                <ol class="flex items-center space-x-2 text-sm text-gray-600">
-                    <li><a href="../index.html" class="hover:text-blue-600">ホーム</a></li>
-                    <li><span class="mx-2">/</span></li>
-                    <li><a href="../index.html#sentence-patterns" class="hover:text-blue-600">文型</a></li>
-                    <li><span class="mx-2">/</span></li>
-                    <li class="text-gray-900">第2文型（S+V+C）</li>
-                </ol>
-            </nav>
-
-            <!-- 文法説明コンポーネント -->
-            <div id="grammar-explanation-container"></div>
-
-<<<<<<< Updated upstream
-                <script>
-                // ストップウォッチ機能
-                let timerInterval;
-                let elapsed = 0;
-                let running = false;
-                function updateTimerDisplay() {
-                  const hours = String(Math.floor(elapsed / 3600)).padStart(2, '0');
-                  const minutes = String(Math.floor((elapsed % 3600) / 60)).padStart(2, '0');
-                  const seconds = String(elapsed % 60).padStart(2, '0');
-                  document.getElementById('timer-display').textContent = `${hours}:${minutes}:${seconds}`;
-                }
-                document.getElementById('start-timer').onclick = function() {
-                  if (!running) {
-                    running = true;
-                    timerInterval = setInterval(() => {
-                      elapsed++;
-                      updateTimerDisplay();
-                    }, 1000);
-                  }
-                };
-                document.getElementById('stop-timer').onclick = function() {
-                  running = false;
-                  clearInterval(timerInterval);
-                };
-                document.getElementById('reset-timer').onclick = function() {
-                  running = false;
-                  clearInterval(timerInterval);
-                  elapsed = 0;
-                  updateTimerDisplay();
-                };
-                updateTimerDisplay();
-                </script>
-            </div>
-
-            <script>
-            // 学習方法ガイドの読み込みとカスタマイズ
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('../components/learning-guide.html')
-                    .then(res => res.text())
-                    .then(html => {
-                        document.getElementById('learning-guide-container').innerHTML = html;
-                        // タイトルと説明文をカスタマイズ
-                        document.getElementById('learning-guide-title-text').textContent = '第2文型の学習方法ガイド';
-                        document.getElementById('learning-guide-step1-desc').textContent = '第2文型の定義と役割をしっかりと理解しましょう';
-                        document.getElementById('learning-guide-step2-desc').textContent = '実際の例文を見て、第2文型の使い方を学びましょう';
-                        document.getElementById('learning-guide-step3-desc').textContent = '理解度を確認するために練習問題を5回解いてみましょう';
-                        document.getElementById('learning-guide-tip1').innerHTML = '<strong>日常で意識する：</strong>会話や文章で第2文型がどのように使われているか意識してみましょう';
-                        document.getElementById('learning-guide-tip2').innerHTML = '<strong>文の構造を理解：</strong>第2文型が文の中でどの位置に来るかを意識しましょう';
-                        document.getElementById('learning-guide-tip3').innerHTML = '<strong>関連する文型と一緒に：</strong>他の文型との違いも理解しましょう';
-                        document.getElementById('learning-guide-time').innerHTML = '基本概念の理解：<strong>15分</strong> | 例文の確認：<strong>20分</strong> | 練習問題：<strong>25分</strong><br>合計：<strong>約60分</strong>で第2文型の基礎をマスターできます';
-                    });
-            });
-            </script>
-
-            <!-- タイトルパーツ -->
-            <!-- <div class="apple-card mb-8">
-                <h2 class="apple-card-title">文型2</h2>
-                <p class="apple-card-text">主語＋動詞＋補語の文型です。</p>
-            </div> -->
-
             <!-- 文法説明 -->
             <div class="apple-card mb-8">
-                <h2 class="apple-card-title">文型2</h2>
+                <h2 class="apple-card-title">第2文型（S+V+C）</h2>
                 <div class="mt-4">
                     <div id="pattern2-explanation" class="apple-section-text"></div>
                 </div>
             </div>
 
             <!-- 例文 -->
-=======
-            <!-- 例文セクション -->
->>>>>>> Stashed changes
             <div id="examples-container"></div>
 
             <!-- 練習問題 -->
@@ -234,71 +73,16 @@
     <script src="../navigation.js"></script>
     <script src="../examples.js"></script>
     <script>
-        // ページ固有の設定
-        const currentTopic = 'pattern2';
-        
-        // 文法説明コンポーネントを読み込む
-        async function loadGrammarComponent() {
-            try {
-                const response = await fetch('../components/grammar-explanation.html');
-                if (!response.ok) {
-                    throw new Error('文法説明コンポーネントの読み込みに失敗しました');
-                }
-                const html = await response.text();
-                document.getElementById('grammar-explanation-container').innerHTML = html;
-                
-                // コンポーネントが読み込まれた後、第2文型の説明を表示
-                setTimeout(() => {
-                    if (typeof showGrammarExplanation === 'function') {
-                        showGrammarExplanation('pattern_2');
-                    }
-                }, 100);
-                
-                console.log('文法説明コンポーネントが読み込まれました');
-            } catch (error) {
-                console.error('コンポーネント読み込みエラー:', error);
-                // フォールバック: 従来の方法で文法説明を表示
-                fetch('../grammar.json')
-                    .then(res => {
-                        if (!res.ok) throw new Error('Network response was not ok');
-                        return res.json();
-                    })
-                    .then(data => {
-                        document.getElementById('grammar-explanation-container').innerHTML = `
-                            <div class="apple-card">
-                                <h2 class="apple-card-title">第2文型（S+V+C）</h2>
-                                <div class="apple-card-text">
-                                    ${data.pattern_2 ? data.pattern_2.replace(/\n/g, '<br>') : '第2文型の説明が準備中です。'}
-                                </div>
-                            </div>
-                        `;
-                    })
-                    .catch(e => {
-                        document.getElementById('grammar-explanation-container').innerHTML = '<span style="color:red">文法データの取得に失敗しました。</span>';
-                    });
-            }
-        }
-
-        // イベントリスナーを設定
+        // 文法説明をgrammar.jsonから読み込む
+        fetch('../grammar.json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('pattern2-explanation').innerHTML = data.pattern_2 ? data.pattern_2.replace(/\n/g, '<br>') : '第2文型の説明が準備中です。';
+            });
+            
         document.addEventListener('DOMContentLoaded', function() {
-<<<<<<< Updated upstream
-            renderNavigation("前へ", "pattern1.html", "第2文型", "次へ", "pattern3.html");
-            renderExamples("pattern_2", "examples-container");
-=======
-            // 文法説明コンポーネントを読み込み
-            loadGrammarComponent();
-            
-            // 難易度選択機能を初期化
-            setupDifficultySelectors();
-
-            // ナビゲーション生成
-            renderNavigation("前へ", "pattern1.html", "第2文型（S+V+C）", "次へ", "pattern3.html");
-            
-            // 例文セクション生成
+            renderNavigation("前へ", "there-is.html", "第2文型（S+V+C）", "次へ", "pattern3.html");
             renderExamples("pattern2", "examples-container");
-            
-            // 和文英訳問題のイベントリスナーを設定
->>>>>>> Stashed changes
             setTimeout(() => {
                 setupWritingQuestionEventListeners("pattern2");
             }, 100);

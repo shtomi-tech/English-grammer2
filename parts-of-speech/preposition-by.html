@@ -86,16 +86,10 @@
 
         // イベントリスナーを設定
         document.addEventListener('DOMContentLoaded', function() {
-            // 難易度選択機能を初期化
-            setupDifficultySelectors();
             renderNavigation("前へ", "preposition-with.html", "前置詞byの用法", "次へ", "conjunction.html");
-            
-            // 例文セクション生成
-            renderExamples("preposition_by_usage", "examples-container");
-            
-            // 英作文問題のイベントリスナーを設定
+            renderExamples("preposition_by", "examples-container");
             setTimeout(() => {
-                setupWritingQuestionEventListeners("preposition_by_usage");
+                setupWritingQuestionEventListeners("preposition_by");
             }, 100);
         });
     </script>
