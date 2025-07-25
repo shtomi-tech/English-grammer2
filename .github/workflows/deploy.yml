@@ -48,16 +48,23 @@ jobs:
           echo "Git version: $(git --version 2>/dev/null || echo 'Git not installed')"
           echo "=========================="
           
-          # プロジェクトディレクトリに移動
-          echo "Moving to project directory: ${{ secrets.PROJECT_PATH }}"
-          if [ ! -d "${{ secrets.PROJECT_PATH }}" ]; then
-            echo "ERROR: Project directory does not exist: ${{ secrets.PROJECT_PATH }}"
-            echo "Creating directory..."
-            mkdir -p "${{ secrets.PROJECT_PATH }}"
+          # プロジェクトディレクトリの確認
+          PROJECT_PATH="${{ secrets.PROJECT_PATH }}"
+          if [ -z "$PROJECT_PATH" ]; then
+            echo "ERROR: PROJECT_PATH is not set"
+            exit 1
           fi
           
-          cd "${{ secrets.PROJECT_PATH }}" || {
-            echo "ERROR: Cannot access project directory ${{ secrets.PROJECT_PATH }}"
+          echo "Moving to project directory: $PROJECT_PATH"
+          
+          # ディレクトリが存在しない場合は作成
+          if [ ! -d "$PROJECT_PATH" ]; then
+            echo "Creating project directory: $PROJECT_PATH"
+            mkdir -p "$PROJECT_PATH"
+          fi
+          
+          cd "$PROJECT_PATH" || {
+            echo "ERROR: Cannot access project directory $PROJECT_PATH"
             exit 1
           }
           
@@ -65,16 +72,39 @@ jobs:
           echo "Directory contents:"
           ls -la
           
+          # 必要なツールの確認とインストール
+          echo "Checking required tools..."
+          
+          # Node.jsの確認
+          if ! command -v node &> /dev/null; then
+            echo "Node.js not found. Please install Node.js on the server first."
+            echo "Run: curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs"
+            exit 1
+          fi
+          
+          # PM2の確認
+          if ! command -v pm2 &> /dev/null; then
+            echo "PM2 not found. Installing PM2..."
+            npm install -g pm2
+          fi
+          
+          # Gitの確認
+          if ! command -v git &> /dev/null; then
+            echo "Git not found. Please install Git on the server first."
+            echo "Run: sudo apt-get install -y git"
+            exit 1
+          fi
+          
+          # 現在のプロセスを停止
+          echo "Stopping existing process..."
+          pm2 stop english-grammar-app 2>/dev/null || echo "No existing process to stop"
+          
           # Gitリポジトリの初期化（初回の場合）
           if [ ! -d ".git" ]; then
             echo "Initializing Git repository..."
             git init
             git remote add origin https://github.com/shtomi-tech/English-grammer2.git
           fi
-          
-          # 現在のプロセスを停止
-          echo "Stopping existing process..."
-          pm2 stop english-grammar-app 2>/dev/null || echo "No existing process to stop"
           
           # Gitから最新のコードを取得
           echo "Fetching latest code..."
