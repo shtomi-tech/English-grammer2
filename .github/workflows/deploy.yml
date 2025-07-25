@@ -49,9 +49,13 @@ jobs:
           echo "=========================="
           
           # プロジェクトディレクトリの確認
+          echo "Checking PROJECT_PATH secret..."
           PROJECT_PATH="${{ secrets.PROJECT_PATH }}"
+          echo "PROJECT_PATH value: '$PROJECT_PATH'"
+          
           if [ -z "$PROJECT_PATH" ]; then
-            echo "ERROR: PROJECT_PATH is not set"
+            echo "ERROR: PROJECT_PATH is not set or empty"
+            echo "Please check GitHub Secrets settings"
             exit 1
           fi
           
