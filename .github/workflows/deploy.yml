@@ -73,27 +73,55 @@ jobs:
           ls -la
           
           # 必要なツールの確認とインストール
-          echo "Checking required tools..."
+          echo "Checking and installing required tools..."
           
-          # Node.jsの確認
+          # Node.jsの確認とインストール
           if ! command -v node &> /dev/null; then
-            echo "Node.js not found. Please install Node.js on the server first."
-            echo "Run: curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs"
-            exit 1
+            echo "Node.js not found. Attempting to install..."
+            # Node.jsのインストールを試行
+            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - || {
+              echo "Failed to install Node.js via script. Trying alternative method..."
+              # 代替方法を試行
+              sudo apt-get update
+              sudo apt-get install -y nodejs npm || {
+                echo "ERROR: Failed to install Node.js. Please install manually."
+                echo "Run: curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs"
+                exit 1
+              }
+            }
+            sudo apt-get install -y nodejs || {
+              echo "ERROR: Failed to install Node.js"
+              exit 1
+            }
           fi
           
-          # PM2の確認
+          # PM2の確認とインストール
           if ! command -v pm2 &> /dev/null; then
             echo "PM2 not found. Installing PM2..."
-            npm install -g pm2
+            sudo npm install -g pm2 || {
+              echo "ERROR: Failed to install PM2"
+              exit 1
+            }
           fi
           
-          # Gitの確認
+          # Gitの確認とインストール
           if ! command -v git &> /dev/null; then
-            echo "Git not found. Please install Git on the server first."
-            echo "Run: sudo apt-get install -y git"
-            exit 1
+            echo "Git not found. Installing Git..."
+            sudo apt-get update
+            sudo apt-get install -y git || {
+              echo "ERROR: Failed to install Git. Please install manually."
+              echo "Run: sudo apt-get install -y git"
+              exit 1
+            }
           fi
+          
+          # インストール後の確認
+          echo "=== Tool Installation Verification ==="
+          echo "Node.js version: $(node --version)"
+          echo "NPM version: $(npm --version)"
+          echo "PM2 version: $(pm2 --version)"
+          echo "Git version: $(git --version)"
+          echo "=================================="
           
           # 現在のプロセスを停止
           echo "Stopping existing process..."
