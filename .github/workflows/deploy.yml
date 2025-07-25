@@ -5,6 +5,7 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -37,14 +38,33 @@ jobs:
           # プロジェクトディレクトリに移動
           cd ${{ secrets.PROJECT_PATH }}
           
+          # 現在のプロセスを停止
+          pm2 stop english-grammar-app || true
+          
           # Gitから最新のコードを取得
-          git pull origin main
+          git fetch origin
+          git reset --hard origin/main
           
           # 依存関係をインストール
           npm ci --production
           
-          # アプリケーションを再起動
-          pm2 restart english-grammar-app || pm2 start server.js --name english-grammar-app
+          # 環境変数ファイルが存在しない場合は作成
+          if [ ! -f .env ]; then
+            echo "Creating .env file..."
+            cp env.example .env || echo "No env.example found"
+          fi
+          
+          # アプリケーションを起動
+          pm2 start server.js --name english-grammar-app --update-env
+          
+          # プロセスが正常に起動したか確認
+          sleep 5
+          pm2 status
           
           # ログを確認
-          pm2 logs english-grammar-app --lines 10 
+          pm2 logs english-grammar-app --lines 10
+          
+          # メモリ使用量を確認
+          pm2 monit --no-daemon &
+          sleep 10
+          pkill -f "pm2 monit" 
