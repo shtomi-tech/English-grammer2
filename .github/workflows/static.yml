@@ -25,12 +25,52 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Create static build
+        run: |
+          # 静的ファイルのみをコピー（サーバーファイルを除外）
+          mkdir -p dist
+          cp -r *.html dist/
+          cp -r *.css dist/
+          cp -r *.js dist/
+          cp -r */ dist/
+          cp grammar.json dist/
+          cp examples.js dist/
+          cp static-data.js dist/
+          cp navigation.js dist/
+          
+          # サーバーファイルを除外
+          rm -f dist/server.js
+          rm -f dist/app.js
+          rm -f dist/package.json
+          rm -f dist/package-lock.json
+          rm -f dist/ecosystem.config.js
+          rm -f dist/env.example
+          rm -rf dist/.github
+          rm -rf dist/.git
+          rm -f dist/.gitignore
+          rm -f dist/.gitattributes
+          rm -f dist/README.md
+          rm -f dist/*.ps1
+          rm -f dist/scripts
+      
       - name: Setup Pages
         uses: actions/configure-pages@v4
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: 'dist'
+      
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4 
