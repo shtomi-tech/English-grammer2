@@ -28,4 +28,4 @@ A comprehensive English grammar learning platform with AI-powered explanations a
 
 This project is automatically deployed to a rental server using GitHub Actions.
 
-**Last updated**: 2025-07-25 (Secrets fixed) 
+**Last updated**: 2025-07-25 (PROJECT_PATH fixed) 
