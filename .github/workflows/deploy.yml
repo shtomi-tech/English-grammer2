@@ -42,20 +42,19 @@ jobs:
           echo "=== Deployment Debug Info ==="
           echo "Current user: $(whoami)"
           echo "Current directory: $(pwd)"
-          echo "Node.js version: $(node --version 2>/dev/null || echo 'Node.js not installed')"
-          echo "NPM version: $(npm --version 2>/dev/null || echo 'NPM not installed')"
-          echo "PM2 version: $(pm2 --version 2>/dev/null || echo 'PM2 not installed')"
-          echo "Git version: $(git --version 2>/dev/null || echo 'Git not installed')"
           echo "=========================="
           
           # プロジェクトディレクトリの確認
           echo "Checking PROJECT_PATH secret..."
+          echo "Raw PROJECT_PATH: '${{ secrets.PROJECT_PATH }}'"
           PROJECT_PATH="${{ secrets.PROJECT_PATH }}"
           echo "PROJECT_PATH value: '$PROJECT_PATH'"
+          echo "PROJECT_PATH length: ${#PROJECT_PATH}"
           
           if [ -z "$PROJECT_PATH" ]; then
             echo "ERROR: PROJECT_PATH is not set or empty"
             echo "Please check GitHub Secrets settings"
+            echo "Expected format: /home/xs115546/xs115546.xsrv.jp/public_html"
             exit 1
           fi
           
@@ -76,107 +75,62 @@ jobs:
           echo "Directory contents:"
           ls -la
           
-          # 必要なツールの確認とインストール
-          echo "Checking and installing required tools..."
-          
-          # Node.jsの確認とインストール
-          if ! command -v node &> /dev/null; then
-            echo "Node.js not found. Attempting to install..."
-            # Node.jsのインストールを試行
-            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - || {
-              echo "Failed to install Node.js via script. Trying alternative method..."
-              # 代替方法を試行
-              sudo apt-get update
-              sudo apt-get install -y nodejs npm || {
-                echo "ERROR: Failed to install Node.js. Please install manually."
-                echo "Run: curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs"
-                exit 1
-              }
-            }
-            sudo apt-get install -y nodejs || {
-              echo "ERROR: Failed to install Node.js"
-              exit 1
-            }
+          # 既存のファイルをバックアップ（初回でない場合）
+          if [ -f "index.html" ]; then
+            echo "Backing up existing files..."
+            mkdir -p backup_$(date +%Y%m%d_%H%M%S)
+            cp -r * backup_$(date +%Y%m%d_%H%M%S)/ 2>/dev/null || true
           fi
           
-          # PM2の確認とインストール
-          if ! command -v pm2 &> /dev/null; then
-            echo "PM2 not found. Installing PM2..."
-            sudo npm install -g pm2 || {
-              echo "ERROR: Failed to install PM2"
-              exit 1
-            }
-          fi
+          # 静的ファイルのみをコピー
+          echo "Copying static files..."
           
-          # Gitの確認とインストール
-          if ! command -v git &> /dev/null; then
-            echo "Git not found. Installing Git..."
-            sudo apt-get update
-            sudo apt-get install -y git || {
-              echo "ERROR: Failed to install Git. Please install manually."
-              echo "Run: sudo apt-get install -y git"
-              exit 1
-            }
-          fi
+          # HTMLファイル
+          cp -r *.html . 2>/dev/null || echo "No HTML files to copy"
           
-          # インストール後の確認
-          echo "=== Tool Installation Verification ==="
-          echo "Node.js version: $(node --version)"
-          echo "NPM version: $(npm --version)"
-          echo "PM2 version: $(pm2 --version)"
-          echo "Git version: $(git --version)"
-          echo "=================================="
+          # CSSファイル
+          cp -r *.css . 2>/dev/null || echo "No CSS files to copy"
           
-          # 現在のプロセスを停止
-          echo "Stopping existing process..."
-          pm2 stop english-grammar-app 2>/dev/null || echo "No existing process to stop"
+          # JavaScriptファイル（サーバーファイルを除く）
+          cp script.js . 2>/dev/null || echo "No script.js to copy"
+          cp navigation.js . 2>/dev/null || echo "No navigation.js to copy"
+          cp static-data.js . 2>/dev/null || echo "No static-data.js to copy"
           
-          # Gitリポジトリの初期化（初回の場合）
-          if [ ! -d ".git" ]; then
-            echo "Initializing Git repository..."
-            git init
-            git remote add origin https://github.com/shtomi-tech/English-grammer2.git
-          fi
+          # データファイル
+          cp grammar.json . 2>/dev/null || echo "No grammar.json to copy"
+          cp examples.js . 2>/dev/null || echo "No examples.js to copy"
           
-          # Gitから最新のコードを取得
-          echo "Fetching latest code..."
-          git fetch origin main || {
-            echo "ERROR: Failed to fetch from Git"
-            exit 1
-          }
-          git reset --hard origin/main || {
-            echo "ERROR: Failed to reset to main branch"
-            exit 1
-          }
+          # ディレクトリ構造
+          cp -r parts-of-speech . 2>/dev/null || echo "No parts-of-speech to copy"
+          cp -r sentence-patterns . 2>/dev/null || echo "No sentence-patterns to copy"
+          cp -r phrases . 2>/dev/null || echo "No phrases to copy"
+          cp -r clauses . 2>/dev/null || echo "No clauses to copy"
+          cp -r sentence-types . 2>/dev/null || echo "No sentence-types to copy"
+          cp -r tenses . 2>/dev/null || echo "No tenses to copy"
+          cp -r modals . 2>/dev/null || echo "No modals to copy"
+          cp -r subjunctive . 2>/dev/null || echo "No subjunctive to copy"
+          cp -r comparison . 2>/dev/null || echo "No comparison to copy"
+          cp -r mood . 2>/dev/null || echo "No mood to copy"
+          cp -r components . 2>/dev/null || echo "No components to copy"
           
-          # 依存関係をインストール
-          echo "Installing dependencies..."
-          npm ci --production || {
-            echo "ERROR: Failed to install dependencies"
-            exit 1
-          }
+          # サーバーファイルを除外
+          rm -f server.js
+          rm -f app.js
+          rm -f package.json
+          rm -f package-lock.json
+          rm -rf node_modules
+          rm -f ecosystem.config.js
+          rm -f env.example
+          rm -rf .github
+          rm -rf .git
+          rm -f .gitignore
+          rm -f .gitattributes
+          rm -f README.md
+          rm -f *.ps1
+          rm -rf scripts
           
-          # 環境変数ファイルが存在しない場合は作成
-          if [ ! -f .env ]; then
-            echo "Creating .env file..."
-            cp env.example .env 2>/dev/null || echo "No env.example found, creating empty .env"
-            echo "# Environment variables" > .env
-          fi
-          
-          # アプリケーションを起動
-          echo "Starting application..."
-          pm2 start server.js --name english-grammar-app --update-env || {
-            echo "ERROR: Failed to start application with PM2"
-            exit 1
-          }
-          
-          # プロセスが正常に起動したか確認
-          sleep 5
-          echo "PM2 status:"
-          pm2 status
-          
-          # ログを確認
-          echo "Application logs:"
-          pm2 logs english-grammar-app --lines 10
+          echo "Static files copied successfully"
+          echo "Directory contents after copy:"
+          ls -la
           
           echo "=== Deployment completed successfully ===" 
