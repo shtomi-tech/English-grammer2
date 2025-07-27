@@ -46,7 +46,6 @@ jobs:
           
           # プロジェクトディレクトリの確認
           echo "Checking PROJECT_PATH secret..."
-          echo "Raw PROJECT_PATH: '${{ secrets.PROJECT_PATH }}'"
           PROJECT_PATH="${{ secrets.PROJECT_PATH }}"
           echo "PROJECT_PATH value: '$PROJECT_PATH'"
           echo "PROJECT_PATH length: ${#PROJECT_PATH}"
