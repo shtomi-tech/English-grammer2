@@ -1,32 +1,52 @@
+# GitHub Actionsのワークフロー名
 name: Deploy to Rental Server
 
+# ワークフローが実行されるトリガー
 on:
+  # mainまたはmasterブランチへのpush時
   push:
     branches: [ main, master ]
+  # mainまたはmasterブランチへのpull_request時
   pull_request:
     branches: [ main, master ]
+  # 手動での実行を許可
   workflow_dispatch:
 
 jobs:
   deploy:
+    # 実行環境として最新のUbuntuを使用
     runs-on: ubuntu-latest
     
     steps:
+    # 1. リポジトリのコードをチェックアウト
     - name: Checkout code
       uses: actions/checkout@v4
       
+    # 2. Node.js環境をセットアップ
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
+        # Node.jsのバージョンを指定
         node-version: '18'
+        # npmのキャッシュを有効化
         cache: 'npm'
         
+    # 3. 依存パッケージをインストール
+    # package-lock.json に基づいてインストールするため `ci` を使用
     - name: Install dependencies
       run: npm ci
       
-    - name: Run tests (if any)
+    # 4. テストを実行 (testスクリプトが存在する場合のみ)
+    - name: Run tests
       run: npm test --if-present
-      
+
+    # 5. ビルドを実行 (buildスクリプトが存在する場合のみ)
+    # 静的サイトジェネレーターなどを使用している場合、このステップで公開用のファイルが `dist` フォルダなどに生成されます。
+    # ビルドプロセスがない場合は、このステップを削除してください。
+    - name: Build project
+      run: npm run build --if-present
+
+    # 6. SSHを使ってサーバーにファイルをデプロイ
     - name: Deploy to rental server
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -132,4 +152,4 @@ jobs:
           echo "Directory contents after copy:"
           ls -la
           
-          echo "=== Deployment completed successfully ===" 
+          echo "=== Deployment completed successfully ==="
