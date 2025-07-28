@@ -1,44 +1,29 @@
-# GitHub Actionsのワークフロー名
 name: Deploy to Rental Server
 
-# ワークフローが実行されるトリガー
 on:
-  # mainまたはmasterブランチへのpush時
   push:
     branches: [ main, master ]
-  # 手動での実行を許可
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:
 
 jobs:
   deploy:
-    # 実行環境として最新のUbuntuを使用
     runs-on: ubuntu-latest
     
     steps:
-    # 1. リポジトリのコードをチェックアウト
     - name: Checkout code
       uses: actions/checkout@v4
       
-    # 2. Node.js環境をセットアップ
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        # Node.jsのバージョンを指定
         node-version: '18'
-        # npmのキャッシュを有効化
         cache: 'npm'
         
-    # 3. 依存パッケージをインストール
-    # package-lock.json に基づいてインストールするため `ci` を使用
     - name: Install dependencies
       run: npm ci
       
-    # 4. rsyncを使用してサーバーにファイルをデプロイ
-    # 以前のスクリプトではサーバー上でファイルのコピーや削除を行っていましたが、
-    # この方法では、GitHub Actionsの実行環境（ランナー）から直接サーバーに必要なファイルのみを転送します。
-    # こちらの方が、より高速で安全、かつ確実です。
     - name: Deploy to rental server
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -53,21 +38,21 @@ jobs:
           echo "Current user: $(whoami)"
           echo "Current directory: $(pwd)"
           
-          # PROJECT_PATHの確認
-          PROJECT_PATH="${{ secrets.PROJECT_PATH || '' }}"
-          echo "PROJECT_PATH: '$PROJECT_PATH'"
-          
-          if [ -z "$PROJECT_PATH" ]; then
-            echo "ERROR: PROJECT_PATH is empty"
+          # Validate required secrets
+          if [ -z "${{ secrets.PROJECT_PATH }}" ]; then
+            echo "ERROR: PROJECT_PATH secret is not set"
             exit 1
           fi
           
-          # ディレクトリの作成と移動
+          PROJECT_PATH="${{ secrets.PROJECT_PATH }}"
+          echo "PROJECT_PATH: '$PROJECT_PATH'"
+          
+          # Create and navigate to project directory
           mkdir -p "$PROJECT_PATH"
           cd "$PROJECT_PATH"
           echo "Working directory: $(pwd)"
           
-          # 既存ファイルのバックアップ
+          # Backup existing files if any
           if [ -f "index.html" ]; then
             BACKUP_DIR="backup_$(date +%Y%m%d_%H%M%S)"
             mkdir -p "$BACKUP_DIR"
@@ -75,26 +60,34 @@ jobs:
             echo "Backup created: $BACKUP_DIR"
           fi
           
-          # 静的ファイルのコピー
+          # Copy static files
           echo "Copying static files..."
           
-          # 基本的なファイル
-          cp -r *.html . 2>/dev/null || echo "No HTML files"
-          cp -r *.css . 2>/dev/null || echo "No CSS files"
-          cp -r *.js . 2>/dev/null || echo "No JS files"
+          # Copy HTML files
+          cp -r *.html . 2>/dev/null || echo "No HTML files found"
           
-          # データファイル
-          cp grammar.json . 2>/dev/null || echo "No grammar.json"
-          cp examples.js . 2>/dev/null || echo "No examples.js"
-          cp static-data.js . 2>/dev/null || echo "No static-data.js"
-          cp navigation.js . 2>/dev/null || echo "No navigation.js"
+          # Copy CSS files
+          cp -r *.css . 2>/dev/null || echo "No CSS files found"
           
-          # ディレクトリ構造
+          # Copy JavaScript files (excluding server files)
+          cp script.js . 2>/dev/null || echo "No script.js found"
+          cp navigation.js . 2>/dev/null || echo "No navigation.js found"
+          cp static-data.js . 2>/dev/null || echo "No static-data.js found"
+          
+          # Copy data files
+          cp grammar.json . 2>/dev/null || echo "No grammar.json found"
+          cp examples.js . 2>/dev/null || echo "No examples.js found"
+          
+          # Copy directories
           for dir in parts-of-speech sentence-patterns phrases clauses sentence-types tenses modals subjunctive comparison mood components; do
-            cp -r "$dir" . 2>/dev/null || echo "No $dir directory"
+            if [ -d "$dir" ]; then
+              cp -r "$dir" . 2>/dev/null || echo "Failed to copy $dir"
+            else
+              echo "Directory $dir not found"
+            fi
           done
           
-          # サーバーファイルの削除
+          # Remove server files
           rm -f server.js app.js package.json package-lock.json ecosystem.config.js env.example
           rm -rf node_modules .github .git
           rm -f .gitignore .gitattributes README.md *.ps1
