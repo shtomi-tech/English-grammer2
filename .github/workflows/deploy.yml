@@ -65,10 +65,19 @@ jobs:
           echo "=========================="
           
           # プロジェクトディレクトリの確認
+          echo "=== PROJECT_PATH Debug Information ==="
           echo "Checking PROJECT_PATH secret..."
+          
+          # シークレットの値を取得
           PROJECT_PATH="${{ secrets.PROJECT_PATH }}"
-          echo "PROJECT_PATH value: '$PROJECT_PATH'"
+          
+          # 詳細なデバッグ情報を表示
+          echo "Raw PROJECT_PATH from secrets: '${{ secrets.PROJECT_PATH }}'"
+          echo "PROJECT_PATH variable value: '$PROJECT_PATH'"
           echo "PROJECT_PATH length: ${#PROJECT_PATH}"
+          echo "PROJECT_PATH is empty: $([ -z "$PROJECT_PATH" ] && echo "YES" || echo "NO")"
+          echo "PROJECT_PATH contains spaces: $([ "$PROJECT_PATH" != "${PROJECT_PATH// /}" ] && echo "YES" || echo "NO")"
+          echo "====================================="
           
           if [ -z "$PROJECT_PATH" ]; then
             echo "ERROR: PROJECT_PATH is not set or empty"
