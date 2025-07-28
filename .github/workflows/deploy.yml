@@ -54,7 +54,7 @@ jobs:
           echo "Current directory: $(pwd)"
           
           # PROJECT_PATHの確認
-          PROJECT_PATH="${{ secrets.PROJECT_PATH }}"
+          PROJECT_PATH="${{ secrets.PROJECT_PATH || '' }}"
           echo "PROJECT_PATH: '$PROJECT_PATH'"
           
           if [ -z "$PROJECT_PATH" ]; then
