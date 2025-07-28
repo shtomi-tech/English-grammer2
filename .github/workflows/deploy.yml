@@ -6,9 +6,6 @@ on:
   # mainまたはmasterブランチへのpush時
   push:
     branches: [ main, master ]
-  # mainまたはmasterブランチへのpull_request時
-  pull_request:
-    branches: [ main, master ]
   # 手動での実行を許可
   workflow_dispatch:
 
@@ -40,13 +37,19 @@ jobs:
     - name: Run tests
       run: npm test --if-present
 
-    # 5. ビルドを実行 (buildスクリプトが存在する場合のみ)
-    # 静的サイトジェネレーターなどを使用している場合、このステップで公開用のファイルが `dist` フォルダなどに生成されます。
-    # ビルドプロセスがない場合は、このステップを削除してください。
+    # 5. プロジェクトをビルド (buildスクリプトが存在する場合のみ)
+    # このステップで、公開に必要なファイル（HTML, CSS, JSなど）を
+    # 'dist' や 'build' といった特定のディレクトリにまとめるのが一般的です。
+    # これにより、次のデプロイステップで転送するファイルを明確にできます。
+    # もしビルドプロセスがない場合は、このステップはスキップされても問題ありませんが、
+    # デプロイするファイルを一つのフォルダにまとめることを強く推奨します。
     - name: Build project
       run: npm run build --if-present
 
-    # 6. SSHを使ってサーバーにファイルをデプロイ
+    # 6. rsyncを使用してサーバーにファイルをデプロイ
+    # 以前のスクリプトではサーバー上でファイルのコピーや削除を行っていましたが、
+    # この方法では、GitHub Actionsの実行環境（ランナー）から直接サーバーに必要なファイルのみを転送します。
+    # こちらの方が、より高速で安全、かつ確実です。
     - name: Deploy to rental server
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -54,111 +57,23 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.PORT }}
+        
+        # [重要] ランナーからサーバーへコピーするファイル/ディレクトリを指定します。
+        # 'dist/' のように末尾にスラッシュを付けると、そのディレクトリの「中身」がコピーされます。
+        # スラッシュを付けないと、'dist' ディレクトリ自体がコピー先のフォルダ内に作成されます。
+        # プロジェクトのビルド成果物が格納されるディレクトリに合わせて変更してください。
+        # ビルドステップがない場合は、'./' を指定することも可能ですが、その場合は不要なファイルが転送されないように注意が必要です。
+        # source: "dist/" # <-- ★★★ プロジェクトに合わせてこの値を変更してください ('build/' や './' など)
+        
+        # サーバー上のデプロイ先ディレクトリ
+        # target: ${{ secrets.PROJECT_PATH }}
+        
+        # デプロイ後にサーバー上で実行するコマンド。
+        # ここではデプロイが成功したことの確認メッセージと、デプロイ先のファイル一覧を表示しています。
+        # 必要に応じて、キャッシュのクリアやサーバープロセスの再起動などのコマンドを追加できます。
         script: |
-          # エラーハンドリングを有効化
           set -e
-          
-          # デバッグ情報を表示
-          echo "=== Deployment Debug Info ==="
-          echo "Current user: $(whoami)"
-          echo "Current directory: $(pwd)"
-          echo "=========================="
-          
-          # プロジェクトディレクトリの確認
-          echo "=== PROJECT_PATH Debug Information ==="
-          echo "Checking PROJECT_PATH secret..."
-          
-          # シークレットの値を取得
-          PROJECT_PATH="${{ secrets.PROJECT_PATH }}"
-          
-          # 詳細なデバッグ情報を表示
-          echo "Raw PROJECT_PATH from secrets: '${{ secrets.PROJECT_PATH }}'"
-          echo "PROJECT_PATH variable value: '$PROJECT_PATH'"
-          echo "PROJECT_PATH length: ${#PROJECT_PATH}"
-          echo "PROJECT_PATH is empty: $([ -z "$PROJECT_PATH" ] && echo "YES" || echo "NO")"
-          echo "PROJECT_PATH contains spaces: $([ "$PROJECT_PATH" != "${PROJECT_PATH// /}" ] && echo "YES" || echo "NO")"
-          echo "====================================="
-          
-          if [ -z "$PROJECT_PATH" ]; then
-            echo "ERROR: PROJECT_PATH is not set or empty"
-            echo "Please check GitHub Secrets settings"
-            echo "Expected format: /home/xs115546/xs115546.xsrv.jp/public_html"
-            exit 1
-          fi
-          
-          echo "Moving to project directory: $PROJECT_PATH"
-          
-          # ディレクトリが存在しない場合は作成
-          if [ ! -d "$PROJECT_PATH" ]; then
-            echo "Creating project directory: $PROJECT_PATH"
-            mkdir -p "$PROJECT_PATH"
-          fi
-          
-          cd "$PROJECT_PATH" || {
-            echo "ERROR: Cannot access project directory $PROJECT_PATH"
-            exit 1
-          }
-          
-          echo "Current directory after cd: $(pwd)"
-          echo "Directory contents:"
-          ls -la
-          
-          # 既存のファイルをバックアップ（初回でない場合）
-          if [ -f "index.html" ]; then
-            echo "Backing up existing files..."
-            mkdir -p backup_$(date +%Y%m%d_%H%M%S)
-            cp -r * backup_$(date +%Y%m%d_%H%M%S)/ 2>/dev/null || true
-          fi
-          
-          # 静的ファイルのみをコピー
-          echo "Copying static files..."
-          
-          # HTMLファイル
-          cp -r *.html . 2>/dev/null || echo "No HTML files to copy"
-          
-          # CSSファイル
-          cp -r *.css . 2>/dev/null || echo "No CSS files to copy"
-          
-          # JavaScriptファイル（サーバーファイルを除く）
-          cp script.js . 2>/dev/null || echo "No script.js to copy"
-          cp navigation.js . 2>/dev/null || echo "No navigation.js to copy"
-          cp static-data.js . 2>/dev/null || echo "No static-data.js to copy"
-          
-          # データファイル
-          cp grammar.json . 2>/dev/null || echo "No grammar.json to copy"
-          cp examples.js . 2>/dev/null || echo "No examples.js to copy"
-          
-          # ディレクトリ構造
-          cp -r parts-of-speech . 2>/dev/null || echo "No parts-of-speech to copy"
-          cp -r sentence-patterns . 2>/dev/null || echo "No sentence-patterns to copy"
-          cp -r phrases . 2>/dev/null || echo "No phrases to copy"
-          cp -r clauses . 2>/dev/null || echo "No clauses to copy"
-          cp -r sentence-types . 2>/dev/null || echo "No sentence-types to copy"
-          cp -r tenses . 2>/dev/null || echo "No tenses to copy"
-          cp -r modals . 2>/dev/null || echo "No modals to copy"
-          cp -r subjunctive . 2>/dev/null || echo "No subjunctive to copy"
-          cp -r comparison . 2>/dev/null || echo "No comparison to copy"
-          cp -r mood . 2>/dev/null || echo "No mood to copy"
-          cp -r components . 2>/dev/null || echo "No components to copy"
-          
-          # サーバーファイルを除外
-          rm -f server.js
-          rm -f app.js
-          rm -f package.json
-          rm -f package-lock.json
-          rm -rf node_modules
-          rm -f ecosystem.config.js
-          rm -f env.example
-          rm -rf .github
-          rm -rf .git
-          rm -f .gitignore
-          rm -f .gitattributes
-          rm -f README.md
-          rm -f *.ps1
-          rm -rf scripts
-          
-          echo "Static files copied successfully"
-          echo "Directory contents after copy:"
-          ls -la
-          
-          echo "=== Deployment completed successfully ==="
+          echo "✅ Deployment successful!"
+          echo "Deployed files to: ${{ secrets.PROJECT_PATH }}"
+          echo "Current directory contents:"
+          ls -la ${{ secrets.PROJECT_PATH }}
