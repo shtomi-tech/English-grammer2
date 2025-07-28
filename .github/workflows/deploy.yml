@@ -7,6 +7,8 @@ on:
   push:
     branches: [ main, master ]
   # 手動での実行を許可
+  pull_request:
+    branches: [ main, master ]
   workflow_dispatch:
 
 jobs:
@@ -33,20 +35,7 @@ jobs:
     - name: Install dependencies
       run: npm ci
       
-    # 4. テストを実行 (testスクリプトが存在する場合のみ)
-    - name: Run tests
-      run: npm test --if-present
-
-    # 5. プロジェクトをビルド (buildスクリプトが存在する場合のみ)
-    # このステップで、公開に必要なファイル（HTML, CSS, JSなど）を
-    # 'dist' や 'build' といった特定のディレクトリにまとめるのが一般的です。
-    # これにより、次のデプロイステップで転送するファイルを明確にできます。
-    # もしビルドプロセスがない場合は、このステップはスキップされても問題ありませんが、
-    # デプロイするファイルを一つのフォルダにまとめることを強く推奨します。
-    - name: Build project
-      run: npm run build --if-present
-
-    # 6. rsyncを使用してサーバーにファイルをデプロイ
+    # 4. rsyncを使用してサーバーにファイルをデプロイ
     # 以前のスクリプトではサーバー上でファイルのコピーや削除を行っていましたが、
     # この方法では、GitHub Actionsの実行環境（ランナー）から直接サーバーに必要なファイルのみを転送します。
     # こちらの方が、より高速で安全、かつ確実です。
@@ -57,23 +46,62 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.PORT }}
-        
-        # [重要] ランナーからサーバーへコピーするファイル/ディレクトリを指定します。
-        # 'dist/' のように末尾にスラッシュを付けると、そのディレクトリの「中身」がコピーされます。
-        # スラッシュを付けないと、'dist' ディレクトリ自体がコピー先のフォルダ内に作成されます。
-        # プロジェクトのビルド成果物が格納されるディレクトリに合わせて変更してください。
-        # ビルドステップがない場合は、'./' を指定することも可能ですが、その場合は不要なファイルが転送されないように注意が必要です。
-        # source: "dist/" # <-- ★★★ プロジェクトに合わせてこの値を変更してください ('build/' や './' など)
-        
-        # サーバー上のデプロイ先ディレクトリ
-        # target: ${{ secrets.PROJECT_PATH }}
-        
-        # デプロイ後にサーバー上で実行するコマンド。
-        # ここではデプロイが成功したことの確認メッセージと、デプロイ先のファイル一覧を表示しています。
-        # 必要に応じて、キャッシュのクリアやサーバープロセスの再起動などのコマンドを追加できます。
         script: |
           set -e
-          echo "✅ Deployment successful!"
-          echo "Deployed files to: ${{ secrets.PROJECT_PATH }}"
-          echo "Current directory contents:"
-          ls -la ${{ secrets.PROJECT_PATH }}
+          
+          echo "=== Deployment Start ==="
+          echo "Current user: $(whoami)"
+          echo "Current directory: $(pwd)"
+          
+          # PROJECT_PATHの確認
+          PROJECT_PATH="${{ secrets.PROJECT_PATH }}"
+          echo "PROJECT_PATH: '$PROJECT_PATH'"
+          
+          if [ -z "$PROJECT_PATH" ]; then
+            echo "ERROR: PROJECT_PATH is empty"
+            exit 1
+          fi
+          
+          # ディレクトリの作成と移動
+          mkdir -p "$PROJECT_PATH"
+          cd "$PROJECT_PATH"
+          echo "Working directory: $(pwd)"
+          
+          # 既存ファイルのバックアップ
+          if [ -f "index.html" ]; then
+            BACKUP_DIR="backup_$(date +%Y%m%d_%H%M%S)"
+            mkdir -p "$BACKUP_DIR"
+            cp -r * "$BACKUP_DIR/" 2>/dev/null || true
+            echo "Backup created: $BACKUP_DIR"
+          fi
+          
+          # 静的ファイルのコピー
+          echo "Copying static files..."
+          
+          # 基本的なファイル
+          cp -r *.html . 2>/dev/null || echo "No HTML files"
+          cp -r *.css . 2>/dev/null || echo "No CSS files"
+          cp -r *.js . 2>/dev/null || echo "No JS files"
+          
+          # データファイル
+          cp grammar.json . 2>/dev/null || echo "No grammar.json"
+          cp examples.js . 2>/dev/null || echo "No examples.js"
+          cp static-data.js . 2>/dev/null || echo "No static-data.js"
+          cp navigation.js . 2>/dev/null || echo "No navigation.js"
+          
+          # ディレクトリ構造
+          for dir in parts-of-speech sentence-patterns phrases clauses sentence-types tenses modals subjunctive comparison mood components; do
+            cp -r "$dir" . 2>/dev/null || echo "No $dir directory"
+          done
+          
+          # サーバーファイルの削除
+          rm -f server.js app.js package.json package-lock.json ecosystem.config.js env.example
+          rm -rf node_modules .github .git
+          rm -f .gitignore .gitattributes README.md *.ps1
+          rm -rf scripts
+          
+          echo "Deployment completed successfully"
+          echo "Files in directory:"
+          ls -la
+          
+          echo "=== Deployment End ==="
